@@ -1,0 +1,151 @@
+# Site settings
+title: "XARF - eXtended Abuse Reporting Format"
+description: "The modern standard for real-time abuse reporting"
+url: "https://xarf.github.io"
+baseurl: "/website"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /docs/:name/
+  tools:
+    output: true
+    permalink: /tools/:name/
+  samples:
+    output: true
+    permalink: /samples/:name/
+  libraries:
+    output: true
+    permalink: /libraries/:name/
+  community:
+    output: true
+    permalink: /community/:name/
+
+# Navigation - Multi-level structure for comprehensive ecosystem
+nav_links:
+  - title: "Home"
+    url: "/"
+  - title: "Documentation"
+    url: "/docs/"
+    dropdown:
+      - title: "Getting Started"
+        url: "/docs/introduction/"
+      - title: "Technical Specification"  
+        url: "/docs/specification/"
+      - title: "Implementation Guide"
+        url: "/docs/implementation-guide/"
+      - title: "Schema Reference"
+        url: "/docs/schemas/"
+      - title: "Migration Guide"
+        url: "/docs/migration/"
+      - title: "Best Practices"
+        url: "/docs/best-practices/"
+  - title: "Tools"
+    url: "/tools/"
+    dropdown:
+      - title: "Schema Validator"
+        url: "/tools/validator/"
+      - title: "Sample Generator"
+        url: "/tools/generator/"
+      - title: "Format Converter"
+        url: "/tools/converter/"
+      - title: "Evidence Hash Calculator"
+        url: "/tools/hash-calculator/"
+  - title: "Libraries"
+    url: "/libraries/"
+    dropdown:
+      - title: "Python"
+        url: "/libraries/python/"
+      - title: "JavaScript/Node.js"
+        url: "/libraries/javascript/"
+      - title: "Go"
+        url: "/libraries/go/"
+      - title: "Java"
+        url: "/libraries/java/"
+      - title: "C#/.NET"
+        url: "/libraries/csharp/"
+      - title: "All Libraries"
+        url: "/libraries/"
+  - title: "Downloads"
+    url: "/downloads/"
+  - title: "Community"
+    url: "/community/"
+    dropdown:
+      - title: "Contributing"
+        url: "/community/contributing/"
+      - title: "Discussions"
+        url: "https://github.com/xarf/xarf-spec/discussions"
+      - title: "Issues"
+        url: "https://github.com/xarf/xarf-spec/issues"
+      - title: "Changelog"
+        url: "/community/changelog/"
+
+# Footer links
+footer_links:
+  - title: "GitHub"
+    url: "https://github.com/xarf/xarf-spec"
+  - title: "Issues"
+    url: "https://github.com/xarf/xarf-spec/issues"
+  - title: "Discussions"
+    url: "https://github.com/xarf/xarf-spec/discussions"
+
+# Defaults
+defaults:
+  - scope:
+      path: "_docs"
+    values:
+      layout: "docs"
+  - scope:
+      path: "_tools"
+    values:
+      layout: "tool"
+  - scope:
+      path: "_samples"
+    values:
+      layout: "docs"
+  - scope:
+      path: "_libraries"
+    values:
+      layout: "library"
+  - scope:
+      path: "_community"
+    values:
+      layout: "docs"
+
+# SEO
+twitter:
+  username: xarf_org
+  card: summary_large_image
+
+social:
+  name: XARF Project
+  links:
+    - https://github.com/xarf/xarf-spec
+
+# GitHub Pages
+github_username: xarf
+repository: xarf/website
+
+# Exclude files
+exclude:
+  - scripts/
+  - node_modules/
+  - vendor/
+  - .github/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
