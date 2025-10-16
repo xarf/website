@@ -285,7 +285,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
       </div>
       <div class="feature">
         <div class="feature-icon">🌍</div>
-        <h3>27+ Abuse Types</h3>
+        <h3>49 Abuse Types</h3>
         <p>Phishing, malware, DDoS, spam, CSAM, disinformation, and more. Specialized schemas for each threat.</p>
       </div>
     </div>
@@ -296,7 +296,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   <div class="container">
     <div class="stats-grid">
       <div class="stat">
-        <div class="stat-number">27+</div>
+        <div class="stat-number">49</div>
         <div class="stat-label">Abuse Types</div>
       </div>
       <div class="stat">
@@ -335,7 +335,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
         <div class="adoption-icon">✅</div>
         <div class="adoption-text">
           <strong>Full JSON Schema validation</strong><br>
-          27+ type-specific schemas
+          49 type-specific schemas
         </div>
       </div>
       <div class="adoption-stat">
@@ -365,7 +365,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
         <div class="step-number">2</div>
         <div class="step-content">
           <h3>Understand the Format</h3>
-          <p>Review comprehensive docs and sample reports for all 27+ abuse types.</p>
+          <p>Review comprehensive docs and sample reports for all 49 abuse types.</p>
           <a href="{{ '/docs/introduction' | relative_url }}" class="step-link">Read Documentation →</a>
         </div>
       </div>
@@ -453,26 +453,37 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   text-decoration: none;
   transition: all 0.2s;
   display: inline-block;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn:hover {
+  text-decoration: none;
 }
 
 .btn-primary {
   background: #667eea;
   color: white;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
 }
 
 .btn-primary:hover {
   background: #5568d3;
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  color: white;
 }
 
 .btn-secondary {
   background: #10b981;
   color: white;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
 }
 
 .btn-secondary:hover {
   background: #059669;
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+  color: white;
 }
 
 .hero-code {
@@ -545,16 +556,21 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .tab-button:hover {
   background: #e5e7eb;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .tab-button.active {
   background: white;
   border-color: #667eea;
   color: #667eea;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
 }
 
 .tab-content {
@@ -693,15 +709,19 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .comparison-list li {
   padding: 0.75rem 0;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
   position: relative;
+  line-height: 1.6;
 }
 
 .comparison-list li::before {
   content: "•";
   position: absolute;
-  left: 0;
-  font-size: 1.5rem;
+  left: 0.5rem;
+  top: 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: 600;
 }
 
 .before .comparison-list li::before {
@@ -790,8 +810,35 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   color: #1f2937;
 }
 
-.value-props, .before-after, .features, .stats, .adoption, .getting-started {
+.value-props {
   padding: 4rem 0;
+  background: #fafbfc;
+}
+
+.before-after {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.features {
+  padding: 4rem 0;
+}
+
+.stats {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.adoption {
+  padding: 4rem 0;
+}
+
+.getting-started {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+  border-top: 1px solid #d0e0ff;
 }
 
 .features-grid {
@@ -804,11 +851,27 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .feature {
   text-align: center;
   padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: all 0.2s;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.15);
+  border-color: #667eea;
 }
 
 .feature-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
+  transition: transform 0.2s;
+}
+
+.feature:hover .feature-icon {
+  transform: scale(1.1);
 }
 
 .feature h3 {
@@ -831,6 +894,15 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .stat {
   text-align: center;
   padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: all 0.2s;
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .stat-number {
@@ -875,6 +947,13 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   font-size: 1.5rem;
   font-weight: 700;
   flex-shrink: 0;
+  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s;
+}
+
+.step:hover .step-number {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
 }
 
 .step-content h3 {
