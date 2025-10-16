@@ -1,0 +1,259 @@
+{
+  "phishing": {
+    "xarf_version": "4.0.0",
+    "report_id": "b2c3d4e5-f6g7-8901-bcde-f2345678901a",
+    "timestamp": "2025-01-16T15:15:24Z",
+    "reporter": {
+      "org": "Phishing Detection Service",
+      "contact": "reports@antiphishing.example",
+      "type": "automated"
+    },
+    "source_identifier": "203.0.113.45",
+    "class": "content",
+    "type": "phishing",
+    "url": "https://secure-banking-login.example.com/auth",
+    "domain": "secure-banking-login.example.com",
+    "target_brand": "Major Bank Corp",
+    "cloned_site": "https://www.majorbank.com",
+    "credential_fields": ["username", "password", "pin"],
+    "lure_type": "security_alert",
+    "screenshot_url": "https://evidence.example.com/screenshots/12345.png",
+    "verified_at": "2025-01-16T15:14:00Z",
+    "verification_method": "automated_crawler",
+    "evidence": [
+      {
+        "content_type": "image/png",
+        "description": "Screenshot of phishing page",
+        "payload": "base64_encoded_screenshot"
+      }
+    ],
+    "tags": ["phishing:banking", "severity:critical"]
+  },
+
+  "malware": {
+    "xarf_version": "4.0.0",
+    "report_id": "e5f6a7b8-c9d0-1234-efab-cdef01234567",
+    "timestamp": "2025-01-16T12:45:00Z",
+    "reporter": {
+      "org": "Malware Analysis Lab",
+      "contact": "alerts@malwarelab.example",
+      "type": "automated"
+    },
+    "source_identifier": "198.51.100.123",
+    "class": "content",
+    "type": "malware",
+    "url": "https://malicious-downloads.example.com/invoice.exe",
+    "domain": "malicious-downloads.example.com",
+    "malware_family": "Emotet",
+    "malware_type": "trojan",
+    "file_hashes": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "md5": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "distribution_method": "email_attachment",
+    "sandbox_analysis": {
+      "sandbox_name": "VirusTotal",
+      "verdict": "malicious",
+      "score": 95
+    },
+    "evidence": [
+      {
+        "content_type": "application/octet-stream",
+        "description": "Malware sample",
+        "payload": "base64_encoded_malware"
+      }
+    ],
+    "tags": ["malware:emotet", "severity:high"]
+  },
+
+  "fraud": {
+    "xarf_version": "4.0.0",
+    "report_id": "550e8400-e29b-41d4-a716-446655440001",
+    "timestamp": "2025-01-16T10:30:00Z",
+    "reporter": {
+      "org": "Anti-Fraud Coalition",
+      "contact": "reports@antifraud.example",
+      "type": "automated"
+    },
+    "source_identifier": "198.51.100.45",
+    "class": "content",
+    "type": "fraud",
+    "url": "https://get-rich-quick.example.com",
+    "domain": "get-rich-quick.example.com",
+    "fraud_type": "investment",
+    "payment_methods": ["cryptocurrency", "wire_transfer"],
+    "cryptocurrency_addresses": [
+      {
+        "currency": "bitcoin",
+        "address": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+      }
+    ],
+    "claimed_entity": "Global Investment Fund",
+    "screenshot_url": "https://evidence.example.com/screenshots/fraud-12346.png",
+    "evidence": [
+      {
+        "content_type": "image/png",
+        "description": "Screenshot of fraudulent investment site",
+        "payload": "base64_encoded_screenshot"
+      }
+    ],
+    "tags": ["fraud:investment", "severity:high"]
+  },
+
+  "brand_infringement": {
+    "xarf_version": "4.0.0",
+    "report_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "timestamp": "2025-01-16T14:45:00Z",
+    "reporter": {
+      "org": "Brand Protection Services",
+      "contact": "enforcement@brandprotect.example",
+      "type": "automated"
+    },
+    "source_identifier": "203.0.113.77",
+    "class": "content",
+    "type": "brand_infringement",
+    "url": "https://amaz0n-deals.example.com",
+    "domain": "amaz0n-deals.example.com",
+    "infringement_type": "typosquatting",
+    "legitimate_site": "https://www.amazon.com",
+    "similarity_score": 0.87,
+    "infringing_elements": ["logo", "brand_name", "color_scheme"],
+    "target_brand": "Amazon",
+    "products_offered": ["electronics", "clothing", "books"],
+    "screenshot_url": "https://evidence.example.com/screenshots/brand-12347.png",
+    "evidence": [
+      {
+        "content_type": "image/png",
+        "description": "Screenshot showing brand impersonation",
+        "payload": "base64_encoded_screenshot"
+      }
+    ],
+    "tags": ["brand:amazon", "infringement:typosquatting"]
+  },
+
+  "data_leak": {
+    "xarf_version": "4.0.0",
+    "report_id": "f1e2d3c4-b5a6-7890-abcd-ef1234567890",
+    "timestamp": "2025-01-16T09:20:00Z",
+    "reporter": {
+      "org": "Data Breach Monitor",
+      "contact": "alerts@breachmonitor.example",
+      "type": "automated"
+    },
+    "source_identifier": "198.51.100.99",
+    "class": "content",
+    "type": "data_leak",
+    "url": "http://exposed-database.example.com:8080/dump.sql",
+    "domain": "exposed-database.example.com",
+    "data_types": ["credentials", "personal_information", "financial"],
+    "exposure_method": "misconfigured_server",
+    "record_count": 150000,
+    "affected_organization": "Example Corp",
+    "data_format": "sql",
+    "sensitive_fields": ["email", "password_hash", "credit_card"],
+    "encryption_status": "hashed",
+    "accessibility": "public",
+    "discovery_source": "automated_scan",
+    "evidence": [
+      {
+        "content_type": "text/plain",
+        "description": "Sample of exposed database structure",
+        "payload": "base64_encoded_sample"
+      }
+    ],
+    "tags": ["data:pii", "severity:critical"]
+  },
+
+  "remote_compromise": {
+    "xarf_version": "4.0.0",
+    "report_id": "d4e5f6a7-b8c9-0123-def4-567890abcdef",
+    "timestamp": "2025-01-16T11:30:00Z",
+    "reporter": {
+      "org": "Web Security Scanner",
+      "contact": "abuse@websecscanner.example",
+      "type": "automated"
+    },
+    "source_identifier": "192.0.2.150",
+    "class": "content",
+    "type": "remote_compromise",
+    "url": "https://compromised-site.example.com/wp-content/uploads/shell.php",
+    "domain": "compromised-site.example.com",
+    "compromise_type": "webshell",
+    "affected_cms": "wordpress",
+    "webshell_details": {
+      "family": "WSO",
+      "capabilities": ["file_manager", "command_execution", "database_access"],
+      "password_protected": true
+    },
+    "compromise_indicators": [
+      {
+        "type": "file_path",
+        "value": "/wp-content/uploads/2025/01/shell.php",
+        "description": "Webshell located in uploads directory"
+      }
+    ],
+    "malicious_activities": ["spam_sending", "scanning"],
+    "evidence": [
+      {
+        "content_type": "text/plain",
+        "description": "Webshell source code snippet",
+        "payload": "base64_encoded_code"
+      }
+    ],
+    "tags": ["compromise:webshell", "cms:wordpress"]
+  },
+
+  "suspicious_registration": {
+    "xarf_version": "4.0.0",
+    "report_id": "c3d4e5f6-a7b8-9012-bcde-f34567890123",
+    "timestamp": "2025-01-16T08:00:00Z",
+    "reporter": {
+      "org": "Domain Threat Intelligence",
+      "contact": "alerts@domainthreat.example",
+      "type": "automated"
+    },
+    "source_identifier": "192.0.2.200",
+    "class": "content",
+    "type": "suspicious_registration",
+    "url": "https://amaz0n-secure.example",
+    "domain": "amaz0n-secure.example",
+    "registration_date": "2025-01-15T22:00:00Z",
+    "days_since_registration": 0,
+    "suspicious_indicators": [
+      "typosquatting",
+      "brand_keyword",
+      "privacy_protection",
+      "immediate_activation"
+    ],
+    "risk_score": 0.92,
+    "targeted_brands": ["Amazon"],
+    "registrant_details": {
+      "privacy_protected": true,
+      "country": "CN",
+      "bulk_registrations": 47
+    },
+    "related_domains": [
+      {
+        "domain": "amaz0n-login.example",
+        "relationship": "same_registrant"
+      },
+      {
+        "domain": "amaz0n-verify.example",
+        "relationship": "same_nameserver"
+      }
+    ],
+    "predicted_usage": ["phishing", "fraud"],
+    "ssl_certificate_details": {
+      "issued_immediately": true,
+      "free_certificate": true
+    },
+    "evidence": [
+      {
+        "content_type": "application/json",
+        "description": "WHOIS and DNS records",
+        "payload": "base64_encoded_data"
+      }
+    ],
+    "tags": ["risk:high", "target:amazon"]
+  }
+}
