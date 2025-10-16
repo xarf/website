@@ -2,57 +2,47 @@
 layout: default
 ---
 
-<div class="docs-layout">
-  <nav class="docs-sidebar">
-    <div class="docs-nav">
-      <h3>Documentation</h3>
-      <ul>
-        <li><a href="{{ '/docs/introduction' | relative_url }}" {% if page.url contains '/docs/introduction' %}class="active"{% endif %}>Introduction</a></li>
-        <li><a href="{{ '/docs/specification' | relative_url }}" {% if page.url contains '/docs/specification' %}class="active"{% endif %}>Technical Specification</a></li>
-        <li><a href="{{ '/docs/implementation-guide' | relative_url }}" {% if page.url contains '/docs/implementation-guide' %}class="active"{% endif %}>Implementation Guide</a></li>
-      </ul>
-      
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="{{ '/tools/validator' | relative_url }}">🔍 Validator</a></li>
-        <li><a href="{{ '/samples/' | relative_url }}">📄 Samples</a></li>
-        <li><a href="https://github.com/xarf/xarf-spec" target="_blank">📂 GitHub</a></li>
-      </ul>
-    </div>
-  </nav>
-  
-  <div class="docs-content">
-    <div class="docs-header">
-      <div class="docs-breadcrumb">
-        <a href="{{ '/' | relative_url }}">Home</a>
-        <span class="breadcrumb-sep">/</span>
-        <a href="{{ '/docs/' | relative_url }}">Documentation</a>
-        <span class="breadcrumb-sep">/</span>
-        <span>{{ page.title }}</span>
-      </div>
-      
-      <div class="docs-actions">
-        <a href="https://github.com/xarf/xarf-spec/edit/main/docs/{{ page.source_file | default: page.path }}" class="edit-link" target="_blank">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L10.5 8.207l-3-3L12.146.146zM11.207 9l-3-3-6.5 6.5V15h2.5L11.207 9z"/>
-          </svg>
-          Edit this page
-        </a>
-      </div>
-    </div>
-    
-    <article class="docs-article">
-      <header class="article-header">
-        <h1>{{ page.title }}</h1>
-        {% if page.description %}
-          <p class="article-description">{{ page.description }}</p>
-        {% endif %}
-      </header>
-      
-      <div class="article-content">
-        {{ content }}
-      </div>
-    </article>
+<div class="docs-page">
+  <div class="container">
+    <div class="docs-layout">
+      <aside class="docs-sidebar">
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Documentation</h3>
+          <ul class="sidebar-nav">
+            <li><a href="{{ '/docs/introduction/' | relative_url }}" {% if page.url contains '/docs/introduction' %}class="active"{% endif %}>Introduction</a></li>
+            <li><a href="{{ '/docs/specification/' | relative_url }}" {% if page.url contains '/docs/specification' %}class="active"{% endif %}>Technical Specification</a></li>
+            <li><a href="{{ '/docs/implementation-guide/' | relative_url }}" {% if page.url contains '/docs/implementation-guide' %}class="active"{% endif %}>Implementation Guide</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Quick Links</h3>
+          <ul class="sidebar-nav">
+            <li><a href="{{ '/tools/validator/' | relative_url }}">🔍 Validator</a></li>
+            <li><a href="{{ '/samples/' | relative_url }}">📄 Samples</a></li>
+            <li><a href="https://github.com/xarf/xarf-spec" target="_blank">📂 GitHub</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="docs-main">
+        <div class="docs-breadcrumb">
+          <a href="{{ '/' | relative_url }}">Home</a>
+          <span>/</span>
+          <a href="{{ '/docs/introduction/' | relative_url }}">Documentation</a>
+          <span>/</span>
+          <span>{{ page.title }}</span>
+        </div>
+
+        <article class="docs-article">
+          {% if page.description %}
+            <p class="article-description">{{ page.description }}</p>
+          {% endif %}
+
+          <div class="article-content">
+            {{ content }}
+          </div>
+        </article>
     
     <nav class="docs-pagination">
       {% assign docs_pages = site.docs | sort: 'order' %}
