@@ -6,7 +6,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 <div class="problem-statement">
   <div class="container">
-    <h2 class="problem-title">While You're Manually Processing Reports, Attackers Are Already Moving On</h2>
+    <h2 class="problem-title">While You're Manually Processing Reports,<br>Attackers Are Already Moving On</h2>
     <p class="problem-description">
       Every day, abuse teams waste precious hours copying data from emails, verifying evidence,
       and reformatting reports. Meanwhile, phishing sites stay up longer, spam campaigns reach more victims,
