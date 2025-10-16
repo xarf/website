@@ -758,7 +758,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .adoption-stat {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
   background: white;
@@ -768,6 +768,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .adoption-icon {
   font-size: 2.5rem;
+  line-height: 1;
 }
 
 .adoption-text {
