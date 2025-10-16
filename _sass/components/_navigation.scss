@@ -130,7 +130,7 @@
 /* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   min-width: 220px;
@@ -139,6 +139,7 @@
   border-radius: 12px;
   box-shadow: var(--shadow-lg);
   padding: 0.5rem;
+  margin-top: 0.25rem;
   list-style: none;
   opacity: 0;
   visibility: hidden;
@@ -146,7 +147,23 @@
   pointer-events: none;
 }
 
-.nav-item.has-dropdown:hover .dropdown-menu {
+/* Create invisible bridge between nav-link and dropdown */
+.nav-item.has-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 0.5rem;
+  pointer-events: none;
+}
+
+.nav-item.has-dropdown:hover::after {
+  pointer-events: all;
+}
+
+.nav-item.has-dropdown:hover .dropdown-menu,
+.nav-item.has-dropdown .dropdown-menu:hover {
   opacity: 1;
   visibility: visible;
   pointer-events: all;
