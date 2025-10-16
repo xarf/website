@@ -10,7 +10,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
     <p class="problem-description">
       Every day, abuse teams waste precious hours copying data from emails, verifying evidence,
       and reformatting reports. Meanwhile, phishing sites stay up longer, spam campaigns reach more victims,
-      and compromised servers keep attacking. <strong>There's a better way.</strong>
+      and compromised servers keep attacking.<br><strong>There's a better way.</strong>
     </p>
   </div>
 </div>
