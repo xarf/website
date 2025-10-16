@@ -526,6 +526,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   margin: 0;
   padding: 1.5rem;
   overflow-x: auto;
+  text-align: left;
 }
 
 .code-preview code {
@@ -533,6 +534,8 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   font-size: 0.875rem;
   line-height: 1.6;
   color: #e5e7eb;
+  text-align: left;
+  display: block;
 }
 
 .stakeholder-tabs {
