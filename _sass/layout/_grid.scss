@@ -1,14 +1,19 @@
+// Main Content
+.main {
+  min-height: calc(100vh - var(--header-height));
+}
+
 // Container
 .container {
   width: 100%;
   max-width: var(--container-xl);
   margin: 0 auto;
   padding: 0 var(--space-4);
-  
+
   @media (min-width: #{$breakpoint-sm}) {
     padding: 0 var(--space-6);
   }
-  
+
   @media (min-width: #{$breakpoint-lg}) {
     padding: 0 var(--space-8);
   }
