@@ -1,0 +1,19 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/infrastructure-vpn-abuse.json",
+	"title": "XARF v4 infrastructure-vpn-abuse Type Schema",
+	"description": "Schema for infrastructure-vpn-abuse reports",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "vpn-abuse"
+				}
+			}
+		}
+	]
+}

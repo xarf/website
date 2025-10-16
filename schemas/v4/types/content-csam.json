@@ -1,0 +1,107 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-csam.json",
+	"title": "XARF v4 Content - CSAM Type Schema",
+	"description": "Schema for Child Sexual Abuse Material (CSAM) reports. Definition based on NCMEC and INTERPOL standards.",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "csam"
+				},
+				"material_type": {
+					"type": "string",
+					"enum": [
+						"image",
+						"video",
+						"text",
+						"link_collection",
+						"advertisement",
+						"other"
+					],
+					"description": "Type of CSAM material"
+				},
+				"ncmec_report_id": {
+					"type": "string",
+					"description": "NCMEC CyberTipline report ID if applicable"
+				},
+				"iwf_report_id": {
+					"type": "string",
+					"description": "IWF (Internet Watch Foundation) report ID if applicable"
+				},
+				"law_enforcement_notified": {
+					"type": "boolean",
+					"description": "Whether law enforcement has been notified"
+				},
+				"law_enforcement_agency": {
+					"type": "string",
+					"description": "Name of law enforcement agency notified"
+				},
+				"case_reference": {
+					"type": "string",
+					"description": "Law enforcement case reference number"
+				},
+				"hash_list_match": {
+					"type": "boolean",
+					"description": "Whether content matched known CSAM hash databases (PhotoDNA, MD5, etc.)"
+				},
+				"hash_list_source": {
+					"type": "string",
+					"enum": [
+						"NCMEC",
+						"IWF",
+						"PhotoDNA",
+						"INTERPOL",
+						"other"
+					],
+					"description": "Source of hash list match"
+				},
+				"preservation_required": {
+					"type": "boolean",
+					"description": "Whether data preservation is required for investigation",
+					"default": true
+				}
+			},
+			"required": ["material_type", "law_enforcement_notified"]
+		}
+	],
+	"examples": [
+		{
+			"xarf_version": "4.0.0",
+			"report_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+			"timestamp": "2025-01-15T10:30:00Z",
+			"reporter": {
+				"org": "Internet Safety Organization",
+				"contact": "csam-reports@safety.example",
+				"type": "trusted_reporter"
+			},
+			"source_identifier": "198.51.100.42",
+			"class": "content",
+			"type": "csam",
+			"url": "https://example.com/illegal/content",
+			"material_type": "image",
+			"law_enforcement_notified": true,
+			"law_enforcement_agency": "FBI Innocent Images",
+			"ncmec_report_id": "12345678",
+			"hash_list_match": true,
+			"hash_list_source": "NCMEC",
+			"preservation_required": true,
+			"evidence": [
+				{
+					"content_type": "application/json",
+					"description": "Hash values only - NO actual CSAM content",
+					"payload": {
+						"hash": {
+							"algorithm": "SHA256",
+							"value": "abc123def456..."
+						}
+					}
+				}
+			]
+		}
+	]
+}

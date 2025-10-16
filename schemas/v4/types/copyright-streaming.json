@@ -1,0 +1,19 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/copyright-streaming.json",
+	"title": "XARF v4 copyright-streaming Type Schema",
+	"description": "Schema for copyright-streaming reports",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "streaming"
+				}
+			}
+		}
+	]
+}

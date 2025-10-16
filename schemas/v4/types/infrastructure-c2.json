@@ -1,0 +1,19 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/infrastructure-c2.json",
+	"title": "XARF v4 infrastructure-c2 Type Schema",
+	"description": "Schema for infrastructure-c2 reports",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "c2"
+				}
+			}
+		}
+	]
+}

@@ -1,0 +1,81 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-ransomware.json",
+	"title": "XARF v4 Content - Ransomware Type Schema",
+	"description": "Schema for ransomware distribution, C2 servers, or payment sites",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "ransomware"
+				},
+				"ransomware_family": {
+					"type": "string",
+					"description": "Known ransomware family/variant",
+					"examples": ["LockBit", "BlackCat", "REvil", "Conti", "Ryuk"]
+				},
+				"activity_type": {
+					"type": "string",
+					"enum": [
+						"distribution_site",
+						"c2_server",
+						"payment_site",
+						"data_leak_site",
+						"negotiation_portal",
+						"affiliate_panel",
+						"other"
+					],
+					"description": "Type of ransomware-related activity"
+				},
+				"encryption_method": {
+					"type": "string",
+					"description": "Encryption algorithm used if known"
+				},
+				"ransom_amount": {
+					"type": "object",
+					"properties": {
+						"currency": {
+							"type": "string",
+							"examples": ["BTC", "ETH", "XMR", "USD"]
+						},
+						"amount": {
+							"type": "number"
+						}
+					},
+					"description": "Ransom demand if known"
+				},
+				"payment_address": {
+					"type": "string",
+					"description": "Cryptocurrency payment address"
+				},
+				"victim_organizations": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Known victim organizations"
+				},
+				"iocs": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"type": {
+								"type": "string",
+								"enum": ["hash", "domain", "ip", "url", "mutex", "registry_key"]
+							},
+							"value": {
+								"type": "string"
+							}
+						}
+					},
+					"description": "Indicators of compromise"
+				}
+			}
+		}
+	]
+}

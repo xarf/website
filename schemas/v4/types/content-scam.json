@@ -1,0 +1,38 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-scam.json",
+	"title": "XARF v4 Content - Scam Type Schema",
+	"description": "Schema for general scams and fraudulent schemes",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "scam"
+				},
+				"scam_type": {
+					"type": "string",
+					"enum": ["romance", "investment", "lottery", "tech_support", "job", "rental", "charity", "advance_fee", "pyramid", "other"],
+					"description": "Type of scam"
+				},
+				"communication_method": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": ["email", "phone", "sms", "social_media", "messaging_app", "website", "mail", "other"]
+					}
+				},
+				"financial_loss": {
+					"type": "object",
+					"properties": {
+						"currency": {"type": "string"},
+						"amount": {"type": "number"}
+					}
+				}
+			}
+		}
+	]
+}

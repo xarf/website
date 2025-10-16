@@ -1,0 +1,58 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-cryptojacking.json",
+	"title": "XARF v4 Content - Cryptojacking Type Schema",
+	"description": "Schema for unauthorized cryptocurrency mining (cryptojacking)",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "cryptojacking"
+				},
+				"mining_method": {
+					"type": "string",
+					"enum": [
+						"browser_based",
+						"installed_miner",
+						"container_abuse",
+						"cloud_instance_abuse",
+						"other"
+					],
+					"description": "Method used for cryptojacking"
+				},
+				"cryptocurrency": {
+					"type": "string",
+					"description": "Cryptocurrency being mined",
+					"examples": ["Monero", "Bitcoin", "Ethereum"]
+				},
+				"mining_pool": {
+					"type": "string",
+					"description": "Mining pool URL or identifier"
+				},
+				"wallet_address": {
+					"type": "string",
+					"description": "Attacker's wallet address"
+				},
+				"miner_script": {
+					"type": "string",
+					"format": "uri",
+					"description": "URL of mining script"
+				},
+				"cpu_usage": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 100,
+					"description": "CPU usage percentage caused by miner"
+				},
+				"injected_into": {
+					"type": "string",
+					"description": "Website or application where miner was injected"
+				}
+			}
+		}
+	]
+}

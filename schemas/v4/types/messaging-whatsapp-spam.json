@@ -1,0 +1,19 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/messaging-whatsapp-spam.json",
+	"title": "XARF v4 messaging-whatsapp-spam Type Schema",
+	"description": "Schema for messaging-whatsapp-spam reports",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "whatsapp-spam"
+				}
+			}
+		}
+	]
+}

@@ -1,0 +1,114 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-ncii.json",
+	"title": "XARF v4 Content - NCII Type Schema",
+	"description": "Schema for Non-Consensual Intimate Images (NCII), also known as 'revenge porn' or image-based sexual abuse",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "ncii"
+				},
+				"material_type": {
+					"type": "string",
+					"enum": [
+						"image",
+						"video",
+						"deepfake",
+						"link_collection",
+						"other"
+					],
+					"description": "Type of NCII material"
+				},
+				"victim_consent": {
+					"type": "string",
+					"enum": [
+						"no_consent",
+						"consent_withdrawn",
+						"unknown"
+					],
+					"description": "Consent status"
+				},
+				"deepfake_suspected": {
+					"type": "boolean",
+					"description": "Whether AI-generated deepfake is suspected"
+				},
+				"victim_age": {
+					"type": "string",
+					"enum": [
+						"adult",
+						"minor",
+						"unknown"
+					],
+					"description": "Age category of victim (use content-csam if minor)"
+				},
+				"takedown_request": {
+					"type": "object",
+					"properties": {
+						"victim_authorized": {
+							"type": "boolean",
+							"description": "Whether victim authorized this takedown request"
+						},
+						"legal_representative": {
+							"type": "string",
+							"description": "Legal representative contact if applicable"
+						},
+						"case_reference": {
+							"type": "string",
+							"description": "Legal case reference number"
+						}
+					}
+				},
+				"platform_type": {
+					"type": "string",
+					"enum": [
+						"social_media",
+						"pornography_site",
+						"file_sharing",
+						"messaging_platform",
+						"forum",
+						"personal_website",
+						"other"
+					],
+					"description": "Type of platform hosting the content"
+				}
+			},
+			"required": ["material_type", "victim_consent"]
+		}
+	],
+	"examples": [
+		{
+			"xarf_version": "4.0.0",
+			"report_id": "f1e2d3c4-b5a6-7890-fedc-ba9876543210",
+			"timestamp": "2025-01-15T11:45:00Z",
+			"reporter": {
+				"org": "Digital Rights Defense",
+				"contact": "ncii-reports@digitalrights.example",
+				"type": "victim_advocate"
+			},
+			"source_identifier": "203.0.113.100",
+			"class": "content",
+			"type": "ncii",
+			"url": "https://example-platform.com/user/post/12345",
+			"material_type": "image",
+			"victim_consent": "no_consent",
+			"victim_age": "adult",
+			"platform_type": "social_media",
+			"takedown_request": {
+				"victim_authorized": true,
+				"legal_representative": "victim-attorney@lawfirm.example"
+			},
+			"evidence": [
+				{
+					"content_type": "application/pdf",
+					"description": "Victim statement and consent documentation",
+					"payload": "base64_encoded_pdf"
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,92 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-fake-shop.json",
+	"title": "XARF v4 Content - Fake Shop Type Schema",
+	"description": "Schema for fraudulent e-commerce websites (fake online stores)",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "fake-shop"
+				},
+				"shop_characteristics": {
+					"type": "array",
+					"items": {
+						"type": "string",
+						"enum": [
+							"no_contact_info",
+							"unrealistic_prices",
+							"poor_grammar",
+							"stolen_content",
+							"no_returns_policy",
+							"prepayment_only",
+							"cryptocurrency_only",
+							"recently_registered",
+							"fake_reviews",
+							"missing_legal_info",
+							"cloned_legitimate_shop",
+							"other"
+						]
+					},
+					"description": "Characteristics indicating fraudulent shop"
+				},
+				"impersonated_brand": {
+					"type": "string",
+					"description": "Legitimate brand being impersonated if applicable"
+				},
+				"payment_methods": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Payment methods accepted"
+				},
+				"products_advertised": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Types of products advertised"
+				},
+				"domain_age_days": {
+					"type": "integer",
+					"description": "Age of domain in days"
+				},
+				"customer_complaints": {
+					"type": "integer",
+					"description": "Number of customer complaints received"
+				}
+			}
+		}
+	],
+	"examples": [
+		{
+			"xarf_version": "4.0.0",
+			"report_id": "shop1234-5678-90ab-cdef-1234567890ab",
+			"timestamp": "2025-01-15T12:00:00Z",
+			"reporter": {
+				"org": "Consumer Protection Agency",
+				"contact": "fraud@consumer-protection.example",
+				"type": "consumer_protection"
+			},
+			"source_identifier": "192.0.2.50",
+			"class": "content",
+			"type": "fake-shop",
+			"url": "https://super-deals-electronics.example",
+			"shop_characteristics": [
+				"unrealistic_prices",
+				"prepayment_only",
+				"recently_registered",
+				"no_returns_policy"
+			],
+			"products_advertised": ["smartphones", "laptops", "cameras"],
+			"payment_methods": ["bank_transfer", "cryptocurrency"],
+			"domain_age_days": 15,
+			"customer_complaints": 47
+		}
+	]
+}

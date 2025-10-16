@@ -1,0 +1,35 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://xarf.org/schemas/v4/types/content-impersonation.json",
+	"title": "XARF v4 Content - Impersonation Type Schema",
+	"description": "Schema for impersonation of individuals or organizations",
+	"allOf": [
+		{
+			"$ref": "./content-base.json"
+		},
+		{
+			"type": "object",
+			"properties": {
+				"type": {
+					"const": "impersonation"
+				},
+				"impersonation_target": {
+					"type": "string",
+					"enum": ["individual", "organization", "government", "celebrity", "executive", "support_agent", "other"]
+				},
+				"target_name": {
+					"type": "string",
+					"description": "Name of person or organization being impersonated"
+				},
+				"platform": {
+					"type": "string",
+					"description": "Platform where impersonation occurs"
+				},
+				"verified_badge_abuse": {
+					"type": "boolean",
+					"description": "Whether fake verification badge is used"
+				}
+			}
+		}
+	]
+}
