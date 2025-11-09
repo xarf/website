@@ -53,7 +53,7 @@ XARF v4 represents a complete evolution of abuse reporting, designed for the cha
 ### Key Improvements Over Previous Formats
 
 #### 🎯 **Comprehensive Coverage**
-- **49 specialized content types** covering everything from phishing to CSAM to copyright infringement
+- **57 specialized content types** covering everything from phishing to CSAM to copyright infringement
 - Detailed categorization ensures reports contain relevant, type-specific information
 - Extensible design allows for future abuse types without breaking changes
 
@@ -89,7 +89,7 @@ XARF v4 represents a complete evolution of abuse reporting, designed for the cha
 
 ## Content Type Categories
 
-XARF v4 organizes its 49 content types into 7 logical categories:
+XARF v4 organizes its 57 content types into 7 logical categories:
 
 ### 1. Connection-Based Abuse
 Network-level attacks and suspicious connection patterns.
@@ -98,7 +98,7 @@ Network-level attacks and suspicious connection patterns.
 
 **Use when:** The abuse involves network connections, traffic patterns, or access attempts
 
-**Content types:** `connection-ddos`, `connection-port-scan`, `connection-login-attack`, `connection-auth-failure`, `connection-brute-force`, `connection-ssh-attack`, `connection-rdp-attack`, `connection-ddos-amplification`
+**Content types:** `connection-ddos`, `connection-port-scan`, `connection-login-attack`, `connection-auth-failure`, `connection-brute-force`, `connection-ssh-attack`, `connection-rdp-attack`, `connection-ddos-amplification`, `connection-sql-injection`, `connection-vuln-scanning`, `connection-reconnaissance`, `connection-scraping`, `connection-bot`
 
 ### 2. Content-Based Abuse
 Malicious or harmful content hosted or distributed online.
@@ -107,7 +107,7 @@ Malicious or harmful content hosted or distributed online.
 
 **Use when:** The abuse involves hosted content, websites, or distributed files
 
-**Content types:** `content-phishing`, `content-malware`, `content-csam`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-data_leak`, `content-remote_compromise`, `content-suspicious_registration`
+**Content types:** `content-phishing`, `content-malware`, `content-csam`, `content-csem`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-exposed-data`, `content-remote_compromise`, `content-suspicious_registration`
 
 ### 3. Copyright Violations
 Intellectual property infringement and unauthorized distribution.
@@ -125,7 +125,7 @@ Compromised or misused infrastructure and systems.
 
 **Use when:** The abuse involves compromised infrastructure or misused systems
 
-**Content types:** `infrastructure-bot`, `infrastructure-compromised-server`, `infrastructure-proxy`, `infrastructure-vpn-abuse`, `infrastructure-mining`, `infrastructure-c2`
+**Content types:** `infrastructure-botnet`, `infrastructure-compromised-server`, `infrastructure-proxy`, `infrastructure-vpn-abuse`, `infrastructure-mining`, `infrastructure-c2`
 
 ### 5. Messaging Abuse
 Spam and abuse via messaging platforms and channels.
@@ -211,7 +211,7 @@ Optional: Outcomes can be reported back using the `reporter_reference_id`
 
 Ready to implement XARF v4? Here's where to go next:
 
-- **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 49 content types
+- **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 57 content types
 - **[Common Fields Reference](/docs/common-fields/)** - Understanding the core XARF fields
 - **[Content Type Examples](/docs/content-types/)** - Sample reports for each abuse type
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation

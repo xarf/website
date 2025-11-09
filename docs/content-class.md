@@ -53,7 +53,7 @@ Unauthorized use of trademarks and brand impersonation.
 - `trademark_details` - Registration information
 - `infringing_elements` - Specific brand elements misused
 
-### 5. Data Leak (`content-data_leak`)
+### 5. Exposed Data (`content-exposed-data`)
 Exposed sensitive data and information breaches.
 
 **Key Fields:**
@@ -181,7 +181,7 @@ The expanded Content class fully supports Netcraft's operational requirements:
 - **Fraud** → `content-fraud`
 - **Brand Infringement** → `content-brand_infringement`
 - **Copyright Infringement** → Part of `content-brand_infringement`
-- **Data Leak** → `content-data_leak`
+- **Exposed Data** → `content-exposed-data`
 - **Remote Compromise** → `content-remote_compromise`
 - **Suspicious Registration** → `content-suspicious_registration`
 
@@ -211,6 +211,6 @@ All content reports are validated against:
 - [content-malware.json](/schemas/v4/types/content-malware.json)
 - [content-fraud.json](/schemas/v4/types/content-fraud.json)
 - [content-brand_infringement.json](/schemas/v4/types/content-brand_infringement.json)
-- [content-data_leak.json](/schemas/v4/types/content-data_leak.json)
+- [content-exposed-data.json](/schemas/v4/types/content-exposed-data.json)
 - [content-remote_compromise.json](/schemas/v4/types/content-remote_compromise.json)
 - [content-suspicious_registration.json](/schemas/v4/types/content-suspicious_registration.json)

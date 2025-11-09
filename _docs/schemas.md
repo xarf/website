@@ -173,7 +173,7 @@ All XARF v4 reports must include these base fields:
 
 ## Content Types by Category
 
-XARF v4 includes **49 specialized content types** organized into 7 categories.
+XARF v4 includes **57 specialized content types** organized into 7 categories.
 
 ### 1. Connection-Based Abuse (8 types)
 
@@ -239,7 +239,7 @@ Malicious or harmful content hosted or distributed online.
 | `content-scam` | content-scam.json | `url` | Various scam content |
 | `content-impersonation` | content-impersonation.json | `url` | Brand/entity impersonation |
 | `content-brand_infringement` | [content-brand_infringement.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json) | `url` | Brand/trademark infringement |
-| `content-data_leak` | [content-data_leak.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-data_leak.json) | `url` | Leaked sensitive data |
+| `content-exposed-data` | [content-exposed-data.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json) | `url` | Exposed sensitive data |
 | `content-remote_compromise` | [content-remote_compromise.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json) | `url` | Remote system compromise |
 | `content-suspicious_registration` | [content-suspicious_registration.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json) | `url` | Suspicious domain registrations |
 
@@ -344,7 +344,7 @@ Compromised or misused infrastructure and systems.
 
 | Content Type | Schema File | Required Fields | Description |
 |--------------|-------------|-----------------|-------------|
-| `infrastructure-bot` | [infrastructure-bot.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-bot.json) | `compromise_evidence` | Botnet infections |
+| `infrastructure-botnet` | [infrastructure-botnet.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json) | `compromise_evidence` | Botnet infections |
 | `infrastructure-compromised-server` | [infrastructure-compromised-server.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json) | `compromise_evidence` | Compromised servers |
 | `infrastructure-proxy` | infrastructure-proxy.json | `proxy_type` | Open proxies |
 | `infrastructure-vpn-abuse` | infrastructure-vpn-abuse.json | - | VPN abuse |

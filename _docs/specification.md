@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: "Technical Specification"
-description: "Complete XARF v4 specification with all 49 content types and field definitions"
+description: "Complete XARF v4 specification with all 57 content types and field definitions"
 permalink: /docs/specification/
 ---
 
