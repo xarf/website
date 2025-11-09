@@ -33,7 +33,7 @@ Migrating to XARF v4 delivers immediate benefits:
 
 **Evidence Integrity**: Cryptographic hashes ensure evidence authenticity
 
-**Comprehensive Coverage**: 57 content types cover virtually all abuse scenarios
+**Comprehensive Coverage**: 58 content types cover virtually all abuse scenarios
 
 **Future-Proof**: Extensible design accommodates new abuse types without breaking changes
 
@@ -121,7 +121,7 @@ XARF v4 uses a consistent structure across all report types. Here's how to map y
 |------------|---------------|-------|
 | Report ID / Case Number | `report_id` | Use UUID format |
 | Report Date / Timestamp | `timestamp` | ISO 8601 format required |
-| Abuse Type / Category | `content_type` | Map to one of 57 types |
+| Abuse Type / Category | `content_type` | Map to one of 58 types |
 | Reporter Name | `reporter_info.organization` | Organization name |
 | Reporter Email | `reporter_info.email` | Contact email |
 | Reporter Reference | `reporter_reference_id` | Your internal tracking ID |
@@ -152,7 +152,7 @@ Your Category              → XARF v4 Content Type
 "Brute Force Attack"      → connection-brute-force
 ```
 
-Review all [57 XARF v4 content types](/docs/content-types/) to find the best match for your categories.
+Review all [58 XARF v4 content types](/docs/content-types/) to find the best match for your categories.
 
 ### Evidence Structure
 

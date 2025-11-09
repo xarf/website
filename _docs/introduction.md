@@ -53,7 +53,7 @@ XARF v4 represents a complete evolution of abuse reporting, designed for the cha
 ### Key Improvements Over Previous Formats
 
 #### 🎯 **Comprehensive Coverage**
-- **57 specialized content types** covering everything from phishing to CSAM to copyright infringement
+- **58 specialized content types** covering everything from phishing to CSAM/CSEM to copyright infringement
 - Detailed categorization ensures reports contain relevant, type-specific information
 - Extensible design allows for future abuse types without breaking changes
 
@@ -89,7 +89,7 @@ XARF v4 represents a complete evolution of abuse reporting, designed for the cha
 
 ## Content Type Categories
 
-XARF v4 organizes its 57 content types into 7 logical categories:
+XARF v4 organizes its 58 content types into 7 logical categories:
 
 ### 1. Connection-Based Abuse
 Network-level attacks and suspicious connection patterns.
@@ -107,7 +107,7 @@ Malicious or harmful content hosted or distributed online.
 
 **Use when:** The abuse involves hosted content, websites, or distributed files
 
-**Content types:** `content-phishing`, `content-malware`, `content-csem`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-exposed-data`, `content-remote_compromise`, `content-suspicious_registration`
+**Content types:** `content-phishing`, `content-malware`, `content-csam`, `content-csem`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-exposed-data`, `content-remote_compromise`, `content-suspicious_registration`
 
 ### 3. Copyright Violations
 Intellectual property infringement and unauthorized distribution.
@@ -211,7 +211,7 @@ Optional: Outcomes can be reported back using the `reporter_reference_id`
 
 Ready to implement XARF v4? Here's where to go next:
 
-- **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 57 content types
+- **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 58 content types
 - **[Common Fields Reference](/docs/common-fields/)** - Understanding the core XARF fields
 - **[Content Type Examples](/docs/content-types/)** - Sample reports for each abuse type
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation

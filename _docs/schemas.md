@@ -173,7 +173,7 @@ All XARF v4 reports must include these base fields:
 
 ## Content Types by Category
 
-XARF v4 includes **57 specialized content types** organized into 7 categories.
+XARF v4 includes **58 specialized content types** organized into 7 categories.
 
 ### 1. Connection-Based Abuse (8 types)
 
@@ -229,6 +229,7 @@ Malicious or harmful content hosted or distributed online.
 |--------------|-------------|-----------------|-------------|
 | `content-phishing` | [content-phishing.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json) | `url` | Phishing websites and credential harvesting |
 | `content-malware` | [content-malware.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json) | `url` | Malware distribution sites |
+| `content-csam` | content-csam.json | `url` | Child Sexual Abuse Material |
 | `content-csem` | content-csem.json | `url` | Child Sexual Exploitation Material |
 | `content-ncii` | content-ncii.json | `url` | Non-Consensual Intimate Images |
 | `content-fake-shop` | content-fake-shop.json | `url` | Fraudulent e-commerce sites |

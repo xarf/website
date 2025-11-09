@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: "Technical Specification"
-description: "Complete XARF v4 specification with all 57 content types and field definitions"
+description: "Complete XARF v4 specification with all 58 content types and field definitions"
 permalink: /docs/specification/
 ---
 
@@ -16,10 +16,10 @@ permalink: /docs/specification/
 
 ## Overview
 
-XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 57 content types organized into 7 categories.
+XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 58 content types organized into 7 categories.
 
 **Key Features:**
-- **57 specialized content types** covering modern internet abuse scenarios
+- **58 specialized content types** covering modern internet abuse scenarios
 - **7 logical categories** for easy classification and routing
 - **Evidence-first design** with cryptographic validation support
 - **Real-time processing** optimized for automated workflows
@@ -131,7 +131,7 @@ Different abuse categories require different context. Here are the category-spec
 
 ## Content Type Categories
 
-XARF v4 organizes its 57 content types into 7 logical categories:
+XARF v4 organizes its 58 content types into 7 logical categories:
 
 ### 1. Connection-Based Abuse (13 types)
 
@@ -167,7 +167,8 @@ Malicious or harmful content hosted or distributed online.
 |-------------|-------------|
 | `content-phishing` | Phishing sites impersonating legitimate brands |
 | `content-malware` | Malware distribution sites and downloads |
-| `content-csem` | Child Sexual Exploitation Material (baseline/A1/A2/B1/B2 illegal content, grooming, solicitation) |
+| `content-csam` | Child Sexual Abuse Material (baseline/A1/A2/B1/B2 illegal content) |
+| `content-csem` | Child Sexual Exploitation Material (grooming, solicitation, sextortion) |
 | `content-ncii` | Non-Consensual Intimate Images |
 | `content-fake-shop` | Fraudulent e-commerce sites |
 | `content-fraud` | Generic online fraud and scams |
