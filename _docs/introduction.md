@@ -103,11 +103,11 @@ Network-level attacks and suspicious connection patterns.
 ### 2. Content-Based Abuse
 Malicious or harmful content hosted or distributed online.
 
-**Examples:** Phishing sites, malware distribution, CSAM, NCII, fake shops, ransomware
+**Examples:** Phishing sites, malware distribution, CSEM, NCII, fake shops, ransomware
 
 **Use when:** The abuse involves hosted content, websites, or distributed files
 
-**Content types:** `content-phishing`, `content-malware`, `content-csam`, `content-csem`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-exposed-data`, `content-remote_compromise`, `content-suspicious_registration`
+**Content types:** `content-phishing`, `content-malware`, `content-csem`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-exposed-data`, `content-remote_compromise`, `content-suspicious_registration`
 
 ### 3. Copyright Violations
 Intellectual property infringement and unauthorized distribution.

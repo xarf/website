@@ -167,8 +167,7 @@ Malicious or harmful content hosted or distributed online.
 |-------------|-------------|
 | `content-phishing` | Phishing sites impersonating legitimate brands |
 | `content-malware` | Malware distribution sites and downloads |
-| `content-csam` | Child Sexual Abuse Material (baseline/A1/A2/B1/B2 illegal content) |
-| `content-csem` | Child Sexual Exploitation Material (grooming, solicitation, etc.) |
+| `content-csem` | Child Sexual Exploitation Material (baseline/A1/A2/B1/B2 illegal content, grooming, solicitation) |
 | `content-ncii` | Non-Consensual Intimate Images |
 | `content-fake-shop` | Fraudulent e-commerce sites |
 | `content-fraud` | Generic online fraud and scams |

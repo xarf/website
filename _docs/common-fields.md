@@ -144,7 +144,7 @@ The specific abuse type within the class. Valid values depend on the `class` fie
 
 **Messaging:** `spam`, `bulk_messaging`
 
-**Content:** `phishing`, `malware`, `fraud`, `csam`, `ncii`, `fake_shop`, `identity_theft`, `scam`, `impersonation`, `ransomware`, `cryptojacking`
+**Content:** `phishing`, `malware`, `fraud`, `csem`, `ncii`, `fake_shop`, `identity_theft`, `scam`, `impersonation`, `ransomware`, `cryptojacking`
 
 **Copyright:** `copyright`, `p2p`, `cyberlocker`, `streaming`, `link_site`, `ugc_platform`, `usenet`, `counterfeit`
 

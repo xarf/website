@@ -229,7 +229,7 @@ Malicious or harmful content hosted or distributed online.
 |--------------|-------------|-----------------|-------------|
 | `content-phishing` | [content-phishing.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json) | `url` | Phishing websites and credential harvesting |
 | `content-malware` | [content-malware.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json) | `url` | Malware distribution sites |
-| `content-csam` | content-csam.json | `url` | Child Sexual Abuse Material |
+| `content-csem` | content-csem.json | `url` | Child Sexual Exploitation Material |
 | `content-ncii` | content-ncii.json | `url` | Non-Consensual Intimate Images |
 | `content-fake-shop` | content-fake-shop.json | `url` | Fraudulent e-commerce sites |
 | `content-fraud` | [content-fraud.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json) | `url` | General fraud content |
