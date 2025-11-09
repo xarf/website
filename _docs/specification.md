@@ -16,10 +16,10 @@ permalink: /docs/specification/
 
 ## Overview
 
-XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 49 content types organized into 7 categories.
+XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 57 content types organized into 7 categories.
 
 **Key Features:**
-- **49 specialized content types** covering modern internet abuse scenarios
+- **57 specialized content types** covering modern internet abuse scenarios
 - **7 logical categories** for easy classification and routing
 - **Evidence-first design** with cryptographic validation support
 - **Real-time processing** optimized for automated workflows
@@ -131,9 +131,9 @@ Different abuse categories require different context. Here are the category-spec
 
 ## Content Type Categories
 
-XARF v4 organizes its 49 content types into 7 logical categories:
+XARF v4 organizes its 57 content types into 7 logical categories:
 
-### 1. Connection-Based Abuse (8 types)
+### 1. Connection-Based Abuse (13 types)
 
 Network-level attacks and suspicious connection patterns.
 
@@ -147,6 +147,11 @@ Network-level attacks and suspicious connection patterns.
 | `connection-ssh-attack` | SSH-specific brute force attacks |
 | `connection-rdp-attack` | RDP-specific brute force attacks |
 | `connection-ddos-amplification` | DDoS amplification attacks (DNS, NTP, etc.) |
+| `connection-sql-injection` | SQL injection attack attempts |
+| `connection-vuln-scanning` | Vulnerability scanning activities |
+| `connection-reconnaissance` | Probing of sensitive files (.env, .git, .htaccess) |
+| `connection-scraping` | Web crawling and scraping activities |
+| `connection-bot` | Automated web bot activity (AI agents, search bots) |
 
 **Evidence sources:** `honeypot`, `firewall_logs`, `ids_detection`, `flow_analysis`
 
@@ -154,7 +159,7 @@ Network-level attacks and suspicious connection patterns.
 
 ---
 
-### 2. Content-Based Abuse (15 types)
+### 2. Content-Based Abuse (16 types)
 
 Malicious or harmful content hosted or distributed online.
 
@@ -162,7 +167,8 @@ Malicious or harmful content hosted or distributed online.
 |-------------|-------------|
 | `content-phishing` | Phishing sites impersonating legitimate brands |
 | `content-malware` | Malware distribution sites and downloads |
-| `content-csam` | Child Sexual Abuse Material (requires immediate action) |
+| `content-csam` | Child Sexual Abuse Material (baseline/A1/A2/B1/B2 illegal content) |
+| `content-csem` | Child Sexual Exploitation Material (grooming, solicitation, etc.) |
 | `content-ncii` | Non-Consensual Intimate Images |
 | `content-fake-shop` | Fraudulent e-commerce sites |
 | `content-fraud` | Generic online fraud and scams |
@@ -172,7 +178,7 @@ Malicious or harmful content hosted or distributed online.
 | `content-scam` | Investment scams, advance-fee fraud, etc. |
 | `content-impersonation` | Brand or individual impersonation |
 | `content-brand_infringement` | Trademark and brand abuse |
-| `content-data_leak` | Exposed sensitive data repositories |
+| `content-exposed-data` | Exposed sensitive data repositories |
 | `content-remote_compromise` | Remote access trojans and backdoors |
 | `content-suspicious_registration` | Suspicious domain registrations |
 
@@ -209,7 +215,7 @@ Compromised or misused infrastructure and systems.
 
 | Content Type | Description |
 |-------------|-------------|
-| `infrastructure-bot` | Botnet-infected systems |
+| `infrastructure-botnet` | Botnet-infected systems |
 | `infrastructure-compromised-server` | Compromised servers and web applications |
 | `infrastructure-proxy` | Open proxies and anonymous proxy abuse |
 | `infrastructure-vpn-abuse` | VPN service abuse |
