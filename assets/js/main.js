@@ -208,7 +208,56 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
+// Copy to Clipboard Functionality
+// ============================================
+function copyToClipboard(button) {
+  // Find the closest details element
+  const details = button.closest('details');
+  if (!details) {
+    console.error('Could not find details element');
+    return;
+  }
+
+  // Find the code block within the details
+  const codeBlock = details.querySelector('pre code, code');
+  if (!codeBlock) {
+    console.error('Could not find code block');
+    return;
+  }
+
+  // Get the text content (removes comment annotations)
+  let text = codeBlock.textContent;
+
+  // Remove inline comment annotations (// 🟠 Mandatory, etc.)
+  text = text.replace(/\s*\/\/\s*[🟠🟢🔵].*$/gm, '');
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(text).then(() => {
+    // Show success feedback
+    const originalText = button.innerHTML;
+    button.innerHTML = '✅ Copied!';
+    button.style.backgroundColor = '#22c55e';
+
+    // Reset button after 2 seconds
+    setTimeout(() => {
+      button.innerHTML = originalText;
+      button.style.backgroundColor = '';
+    }, 2000);
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    button.innerHTML = '❌ Failed';
+    button.style.backgroundColor = '#ef4444';
+
+    setTimeout(() => {
+      button.innerHTML = '📋 Copy to Clipboard';
+      button.style.backgroundColor = '';
+    }, 2000);
+  });
+}
+
+// ============================================
 // Expose functions globally for inline handlers
 // ============================================
 window.toggleTheme = toggleTheme;
 window.toggleMobileMenu = toggleMobileMenu;
+window.copyToClipboard = copyToClipboard;

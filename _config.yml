@@ -44,8 +44,12 @@ nav_links:
     dropdown:
       - title: "Getting Started"
         url: "/docs/introduction/"
-      - title: "Technical Specification"  
+      - title: "Technical Specification"
         url: "/docs/specification/"
+      - title: "Event Types Reference"
+        url: "/docs/types/"
+      - title: "Common Fields"
+        url: "/docs/common-fields/"
       - title: "Implementation Guide"
         url: "/docs/implementation-guide/"
       - title: "Schema Reference"
