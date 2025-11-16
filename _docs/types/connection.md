@@ -64,7 +64,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ## bot
 
-**Use Case**: Reports of automated bot activity including AI web crawlers (GPTBot, Claude-Web), search engine bots, SEO analyzers, and potentially malicious bots. Used for rate limiting, access control, and bot management policies. Particularly relevant for AI training data collection and aggressive crawling behavior.
+**Use Case**: Reports of compromised computers participating in botnets for malicious activities. These infected systems are remotely controlled to perform coordinated attacks like DDoS, spam distribution, click fraud, cryptocurrency mining, or credential stuffing. Used by network defenders, ISPs, and security teams to identify and remediate infected hosts.
 
 <details markdown="1">
 <summary>📋 View Complete Sample</summary>
@@ -73,10 +73,10 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 {
   "xarf_version": "4.0.0",                          // 🟠 Mandatory
   "report_id": "550e8400-e29b-41d4-a716-446655440000", // 🟠 Mandatory
-  "timestamp": "2025-01-15T11:30:00Z",              // 🟠 Mandatory
+  "timestamp": "2024-01-15T11:30:00Z",              // 🟠 Mandatory
   "reporter": {                                     // 🟠 Mandatory
-    "org": "Bot Detection Service",
-    "contact": "botreport@example.com",
+    "org": "Botnet Tracking System",
+    "contact": "abuse@bottracker.example",
     "type": "automated"
   },
   "source_identifier": "203.0.113.42",             // 🟠 Mandatory
@@ -84,33 +84,31 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   "type": "bot",                                    // 🟠 Mandatory
 
   "protocol": "tcp",                                // 🟠 Mandatory (type-specific)
-  "bot_type": "ai_agent",                           // 🟠 Mandatory (type-specific)
-  "first_seen": "2025-01-15T11:00:00Z",             // 🟠 Mandatory (type-specific)
+  "bot_type": "ddos_bot",                           // 🟠 Mandatory (type-specific)
+  "first_seen": "2024-01-15T10:00:00Z",             // 🟠 Mandatory (type-specific)
 
-  "source_port": 443,                               // 🟢 Recommended
-  "evidence_source": "traffic_analysis",            // 🟢 Recommended
+  "source_port": 48291,                             // 🟢 Recommended
+  "evidence_source": "botnet_monitoring",           // 🟢 Recommended
   "evidence": [                                     // 🟢 Recommended
     {
-      "content_type": "text/plain",
-      "description": "Bot access logs",
-      "payload": "R1BUQM90LzEuMCArK2h0dHBzOi8vb3BlbmFpLmNvbS9ncHRib3Q="
+      "content_type": "application/octet-stream",
+      "description": "Botnet C2 communication packet capture",
+      "payload": "Q29tbWFuZCBhbmQgQ29udHJvbCBjb21tdW5pY2F0aW9uIGRldGVjdGVk"
     }
   ],
-  "confidence": 0.92,                               // 🟢 Recommended
+  "confidence": 0.95,                               // 🟢 Recommended
 
-  "destination_ip": "198.51.100.80",                // 🔵 Optional
-  "destination_port": 443,                          // 🔵 Optional
-  "bot_name": "GPTBot",                             // 🔵 Optional
-  "user_agent": "Mozilla/5.0 (compatible; GPTBot/1.0)", // 🔵 Optional
-  "behavior_pattern": "aggressive_crawling",        // 🔵 Optional
-  "request_rate": 15.5,                             // 🔵 Optional
-  "total_requests": 2500,                           // 🔵 Optional
-  "respects_robots_txt": false,                     // 🔵 Optional
-  "follows_crawl_delay": false,                     // 🔵 Optional
-  "verification_status": "unverified",              // 🔵 Optional
-  "last_seen": "2025-01-15T11:28:00Z",              // 🔵 Optional
-  "tags": ["bot:ai_crawler", "impact:high"],        // 🔵 Optional
-  "description": "Aggressive AI bot crawling without respecting robots.txt" // 🔵 Optional
+  "destination_ip": "198.51.100.10",                // 🔵 Optional
+  "destination_port": 8080,                         // 🔵 Optional
+  "bot_name": "Mirai",                              // 🔵 Optional
+  "botnet_name": "Mirai_variant_2024",              // 🔵 Optional
+  "c2_server": "malicious-c2.example.com",          // 🔵 Optional
+  "attack_vector": "iot_compromise",                // 🔵 Optional
+  "malware_family": "Mirai",                        // 🔵 Optional
+  "infection_method": "telnet_bruteforce",          // 🔵 Optional
+  "last_seen": "2024-01-15T11:28:00Z",              // 🔵 Optional
+  "tags": ["botnet:mirai", "device:iot", "severity:high"], // 🔵 Optional
+  "description": "Compromised IoT device participating in Mirai botnet DDoS activities" // 🔵 Optional
 }
 ```
 
