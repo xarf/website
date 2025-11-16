@@ -17,7 +17,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: General copyright infringement reports including DMCA takedown notices. Used by rights holders, content protection agencies, and legal teams to protect intellectual property.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -62,7 +62,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of copyright infringement via file hosting services (Mega, Rapidgator, etc.). Used by anti-piracy organizations to track and remove infringing content from cloud storage platforms.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -107,7 +107,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of websites indexing and linking to pirated content without hosting it directly. Used to combat piracy aggregation sites and torrent index pages.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -152,7 +152,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of peer-to-peer copyright infringement (BitTorrent, eDonkey, etc.). Used by monitoring organizations to track and report users sharing copyrighted content via P2P networks.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -197,7 +197,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of copyright infringement on user-generated content platforms (YouTube, TikTok, etc.). Used by rights holders to enforce DMCA takedowns on social media and video platforms.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -242,7 +242,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of copyright infringement via Usenet newsgroups. Used by anti-piracy organizations to track content distributed through binary newsgroup channels.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json

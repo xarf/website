@@ -17,7 +17,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
 
 **Use Case**: Reports for adding sources to security blocklists. Used by threat intelligence feeds, firewall vendors, and security platforms to maintain lists of known malicious IPs, domains, or URLs for blocking.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -62,7 +62,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
 
 **Use Case**: Sharing of threat intelligence indicators of compromise (IOCs) including file hashes, C2 domains, malware signatures, and attack patterns. Used by security researchers, SOCs, and threat intelligence sharing communities (ISACs, FIRST, etc.).
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json

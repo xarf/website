@@ -17,7 +17,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
 
 **Use Case**: Reports of systems participating in botnets (e.g., Mirai, Emotet, Conficker). Used by ISPs, security researchers, and botnet tracking organizations to identify infected devices and coordinate cleanup efforts.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -62,7 +62,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
 
 **Use Case**: Reports of compromised servers being used for malicious purposes including command & control, malware hosting, phishing, or spam relay. Used by hosting providers and system administrators to identify and remediate compromised infrastructure.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json

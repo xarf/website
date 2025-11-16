@@ -17,7 +17,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of repeated authentication failures from a single source, typically indicating credential stuffing, dictionary attacks, or brute force attempts against authentication systems. Used by system administrators and security teams to identify and block attack sources.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -68,7 +68,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of automated bot activity including AI web crawlers (GPTBot, Claude-Web), search engine bots, SEO analyzers, and potentially malicious bots. Used for rate limiting, access control, and bot management policies. Particularly relevant for AI training data collection and aggressive crawling behavior.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -128,7 +128,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of Distributed Denial of Service attacks including SYN floods, UDP floods, HTTP floods, and other volumetric attacks. Used by ISPs, CDNs, and DDoS mitigation services to coordinate response and track attack sources.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -185,7 +185,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of DDoS attacks using amplification techniques (DNS, NTP, memcached, SSDP) where attackers exploit publicly accessible services to amplify attack traffic. Critical for identifying misconfigured servers being used as amplifiers.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -236,7 +236,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of brute force login attempts, credential stuffing campaigns, and password spraying attacks against authentication systems (SSH, RDP, web logins, API authentication). Used to protect user accounts and identify compromised credentials.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -287,7 +287,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of network reconnaissance via port scanning (nmap, masscan, etc.). Indicates potential preparation for attacks, vulnerability assessment, or unauthorized network mapping. Used by network security teams to identify and block scanning sources.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -338,7 +338,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of network reconnaissance activities beyond simple port scanning, including OS fingerprinting, service enumeration, and vulnerability probing. Indicates advanced threat actor activity and preparation for targeted attacks.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -389,7 +389,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of excessive content scraping, data harvesting, and unauthorized automated data extraction from websites or APIs. Used to protect intellectual property, prevent data theft, and enforce terms of service.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -440,7 +440,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of SQL injection attempts against web applications and APIs. Critical for identifying attack sources, protecting databases, and coordinating defensive responses across security teams.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -497,7 +497,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of vulnerability scanning activities using tools like Nessus, OpenVAS, or custom scanners. Indicates unauthorized security assessment or preparation for exploitation. Used to distinguish between authorized and unauthorized scanning.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json

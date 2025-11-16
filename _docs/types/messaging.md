@@ -17,7 +17,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 **Use Case**: Reports of legitimate but unwanted bulk communications, typically commercial newsletters or marketing messages sent without proper consent or lacking unsubscribe mechanisms. Commonly used for CAN-SPAM and GDPR compliance enforcement.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
@@ -78,7 +78,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 **Use Case**: Unsolicited commercial email (UCE), phishing attempts via email, social engineering campaigns, and other unwanted messaging. Used by spam filtering services, email providers, and security researchers to report abuse from spamtraps, user complaints, and automated detection systems.
 
-<details>
+<details markdown="1">
 <summary>📋 View Complete Sample</summary>
 
 ```json
