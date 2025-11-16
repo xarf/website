@@ -221,6 +221,27 @@ function addCopyButtonsToCodeBlocks() {
       return;
     }
 
+    // Parse and wrap lines with requirement classes
+    let html = codeBlock.innerHTML;
+    const lines = html.split('\n');
+    const wrappedLines = lines.map(line => {
+      // Check for requirement indicators in comments
+      if (line.includes('🟠') || line.includes('Mandatory')) {
+        // Remove the comment annotation
+        const cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
+        return `<span class="code-line mandatory">${cleanLine}</span>`;
+      } else if (line.includes('🟢') || line.includes('Recommended')) {
+        const cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
+        return `<span class="code-line recommended">${cleanLine}</span>`;
+      } else if (line.includes('🔵') || line.includes('Optional')) {
+        const cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
+        return `<span class="code-line optional">${cleanLine}</span>`;
+      }
+      return `<span class="code-line">${line}</span>`;
+    });
+
+    codeBlock.innerHTML = wrappedLines.join('\n');
+
     // Create wrapper
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';
@@ -267,11 +288,8 @@ function addCopyButtonsToCodeBlocks() {
 
     // Add click handler for copy button
     copyBtn.addEventListener('click', () => {
-      // Get the text content
+      // Get the text content (already cleaned by line processing)
       let text = codeBlock.textContent;
-
-      // Remove inline comment annotations (// 🟠 Mandatory, etc.)
-      text = text.replace(/\s*\/\/\s*[🟠🟢🔵].*$/gm, '');
 
       // Copy to clipboard
       navigator.clipboard.writeText(text).then(() => {
