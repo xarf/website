@@ -9,8 +9,6 @@ permalink: /docs/types/content/
 
 Web-based abuse including phishing websites, malware distribution, fraud sites, illegal content, defacement, and other malicious content hosted on websites or accessible via URLs.
 
-**Event Types**: 9
-
 **Note**: All content types require a `url` field as defined in the content-base schema.
 
 ---
@@ -19,8 +17,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of unauthorized use of trademarks, logos, or brand identities on websites. Used by brand protection teams and legal departments to identify and take down sites impersonating legitimate businesses or misusing intellectual property.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -57,7 +61,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json" style="display:none">Schema</a>
 
 </details>
 
@@ -67,8 +71,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of Child Sexual Abuse Material. Critical for law enforcement, NCMEC, INHOPE hotlines, and platform trust & safety teams. Follows strict reporting protocols and mandatory reporting requirements in many jurisdictions.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -105,7 +115,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csam.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csam.json" style="display:none">Schema</a>
 
 </details>
 
@@ -115,8 +125,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of Child Sexual Exploitation Material (broader than CSAM, includes grooming, sextortion, etc.). Used by law enforcement, hotlines, and online safety organizations.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -151,7 +167,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csem.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csem.json" style="display:none">Schema</a>
 
 </details>
 
@@ -161,8 +177,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of exposed sensitive data including databases, credentials, PII, or confidential documents accessible via web interfaces. Used by security researchers and affected organizations to identify and secure data leaks.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -198,7 +220,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json" style="display:none">Schema</a>
 
 </details>
 
@@ -208,8 +230,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of fraudulent websites including investment scams, romance fraud, tech support scams, and fake shopping sites. Used by consumer protection agencies, financial institutions, and anti-fraud organizations.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -257,7 +285,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json" style="display:none">Schema</a>
 
 </details>
 
@@ -267,8 +295,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of malware hosting and distribution sites including trojan droppers, ransomware, infostealers, and drive-by downloads. Used by malware research labs, antivirus vendors, and threat intelligence platforms.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -330,7 +364,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json" style="display:none">Schema</a>
 
 </details>
 
@@ -340,8 +374,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of phishing websites designed to steal credentials, financial information, or personal data. Used by anti-phishing organizations, financial institutions, and email security providers to protect users from credential theft.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -387,7 +427,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json" style="display:none">Schema</a>
 
 </details>
 
@@ -397,8 +437,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of remotely compromised websites or applications being used for malicious purposes. Used by web hosting providers and security teams to identify and remediate compromised assets.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -434,7 +480,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json" style="display:none">Schema</a>
 
 </details>
 
@@ -444,8 +490,14 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Use Case**: Reports of suspicious domain registrations that match known abuse patterns (typosquatting, brand impersonation, etc.). Used by domain registrars, brand protection services, and threat intelligence platforms for proactive abuse prevention.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -486,7 +538,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json" style="display:none">Schema</a>
 
 </details>
 

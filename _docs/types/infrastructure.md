@@ -9,16 +9,20 @@ permalink: /docs/types/infrastructure/
 
 Compromised systems and malicious infrastructure including botnets, command & control servers, and compromised hosts being used for malicious activities.
 
-**Event Types**: 2
-
 ---
 
 ## botnet
 
 **Use Case**: Reports of systems participating in botnets (e.g., Mirai, Emotet, Conficker). Used by ISPs, security researchers, and botnet tracking organizations to identify infected devices and coordinate cleanup efforts.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -50,7 +54,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json" style="display:none">Schema</a>
 
 </details>
 
@@ -60,8 +64,14 @@ Compromised systems and malicious infrastructure including botnets, command & co
 
 **Use Case**: Reports of compromised servers being used for malicious purposes including command & control, malware hosting, phishing, or spam relay. Used by hosting providers and system administrators to identify and remediate compromised infrastructure.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -93,7 +103,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json" style="display:none">Schema</a>
 
 </details>
 

@@ -9,16 +9,20 @@ permalink: /docs/types/reputation/
 
 Threat intelligence data including blocklist entries and indicators of compromise (IOCs). Used by security vendors, threat intelligence platforms, and defensive security tools.
 
-**Event Types**: 2
-
 ---
 
 ## blocklist
 
 **Use Case**: Reports for adding sources to security blocklists. Used by threat intelligence feeds, firewall vendors, and security platforms to maintain lists of known malicious IPs, domains, or URLs for blocking.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -50,7 +54,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json" style="display:none">Schema</a>
 
 </details>
 
@@ -60,8 +64,14 @@ Threat intelligence data including blocklist entries and indicators of compromis
 
 **Use Case**: Sharing of threat intelligence indicators of compromise (IOCs) including file hashes, C2 domains, malware signatures, and attack patterns. Used by security researchers, SOCs, and threat intelligence sharing communities (ISACs, FIRST, etc.).
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -93,7 +103,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-threat-intelligence.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-threat-intelligence.json" style="display:none">Schema</a>
 
 </details>
 

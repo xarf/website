@@ -9,16 +9,20 @@ permalink: /docs/types/connection/
 
 Network-level attacks and reconnaissance activities including DDoS, port scanning, brute force attacks, SQL injection, and automated bot activity.
 
-**Event Types**: 10
-
 ---
 
 ## auth_failure
 
 **Use Case**: Reports of repeated authentication failures from a single source, typically indicating credential stuffing, dictionary attacks, or brute force attempts against authentication systems. Used by system administrators and security teams to identify and block attack sources.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -56,7 +60,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-auth-failure.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-auth-failure.json" style="display:none">Schema</a>
 
 </details>
 
@@ -66,8 +70,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of compromised computers participating in botnets for malicious activities. These infected systems are remotely controlled to perform coordinated attacks like DDoS, spam distribution, click fraud, cryptocurrency mining, or credential stuffing. Used by network defenders, ISPs, and security teams to identify and remediate infected hosts.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -112,7 +122,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-bot.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-bot.json" style="display:none">Schema</a>
 
 </details>
 
@@ -122,8 +132,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of Distributed Denial of Service attacks including SYN floods, UDP floods, HTTP floods, and other volumetric attacks. Used by ISPs, CDNs, and DDoS mitigation services to coordinate response and track attack sources.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -167,7 +183,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json" style="display:none">Schema</a>
 
 </details>
 
@@ -177,8 +193,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of DDoS attacks using amplification techniques (DNS, NTP, memcached, SSDP) where attackers exploit publicly accessible services to amplify attack traffic. Critical for identifying misconfigured servers being used as amplifiers.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -216,7 +238,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos-amplification.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos-amplification.json" style="display:none">Schema</a>
 
 </details>
 
@@ -226,8 +248,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of brute force login attempts, credential stuffing campaigns, and password spraying attacks against authentication systems (SSH, RDP, web logins, API authentication). Used to protect user accounts and identify compromised credentials.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -265,7 +293,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-login-attack.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-login-attack.json" style="display:none">Schema</a>
 
 </details>
 
@@ -275,8 +303,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of network reconnaissance via port scanning (nmap, masscan, etc.). Indicates potential preparation for attacks, vulnerability assessment, or unauthorized network mapping. Used by network security teams to identify and block scanning sources.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -314,7 +348,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-port-scan.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-port-scan.json" style="display:none">Schema</a>
 
 </details>
 
@@ -324,8 +358,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of network reconnaissance activities beyond simple port scanning, including OS fingerprinting, service enumeration, and vulnerability probing. Indicates advanced threat actor activity and preparation for targeted attacks.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -363,7 +403,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-reconnaissance.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-reconnaissance.json" style="display:none">Schema</a>
 
 </details>
 
@@ -373,8 +413,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of excessive content scraping, data harvesting, and unauthorized automated data extraction from websites or APIs. Used to protect intellectual property, prevent data theft, and enforce terms of service.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -412,7 +458,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-scraping.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-scraping.json" style="display:none">Schema</a>
 
 </details>
 
@@ -422,8 +468,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of SQL injection attempts against web applications and APIs. Critical for identifying attack sources, protecting databases, and coordinating defensive responses across security teams.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -467,7 +519,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-sql-injection.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-sql-injection.json" style="display:none">Schema</a>
 
 </details>
 
@@ -477,8 +529,14 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 **Use Case**: Reports of vulnerability scanning activities using tools like Nessus, OpenVAS, or custom scanners. Indicates unauthorized security assessment or preparation for exploitation. Used to distinguish between authorized and unauthorized scanning.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -516,7 +574,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vuln-scanning.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vuln-scanning.json" style="display:none">Schema</a>
 
 </details>
 

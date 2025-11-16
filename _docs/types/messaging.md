@@ -9,8 +9,6 @@ permalink: /docs/types/messaging/
 
 Communication abuse including spam, phishing emails, and bulk messaging across various protocols (SMTP, SMS, WhatsApp, Telegram, etc.)
 
-**Event Types**: 2
-
 ---
 
 ## bulk_messaging
@@ -25,8 +23,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     <path d="M7 10l5 5 5-5z"/>
   </svg>
 </summary>
-
-<div class="sample-content">
 
 ```json
 {
@@ -76,7 +72,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 <a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json" style="display:none">Schema</a>
 
-</div>
 </details>
 
 ---
@@ -93,8 +88,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     <path d="M7 10l5 5 5-5z"/>
   </svg>
 </summary>
-
-<div class="sample-content">
 
 ```json
 {
@@ -149,7 +142,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 <a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json" style="display:none">Schema</a>
 
-</div>
 </details>
 
 ---

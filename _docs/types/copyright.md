@@ -9,16 +9,20 @@ permalink: /docs/types/copyright/
 
 Intellectual property violations including DMCA notices, trademark infringement, and various forms of digital piracy across P2P networks, cyberlockers, and streaming platforms.
 
-**Event Types**: 6
-
 ---
 
 ## copyright
 
 **Use Case**: General copyright infringement reports including DMCA takedown notices. Used by rights holders, content protection agencies, and legal teams to protect intellectual property.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -50,7 +54,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-copyright.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-copyright.json" style="display:none">Schema</a>
 
 </details>
 
@@ -60,8 +64,14 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of copyright infringement via file hosting services (Mega, Rapidgator, etc.). Used by anti-piracy organizations to track and remove infringing content from cloud storage platforms.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -93,7 +103,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-cyberlocker.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-cyberlocker.json" style="display:none">Schema</a>
 
 </details>
 
@@ -103,8 +113,14 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of websites indexing and linking to pirated content without hosting it directly. Used to combat piracy aggregation sites and torrent index pages.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -136,7 +152,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-link-site.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-link-site.json" style="display:none">Schema</a>
 
 </details>
 
@@ -146,8 +162,14 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of peer-to-peer copyright infringement (BitTorrent, eDonkey, etc.). Used by monitoring organizations to track and report users sharing copyrighted content via P2P networks.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -179,7 +201,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-p2p.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-p2p.json" style="display:none">Schema</a>
 
 </details>
 
@@ -189,8 +211,14 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of copyright infringement on user-generated content platforms (YouTube, TikTok, etc.). Used by rights holders to enforce DMCA takedowns on social media and video platforms.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -222,7 +250,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-ugc-platform.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-ugc-platform.json" style="display:none">Schema</a>
 
 </details>
 
@@ -232,8 +260,14 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 **Use Case**: Reports of copyright infringement via Usenet newsgroups. Used by anti-piracy organizations to track content distributed through binary newsgroup channels.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
 
 ```json
 {
@@ -265,7 +299,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-usenet.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-usenet.json" style="display:none">Schema</a>
 
 </details>
 
