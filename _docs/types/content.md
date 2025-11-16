@@ -57,8 +57,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json)**
 
 </details>
@@ -107,8 +105,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csam.json)**
 
 </details>
@@ -154,8 +150,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   "description": "Child exploitation content requiring immediate action" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csem.json)**
 
@@ -203,8 +197,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   "description": "Publicly accessible database backup containing PII" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json)**
 
@@ -264,8 +256,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   "description": "Cryptocurrency investment scam promising guaranteed returns" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json)**
 
@@ -340,8 +330,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json)**
 
 </details>
@@ -399,8 +387,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json)**
 
 </details>
@@ -447,8 +433,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   "description": "Compromised WordPress site hosting webshell" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json)**
 
@@ -501,8 +485,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   "description": "Typosquatting domain targeting Microsoft users" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json)**
 

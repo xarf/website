@@ -66,8 +66,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json)**
 
 </details>
@@ -131,8 +129,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
   "description": "Phishing spam targeting bank customers" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json)**
 

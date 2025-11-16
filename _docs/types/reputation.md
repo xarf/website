@@ -50,8 +50,6 @@ Threat intelligence data including blocklist entries and indicators of compromis
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json)**
 
 </details>
@@ -94,8 +92,6 @@ Threat intelligence data including blocklist entries and indicators of compromis
   "description": "APT29 campaign IOCs - file hashes and C2 infrastructure" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-threat-intelligence.json)**
 

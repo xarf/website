@@ -56,8 +56,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-auth-failure.json)**
 
 </details>
@@ -116,8 +114,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-bot.json)**
 
 </details>
@@ -173,8 +169,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json)**
 
 </details>
@@ -223,8 +217,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   "description": "NTP server being used as amplification vector" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos-amplification.json)**
 
@@ -275,8 +267,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-login-attack.json)**
 
 </details>
@@ -325,8 +315,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   "description": "TCP SYN scan of common service ports" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-port-scan.json)**
 
@@ -377,8 +365,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-reconnaissance.json)**
 
 </details>
@@ -427,8 +413,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   "description": "Automated scraping of product pricing data" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-scraping.json)**
 
@@ -485,8 +469,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-sql-injection.json)**
 
 </details>
@@ -535,8 +517,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   "description": "Unauthorized vulnerability scanning with Nessus" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vuln-scanning.json)**
 

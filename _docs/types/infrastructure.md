@@ -50,8 +50,6 @@ Compromised systems and malicious infrastructure including botnets, command & co
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json)**
 
 </details>
@@ -94,8 +92,6 @@ Compromised systems and malicious infrastructure including botnets, command & co
   "description": "Compromised web server acting as Emotet C2" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json)**
 

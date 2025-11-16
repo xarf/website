@@ -50,8 +50,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-copyright.json)**
 
 </details>
@@ -94,8 +92,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
   "description": "Pirated software hosted on Mega cyberlocker" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-cyberlocker.json)**
 
@@ -140,8 +136,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-link-site.json)**
 
 </details>
@@ -184,8 +178,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
   "description": "BitTorrent sharing of copyrighted movie files" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-p2p.json)**
 
@@ -230,8 +222,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
 }
 ```
 
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
-
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-ugc-platform.json)**
 
 </details>
@@ -274,8 +264,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
   "description": "Copyrighted content posted to Usenet binary newsgroup" // 🔵 Optional
 }
 ```
-
-<button class="copy-btn" onclick="copyToClipboard(this)">📋 Copy to Clipboard</button>
 
 **[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-usenet.json)**
 

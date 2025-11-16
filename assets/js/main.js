@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();
   initSmoothScroll();
   initExternalLinks();
+  addCopyButtonsToCodeBlocks();
 
   // Event listeners
   window.addEventListener('resize', handleResize);
@@ -210,35 +211,106 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================
 // Copy to Clipboard Functionality
 // ============================================
+function addCopyButtonsToCodeBlocks() {
+  // Find all pre elements that contain code
+  document.querySelectorAll('pre code').forEach(codeBlock => {
+    const pre = codeBlock.parentElement;
+
+    // Skip if already wrapped
+    if (pre.parentElement.classList.contains('code-block-wrapper')) {
+      return;
+    }
+
+    // Create wrapper
+    const wrapper = document.createElement('div');
+    wrapper.className = 'code-block-wrapper';
+
+    // Create copy button with SVG icon
+    const copyBtn = document.createElement('button');
+    copyBtn.className = 'copy-code-btn';
+    copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
+    copyBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+      </svg>
+    `;
+
+    // Add click handler
+    copyBtn.addEventListener('click', () => {
+      // Get the text content
+      let text = codeBlock.textContent;
+
+      // Remove inline comment annotations (// 🟠 Mandatory, etc.)
+      text = text.replace(/\s*\/\/\s*[🟠🟢🔵].*$/gm, '');
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(text).then(() => {
+        // Show success feedback
+        copyBtn.classList.add('copied');
+        copyBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+          </svg>
+          <span>Copied!</span>
+        `;
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+          copyBtn.classList.remove('copied');
+          copyBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+          `;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+        copyBtn.innerHTML = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+          <span>Failed</span>
+        `;
+
+        setTimeout(() => {
+          copyBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+          `;
+        }, 2000);
+      });
+    });
+
+    // Wrap pre element and add button
+    pre.parentNode.insertBefore(wrapper, pre);
+    wrapper.appendChild(pre);
+    wrapper.appendChild(copyBtn);
+  });
+}
+
+// Legacy function for old copy buttons (keep for backwards compatibility)
 function copyToClipboard(button) {
-  // Find the closest details element
   const details = button.closest('details');
   if (!details) {
     console.error('Could not find details element');
     return;
   }
 
-  // Find the code block within the details
   const codeBlock = details.querySelector('pre code, code');
   if (!codeBlock) {
     console.error('Could not find code block');
     return;
   }
 
-  // Get the text content (removes comment annotations)
   let text = codeBlock.textContent;
-
-  // Remove inline comment annotations (// 🟠 Mandatory, etc.)
   text = text.replace(/\s*\/\/\s*[🟠🟢🔵].*$/gm, '');
 
-  // Copy to clipboard
   navigator.clipboard.writeText(text).then(() => {
-    // Show success feedback
     const originalText = button.innerHTML;
     button.innerHTML = '✅ Copied!';
     button.style.backgroundColor = '#22c55e';
 
-    // Reset button after 2 seconds
     setTimeout(() => {
       button.innerHTML = originalText;
       button.style.backgroundColor = '';
