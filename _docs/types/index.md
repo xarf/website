@@ -13,13 +13,13 @@ XARF v4 organizes abuse reports into **7 main categories**, each containing spec
 
 | Category | Event Types | Description |
 |----------|-------------|-------------|
-| [**messaging**](/docs/types/messaging/) | 2 types | Email spam, SMS, chat, and other communication abuse |
-| [**connection**](/docs/types/connection/) | 10 types | Network attacks including DDoS, port scans, and brute force |
-| [**content**](/docs/types/content/) | 10 types | Malicious web content including phishing, malware, and fraud |
-| [**infrastructure**](/docs/types/infrastructure/) | 2 types | Compromised systems, botnets, and C2 infrastructure |
-| [**copyright**](/docs/types/copyright/) | 6 types | Intellectual property infringement and piracy |
-| [**vulnerability**](/docs/types/vulnerability/) | 3 types | Security vulnerabilities and misconfigurations |
-| [**reputation**](/docs/types/reputation/) | 2 types | Threat intelligence and blocklist data |
+| [**messaging**]({{ site.baseurl }}/docs/types/messaging/) | 2 types | Email spam, SMS, chat, and other communication abuse |
+| [**connection**]({{ site.baseurl }}/docs/types/connection/) | 10 types | Network attacks including DDoS, port scans, and brute force |
+| [**content**]({{ site.baseurl }}/docs/types/content/) | 10 types | Malicious web content including phishing, malware, and fraud |
+| [**infrastructure**]({{ site.baseurl }}/docs/types/infrastructure/) | 2 types | Compromised systems, botnets, and C2 infrastructure |
+| [**copyright**]({{ site.baseurl }}/docs/types/copyright/) | 6 types | Intellectual property infringement and piracy |
+| [**vulnerability**]({{ site.baseurl }}/docs/types/vulnerability/) | 3 types | Security vulnerabilities and misconfigurations |
+| [**reputation**]({{ site.baseurl }}/docs/types/reputation/) | 2 types | Threat intelligence and blocklist data |
 
 ## Field Level Legend
 
@@ -62,36 +62,36 @@ Every XARF v4 report, regardless of type, includes these core fields:
 - `legacy_version` - Original XARF version if converted from v3
 - `_internal` - Internal metadata (never transmitted between systems)
 
-For detailed field documentation, see [Common Fields Reference](/docs/common-fields/).
+For detailed field documentation, see [Common Fields Reference]({{ site.baseurl }}/docs/common-fields/).
 
 ## Category Details
 
 Click on any category below to explore all event types with complete samples:
 
-### [Messaging Category →](/docs/types/messaging/)
+### [Messaging Category →]({{ site.baseurl }}/docs/types/messaging/)
 Communication abuse including spam, phishing emails, and bulk messaging across various protocols (SMTP, SMS, WhatsApp, etc.)
 
-### [Connection Category →](/docs/types/connection/)
+### [Connection Category →]({{ site.baseurl }}/docs/types/connection/)
 Network-level attacks and reconnaissance activities including DDoS, port scanning, brute force attacks, and SQL injection attempts
 
-### [Content Category →](/docs/types/content/)
+### [Content Category →]({{ site.baseurl }}/docs/types/content/)
 Web-based abuse including phishing websites, malware distribution, fraud sites, defacement, and other malicious content
 
-### [Infrastructure Category →](/docs/types/infrastructure/)
+### [Infrastructure Category →]({{ site.baseurl }}/docs/types/infrastructure/)
 Compromised systems and malicious infrastructure including botnets, command & control servers, and compromised hosts
 
-### [Copyright Category →](/docs/types/copyright/)
+### [Copyright Category →]({{ site.baseurl }}/docs/types/copyright/)
 Intellectual property violations including DMCA notices, trademark infringement, and various forms of digital piracy
 
-### [Vulnerability Category →](/docs/types/vulnerability/)
+### [Vulnerability Category →]({{ site.baseurl }}/docs/types/vulnerability/)
 Security vulnerabilities, misconfigurations, and open services that pose security risks
 
-### [Reputation Category →](/docs/types/reputation/)
+### [Reputation Category →]({{ site.baseurl }}/docs/types/reputation/)
 Threat intelligence data including blocklist entries and indicators of compromise (IOCs)
 
 ## Additional Resources
 
-- **[Common Fields Reference](/docs/common-fields/)** - Detailed documentation of core XARF fields
-- **[Schema Reference](/docs/schemas/)** - JSON Schema validation documentation
-- **[Implementation Guide](/docs/)** - Best practices and deployment guidance
+- **[Common Fields Reference]({{ site.baseurl }}/docs/common-fields/)** - Detailed documentation of core XARF fields
+- **[Schema Reference]({{ site.baseurl }}/docs/schemas/)** - JSON Schema validation documentation
+- **[Implementation Guide]({{ site.baseurl }}/docs/)** - Best practices and deployment guidance
 - **[GitHub Repository](https://github.com/xarf/xarf-spec)** - Access all schemas and samples

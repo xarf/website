@@ -500,6 +500,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 ## Related Documentation
 
-- [Common Fields Reference](/docs/common-fields/) - Detailed documentation of core XARF fields
-- [Schema Reference](/docs/schemas/) - JSON Schema validation documentation
-- [All Event Types](/docs/types/) - Browse other categories
+- [Common Fields Reference]({{ site.baseurl }}/docs/common-fields/) - Detailed documentation of core XARF fields
+- [Schema Reference]({{ site.baseurl }}/docs/schemas/) - JSON Schema validation documentation
+- [All Event Types]({{ site.baseurl }}/docs/types/) - Browse other categories
