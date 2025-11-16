@@ -225,6 +225,10 @@ function addCopyButtonsToCodeBlocks() {
     const wrapper = document.createElement('div');
     wrapper.className = 'code-block-wrapper';
 
+    // Create actions container
+    const actionsContainer = document.createElement('div');
+    actionsContainer.className = 'code-actions';
+
     // Create copy button with SVG icon
     const copyBtn = document.createElement('button');
     copyBtn.className = 'copy-code-btn';
@@ -235,7 +239,33 @@ function addCopyButtonsToCodeBlocks() {
       </svg>
     `;
 
-    // Add click handler
+    // Find GitHub schema link in the details element
+    const details = pre.closest('details');
+    let githubUrl = null;
+    if (details) {
+      const githubLink = details.querySelector('a[href*="github.com"]');
+      if (githubLink) {
+        githubUrl = githubLink.href;
+      }
+    }
+
+    // Create GitHub button if URL found
+    let githubBtn = null;
+    if (githubUrl) {
+      githubBtn = document.createElement('a');
+      githubBtn.className = 'github-schema-btn';
+      githubBtn.href = githubUrl;
+      githubBtn.target = '_blank';
+      githubBtn.rel = 'noopener noreferrer';
+      githubBtn.setAttribute('aria-label', 'View schema on GitHub');
+      githubBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      `;
+    }
+
+    // Add click handler for copy button
     copyBtn.addEventListener('click', () => {
       // Get the text content
       let text = codeBlock.textContent;
@@ -251,7 +281,6 @@ function addCopyButtonsToCodeBlocks() {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
           </svg>
-          <span>Copied!</span>
         `;
 
         // Reset after 2 seconds
@@ -265,27 +294,17 @@ function addCopyButtonsToCodeBlocks() {
         }, 2000);
       }).catch(err => {
         console.error('Failed to copy:', err);
-        copyBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-          </svg>
-          <span>Failed</span>
-        `;
-
-        setTimeout(() => {
-          copyBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-            </svg>
-          `;
-        }, 2000);
       });
     });
 
-    // Wrap pre element and add button
+    // Wrap pre element and add buttons
     pre.parentNode.insertBefore(wrapper, pre);
     wrapper.appendChild(pre);
-    wrapper.appendChild(copyBtn);
+    actionsContainer.appendChild(copyBtn);
+    if (githubBtn) {
+      actionsContainer.appendChild(githubBtn);
+    }
+    wrapper.appendChild(actionsContainer);
   });
 }
 

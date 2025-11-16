@@ -1,11 +1,11 @@
 ---
 layout: docs
-title: "Event Types Reference"
+title: "Sample Reports"
 description: "Complete reference of all XARF v4 event types with samples and real-world use cases"
 permalink: /docs/types/
 ---
 
-# Event Types Reference
+# Sample Reports
 
 XARF v4 organizes abuse reports into **7 main categories**, each containing specific event types. This reference provides complete samples with field-level annotations showing mandatory, recommended, and optional fields.
 

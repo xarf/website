@@ -46,7 +46,7 @@ nav_links:
         url: "/docs/introduction/"
       - title: "Technical Specification"
         url: "/docs/specification/"
-      - title: "Event Types Reference"
+      - title: "Sample Reports"
         url: "/docs/types/"
       - title: "Common Fields"
         url: "/docs/common-fields/"

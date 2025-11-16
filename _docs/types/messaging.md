@@ -17,8 +17,16 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 **Use Case**: Reports of legitimate but unwanted bulk communications, typically commercial newsletters or marketing messages sent without proper consent or lacking unsubscribe mechanisms. Commonly used for CAN-SPAM and GDPR compliance enforcement.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
+
+<div class="sample-content">
 
 ```json
 {
@@ -66,8 +74,9 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json" style="display:none">Schema</a>
 
+</div>
 </details>
 
 ---
@@ -76,8 +85,16 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 **Use Case**: Unsolicited commercial email (UCE), phishing attempts via email, social engineering campaigns, and other unwanted messaging. Used by spam filtering services, email providers, and security researchers to report abuse from spamtraps, user complaints, and automated detection systems.
 
-<details markdown="1">
-<summary>📋 View Complete Sample</summary>
+<details class="sample-report" markdown="1">
+<summary>
+  <span class="sample-icon">{ }</span>
+  <span class="sample-title">View Complete Sample</span>
+  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7 10l5 5 5-5z"/>
+  </svg>
+</summary>
+
+<div class="sample-content">
 
 ```json
 {
@@ -130,8 +147,9 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 }
 ```
 
-**[View Schema on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json)**
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json" style="display:none">Schema</a>
 
+</div>
 </details>
 
 ---
