@@ -17,9 +17,9 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ---
 
-## bot
+## infected_host
 
-**Use Case**: Reports of compromised computers participating in botnets for malicious activities. These infected systems are remotely controlled to perform coordinated attacks like DDoS, spam distribution, click fraud, cryptocurrency mining, or credential stuffing. Used by network defenders, ISPs, and security teams to identify and remediate infected hosts.
+**Use Case**: Reports of compromised systems participating in botnets or being remotely controlled for malicious activities. These infected hosts perform coordinated attacks like DDoS, spam distribution, click fraud, cryptocurrency mining, or credential stuffing. Used by network defenders, ISPs, and security teams to identify and remediate compromised systems.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -42,7 +42,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   },
   "source_identifier": "203.0.113.42",
   "class": "connection",
-  "type": "bot",
+  "type": "infected_host",
 
   "protocol": "tcp",
   "bot_type": "ddos_bot",
@@ -73,7 +73,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-bot.json" style="display:none">Schema</a>
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-infected-host.json" style="display:none">Schema</a>
 
 </details>
 
@@ -421,9 +421,9 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ---
 
-## vuln_scanning
+## vulnerability_scan
 
-**Use Case**: Reports of vulnerability scanning activities using tools like Nessus, OpenVAS, or custom scanners. Indicates unauthorized security assessment or preparation for exploitation. Used to distinguish between authorized and unauthorized scanning.
+**Use Case**: Reports of vulnerability scanning and automated exploit attempt activities using tools like Nmap, Masscan, Nikto, OpenVAS, Nessus, or web vulnerability scanners. Indicates unauthorized security assessment or preparation for exploitation. Used to distinguish between authorized and unauthorized scanning.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -446,7 +446,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   },
   "source_identifier": "192.0.2.178",
   "class": "connection",
-  "type": "vuln_scanning",
+  "type": "vulnerability_scan",
 
   "protocol": "tcp",
   "first_seen": "2024-01-15T16:30:00Z",
@@ -470,7 +470,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 }
 ```
 
-<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vuln-scanning.json" style="display:none">Schema</a>
+<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vulnerability-scan.json" style="display:none">Schema</a>
 
 </details>
 
