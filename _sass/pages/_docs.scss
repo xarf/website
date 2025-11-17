@@ -291,8 +291,8 @@
       background: var(--color-overlay-light);
       border: 1px solid var(--color-overlay-border);
       color: var(--color-gray-200);
-      padding: 0.5rem;
-      border-radius: 6px;
+      padding: 0.375rem;
+      border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
@@ -318,8 +318,8 @@
       }
 
       svg {
-        width: 16px;
-        height: 16px;
+        width: 14px;
+        height: 14px;
         fill: currentColor;
       }
     }
