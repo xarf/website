@@ -17,61 +17,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ---
 
-## auth_failure
-
-**Use Case**: Reports of repeated authentication failures from a single source, typically indicating credential stuffing, dictionary attacks, or brute force attempts against authentication systems. Used by system administrators and security teams to identify and block attack sources.
-
-<details class="sample-report" markdown="1">
-<summary>
-  <span class="sample-icon">{ }</span>
-  <span class="sample-title">View Complete Sample</span>
-  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M7 10l5 5 5-5z"/>
-  </svg>
-</summary>
-
-```json
-{
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T10:00:00Z",
-  "reporter": {
-    "org": "Corporate Security",
-    "contact": "security@example.com",
-    "type": "automated"
-  },
-  "source_identifier": "192.0.2.45",
-  "class": "connection",
-  "type": "auth_failure",
-
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T09:45:00Z",
-  "source_port": 54321,
-
-  "evidence_source": "firewall_logs",
-  "evidence": [
-    {
-      "content_type": "text/plain",
-      "description": "Authentication failure log entries",
-      "payload": "MjAyNC0wMS0xNSAwOTo0NTowMCBBVVRIIEZBSUxVUkU6IHVzZXI9YWRtaW4="
-    }
-  ],
-  "confidence": 0.95,
-
-  "destination_ip": "203.0.113.100",
-  "destination_port": 22,
-  "last_seen": "2024-01-15T10:00:00Z",
-  "tags": ["attack:ssh_brute", "severity:medium"],
-  "description": "Repeated SSH authentication failures"
-}
-```
-
-<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-auth-failure.json" style="display:none">Schema</a>
-
-</details>
-
----
-
 ## bot
 
 **Use Case**: Reports of compromised computers participating in botnets for malicious activities. These infected systems are remotely controlled to perform coordinated attacks like DDoS, spam distribution, click fraud, cryptocurrency mining, or credential stuffing. Used by network defenders, ISPs, and security teams to identify and remediate infected hosts.
@@ -252,7 +197,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ## login_attack
 
-**Use Case**: Reports of brute force login attempts, credential stuffing campaigns, and password spraying attacks against authentication systems (SSH, RDP, web logins, API authentication). Used to protect user accounts and identify compromised credentials.
+**Use Case**: Reports of brute force login attempts, credential stuffing campaigns, password spraying attacks, and repeated authentication failures against authentication systems (SSH, RDP, web logins, API authentication). Used by system administrators and security teams to identify attack sources, protect user accounts, and identify compromised credentials.
 
 <details class="sample-report" markdown="1">
 <summary>
