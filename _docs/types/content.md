@@ -11,6 +11,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 
 **Note**: All content types require a `url` field as defined in the content-base schema.
 
+## Field Legend
+
+- 🟠 **Mandatory** - MUST be present in all valid reports
+- 🟢 **Recommended** - SHOULD be included when information is available
+- 🔵 **Optional** - MAY be included for additional context
+
 ---
 
 ## brand_infringement
@@ -543,12 +549,6 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
 </details>
 
 ---
-
-## Field Legend
-
-- 🟠 **Mandatory** - MUST be present in all valid reports
-- 🟢 **Recommended** - SHOULD be included when information is available
-- 🔵 **Optional** - MAY be included for additional context
 
 ## Related Documentation
 

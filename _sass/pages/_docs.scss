@@ -193,25 +193,68 @@
       font-size: 0.875rem;
       line-height: 1.6;
 
-      .code-line {
-        display: block;
-        padding-left: 1rem;
-        margin-left: -1rem;
-        border-left: 3px solid transparent;
+      // Requirement indicators with tooltips
+      .req-indicator {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        position: relative;
+        vertical-align: middle;
+        cursor: help;
 
         &.mandatory {
-          border-left-color: #fb923c;
-          background: rgba(251, 146, 60, 0.08);
+          background-color: #fb923c;
         }
 
         &.recommended {
-          border-left-color: #22c55e;
-          background: rgba(34, 197, 94, 0.08);
+          background-color: #22c55e;
         }
 
         &.optional {
-          border-left-color: #3b82f6;
-          background: rgba(59, 130, 246, 0.08);
+          background-color: #3b82f6;
+        }
+
+        // Tooltip on hover
+        &::after {
+          content: attr(data-tooltip);
+          position: absolute;
+          left: 50%;
+          bottom: 100%;
+          transform: translateX(-50%);
+          margin-bottom: 8px;
+          padding: 0.375rem 0.75rem;
+          background: #1f2937;
+          color: #fff;
+          font-size: 0.75rem;
+          font-weight: 600;
+          white-space: nowrap;
+          border-radius: 6px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease;
+          z-index: 100;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 100%;
+          transform: translateX(-50%);
+          margin-bottom: 2px;
+          border: 4px solid transparent;
+          border-top-color: #1f2937;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease;
+          z-index: 100;
+        }
+
+        &:hover::after,
+        &:hover::before {
+          opacity: 1;
         }
       }
     }

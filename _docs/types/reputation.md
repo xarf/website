@@ -9,6 +9,12 @@ permalink: /docs/types/reputation/
 
 Threat intelligence data including blocklist entries and indicators of compromise (IOCs). Used by security vendors, threat intelligence platforms, and defensive security tools.
 
+## Field Legend
+
+- 🟠 **Mandatory** - MUST be present in all valid reports
+- 🟢 **Recommended** - SHOULD be included when information is available
+- 🔵 **Optional** - MAY be included for additional context
+
 ---
 
 ## blocklist
@@ -108,12 +114,6 @@ Threat intelligence data including blocklist entries and indicators of compromis
 </details>
 
 ---
-
-## Field Legend
-
-- 🟠 **Mandatory** - MUST be present in all valid reports
-- 🟢 **Recommended** - SHOULD be included when information is available
-- 🔵 **Optional** - MAY be included for additional context
 
 ## Related Documentation
 

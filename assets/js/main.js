@@ -221,26 +221,29 @@ function addCopyButtonsToCodeBlocks() {
       return;
     }
 
-    // Parse and wrap lines with requirement classes
+    // Parse and add requirement indicators at the front of lines
     let html = codeBlock.innerHTML;
     const lines = html.split('\n');
-    const wrappedLines = lines.map(line => {
+    const processedLines = lines.map(line => {
       // Check for requirement indicators in comments
+      let indicator = '';
+      let cleanLine = line;
+
       if (line.includes('🟠') || line.includes('Mandatory')) {
-        // Remove the comment annotation
-        const cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
-        return `<span class="code-line mandatory">${cleanLine}</span>`;
+        cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
+        indicator = '<span class="req-indicator mandatory" data-tooltip="Mandatory"></span>';
       } else if (line.includes('🟢') || line.includes('Recommended')) {
-        const cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
-        return `<span class="code-line recommended">${cleanLine}</span>`;
+        cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
+        indicator = '<span class="req-indicator recommended" data-tooltip="Recommended"></span>';
       } else if (line.includes('🔵') || line.includes('Optional')) {
-        const cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
-        return `<span class="code-line optional">${cleanLine}</span>`;
+        cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
+        indicator = '<span class="req-indicator optional" data-tooltip="Optional"></span>';
       }
-      return `<span class="code-line">${line}</span>`;
+
+      return indicator + cleanLine;
     });
 
-    codeBlock.innerHTML = wrappedLines.join('\n');
+    codeBlock.innerHTML = processedLines.join('\n');
 
     // Create wrapper
     const wrapper = document.createElement('div');

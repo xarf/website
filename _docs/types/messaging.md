@@ -9,6 +9,12 @@ permalink: /docs/types/messaging/
 
 Communication abuse including spam, phishing emails, and bulk messaging across various protocols (SMTP, SMS, WhatsApp, Telegram, etc.)
 
+## Field Legend
+
+- 🟠 **Mandatory** - MUST be present in all valid reports
+- 🟢 **Recommended** - SHOULD be included when information is available
+- 🔵 **Optional** - MAY be included for additional context
+
 ---
 
 ## bulk_messaging
@@ -145,12 +151,6 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 </details>
 
 ---
-
-## Field Legend
-
-- 🟠 **Mandatory** - MUST be present in all valid reports
-- 🟢 **Recommended** - SHOULD be included when information is available
-- 🔵 **Optional** - MAY be included for additional context
 
 ## Related Documentation
 

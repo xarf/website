@@ -9,6 +9,12 @@ permalink: /docs/types/connection/
 
 Network-level attacks and reconnaissance activities including DDoS, port scanning, brute force attacks, SQL injection, and automated bot activity.
 
+## Field Legend
+
+- 🟠 **Mandatory** - MUST be present in all valid reports
+- 🟢 **Recommended** - SHOULD be included when information is available
+- 🔵 **Optional** - MAY be included for additional context
+
 ---
 
 ## auth_failure
@@ -579,12 +585,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 </details>
 
 ---
-
-## Field Legend
-
-- 🟠 **Mandatory** - MUST be present in all valid reports
-- 🟢 **Recommended** - SHOULD be included when information is available
-- 🔵 **Optional** - MAY be included for additional context
 
 ## Related Documentation
 

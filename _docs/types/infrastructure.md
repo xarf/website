@@ -9,6 +9,12 @@ permalink: /docs/types/infrastructure/
 
 Compromised systems and malicious infrastructure including botnets, command & control servers, and compromised hosts being used for malicious activities.
 
+## Field Legend
+
+- 🟠 **Mandatory** - MUST be present in all valid reports
+- 🟢 **Recommended** - SHOULD be included when information is available
+- 🔵 **Optional** - MAY be included for additional context
+
 ---
 
 ## botnet
@@ -108,12 +114,6 @@ Compromised systems and malicious infrastructure including botnets, command & co
 </details>
 
 ---
-
-## Field Legend
-
-- 🟠 **Mandatory** - MUST be present in all valid reports
-- 🟢 **Recommended** - SHOULD be included when information is available
-- 🔵 **Optional** - MAY be included for additional context
 
 ## Related Documentation
 

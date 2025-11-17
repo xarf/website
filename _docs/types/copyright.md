@@ -9,6 +9,12 @@ permalink: /docs/types/copyright/
 
 Intellectual property violations including DMCA notices, trademark infringement, and various forms of digital piracy across P2P networks, cyberlockers, and streaming platforms.
 
+## Field Legend
+
+- 🟠 **Mandatory** - MUST be present in all valid reports
+- 🟢 **Recommended** - SHOULD be included when information is available
+- 🔵 **Optional** - MAY be included for additional context
+
 ---
 
 ## copyright
@@ -304,12 +310,6 @@ Intellectual property violations including DMCA notices, trademark infringement,
 </details>
 
 ---
-
-## Field Legend
-
-- 🟠 **Mandatory** - MUST be present in all valid reports
-- 🟢 **Recommended** - SHOULD be included when information is available
-- 🔵 **Optional** - MAY be included for additional context
 
 ## Related Documentation
 
