@@ -81,7 +81,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ## ddos
 
-**Use Case**: Reports of Distributed Denial of Service attacks including SYN floods, UDP floods, HTTP floods, and other volumetric attacks. Used by ISPs, CDNs, and DDoS mitigation services to coordinate response and track attack sources.
+**Use Case**: Reports of Distributed Denial of Service attacks including volumetric attacks (SYN floods, UDP floods, HTTP floods) and amplification/reflection attacks (DNS, NTP, memcached, SSDP). Used by ISPs, CDNs, and DDoS mitigation services to coordinate response, track attack sources, and identify misconfigured servers being used as amplifiers.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -135,61 +135,6 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 ```
 
 <a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json" style="display:none">Schema</a>
-
-</details>
-
----
-
-## ddos_amplification
-
-**Use Case**: Reports of DDoS attacks using amplification techniques (DNS, NTP, memcached, SSDP) where attackers exploit publicly accessible services to amplify attack traffic. Critical for identifying misconfigured servers being used as amplifiers.
-
-<details class="sample-report" markdown="1">
-<summary>
-  <span class="sample-icon">{ }</span>
-  <span class="sample-title">View Complete Sample</span>
-  <svg class="expand-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M7 10l5 5 5-5z"/>
-  </svg>
-</summary>
-
-```json
-{
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T14:00:00Z",
-  "reporter": {
-    "org": "ISP Security Team",
-    "contact": "security@isp.example",
-    "type": "automated"
-  },
-  "source_identifier": "192.0.2.88",
-  "class": "connection",
-  "type": "ddos_amplification",
-
-  "protocol": "udp",
-  "first_seen": "2024-01-15T13:45:00Z",
-  "source_port": 123,
-
-  "evidence_source": "flow_analysis",
-  "evidence": [
-    {
-      "content_type": "text/plain",
-      "description": "NTP monlist request packets",
-      "payload": "TlRQIG1vbmxpc3QgcmVxdWVzdCBkZXRlY3RlZCBmcm9tIDE5Mi4wLjIuODg="
-    }
-  ],
-  "confidence": 0.94,
-
-  "destination_ip": "203.0.113.200",
-  "destination_port": 53,
-  "last_seen": "2024-01-15T14:00:00Z",
-  "tags": ["attack:ntp_amplification", "open:ntp"],
-  "description": "NTP server being used as amplification vector"
-}
-```
-
-<a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos-amplification.json" style="display:none">Schema</a>
 
 </details>
 

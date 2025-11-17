@@ -14,7 +14,7 @@ XARF v4 organizes abuse reports into **7 main categories**, each containing spec
 | Category | Event Types | Description |
 |----------|-------------|-------------|
 | [**messaging**]({{ site.baseurl }}/docs/types/messaging/) | 2 types | Email spam, SMS, chat, and other communication abuse |
-| [**connection**]({{ site.baseurl }}/docs/types/connection/) | 9 types | Network attacks including DDoS, port scans, and brute force |
+| [**connection**]({{ site.baseurl }}/docs/types/connection/) | 8 types | Network attacks including DDoS, port scans, and brute force |
 | [**content**]({{ site.baseurl }}/docs/types/content/) | 10 types | Malicious web content including phishing, malware, and fraud |
 | [**infrastructure**]({{ site.baseurl }}/docs/types/infrastructure/) | 2 types | Compromised systems, botnets, and C2 infrastructure |
 | [**copyright**]({{ site.baseurl }}/docs/types/copyright/) | 6 types | Intellectual property infringement and piracy |
