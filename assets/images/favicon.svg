@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5568d3;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Shield shape -->
+  <path d="M 50 5 L 85 20 L 85 45 Q 85 75 50 95 Q 15 75 15 45 L 15 20 Z"
+        fill="url(#shieldGradient)"
+        stroke="#4a5bb8"
+        stroke-width="2"/>
+
+  <!-- X mark -->
+  <g stroke="#ffffff" stroke-width="8" stroke-linecap="round">
+    <line x1="35" y1="30" x2="65" y2="60" />
+    <line x1="65" y1="30" x2="35" y2="60" />
+  </g>
+</svg>
