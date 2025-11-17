@@ -39,7 +39,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     "org": "Email Service Provider",
     "contact": "abuse@esp-provider.com",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.200",
   🟠 "class": "messaging",
   🟠 "type": "bulk_messaging",
@@ -56,7 +56,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
       "description": "Complete bulk email with headers",
       "payload": "UmVjZWl2ZWQ6IGZyb20gW2NvbXBhbnkuZXhhbXBsZV0..."
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.88,
 
   🔵 "subject": "Weekly Newsletter - January Edition",
@@ -67,11 +67,11 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     "high_volume": true,
     "template_based": true,
     "commercial_sender": true
-  🔵 },
+  },
   🔵 "tags": [
     "bulk:commercial",
     "complaint:unsubscribe"
-  🔵 ],
+  ],
   🔵 "description": "Bulk commercial newsletter without opt-in evidence"
 }
 ```
@@ -104,7 +104,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     "org": "SpamCop",
     "contact": "reports@spamcop.net",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.123",
   🟠 "class": "messaging",
   🟠 "type": "spam",
@@ -121,7 +121,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
       "payload": "UmVjZWl2ZWQ6IGZyb20gW3NwYW1tZXIuZXhhbXBsZS5jb21d...",
       "hash": "sha256:a3c5e8f2b1d4c9a7e6f8b2d1a3c5e8f2b1d4c9a7e6f8b2d1a3c5e8f2b1d4c9a7"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.92,
 
   🔵 "smtp_to": "spamtrap@security-org.net",
@@ -137,11 +137,11 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     ],
     "commercial_content": true,
     "bulk_characteristics": true
-  🔵 },
+  },
   🔵 "tags": [
     "spam:commercial",
     "campaign:fake_bank_2024"
-  🔵 ],
+  ],
   🔵 "description": "Phishing spam targeting bank customers"
 }
 ```

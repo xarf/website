@@ -39,7 +39,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "org": "Copyright Protection Service",
     "contact": "dmca@copyright.example",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.75",
   🟠 "class": "copyright",
   🟠 "type": "copyright",
@@ -52,7 +52,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
       "description": "DMCA notice documentation",
       "payload": "RE1DQSBub3RpY2UgZm9yIGNvcHlyaWdodGVkIGNvbnRlbnQ="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.99,
 
   🔵 "tags": ["dmca:notice", "content:movie"],
@@ -88,7 +88,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "org": "Anti-Piracy Organization",
     "contact": "antipiracy@content.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "203.0.113.100",
   🟠 "class": "copyright",
   🟠 "type": "cyberlocker",
@@ -101,7 +101,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
       "description": "File hosting page with copyrighted content",
       "payload": "PGh0bWw+PGhlYWQ+PHRpdGxlPkRvd25sb2FkIEZpbGU8L3RpdGxlPjwvaGVhZD48L2h0bWw+"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.94,
 
   🔵 "tags": ["platform:mega", "content:software"],
@@ -137,7 +137,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "org": "Content Protection Agency",
     "contact": "protection@agency.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.200",
   🟠 "class": "copyright",
   🟠 "type": "link_site",
@@ -150,7 +150,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
       "description": "Torrent index page",
       "payload": "PGRpdj48YT5Eb3dubG9hZCBUb3JyZW50PC9hPjwvZGl2Pg=="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.92,
 
   🔵 "tags": ["linksite:torrent", "category:movies"],
@@ -186,7 +186,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "org": "P2P Monitoring Service",
     "contact": "p2p@monitoring.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.88",
   🟠 "class": "copyright",
   🟠 "type": "p2p",
@@ -199,7 +199,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
       "description": "BitTorrent peer connection evidence",
       "payload": "Qml0VG9ycmVudCBwcm90b2NvbCBoYW5kc2hha2U="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.97,
 
   🔵 "tags": ["p2p:bittorrent", "content:movie"],
@@ -235,7 +235,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "org": "Music Rights Organization",
     "contact": "copyright@musicrights.example",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "203.0.113.50",
   🟠 "class": "copyright",
   🟠 "type": "ugc_platform",
@@ -248,7 +248,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
       "description": "DMCA notice for platform content",
       "payload": "WW91VHViZSB2aWRlbyBJRDogYWJjMTIzNDU2Nzg5"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.98,
 
   🔵 "tags": ["platform:youtube", "content:music"],
@@ -284,7 +284,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "org": "Usenet Monitoring Service",
     "contact": "usenet@monitoring.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.175",
   🟠 "class": "copyright",
   🟠 "type": "usenet",
@@ -297,7 +297,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
       "description": "Usenet post metadata",
       "payload": "YWx0LmJpbmFyaWVzLm1vdmllcyAtIGNvcHlyaWdodGVkIGNvbnRlbnQ="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.91,
 
   🔵 "tags": ["platform:usenet", "newsgroup:alt.binaries"],

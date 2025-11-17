@@ -39,7 +39,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "Botnet Tracking System",
     "contact": "abuse@bottracker.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "203.0.113.42",
   🟠 "class": "connection",
   🟠 "type": "infected_host",
@@ -56,7 +56,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "Botnet C2 communication packet capture",
       "payload": "Q29tbWFuZCBhbmQgQ29udHJvbCBjb21tdW5pY2F0aW9uIGRldGVjdGVk"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.95,
 
   🔵 "destination_ip": "198.51.100.10",
@@ -101,7 +101,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "DDoS Protection Service",
     "contact": "ddos@protectionservice.net",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.155",
   🟠 "class": "connection",
   🟠 "type": "ddos",
@@ -117,7 +117,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "NetFlow data showing attack traffic",
       "payload": "eyJmbG93cyI6W3sic3JjIjoiMTkyLjAuMi4xNTUiLCJkc3QiOiIyMDMuMC4xMTMuMTAwIn1dfQ=="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.98,
 
   🔵 "destination_ip": "203.0.113.100",
@@ -162,7 +162,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "Web Security Service",
     "contact": "security@websec.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.67",
   🟠 "class": "connection",
   🟠 "type": "login_attack",
@@ -178,7 +178,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "Failed login attempt logs",
       "payload": "dGltZXN0YW1wLHVzZXJuYW1lLGlwCjIwMjQtMDEtMTUgMDg6MDA6MDAK"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.97,
 
   🔵 "destination_ip": "203.0.113.50",
@@ -217,7 +217,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "Network Security Monitoring",
     "contact": "noc@example.com",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.99",
   🟠 "class": "connection",
   🟠 "type": "port_scan",
@@ -233,7 +233,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "IDS port scan detection log",
       "payload": "eyJzY2FuX3R5cGUiOiJTWU4iLCJwb3J0c19zY2FubmVkIjoxMDI0fQ=="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.96,
 
   🔵 "destination_ip": "203.0.113.75",
@@ -272,7 +272,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "Threat Intelligence Platform",
     "contact": "threats@example.com",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.111",
   🟠 "class": "connection",
   🟠 "type": "reconnaissance",
@@ -288,7 +288,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "Service enumeration attempts",
       "payload": "U2VydmljZSBiYW5uZXIgZ3JhYmJpbmcgZGV0ZWN0ZWQ="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.93,
 
   🔵 "destination_ip": "203.0.113.90",
@@ -327,7 +327,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "E-commerce Platform",
     "contact": "abuse@ecommerce.example",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.133",
   🟠 "class": "connection",
   🟠 "type": "scraping",
@@ -343,7 +343,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "Access logs showing scraping pattern",
       "payload": "eyJyZXF1ZXN0X2NvdW50IjoyNTAwMCwiaW50ZXJ2YWwiOiIxaG91ciJ9"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.91,
 
   🔵 "destination_ip": "203.0.113.120",
@@ -382,7 +382,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "Web Application Firewall",
     "contact": "security@waf.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.45",
   🟠 "class": "connection",
   🟠 "type": "sql_injection",
@@ -398,7 +398,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "WAF blocked SQL injection attempts",
       "payload": "U1FMIGluamVjdGlvbiBkZXRlY3RlZDogJyBPUiAnMSc9JzE="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.99,
 
   🔵 "destination_ip": "198.51.100.10",
@@ -443,7 +443,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "org": "Security Operations Center",
     "contact": "soc@example.com",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.178",
   🟠 "class": "connection",
   🟠 "type": "vulnerability_scan",
@@ -459,7 +459,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
       "description": "Vulnerability scan detection signatures",
       "payload": "eyJzY2FubmVyIjoibmVzc3VzIiwidGFyZ2V0cyI6WyIqIl19"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.94,
 
   🔵 "destination_ip": "203.0.113.150",

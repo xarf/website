@@ -39,7 +39,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
     "org": "Threat Intelligence Platform",
     "contact": "intel@threatintel.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.150",
   🟠 "class": "reputation",
   🟠 "type": "blocklist",
@@ -52,7 +52,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
       "description": "Blocklist intelligence data",
       "payload": "eyJyZWFzb24iOiJtYWx3YXJlX2MyfQ=="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.96,
 
   🔵 "tags": ["blocklist:malware_c2", "priority:high"],
@@ -88,7 +88,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
     "org": "Security Research Lab",
     "contact": "research@seclab.example",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.75",
   🟠 "class": "reputation",
   🟠 "type": "threat_intelligence",
@@ -101,7 +101,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
       "description": "IOC data package",
       "payload": "eyJpb2NzIjp7ImZpbGVfaGFzaCI6InNoYTI1Ni4uLiJ9fQ=="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.98,
 
   🔵 "tags": ["ioc:malware_hash", "campaign:apt29"],

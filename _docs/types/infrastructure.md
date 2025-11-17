@@ -39,7 +39,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
     "org": "Botnet Tracking Service",
     "contact": "botnet@security.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.88",
   🟠 "class": "infrastructure",
   🟠 "type": "botnet",
@@ -52,7 +52,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
       "description": "Botnet command traffic capture",
       "payload": "eyJjMl9zZXJ2ZXIiOiIxOTIuMC4yLjEwMCIsInBvcnQiOjg4ODh9"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.96,
 
   🔵 "tags": ["botnet:mirai", "device:iot"],
@@ -88,7 +88,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
     "org": "Threat Intelligence Platform",
     "contact": "intel@threat.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.150",
   🟠 "class": "infrastructure",
   🟠 "type": "compromised_server",
@@ -101,7 +101,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
       "description": "C2 server communication logs",
       "payload": "QzIgc2VydmVyIGNvbW11bmljYXRpb24gZGV0ZWN0ZWQ="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.93,
 
   🔵 "tags": ["compromise:c2_server", "malware:emotet"],

@@ -41,7 +41,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Brand Protection Service",
     "contact": "brandprotection@example.com",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "203.0.113.45",
   🟠 "class": "content",
   🟠 "type": "brand_infringement",
@@ -56,7 +56,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "Screenshot showing unauthorized Apple logo use",
       "payload": "aVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUFBQUE="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.98,
 
   🔵 "target_brand": "Apple Inc.",
@@ -95,7 +95,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "NCMEC CyberTipline",
     "contact": "reports@cybertipline.org",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.88",
   🟠 "class": "content",
   🟠 "type": "csam",
@@ -110,7 +110,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "URL list and reporting metadata",
       "payload": "[REDACTED - LAW ENFORCEMENT USE ONLY]"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 1.0,
 
   🔵 "domain": "illegal-content.example.com",
@@ -149,7 +149,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Internet Watch Foundation",
     "contact": "hotline@iwf.org.uk",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.77",
   🟠 "class": "content",
   🟠 "type": "csem",
@@ -164,7 +164,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "Case file metadata",
       "payload": "[REDACTED - LAW ENFORCEMENT USE ONLY]"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 1.0,
 
   🔵 "domain": "exploitation-site.example.com",
@@ -201,7 +201,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Security Research Team",
     "contact": "disclosures@security.example",
     "type": "manual"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.200",
   🟠 "class": "content",
   🟠 "type": "exposed_data",
@@ -216,7 +216,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "Directory listing showing exposed files",
       "payload": "SW5kZXggb2YgL2RhdGFiYXNlLWJhY2t1cHMK"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.97,
 
   🔵 "domain": "misconfigured-server.example.com",
@@ -254,7 +254,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Anti-Fraud Coalition",
     "contact": "reports@antifraud.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.45",
   🟠 "class": "content",
   🟠 "type": "fraud",
@@ -270,7 +270,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "Screenshot of fraudulent investment site",
       "payload": "aVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUFBQUE="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.95,
 
   🔵 "domain": "get-rich-quick.example.com",
@@ -280,12 +280,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "currency": "bitcoin",
       "address": "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
     }
-  🔵 ],
+  ],
   🔵 "claimed_entity": "Investment Guru LLC",
   🔵 "loss_amount": {
     "currency": "USD",
     "amount": 50000
-  🔵 },
+  },
   🔵 "tags": ["fraud:investment", "crypto:bitcoin"],
   🔵 "description": "Cryptocurrency investment scam promising guaranteed returns"
 }
@@ -319,7 +319,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Malware Analysis Lab",
     "contact": "alerts@malwarelab.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "198.51.100.123",
   🟠 "class": "content",
   🟠 "type": "malware",
@@ -335,7 +335,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "payload": "UEsDBBQAAAAIAA==",
       "hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.99,
 
   🔵 "domain": "malicious-downloads.example.com",
@@ -344,13 +344,13 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🔵 "file_hashes": {
     "md5": "d41d8cd98f00b204e9800998ecf8427e",
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-  🔵 },
+  },
   🔵 "file_metadata": {
     "filename": "invoice.exe",
     "file_size": 245760,
     "file_type": "PE32 executable",
     "mime_type": "application/x-dosexec"
-  🔵 },
+  },
   🔵 "distribution_method": "email_attachment",
   🔵 "c2_servers": [
     {
@@ -358,12 +358,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "port": 8080,
       "protocol": "https"
     }
-  🔵 ],
+  ],
   🔵 "sandbox_analysis": {
     "sandbox_name": "VirusTotal",
     "verdict": "malicious",
     "score": 95
-  🔵 },
+  },
   🔵 "targeted_platforms": ["windows"],
   🔵 "tags": ["malware:emotet", "vector:email"],
   🔵 "description": "Emotet trojan distributed via phishing emails"
@@ -398,7 +398,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Phishing Detection Service",
     "contact": "reports@antiphishing.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "203.0.113.45",
   🟠 "class": "content",
   🟠 "type": "phishing",
@@ -413,7 +413,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "Screenshot of phishing page",
       "payload": "aVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQUFBQUE="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.96,
 
   🔵 "domain": "secure-banking-login.example.com",
@@ -427,7 +427,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🔵 "redirect_chain": [
     "https://shortener.example/abc123",
     "https://secure-banking-login.example.com/auth"
-  🔵 ],
+  ],
   🔵 "tags": ["phishing:banking", "brand:majorbank"],
   🔵 "description": "Phishing site targeting Major Bank customers"
 }
@@ -461,7 +461,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Web Security Scanner",
     "contact": "security@scanner.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "192.0.2.150",
   🟠 "class": "content",
   🟠 "type": "remote_compromise",
@@ -476,7 +476,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "Webshell detection signature",
       "payload": "PD9waHAgZXZhbCgkX1BPU1RbJ2NtZCddKTs/Pg=="
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.94,
 
   🔵 "domain": "legitimate-website.example.com",
@@ -514,7 +514,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "org": "Domain Monitoring Service",
     "contact": "monitoring@domainwatch.example",
     "type": "automated"
-  🟠 },
+  },
   🟠 "source_identifier": "microsof7-login.example.com",
   🟠 "class": "content",
   🟠 "type": "suspicious_registration",
@@ -529,7 +529,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
       "description": "WHOIS registration data",
       "payload": "eyJyZWdpc3RyYXIiOiJFeGFtcGxlIFJlZ2lzdHJhciJ9"
     }
-  🟢 ],
+  ],
   🔵 "confidence": 0.89,
 
   🔵 "domain": "microsof7-login.example.com",
@@ -538,7 +538,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🔵 "whois": {
     "created_date": "2024-01-15T00:00:00Z",
     "registrant": "Privacy Protected"
-  🔵 },
+  },
   🔵 "tags": ["suspicious:typosquatting", "brand:microsoft"],
   🔵 "description": "Typosquatting domain targeting Microsoft users"
 }
