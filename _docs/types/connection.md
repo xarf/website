@@ -32,44 +32,44 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T11:30:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T11:30:00Z",
+  🟠 "reporter": {
     "org": "Botnet Tracking System",
     "contact": "abuse@bottracker.example",
     "type": "automated"
-  },
-  "source_identifier": "203.0.113.42",
-  "class": "connection",
-  "type": "infected_host",
+  🟠 },
+  🟠 "source_identifier": "203.0.113.42",
+  🟠 "class": "connection",
+  🟠 "type": "infected_host",
 
-  "protocol": "tcp",
-  "bot_type": "ddos_bot",
-  "first_seen": "2024-01-15T10:00:00Z",
+  🟢 "protocol": "tcp",
+  🟢 "bot_type": "ddos_bot",
+  🟢 "first_seen": "2024-01-15T10:00:00Z",
 
-  "source_port": 48291,
-  "evidence_source": "botnet_monitoring",
-  "evidence": [
+  🟢 "source_port": 48291,
+  🟢 "evidence_source": "botnet_monitoring",
+  🟢 "evidence": [
     {
       "content_type": "application/octet-stream",
       "description": "Botnet C2 communication packet capture",
       "payload": "Q29tbWFuZCBhbmQgQ29udHJvbCBjb21tdW5pY2F0aW9uIGRldGVjdGVk"
     }
-  ],
-  "confidence": 0.95,
+  🟢 ],
+  🔵 "confidence": 0.95,
 
-  "destination_ip": "198.51.100.10",
-  "destination_port": 8080,
-  "bot_name": "Mirai",
-  "botnet_name": "Mirai_variant_2024",
-  "c2_server": "malicious-c2.example.com",
-  "attack_vector": "iot_compromise",
-  "malware_family": "Mirai",
-  "infection_method": "telnet_bruteforce",
-  "last_seen": "2024-01-15T11:28:00Z",
-  "tags": ["botnet:mirai", "device:iot", "severity:high"],
-  "description": "Compromised IoT device participating in Mirai botnet DDoS activities"
+  🔵 "destination_ip": "198.51.100.10",
+  🔵 "destination_port": 8080,
+  🔵 "bot_name": "Mirai",
+  🔵 "botnet_name": "Mirai_variant_2024",
+  🔵 "c2_server": "malicious-c2.example.com",
+  🔵 "attack_vector": "iot_compromise",
+  🔵 "malware_family": "Mirai",
+  🔵 "infection_method": "telnet_bruteforce",
+  🔵 "last_seen": "2024-01-15T11:28:00Z",
+  🔵 "tags": ["botnet:mirai", "device:iot", "severity:high"],
+  🔵 "description": "Compromised IoT device participating in Mirai botnet DDoS activities"
 }
 ```
 
@@ -94,43 +94,43 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T16:55:42Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T16:55:42Z",
+  🟠 "reporter": {
     "org": "DDoS Protection Service",
     "contact": "ddos@protectionservice.net",
     "type": "automated"
-  },
-  "source_identifier": "192.0.2.155",
-  "class": "connection",
-  "type": "ddos",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.155",
+  🟠 "class": "connection",
+  🟠 "type": "ddos",
 
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T16:00:00Z",
-  "source_port": 34567,
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2024-01-15T16:00:00Z",
+  🟢 "source_port": 34567,
 
-  "evidence_source": "flow_analysis",
-  "evidence": [
+  🟢 "evidence_source": "flow_analysis",
+  🟢 "evidence": [
     {
       "content_type": "application/json",
       "description": "NetFlow data showing attack traffic",
       "payload": "eyJmbG93cyI6W3sic3JjIjoiMTkyLjAuMi4xNTUiLCJkc3QiOiIyMDMuMC4xMTMuMTAwIn1dfQ=="
     }
-  ],
-  "confidence": 0.98,
+  🟢 ],
+  🔵 "confidence": 0.98,
 
-  "destination_ip": "203.0.113.100",
-  "destination_port": 80,
-  "attack_vector": "syn_flood",
-  "peak_pps": 250000,
-  "peak_bps": 1200000000,
-  "duration_seconds": 2700,
-  "service_impact": "degraded",
-  "mitigation_applied": true,
-  "last_seen": "2024-01-15T16:55:00Z",
-  "tags": ["attack:syn_flood", "volume:high"],
-  "description": "Large-scale SYN flood attack against web services"
+  🔵 "destination_ip": "203.0.113.100",
+  🔵 "destination_port": 80,
+  🔵 "attack_vector": "syn_flood",
+  🔵 "peak_pps": 250000,
+  🔵 "peak_bps": 1200000000,
+  🔵 "duration_seconds": 2700,
+  🔵 "service_impact": "degraded",
+  🔵 "mitigation_applied": true,
+  🔵 "last_seen": "2024-01-15T16:55:00Z",
+  🔵 "tags": ["attack:syn_flood", "volume:high"],
+  🔵 "description": "Large-scale SYN flood attack against web services"
 }
 ```
 
@@ -155,37 +155,37 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T08:30:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T08:30:00Z",
+  🟠 "reporter": {
     "org": "Web Security Service",
     "contact": "security@websec.example",
     "type": "automated"
-  },
-  "source_identifier": "192.0.2.67",
-  "class": "connection",
-  "type": "login_attack",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.67",
+  🟠 "class": "connection",
+  🟠 "type": "login_attack",
 
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T08:00:00Z",
-  "source_port": 45678,
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2024-01-15T08:00:00Z",
+  🟢 "source_port": 45678,
 
-  "evidence_source": "firewall_logs",
-  "evidence": [
+  🟢 "evidence_source": "firewall_logs",
+  🟢 "evidence": [
     {
       "content_type": "text/csv",
       "description": "Failed login attempt logs",
       "payload": "dGltZXN0YW1wLHVzZXJuYW1lLGlwCjIwMjQtMDEtMTUgMDg6MDA6MDAK"
     }
-  ],
-  "confidence": 0.97,
+  🟢 ],
+  🔵 "confidence": 0.97,
 
-  "destination_ip": "203.0.113.50",
-  "destination_port": 443,
-  "last_seen": "2024-01-15T08:30:00Z",
-  "tags": ["attack:credential_stuffing", "service:web"],
-  "description": "Credential stuffing attack against web login"
+  🔵 "destination_ip": "203.0.113.50",
+  🔵 "destination_port": 443,
+  🔵 "last_seen": "2024-01-15T08:30:00Z",
+  🔵 "tags": ["attack:credential_stuffing", "service:web"],
+  🔵 "description": "Credential stuffing attack against web login"
 }
 ```
 
@@ -210,37 +210,37 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T12:00:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T12:00:00Z",
+  🟠 "reporter": {
     "org": "Network Security Monitoring",
     "contact": "noc@example.com",
     "type": "automated"
-  },
-  "source_identifier": "192.0.2.99",
-  "class": "connection",
-  "type": "port_scan",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.99",
+  🟠 "class": "connection",
+  🟠 "type": "port_scan",
 
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T11:55:00Z",
-  "source_port": 52341,
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2024-01-15T11:55:00Z",
+  🟢 "source_port": 52341,
 
-  "evidence_source": "ids_detection",
-  "evidence": [
+  🟢 "evidence_source": "ids_detection",
+  🟢 "evidence": [
     {
       "content_type": "application/json",
       "description": "IDS port scan detection log",
       "payload": "eyJzY2FuX3R5cGUiOiJTWU4iLCJwb3J0c19zY2FubmVkIjoxMDI0fQ=="
     }
-  ],
-  "confidence": 0.96,
+  🟢 ],
+  🔵 "confidence": 0.96,
 
-  "destination_ip": "203.0.113.75",
-  "destination_port": 22,
-  "last_seen": "2024-01-15T12:00:00Z",
-  "tags": ["scan:tcp_syn", "tool:nmap"],
-  "description": "TCP SYN scan of common service ports"
+  🔵 "destination_ip": "203.0.113.75",
+  🔵 "destination_port": 22,
+  🔵 "last_seen": "2024-01-15T12:00:00Z",
+  🔵 "tags": ["scan:tcp_syn", "tool:nmap"],
+  🔵 "description": "TCP SYN scan of common service ports"
 }
 ```
 
@@ -265,37 +265,37 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T15:00:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T15:00:00Z",
+  🟠 "reporter": {
     "org": "Threat Intelligence Platform",
     "contact": "threats@example.com",
     "type": "automated"
-  },
-  "source_identifier": "192.0.2.111",
-  "class": "connection",
-  "type": "reconnaissance",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.111",
+  🟠 "class": "connection",
+  🟠 "type": "reconnaissance",
 
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T14:30:00Z",
-  "source_port": 41234,
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2024-01-15T14:30:00Z",
+  🟢 "source_port": 41234,
 
-  "evidence_source": "honeypot",
-  "evidence": [
+  🟢 "evidence_source": "honeypot",
+  🟢 "evidence": [
     {
       "content_type": "text/plain",
       "description": "Service enumeration attempts",
       "payload": "U2VydmljZSBiYW5uZXIgZ3JhYmJpbmcgZGV0ZWN0ZWQ="
     }
-  ],
-  "confidence": 0.93,
+  🟢 ],
+  🔵 "confidence": 0.93,
 
-  "destination_ip": "203.0.113.90",
-  "destination_port": 445,
-  "last_seen": "2024-01-15T15:00:00Z",
-  "tags": ["recon:os_fingerprint", "phase:pre_attack"],
-  "description": "OS fingerprinting and service enumeration"
+  🔵 "destination_ip": "203.0.113.90",
+  🔵 "destination_port": 445,
+  🔵 "last_seen": "2024-01-15T15:00:00Z",
+  🔵 "tags": ["recon:os_fingerprint", "phase:pre_attack"],
+  🔵 "description": "OS fingerprinting and service enumeration"
 }
 ```
 
@@ -320,37 +320,37 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T13:00:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T13:00:00Z",
+  🟠 "reporter": {
     "org": "E-commerce Platform",
     "contact": "abuse@ecommerce.example",
     "type": "manual"
-  },
-  "source_identifier": "192.0.2.133",
-  "class": "connection",
-  "type": "scraping",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.133",
+  🟠 "class": "connection",
+  🟠 "type": "scraping",
 
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T12:00:00Z",
-  "source_port": 50123,
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2024-01-15T12:00:00Z",
+  🟢 "source_port": 50123,
 
-  "evidence_source": "traffic_analysis",
-  "evidence": [
+  🟢 "evidence_source": "traffic_analysis",
+  🟢 "evidence": [
     {
       "content_type": "application/json",
       "description": "Access logs showing scraping pattern",
       "payload": "eyJyZXF1ZXN0X2NvdW50IjoyNTAwMCwiaW50ZXJ2YWwiOiIxaG91ciJ9"
     }
-  ],
-  "confidence": 0.91,
+  🟢 ],
+  🔵 "confidence": 0.91,
 
-  "destination_ip": "203.0.113.120",
-  "destination_port": 443,
-  "last_seen": "2024-01-15T13:00:00Z",
-  "tags": ["scraping:product_data", "impact:high"],
-  "description": "Automated scraping of product pricing data"
+  🔵 "destination_ip": "203.0.113.120",
+  🔵 "destination_port": 443,
+  🔵 "last_seen": "2024-01-15T13:00:00Z",
+  🔵 "tags": ["scraping:product_data", "impact:high"],
+  🔵 "description": "Automated scraping of product pricing data"
 }
 ```
 
@@ -375,43 +375,43 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2025-01-15T12:00:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2025-01-15T12:00:00Z",
+  🟠 "reporter": {
     "org": "Web Application Firewall",
     "contact": "security@waf.example",
     "type": "automated"
-  },
-  "source_identifier": "192.0.2.45",
-  "class": "connection",
-  "type": "sql_injection",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.45",
+  🟠 "class": "connection",
+  🟠 "type": "sql_injection",
 
-  "protocol": "tcp",
-  "first_seen": "2025-01-15T11:45:00Z",
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2025-01-15T11:45:00Z",
 
-  "source_port": 54789,
-  "evidence_source": "firewall_logs",
-  "evidence": [
+  🟢 "source_port": 54789,
+  🟢 "evidence_source": "firewall_logs",
+  🟢 "evidence": [
     {
       "content_type": "text/plain",
       "description": "WAF blocked SQL injection attempts",
       "payload": "U1FMIGluamVjdGlvbiBkZXRlY3RlZDogJyBPUiAnMSc9JzE="
     }
-  ],
-  "confidence": 0.99,
+  🟢 ],
+  🔵 "confidence": 0.99,
 
-  "destination_ip": "198.51.100.10",
-  "destination_port": 443,
-  "http_method": "GET",
-  "target_url": "https://example.com/products.php?id=1",
-  "injection_point": "query_parameter",
-  "attack_technique": "union_based",
-  "payload_sample": "' UNION SELECT username,password FROM users--",
-  "attempts_count": 15,
-  "last_seen": "2025-01-15T12:00:00Z",
-  "tags": ["attack:sqli", "technique:union"],
-  "description": "UNION-based SQL injection targeting user database"
+  🔵 "destination_ip": "198.51.100.10",
+  🔵 "destination_port": 443,
+  🔵 "http_method": "GET",
+  🔵 "target_url": "https://example.com/products.php?id=1",
+  🔵 "injection_point": "query_parameter",
+  🔵 "attack_technique": "union_based",
+  🔵 "payload_sample": "' UNION SELECT username,password FROM users--",
+  🔵 "attempts_count": 15,
+  🔵 "last_seen": "2025-01-15T12:00:00Z",
+  🔵 "tags": ["attack:sqli", "technique:union"],
+  🔵 "description": "UNION-based SQL injection targeting user database"
 }
 ```
 
@@ -436,37 +436,37 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T17:00:00Z",
-  "reporter": {
+  🟠 "xarf_version": "4.0.0",
+  🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  🟠 "timestamp": "2024-01-15T17:00:00Z",
+  🟠 "reporter": {
     "org": "Security Operations Center",
     "contact": "soc@example.com",
     "type": "automated"
-  },
-  "source_identifier": "192.0.2.178",
-  "class": "connection",
-  "type": "vulnerability_scan",
+  🟠 },
+  🟠 "source_identifier": "192.0.2.178",
+  🟠 "class": "connection",
+  🟠 "type": "vulnerability_scan",
 
-  "protocol": "tcp",
-  "first_seen": "2024-01-15T16:30:00Z",
-  "source_port": 35678,
+  🟢 "protocol": "tcp",
+  🟢 "first_seen": "2024-01-15T16:30:00Z",
+  🟢 "source_port": 35678,
 
-  "evidence_source": "ids_detection",
-  "evidence": [
+  🟢 "evidence_source": "ids_detection",
+  🟢 "evidence": [
     {
       "content_type": "application/json",
       "description": "Vulnerability scan detection signatures",
       "payload": "eyJzY2FubmVyIjoibmVzc3VzIiwidGFyZ2V0cyI6WyIqIl19"
     }
-  ],
-  "confidence": 0.94,
+  🟢 ],
+  🔵 "confidence": 0.94,
 
-  "destination_ip": "203.0.113.150",
-  "destination_port": 80,
-  "last_seen": "2024-01-15T17:00:00Z",
-  "tags": ["scan:vulnerability", "tool:nessus"],
-  "description": "Unauthorized vulnerability scanning with Nessus"
+  🔵 "destination_ip": "203.0.113.150",
+  🔵 "destination_port": 80,
+  🔵 "last_seen": "2024-01-15T17:00:00Z",
+  🔵 "tags": ["scan:vulnerability", "tool:nessus"],
+  🔵 "description": "Unauthorized vulnerability scanning with Nessus"
 }
 ```
 
