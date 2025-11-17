@@ -32,31 +32,31 @@ Compromised systems and malicious infrastructure including botnets, command & co
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T14:00:00Z",
-  "reporter": {
-    "org": "Botnet Tracking Service",
-    "contact": "botnet@security.example",
-    "type": "automated"
+  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
+  "timestamp": "2024-01-15T14:00:00Z",                                           // 🟠 Mandatory
+  "reporter": {                                                                 // 🟠 Mandatory
+    "org": "Botnet Tracking Service",                                            // 🟠 Mandatory
+    "contact": "botnet@security.example",                                        // 🟠 Mandatory
+    "type": "automated"                                                         // 🟠 Mandatory
   },
-  "source_identifier": "192.0.2.88",
-  "class": "infrastructure",
-  "type": "botnet",
+  "source_identifier": "192.0.2.88",                                             // 🟠 Mandatory
+  "class": "infrastructure",                                                     // 🟠 Mandatory
+  "type": "botnet",                                                              // 🟠 Mandatory
 
-  "source_port": 35412,
-  "evidence_source": "honeypot",
-  "evidence": [
+  "source_port": 35412,                                                          // 🟢 Recommended
+  "evidence_source": "honeypot",                                                 // 🟢 Recommended
+  "evidence": [                                                                 // 🟢 Recommended
     {
-      "content_type": "application/json",
-      "description": "Botnet command traffic capture",
-      "payload": "eyJjMl9zZXJ2ZXIiOiIxOTIuMC4yLjEwMCIsInBvcnQiOjg4ODh9"
+      "content_type": "application/json",                                        // 🟠 Mandatory
+      "description": "Botnet command traffic capture",                           // 🟢 Recommended
+      "payload": "eyJjMl9zZXJ2ZXIiOiIxOTIuMC4yLjEwMCIsInBvcnQiOjg4ODh9"         // 🟠 Mandatory
     }
   ],
-  "confidence": 0.96,
+  "confidence": 0.96,                                                            // 🔵 Optional
 
-  "tags": ["botnet:mirai", "device:iot"],
-  "description": "IoT device infected with Mirai botnet variant"
+  "tags": ["botnet:mirai", "device:iot"],                                        // 🔵 Optional
+  "description": "IoT device infected with Mirai botnet variant"                // 🟢 Recommended
 }
 ```
 
@@ -81,31 +81,31 @@ Compromised systems and malicious infrastructure including botnets, command & co
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T16:30:00Z",
-  "reporter": {
-    "org": "Threat Intelligence Platform",
-    "contact": "intel@threat.example",
-    "type": "automated"
+  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
+  "timestamp": "2024-01-15T16:30:00Z",                                           // 🟠 Mandatory
+  "reporter": {                                                                 // 🟠 Mandatory
+    "org": "Threat Intelligence Platform",                                       // 🟠 Mandatory
+    "contact": "intel@threat.example",                                           // 🟠 Mandatory
+    "type": "automated"                                                         // 🟠 Mandatory
   },
-  "source_identifier": "198.51.100.150",
-  "class": "infrastructure",
-  "type": "compromised_server",
+  "source_identifier": "198.51.100.150",                                         // 🟠 Mandatory
+  "class": "infrastructure",                                                     // 🟠 Mandatory
+  "type": "compromised_server",                                                  // 🟠 Mandatory
 
-  "source_port": 443,
-  "evidence_source": "threat_intelligence",
-  "evidence": [
+  "source_port": 443,                                                            // 🟢 Recommended
+  "evidence_source": "threat_intelligence",                                      // 🟢 Recommended
+  "evidence": [                                                                 // 🟢 Recommended
     {
-      "content_type": "text/plain",
-      "description": "C2 server communication logs",
-      "payload": "QzIgc2VydmVyIGNvbW11bmljYXRpb24gZGV0ZWN0ZWQ="
+      "content_type": "text/plain",                                              // 🟠 Mandatory
+      "description": "C2 server communication logs",                             // 🟢 Recommended
+      "payload": "QzIgc2VydmVyIGNvbW11bmljYXRpb24gZGV0ZWN0ZWQ="                 // 🟠 Mandatory
     }
   ],
-  "confidence": 0.93,
+  "confidence": 0.93,                                                            // 🔵 Optional
 
-  "tags": ["compromise:c2_server", "malware:emotet"],
-  "description": "Compromised web server acting as Emotet C2"
+  "tags": ["compromise:c2_server", "malware:emotet"],                            // 🔵 Optional
+  "description": "Compromised web server acting as Emotet C2"                   // 🟢 Recommended
 }
 ```
 

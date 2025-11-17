@@ -32,47 +32,47 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T16:45:10Z",
-  "reporter": {
-    "org": "Email Service Provider",
-    "contact": "abuse@esp-provider.com",
-    "type": "automated"
+  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
+  "timestamp": "2024-01-15T16:45:10Z",                                           // 🟠 Mandatory
+  "reporter": {                                                                 // 🟠 Mandatory
+    "org": "Email Service Provider",                                             // 🟠 Mandatory
+    "contact": "abuse@esp-provider.com",                                         // 🟠 Mandatory
+    "type": "automated"                                                         // 🟠 Mandatory
   },
-  "source_identifier": "192.0.2.200",
-  "class": "messaging",
-  "type": "bulk_messaging",
+  "source_identifier": "192.0.2.200",                                            // 🟠 Mandatory
+  "class": "messaging",                                                          // 🟠 Mandatory
+  "type": "bulk_messaging",                                                      // 🟠 Mandatory
 
-  "protocol": "smtp",
-  "recipient_count": 50000,
-  "smtp_from": "newsletter@company.example",
+  "protocol": "smtp",                                                            // 🟠 Mandatory
+  "recipient_count": 50000,                                                      // 🟠 Mandatory
+  "smtp_from": "newsletter@company.example",                                     // 🟠 Mandatory
 
-  "source_port": 25,
-  "evidence_source": "user_complaint",
-  "evidence": [
+  "source_port": 25,                                                             // 🟢 Recommended
+  "evidence_source": "user_complaint",                                           // 🟢 Recommended
+  "evidence": [                                                                 // 🟢 Recommended
     {
-      "content_type": "message/rfc822",
-      "description": "Complete bulk email with headers",
-      "payload": "UmVjZWl2ZWQ6IGZyb20gW2NvbXBhbnkuZXhhbXBsZV0..."
+      "content_type": "message/rfc822",                                          // 🟠 Mandatory
+      "description": "Complete bulk email with headers",                         // 🟢 Recommended
+      "payload": "UmVjZWl2ZWQ6IGZyb20gW2NvbXBhbnkuZXhhbXBsZV0..."               // 🟠 Mandatory
     }
   ],
-  "confidence": 0.88,
+  "confidence": 0.88,                                                            // 🔵 Optional
 
-  "subject": "Weekly Newsletter - January Edition",
-  "sender_name": "Company Newsletter Team",
-  "unsubscribe_provided": false,
-  "opt_in_evidence": false,
-  "bulk_indicators": {
-    "high_volume": true,
-    "template_based": true,
-    "commercial_sender": true
+  "subject": "Weekly Newsletter - January Edition",                              // 🔵 Optional
+  "sender_name": "Company Newsletter Team",                                      // 🔵 Optional
+  "unsubscribe_provided": false,                                                 // 🔵 Optional
+  "opt_in_evidence": false,                                                      // 🔵 Optional
+  "bulk_indicators": {                                                          // 🔵 Optional
+    "high_volume": true,                                                         // 🔵 Optional
+    "template_based": true,                                                      // 🔵 Optional
+    "commercial_sender": true                                                   // 🔵 Optional
   },
-  "tags": [
-    "bulk:commercial",
-    "complaint:unsubscribe"
+  "tags": [                                                                     // 🔵 Optional
+    "bulk:commercial",                                                           // 🔵 Optional
+    "complaint:unsubscribe"                                                     // 🔵 Optional
   ],
-  "description": "Bulk commercial newsletter without opt-in evidence"
+  "description": "Bulk commercial newsletter without opt-in evidence"           // 🟢 Recommended
 }
 ```
 
@@ -97,52 +97,52 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
 
 ```json
 {
-  "xarf_version": "4.0.0",
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "timestamp": "2024-01-15T14:30:25Z",
-  "reporter": {
-    "org": "SpamCop",
-    "contact": "reports@spamcop.net",
-    "type": "automated"
+  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
+  "timestamp": "2024-01-15T14:30:25Z",                                           // 🟠 Mandatory
+  "reporter": {                                                                 // 🟠 Mandatory
+    "org": "SpamCop",                                                            // 🟠 Mandatory
+    "contact": "reports@spamcop.net",                                            // 🟠 Mandatory
+    "type": "automated"                                                         // 🟠 Mandatory
   },
-  "source_identifier": "192.0.2.123",
-  "class": "messaging",
-  "type": "spam",
+  "source_identifier": "192.0.2.123",                                            // 🟠 Mandatory
+  "class": "messaging",                                                          // 🟠 Mandatory
+  "type": "spam",                                                                // 🟠 Mandatory
 
-  "protocol": "smtp",
-  "smtp_from": "fake@example.com",
+  "protocol": "smtp",                                                            // 🟠 Mandatory
+  "smtp_from": "fake@example.com",                                               // 🟠 Mandatory
 
-  "source_port": 25,
-  "evidence_source": "spamtrap",
-  "evidence": [
+  "source_port": 25,                                                             // 🟢 Recommended
+  "evidence_source": "spamtrap",                                                 // 🟢 Recommended
+  "evidence": [                                                                 // 🟢 Recommended
     {
-      "content_type": "message/rfc822",
-      "description": "Complete spam email with headers",
-      "payload": "UmVjZWl2ZWQ6IGZyb20gW3NwYW1tZXIuZXhhbXBsZS5jb21d...",
-      "hash": "sha256:a3c5e8f2b1d4c9a7e6f8b2d1a3c5e8f2b1d4c9a7e6f8b2d1a3c5e8f2b1d4c9a7"
+      "content_type": "message/rfc822",                                          // 🟠 Mandatory
+      "description": "Complete spam email with headers",                         // 🟢 Recommended
+      "payload": "UmVjZWl2ZWQ6IGZyb20gW3NwYW1tZXIuZXhhbXBsZS5jb21d...",          // 🟠 Mandatory
+      "hash": "sha256:a3c5e8f2b1d4c9a7e6f8b2d1a3c5e8f2b1d4c9a7e6f8b2d1a3c5e8f2b1d4c9a7"  // 🔵 Optional
     }
   ],
-  "confidence": 0.92,
+  "confidence": 0.92,                                                            // 🔵 Optional
 
-  "smtp_to": "spamtrap@security-org.net",
-  "subject": "Urgent: Verify Your Account",
-  "sender_name": "Security Department",
-  "message_id": "<abc123def456@spammer.example>",
-  "user_agent": "bulk_mailer_v2.1",
-  "recipient_count": 10000,
-  "language": "en",
-  "spam_indicators": {
-    "suspicious_links": [
+  "smtp_to": "spamtrap@security-org.net",                                        // 🔵 Optional
+  "subject": "Urgent: Verify Your Account",                                      // 🔵 Optional
+  "sender_name": "Security Department",                                          // 🔵 Optional
+  "message_id": "<abc123def456@spammer.example>",                                // 🔵 Optional
+  "user_agent": "bulk_mailer_v2.1",                                              // 🔵 Optional
+  "recipient_count": 10000,                                                      // 🔵 Optional
+  "language": "en",                                                              // 🔵 Optional
+  "spam_indicators": {                                                          // 🔵 Optional
+    "suspicious_links": [                                                       // 🔵 Optional
       "http://phishing-site.example.com/login"
     ],
-    "commercial_content": true,
-    "bulk_characteristics": true
+    "commercial_content": true,                                                  // 🔵 Optional
+    "bulk_characteristics": true                                                // 🔵 Optional
   },
-  "tags": [
+  "tags": [                                                                     // 🔵 Optional
     "spam:commercial",
     "campaign:fake_bank_2024"
   ],
-  "description": "Phishing spam targeting bank customers"
+  "description": "Phishing spam targeting bank customers"                       // 🟢 Recommended
 }
 ```
 
