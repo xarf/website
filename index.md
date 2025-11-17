@@ -423,7 +423,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .hero-subtitle {
@@ -436,7 +436,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .hero-description {
   font-size: 1.125rem;
   line-height: 1.7;
-  color: #6b7280;
+  color: var(--color-text-light);
   margin-bottom: 2rem;
 }
 
@@ -552,24 +552,25 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .tab-button {
   padding: 1rem 2rem;
-  background: #f3f4f6;
+  background: var(--color-background-alt);
   border: 2px solid transparent;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
+  color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
 .tab-button:hover {
-  background: #e5e7eb;
+  background: var(--color-background);
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .tab-button.active {
-  background: white;
+  background: var(--color-background);
   border-color: #667eea;
   color: #667eea;
   box-shadow: 0 4px 6px rgba(102, 126, 234, 0.15);
@@ -578,10 +579,10 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .tab-content {
   display: none;
-  background: white;
+  background: var(--color-background);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .tab-content.active {
@@ -590,7 +591,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .tab-lead {
   font-size: 1.25rem;
-  color: #6b7280;
+  color: var(--color-text-light);
   margin-bottom: 2rem;
 }
 
@@ -613,11 +614,11 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .benefit-content h4 {
   margin-bottom: 0.5rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .benefit-content p {
-  color: #6b7280;
+  color: var(--color-text-light);
   font-size: 0.95rem;
 }
 
@@ -649,19 +650,19 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .network-effect {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: #f9fafb;
+  background: var(--color-background-alt);
   border-left: 4px solid #667eea;
   border-radius: 8px;
 }
 
 .network-effect h4 {
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .network-effect p {
   margin-bottom: 0.5rem;
-  color: #6b7280;
+  color: var(--color-text-light);
 }
 
 .comparison-grid {
@@ -673,10 +674,10 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 }
 
 .comparison-column {
-  background: white;
+  background: var(--color-background);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-md);
 }
 
 .column-header {
@@ -685,12 +686,13 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   justify-content: space-between;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid var(--color-border);
 }
 
 .column-header h3 {
   font-size: 1.5rem;
   margin: 0;
+  color: var(--color-text);
 }
 
 .header-icon {
@@ -715,6 +717,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   padding-left: 2rem;
   position: relative;
   line-height: 1.6;
+  color: var(--color-text);
 }
 
 .comparison-list li::before {
@@ -746,7 +749,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   text-align: center;
   max-width: 700px;
   margin: 0 auto 2rem;
-  color: #6b7280;
+  color: var(--color-text-light);
 }
 
 .adoption-stats {
@@ -761,9 +764,9 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
-  background: white;
+  background: var(--color-background);
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .adoption-icon {
@@ -773,26 +776,27 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .adoption-text {
   flex: 1;
+  color: var(--color-text-light);
 }
 
 .adoption-text strong {
   display: block;
   margin-bottom: 0.25rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .cta-footer {
   text-align: center;
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 2px solid #e5e7eb;
+  border-top: 2px solid var(--color-border);
 }
 
 .cta-text {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .btn-large {
@@ -811,38 +815,40 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   font-weight: 700;
   text-align: center;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .value-props {
   padding: 4rem 0;
-  background: #fafbfc;
+  background: var(--color-background-alt);
 }
 
 .before-after {
   padding: 4rem 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+  background: var(--color-background);
 }
 
 .features {
   padding: 4rem 0;
+  background: var(--color-background);
 }
 
 .stats {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-  border-top: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--color-background-alt);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .adoption {
   padding: 4rem 0;
+  background: var(--color-background);
 }
 
 .getting-started {
   padding: 4rem 0;
-  background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
-  border-top: 1px solid #d0e0ff;
+  background: var(--color-background-alt);
+  border-top: 1px solid var(--color-border);
 }
 
 .features-grid {
@@ -856,9 +862,9 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   text-align: center;
   padding: 2rem;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s;
 }
 
@@ -881,11 +887,11 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .feature h3 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .feature p {
-  color: #6b7280;
+  color: var(--color-text-light);
   line-height: 1.6;
 }
 
@@ -898,15 +904,15 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .stat {
   text-align: center;
   padding: 2rem;
-  background: white;
+  background: var(--color-background);
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-sm);
   transition: all 0.2s;
 }
 
 .stat:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-lg);
 }
 
 .stat-number {
@@ -918,7 +924,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 
 .stat-label {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--color-text-light);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -934,9 +940,9 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   display: flex;
   gap: 1.5rem;
   padding: 2rem;
-  background: white;
+  background: var(--color-background);
   border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .step-number {
@@ -963,11 +969,11 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
 .step-content h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: #1f2937;
+  color: var(--color-text);
 }
 
 .step-content p {
-  color: #6b7280;
+  color: var(--color-text-light);
   margin-bottom: 1rem;
 }
 
