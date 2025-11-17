@@ -6,9 +6,25 @@
 // Theme Management
 // ============================================
 function initTheme() {
-  // Check for saved theme preference or default to light mode
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', savedTheme);
+  // Check for saved theme preference, otherwise use system preference
+  let theme = localStorage.getItem('theme');
+
+  if (!theme) {
+    // Detect system preference
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    theme = prefersDark ? 'dark' : 'light';
+  }
+
+  document.documentElement.setAttribute('data-theme', theme);
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    // Only update if user hasn't manually set a preference
+    if (!localStorage.getItem('theme')) {
+      const newTheme = e.matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+    }
+  });
 }
 
 function toggleTheme() {
