@@ -225,19 +225,20 @@ function addCopyButtonsToCodeBlocks() {
     let html = codeBlock.innerHTML;
     const lines = html.split('\n');
     const processedLines = lines.map(line => {
-      // Check for requirement indicators in comments
+      // Check for requirement indicators in comments and remove them completely
       let indicator = '';
       let cleanLine = line;
 
       if (line.includes('🟠') || line.includes('Mandatory')) {
-        cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
-        indicator = '<span class="req-indicator mandatory" data-tooltip="Mandatory"></span>';
+        // Remove everything from // onwards including emojis and text
+        cleanLine = line.replace(/\s*\/\/.*$/, '').trimEnd();
+        indicator = '<span class="req-indicator mandatory"></span>';
       } else if (line.includes('🟢') || line.includes('Recommended')) {
-        cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
-        indicator = '<span class="req-indicator recommended" data-tooltip="Recommended"></span>';
+        cleanLine = line.replace(/\s*\/\/.*$/, '').trimEnd();
+        indicator = '<span class="req-indicator recommended"></span>';
       } else if (line.includes('🔵') || line.includes('Optional')) {
-        cleanLine = line.replace(/\s*\/\/\s*[🟠🟢🔵].*$/, '');
-        indicator = '<span class="req-indicator optional" data-tooltip="Optional"></span>';
+        cleanLine = line.replace(/\s*\/\/.*$/, '').trimEnd();
+        indicator = '<span class="req-indicator optional"></span>';
       }
 
       return indicator + cleanLine;
