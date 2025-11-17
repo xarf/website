@@ -291,15 +291,18 @@
       background: var(--color-overlay-light);
       border: 1px solid var(--color-overlay-border);
       color: var(--color-gray-200);
-      padding: 0.375rem;
+      padding: 0.375rem 0.625rem;
       border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 0.375rem;
       backdrop-filter: blur(4px);
       text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 500;
 
       &:hover {
         background: var(--color-overlay-hover);
@@ -321,6 +324,11 @@
         width: 14px;
         height: 14px;
         fill: currentColor;
+        flex-shrink: 0;
+      }
+
+      span {
+        white-space: nowrap;
       }
     }
   }
