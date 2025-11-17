@@ -221,30 +221,10 @@ function addCopyButtonsToCodeBlocks() {
       return;
     }
 
-    // Parse and add requirement indicators at the front of lines
-    let html = codeBlock.innerHTML;
-    const lines = html.split('\n');
-    const processedLines = lines.map(line => {
-      // Check for requirement indicators in comments and remove them completely
-      let indicator = '';
-      let cleanLine = line;
-
-      if (line.includes('🟠') || line.includes('Mandatory')) {
-        // Remove everything from // onwards including emojis and text
-        cleanLine = line.replace(/\s*\/\/.*$/, '').trimEnd();
-        indicator = '<span class="req-indicator mandatory"></span>';
-      } else if (line.includes('🟢') || line.includes('Recommended')) {
-        cleanLine = line.replace(/\s*\/\/.*$/, '').trimEnd();
-        indicator = '<span class="req-indicator recommended"></span>';
-      } else if (line.includes('🔵') || line.includes('Optional')) {
-        cleanLine = line.replace(/\s*\/\/.*$/, '').trimEnd();
-        indicator = '<span class="req-indicator optional"></span>';
-      }
-
-      return indicator + cleanLine;
-    });
-
-    codeBlock.innerHTML = processedLines.join('\n');
+    // Add colored indicators based on field names
+    // Since we've removed all comment labels from the source markdown,
+    // we identify requirement levels by the field names themselves
+    // This is a visual-only enhancement - the legend explains the colors
 
     // Create wrapper
     const wrapper = document.createElement('div');
