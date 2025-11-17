@@ -32,31 +32,31 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T10:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Copyright Protection Service",                                       // 🟠 Mandatory
-    "contact": "dmca@copyright.example",                                         // 🟠 Mandatory
-    "type": "manual"                                                            // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T10:00:00Z",
+  "reporter": {
+    "org": "Copyright Protection Service",
+    "contact": "dmca@copyright.example",
+    "type": "manual"
   },
-  "source_identifier": "198.51.100.75",                                          // 🟠 Mandatory
-  "class": "copyright",                                                          // 🟠 Mandatory
-  "type": "copyright",                                                           // 🟠 Mandatory
+  "source_identifier": "198.51.100.75",
+  "class": "copyright",
+  "type": "copyright",
 
-  "source_port": 443,                                                            // 🟢 Recommended
-  "evidence_source": "manual_analysis",                                          // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 443,
+  "evidence_source": "manual_analysis",
+  "evidence": [
     {
-      "content_type": "text/plain",                                              // 🟠 Mandatory
-      "description": "DMCA notice documentation",                                // 🟢 Recommended
-      "payload": "RE1DQSBub3RpY2UgZm9yIGNvcHlyaWdodGVkIGNvbnRlbnQ="             // 🟠 Mandatory
+      "content_type": "text/plain",
+      "description": "DMCA notice documentation",
+      "payload": "RE1DQSBub3RpY2UgZm9yIGNvcHlyaWdodGVkIGNvbnRlbnQ="
     }
   ],
-  "confidence": 0.99,                                                            // 🔵 Optional
+  "confidence": 0.99,
 
-  "tags": ["dmca:notice", "content:movie"],                                      // 🔵 Optional
-  "description": "Copyright infringement - unauthorized movie distribution"     // 🟢 Recommended
+  "tags": ["dmca:notice", "content:movie"],
+  "description": "Copyright infringement - unauthorized movie distribution"
 }
 ```
 
@@ -81,31 +81,31 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T11:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Anti-Piracy Organization",                                           // 🟠 Mandatory
-    "contact": "antipiracy@content.example",                                     // 🟠 Mandatory
-    "type": "automated"                                                         // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T11:00:00Z",
+  "reporter": {
+    "org": "Anti-Piracy Organization",
+    "contact": "antipiracy@content.example",
+    "type": "automated"
   },
-  "source_identifier": "203.0.113.100",                                          // 🟠 Mandatory
-  "class": "copyright",                                                          // 🟠 Mandatory
-  "type": "cyberlocker",                                                         // 🟠 Mandatory
+  "source_identifier": "203.0.113.100",
+  "class": "copyright",
+  "type": "cyberlocker",
 
-  "source_port": 443,                                                            // 🟢 Recommended
-  "evidence_source": "automated_scan",                                           // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 443,
+  "evidence_source": "automated_scan",
+  "evidence": [
     {
-      "content_type": "text/html",                                               // 🟠 Mandatory
-      "description": "File hosting page with copyrighted content",               // 🟢 Recommended
-      "payload": "PGh0bWw+PGhlYWQ+PHRpdGxlPkRvd25sb2FkIEZpbGU8L3RpdGxlPjwvaGVhZD48L2h0bWw+"  // 🟠 Mandatory
+      "content_type": "text/html",
+      "description": "File hosting page with copyrighted content",
+      "payload": "PGh0bWw+PGhlYWQ+PHRpdGxlPkRvd25sb2FkIEZpbGU8L3RpdGxlPjwvaGVhZD48L2h0bWw+"
     }
   ],
-  "confidence": 0.94,                                                            // 🔵 Optional
+  "confidence": 0.94,
 
-  "tags": ["platform:mega", "content:software"],                                 // 🔵 Optional
-  "description": "Pirated software hosted on Mega cyberlocker"                  // 🟢 Recommended
+  "tags": ["platform:mega", "content:software"],
+  "description": "Pirated software hosted on Mega cyberlocker"
 }
 ```
 
@@ -130,31 +130,31 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T12:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Content Protection Agency",                                          // 🟠 Mandatory
-    "contact": "protection@agency.example",                                      // 🟠 Mandatory
-    "type": "automated"                                                         // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T12:00:00Z",
+  "reporter": {
+    "org": "Content Protection Agency",
+    "contact": "protection@agency.example",
+    "type": "automated"
   },
-  "source_identifier": "192.0.2.200",                                            // 🟠 Mandatory
-  "class": "copyright",                                                          // 🟠 Mandatory
-  "type": "link_site",                                                           // 🟠 Mandatory
+  "source_identifier": "192.0.2.200",
+  "class": "copyright",
+  "type": "link_site",
 
-  "source_port": 443,                                                            // 🟢 Recommended
-  "evidence_source": "automated_crawler",                                        // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 443,
+  "evidence_source": "automated_crawler",
+  "evidence": [
     {
-      "content_type": "text/html",                                               // 🟠 Mandatory
-      "description": "Torrent index page",                                       // 🟢 Recommended
-      "payload": "PGRpdj48YT5Eb3dubG9hZCBUb3JyZW50PC9hPjwvZGl2Pg=="             // 🟠 Mandatory
+      "content_type": "text/html",
+      "description": "Torrent index page",
+      "payload": "PGRpdj48YT5Eb3dubG9hZCBUb3JyZW50PC9hPjwvZGl2Pg=="
     }
   ],
-  "confidence": 0.92,                                                            // 🔵 Optional
+  "confidence": 0.92,
 
-  "tags": ["linksite:torrent", "category:movies"],                               // 🔵 Optional
-  "description": "Torrent index site linking to pirated movies"                 // 🟢 Recommended
+  "tags": ["linksite:torrent", "category:movies"],
+  "description": "Torrent index site linking to pirated movies"
 }
 ```
 
@@ -179,31 +179,31 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T14:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "P2P Monitoring Service",                                             // 🟠 Mandatory
-    "contact": "p2p@monitoring.example",                                         // 🟠 Mandatory
-    "type": "automated"                                                         // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T14:00:00Z",
+  "reporter": {
+    "org": "P2P Monitoring Service",
+    "contact": "p2p@monitoring.example",
+    "type": "automated"
   },
-  "source_identifier": "198.51.100.88",                                          // 🟠 Mandatory
-  "class": "copyright",                                                          // 🟠 Mandatory
-  "type": "p2p",                                                                 // 🟠 Mandatory
+  "source_identifier": "198.51.100.88",
+  "class": "copyright",
+  "type": "p2p",
 
-  "source_port": 51413,                                                          // 🟢 Recommended
-  "evidence_source": "automated_scan",                                           // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 51413,
+  "evidence_source": "automated_scan",
+  "evidence": [
     {
-      "content_type": "application/octet-stream",                                // 🟠 Mandatory
-      "description": "BitTorrent peer connection evidence",                      // 🟢 Recommended
-      "payload": "Qml0VG9ycmVudCBwcm90b2NvbCBoYW5kc2hha2U="                     // 🟠 Mandatory
+      "content_type": "application/octet-stream",
+      "description": "BitTorrent peer connection evidence",
+      "payload": "Qml0VG9ycmVudCBwcm90b2NvbCBoYW5kc2hha2U="
     }
   ],
-  "confidence": 0.97,                                                            // 🔵 Optional
+  "confidence": 0.97,
 
-  "tags": ["p2p:bittorrent", "content:movie"],                                   // 🔵 Optional
-  "description": "BitTorrent sharing of copyrighted movie files"                // 🟢 Recommended
+  "tags": ["p2p:bittorrent", "content:movie"],
+  "description": "BitTorrent sharing of copyrighted movie files"
 }
 ```
 
@@ -228,31 +228,31 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T15:30:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Music Rights Organization",                                          // 🟠 Mandatory
-    "contact": "copyright@musicrights.example",                                  // 🟠 Mandatory
-    "type": "manual"                                                            // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T15:30:00Z",
+  "reporter": {
+    "org": "Music Rights Organization",
+    "contact": "copyright@musicrights.example",
+    "type": "manual"
   },
-  "source_identifier": "203.0.113.50",                                           // 🟠 Mandatory
-  "class": "copyright",                                                          // 🟠 Mandatory
-  "type": "ugc_platform",                                                        // 🟠 Mandatory
+  "source_identifier": "203.0.113.50",
+  "class": "copyright",
+  "type": "ugc_platform",
 
-  "source_port": 443,                                                            // 🟢 Recommended
-  "evidence_source": "manual_analysis",                                          // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 443,
+  "evidence_source": "manual_analysis",
+  "evidence": [
     {
-      "content_type": "text/plain",                                              // 🟠 Mandatory
-      "description": "DMCA notice for platform content",                         // 🟢 Recommended
-      "payload": "WW91VHViZSB2aWRlbyBJRDogYWJjMTIzNDU2Nzg5"                     // 🟠 Mandatory
+      "content_type": "text/plain",
+      "description": "DMCA notice for platform content",
+      "payload": "WW91VHViZSB2aWRlbyBJRDogYWJjMTIzNDU2Nzg5"
     }
   ],
-  "confidence": 0.98,                                                            // 🔵 Optional
+  "confidence": 0.98,
 
-  "tags": ["platform:youtube", "content:music"],                                 // 🔵 Optional
-  "description": "Unauthorized music upload on YouTube"                         // 🟢 Recommended
+  "tags": ["platform:youtube", "content:music"],
+  "description": "Unauthorized music upload on YouTube"
 }
 ```
 
@@ -277,31 +277,31 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T17:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Usenet Monitoring Service",                                          // 🟠 Mandatory
-    "contact": "usenet@monitoring.example",                                      // 🟠 Mandatory
-    "type": "automated"                                                         // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T17:00:00Z",
+  "reporter": {
+    "org": "Usenet Monitoring Service",
+    "contact": "usenet@monitoring.example",
+    "type": "automated"
   },
-  "source_identifier": "192.0.2.175",                                            // 🟠 Mandatory
-  "class": "copyright",                                                          // 🟠 Mandatory
-  "type": "usenet",                                                              // 🟠 Mandatory
+  "source_identifier": "192.0.2.175",
+  "class": "copyright",
+  "type": "usenet",
 
-  "source_port": 119,                                                            // 🟢 Recommended
-  "evidence_source": "automated_scan",                                           // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 119,
+  "evidence_source": "automated_scan",
+  "evidence": [
     {
-      "content_type": "text/plain",                                              // 🟠 Mandatory
-      "description": "Usenet post metadata",                                     // 🟢 Recommended
-      "payload": "YWx0LmJpbmFyaWVzLm1vdmllcyAtIGNvcHlyaWdodGVkIGNvbnRlbnQ="     // 🟠 Mandatory
+      "content_type": "text/plain",
+      "description": "Usenet post metadata",
+      "payload": "YWx0LmJpbmFyaWVzLm1vdmllcyAtIGNvcHlyaWdodGVkIGNvbnRlbnQ="
     }
   ],
-  "confidence": 0.91,                                                            // 🔵 Optional
+  "confidence": 0.91,
 
-  "tags": ["platform:usenet", "newsgroup:alt.binaries"],                         // 🔵 Optional
-  "description": "Copyrighted content posted to Usenet binary newsgroup"        // 🟢 Recommended
+  "tags": ["platform:usenet", "newsgroup:alt.binaries"],
+  "description": "Copyrighted content posted to Usenet binary newsgroup"
 }
 ```
 

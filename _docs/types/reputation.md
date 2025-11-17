@@ -32,31 +32,31 @@ Threat intelligence data including blocklist entries and indicators of compromis
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T10:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Threat Intelligence Platform",                                       // 🟠 Mandatory
-    "contact": "intel@threatintel.example",                                      // 🟠 Mandatory
-    "type": "automated"                                                         // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T10:00:00Z",
+  "reporter": {
+    "org": "Threat Intelligence Platform",
+    "contact": "intel@threatintel.example",
+    "type": "automated"
   },
-  "source_identifier": "192.0.2.150",                                            // 🟠 Mandatory
-  "class": "reputation",                                                         // 🟠 Mandatory
-  "type": "blocklist",                                                           // 🟠 Mandatory
+  "source_identifier": "192.0.2.150",
+  "class": "reputation",
+  "type": "blocklist",
 
-  "source_port": 443,                                                            // 🟢 Recommended
-  "evidence_source": "threat_intelligence",                                      // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 443,
+  "evidence_source": "threat_intelligence",
+  "evidence": [
     {
-      "content_type": "application/json",                                        // 🟠 Mandatory
-      "description": "Blocklist intelligence data",                              // 🟢 Recommended
-      "payload": "eyJyZWFzb24iOiJtYWx3YXJlX2MyfQ=="                             // 🟠 Mandatory
+      "content_type": "application/json",
+      "description": "Blocklist intelligence data",
+      "payload": "eyJyZWFzb24iOiJtYWx3YXJlX2MyfQ=="
     }
   ],
-  "confidence": 0.96,                                                            // 🔵 Optional
+  "confidence": 0.96,
 
-  "tags": ["blocklist:malware_c2", "priority:high"],                             // 🔵 Optional
-  "description": "Malware C2 server - add to blocklist immediately"             // 🟢 Recommended
+  "tags": ["blocklist:malware_c2", "priority:high"],
+  "description": "Malware C2 server - add to blocklist immediately"
 }
 ```
 
@@ -81,31 +81,31 @@ Threat intelligence data including blocklist entries and indicators of compromis
 
 ```json
 {
-  "xarf_version": "4.0.0",                                                       // 🟠 Mandatory
-  "report_id": "550e8400-e29b-41d4-a716-446655440000",                           // 🟠 Mandatory
-  "timestamp": "2024-01-15T14:00:00Z",                                           // 🟠 Mandatory
-  "reporter": {                                                                 // 🟠 Mandatory
-    "org": "Security Research Lab",                                              // 🟠 Mandatory
-    "contact": "research@seclab.example",                                        // 🟠 Mandatory
-    "type": "manual"                                                            // 🟠 Mandatory
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T14:00:00Z",
+  "reporter": {
+    "org": "Security Research Lab",
+    "contact": "research@seclab.example",
+    "type": "manual"
   },
-  "source_identifier": "198.51.100.75",                                          // 🟠 Mandatory
-  "class": "reputation",                                                         // 🟠 Mandatory
-  "type": "threat_intelligence",                                                 // 🟠 Mandatory
+  "source_identifier": "198.51.100.75",
+  "class": "reputation",
+  "type": "threat_intelligence",
 
-  "source_port": 8080,                                                           // 🟢 Recommended
-  "evidence_source": "researcher_analysis",                                      // 🟢 Recommended
-  "evidence": [                                                                 // 🟢 Recommended
+  "source_port": 8080,
+  "evidence_source": "researcher_analysis",
+  "evidence": [
     {
-      "content_type": "application/json",                                        // 🟠 Mandatory
-      "description": "IOC data package",                                         // 🟢 Recommended
-      "payload": "eyJpb2NzIjp7ImZpbGVfaGFzaCI6InNoYTI1Ni4uLiJ9fQ=="             // 🟠 Mandatory
+      "content_type": "application/json",
+      "description": "IOC data package",
+      "payload": "eyJpb2NzIjp7ImZpbGVfaGFzaCI6InNoYTI1Ni4uLiJ9fQ=="
     }
   ],
-  "confidence": 0.98,                                                            // 🔵 Optional
+  "confidence": 0.98,
 
-  "tags": ["ioc:malware_hash", "campaign:apt29"],                                // 🔵 Optional
-  "description": "APT29 campaign IOCs - file hashes and C2 infrastructure"      // 🟢 Recommended
+  "tags": ["ioc:malware_hash", "campaign:apt29"],
+  "description": "APT29 campaign IOCs - file hashes and C2 infrastructure"
 }
 ```
 
