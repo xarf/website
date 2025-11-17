@@ -1,73 +1,234 @@
-// Syntax highlighting styles
+// Rouge syntax highlighting styles
+// These styles apply to code blocks with language-specific syntax highlighting
+// Uses CSS variables that adapt to light/dark themes
 
+// Base highlight container (shared with _code.scss)
 .highlight {
-    background-color: var(--color-background-code);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
-    margin: var(--space-6) 0;
-    overflow-x: auto;
-    font-size: var(--font-size-sm);
-    line-height: var(--line-height-relaxed);
-    
-    pre {
-        margin: 0;
-        padding: 0;
-        background: none;
-        border: none;
-        border-radius: 0;
-        overflow: visible;
-    }
-    
-    code {
-        background: none;
-        border: none;
-        padding: 0;
-        font-size: inherit;
-    }
+  background-color: var(--color-background-code);
+  color: var(--color-code-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+
+  // Generic error
+  .err { color: var(--color-error); }
+
+  // Keywords and language constructs
+  .k,    // Keyword
+  .kc,   // Keyword.Constant
+  .kd,   // Keyword.Declaration
+  .kn,   // Keyword.Namespace
+  .kp,   // Keyword.Pseudo
+  .kr,   // Keyword.Reserved
+  .kt    // Keyword.Type
+  { color: var(--color-code-keyword); font-weight: var(--font-weight-medium); }
+
+  // Strings and literals
+  .s,    // String
+  .s1,   // String.Single
+  .s2,   // String.Double
+  .sb,   // String.Backtick
+  .sc,   // String.Char
+  .sd,   // String.Doc
+  .se,   // String.Escape
+  .sh,   // String.Heredoc
+  .si,   // String.Interpol
+  .sx,   // String.Other
+  .sr    // String.Regex
+  { color: var(--color-code-string); }
+
+  // Numbers
+  .m,    // Number
+  .mf,   // Number.Float
+  .mh,   // Number.Hex
+  .mi,   // Number.Integer
+  .mo,   // Number.Oct
+  .il    // Number.Integer.Long
+  { color: var(--color-code-number); }
+
+  // Comments
+  .c,    // Comment
+  .c1,   // Comment.Single
+  .cm,   // Comment.Multiline
+  .cp,   // Comment.Preproc
+  .cs    // Comment.Special
+  { color: var(--color-code-comment); font-style: italic; }
+
+  // Names and identifiers
+  .n,    // Name
+  .na,   // Name.Attribute
+  .nb,   // Name.Builtin
+  .nc,   // Name.Class
+  .nd,   // Name.Decorator
+  .ne,   // Name.Exception
+  .nf,   // Name.Function
+  .ni,   // Name.Entity
+  .nl,   // Name.Label
+  .nn,   // Name.Namespace
+  .no,   // Name.Constant
+  .nt,   // Name.Tag
+  .nv,   // Name.Variable
+  .nx    // Name.Other
+  { color: var(--color-code-text); }
+
+  // Functions
+  .nf,   // Name.Function
+  .fm    // Name.Function.Magic
+  { color: var(--color-code-function); }
+
+  // Classes
+  .nc,   // Name.Class
+  .nn    // Name.Namespace
+  { color: var(--color-code-class); font-weight: var(--font-weight-medium); }
+
+  // Variables
+  .nv,   // Name.Variable
+  .vc,   // Name.Variable.Class
+  .vg,   // Name.Variable.Global
+  .vi    // Name.Variable.Instance
+  { color: var(--color-code-variable); }
+
+  // Constants
+  .no,   // Name.Constant
+  .kc    // Keyword.Constant
+  { color: var(--color-code-constant); }
+
+  // Built-in names
+  .nb,   // Name.Builtin
+  .bp    // Name.Builtin.Pseudo
+  { color: var(--color-code-builtin); }
+
+  // Attributes
+  .na    // Name.Attribute
+  { color: var(--color-code-attribute); }
+
+  // Tags (HTML/XML)
+  .nt    // Name.Tag
+  { color: var(--color-code-tag); font-weight: var(--font-weight-medium); }
+
+  // Operators
+  .o,    // Operator
+  .ow    // Operator.Word
+  { color: var(--color-code-operator); }
+
+  // Punctuation
+  .p     // Punctuation
+  { color: var(--color-code-punctuation); }
+
+  // Properties (CSS, etc.)
+  .py    // Name.Property
+  { color: var(--color-code-property); }
+
+  // Booleans
+  .kc    // Keyword.Constant (true, false, null, etc.)
+  { color: var(--color-code-boolean); font-weight: var(--font-weight-medium); }
+
+  // Generic tokens
+  .g,    // Generic
+  .gd,   // Generic.Deleted
+  .ge,   // Generic.Emph
+  .gr,   // Generic.Error
+  .gh,   // Generic.Heading
+  .gi,   // Generic.Inserted
+  .go,   // Generic.Output
+  .gp,   // Generic.Prompt
+  .gs,   // Generic.Strong
+  .gu,   // Generic.Subheading
+  .gt    // Generic.Traceback
+  { color: var(--color-code-text); }
+
+  // Diff highlighting
+  .gd {
+    color: var(--color-error);
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+
+  .gi {
+    color: var(--color-success);
+    background-color: rgba(16, 185, 129, 0.1);
+  }
+
+  // Line numbers
+  .lineno {
+    color: var(--color-text-lighter);
+    user-select: none;
+    padding-right: var(--space-4);
+    border-right: 1px solid var(--color-border);
+    margin-right: var(--space-4);
+  }
+
+  // Line highlighting
+  .hll {
+    background-color: var(--color-primary-light);
+  }
+
+  // Special emphasis
+  .ge { font-style: italic; }
+  .gs { font-weight: var(--font-weight-bold); }
 }
 
-// Code block with language label
-.code-block {
-    position: relative;
-    
-    &::before {
-        content: attr(data-lang);
-        position: absolute;
-        top: var(--space-2);
-        right: var(--space-4);
-        font-size: var(--font-size-xs);
-        color: var(--color-text-lighter);
-        text-transform: uppercase;
-        font-weight: var(--font-weight-medium);
-        letter-spacing: var(--letter-spacing-wide);
-    }
-    
-    .highlight {
-        padding-top: var(--space-8);
-    }
+// Language-specific adjustments
+.language-json,
+.language-yaml,
+.language-toml {
+  .highlight {
+    .na { color: var(--color-code-attribute); }  // Keys
+    .s,
+    .s1,
+    .s2 { color: var(--color-code-string); }     // String values
+    .kc { color: var(--color-code-boolean); }    // true/false/null
+    .mi,
+    .mf { color: var(--color-code-number); }     // Number values
+  }
 }
 
-// Copy button for code blocks
-.code-copy {
-    position: absolute;
-    top: var(--space-2);
-    right: var(--space-2);
-    padding: var(--space-1);
-    background: var(--color-background-alt);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
-    color: var(--color-text-light);
-    cursor: pointer;
-    opacity: 0;
-    transition: var(--transition-normal);
-    
-    &:hover {
-        background: var(--color-background);
-        color: var(--color-text);
-    }
-    
-    .highlight:hover & {
-        opacity: 1;
-    }
+.language-css,
+.language-scss {
+  .highlight {
+    .nc,
+    .nt { color: var(--color-code-selector); }   // Selectors
+    .na { color: var(--color-code-property); }   // Properties
+    .nv { color: var(--color-code-variable); }   // Variables
+  }
+}
+
+.language-javascript,
+.language-typescript {
+  .highlight {
+    .kd { color: var(--color-code-keyword); }    // const, let, var
+    .nx { color: var(--color-code-variable); }   // Variables
+    .nf { color: var(--color-code-function); }   // Functions
+    .nc { color: var(--color-code-class); }      // Classes
+  }
+}
+
+.language-python {
+  .highlight {
+    .nd { color: var(--color-code-function); }   // Decorators
+    .kn { color: var(--color-code-keyword); }    // import, from
+    .nc { color: var(--color-code-class); }      // Classes
+    .nf { color: var(--color-code-function); }   // Functions
+    .bp { color: var(--color-code-builtin); }    // Built-ins (self, etc.)
+  }
+}
+
+.language-bash,
+.language-shell {
+  .highlight {
+    .nv { color: var(--color-code-variable); }   // Variables
+    .nb { color: var(--color-code-builtin); }    // Built-in commands
+  }
+}
+
+.language-html,
+.language-xml {
+  .highlight {
+    .nt { color: var(--color-code-tag); }        // Tags
+    .na { color: var(--color-code-attribute); }  // Attributes
+    .s { color: var(--color-code-string); }      // Attribute values
+  }
 }

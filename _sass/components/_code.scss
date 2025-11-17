@@ -1,1 +1,140 @@
-// Placeholder for _sass/components/_code.scss
+// Code block styling for inline code and code blocks
+// This file handles basic code styling, while _syntax.scss handles Rouge highlighting
+
+// Inline code
+:not(pre) > code {
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  background-color: var(--color-background-code);
+  color: var(--color-code-text);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+// Code blocks without syntax highlighting
+pre:not(.highlight) {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-background-code);
+  color: var(--color-code-text);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+  margin: var(--space-6) 0;
+  line-height: var(--line-height-relaxed);
+
+  code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-code-text);
+    white-space: pre;
+  }
+}
+
+// Rouge syntax highlighting wrapper
+.highlight {
+  background-color: var(--color-background-code);
+  color: var(--color-code-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin: var(--space-6) 0;
+  overflow-x: auto;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+
+  pre {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    color: var(--color-code-text);
+  }
+
+  code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+    color: var(--color-code-text);
+    white-space: pre;
+  }
+}
+
+// Code block with language label
+.code-block {
+  position: relative;
+
+  &::before {
+    content: attr(data-lang);
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-4);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-lighter);
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  .highlight,
+  pre {
+    padding-top: var(--space-8);
+  }
+}
+
+// Copy button for code blocks
+.code-copy {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-background-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-light);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  opacity: 0;
+  transition: var(--transition-normal);
+
+  &:hover {
+    background: var(--color-background);
+    color: var(--color-text);
+  }
+
+  .highlight:hover &,
+  pre:hover & {
+    opacity: 1;
+  }
+}
+
+// Ensure proper scrolling for long code lines
+.highlight,
+pre {
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--color-background-alt);
+    border-radius: var(--radius-sm);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: var(--radius-sm);
+
+    &:hover {
+      background: var(--color-text-lighter);
+    }
+  }
+}

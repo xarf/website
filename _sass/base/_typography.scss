@@ -78,6 +78,7 @@ code {
   font-family: var(--font-family-mono);
   font-size: 0.875em;
   background-color: var(--color-background-code);
+  color: var(--color-code-text);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
@@ -86,16 +87,17 @@ code {
 pre {
   font-family: var(--font-family-mono);
   background-color: var(--color-background-code);
-  color: var(--color-text);
+  color: var(--color-code-text);
   padding: var(--space-4);
   border-radius: var(--radius-lg);
   overflow-x: auto;
   margin-bottom: var(--space-4);
+  border: 1px solid var(--color-border);
 
   code {
     background: none;
     border: none;
     padding: 0;
-    color: inherit;
+    color: var(--color-code-text);
   }
 }

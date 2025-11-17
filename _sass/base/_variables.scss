@@ -56,11 +56,49 @@
   --header-background: rgba(255, 255, 255, 0.95);
   --header-border: var(--color-border);
   
-  // Code colors
-  --color-code-keyword: #8dd3c7;
-  --color-code-string: #fdb462;
-  --color-code-comment: #bebada;
-  --color-code-number: #fb8072;
+  // Code syntax highlighting colors (light theme)
+  --color-code-text: #1f2937;
+  --color-code-keyword: #7c3aed;
+  --color-code-string: #059669;
+  --color-code-comment: #6b7280;
+  --color-code-number: #dc2626;
+  --color-code-function: #0284c7;
+  --color-code-class: #9333ea;
+  --color-code-operator: #ea580c;
+  --color-code-punctuation: #475569;
+  --color-code-tag: #dc2626;
+  --color-code-attribute: #0284c7;
+  --color-code-variable: #7c3aed;
+  --color-code-constant: #ea580c;
+  --color-code-property: #0891b2;
+  --color-code-boolean: #dc2626;
+  --color-code-selector: #9333ea;
+  --color-code-builtin: #0284c7;
+
+  // Category/badge colors
+  --color-category-mandatory: #fb923c;
+  --color-category-mandatory-bg: rgba(251, 146, 60, 0.1);
+  --color-category-mandatory-light: rgba(251, 146, 60, 0.15);
+  --color-category-mandatory-border: rgba(251, 146, 60, 0.3);
+  --color-category-mandatory-text: #ea580c;
+
+  --color-category-recommended: #22c55e;
+  --color-category-recommended-bg: rgba(34, 197, 94, 0.1);
+  --color-category-recommended-light: rgba(34, 197, 94, 0.15);
+  --color-category-recommended-border: rgba(34, 197, 94, 0.3);
+  --color-category-recommended-text: #16a34a;
+
+  --color-category-optional: #3b82f6;
+  --color-category-optional-bg: rgba(59, 130, 246, 0.1);
+  --color-category-optional-light: rgba(59, 130, 246, 0.15);
+  --color-category-optional-border: rgba(59, 130, 246, 0.3);
+  --color-category-optional-text: #2563eb;
+
+  // Overlay/button colors
+  --color-overlay-light: rgba(255, 255, 255, 0.1);
+  --color-overlay-border: rgba(255, 255, 255, 0.2);
+  --color-overlay-hover: rgba(255, 255, 255, 0.15);
+  --color-overlay-hover-border: rgba(255, 255, 255, 0.3);
 }
 
 // Dark theme
@@ -91,6 +129,31 @@
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.4);
+
+  // Code syntax highlighting colors (dark theme)
+  --color-code-text: #f9fafb;
+  --color-code-keyword: #c084fc;
+  --color-code-string: #34d399;
+  --color-code-comment: #9ca3af;
+  --color-code-number: #fca5a5;
+  --color-code-function: #38bdf8;
+  --color-code-class: #d8b4fe;
+  --color-code-operator: #fdba74;
+  --color-code-punctuation: #cbd5e1;
+  --color-code-tag: #fca5a5;
+  --color-code-attribute: #38bdf8;
+  --color-code-variable: #c084fc;
+  --color-code-constant: #fdba74;
+  --color-code-property: #22d3ee;
+  --color-code-boolean: #fca5a5;
+  --color-code-selector: #d8b4fe;
+  --color-code-builtin: #38bdf8;
+
+  // Overlay colors for dark mode
+  --color-overlay-light: rgba(0, 0, 0, 0.3);
+  --color-overlay-border: rgba(255, 255, 255, 0.1);
+  --color-overlay-hover: rgba(0, 0, 0, 0.4);
+  --color-overlay-hover-border: rgba(255, 255, 255, 0.2);
 }
 
 // Typography
