@@ -91,6 +91,10 @@
     const sourceIp = document.getElementById('source-ip');
     const reporterOrg = document.getElementById('reporter-org');
     const reporterContact = document.getElementById('reporter-contact');
+    const includeOnBehalfOf = document.getElementById('include-on-behalf-of');
+    const onBehalfOfFields = document.getElementById('on-behalf-of-fields');
+    const onBehalfOrg = document.getElementById('on-behalf-org');
+    const onBehalfContact = document.getElementById('on-behalf-contact');
     const includeEvidence = document.getElementById('include-evidence');
     const includeOptional = document.getElementById('include-optional');
     const generateBtn = document.getElementById('generate-btn');
@@ -102,6 +106,13 @@
 
     // Store the current generated report
     let currentReport = null;
+
+    // Toggle on_behalf_of fields visibility
+    if (includeOnBehalfOf && onBehalfOfFields) {
+      includeOnBehalfOf.addEventListener('change', function() {
+        onBehalfOfFields.style.display = this.checked ? 'block' : 'none';
+      });
+    }
 
     // Update type dropdown when classification changes
     if (reportClass && reportType) {
@@ -117,7 +128,7 @@
     if (generateBtn) {
       generateBtn.addEventListener('click', function() {
         try {
-          const report = generateReport({
+          const reportOptions = {
             classification: reportClass.value,
             type: reportType.value,
             source_identifier: sourceIp.value.trim(),
@@ -125,7 +136,21 @@
             reporter_contact: reporterContact.value.trim(),
             include_evidence: includeEvidence.checked,
             include_optional: includeOptional.checked
-          });
+          };
+
+          // Add on_behalf_of if checkbox is checked
+          if (includeOnBehalfOf && includeOnBehalfOf.checked) {
+            const org = onBehalfOrg.value.trim();
+            const contact = onBehalfContact.value.trim();
+            if (org) {
+              reportOptions.on_behalf_of = { org };
+              if (contact) {
+                reportOptions.on_behalf_of.contact = contact;
+              }
+            }
+          }
+
+          const report = generateReport(reportOptions);
 
           currentReport = report;
           displayReport(report);
@@ -396,6 +421,11 @@
       // Add reporter org if provided
       if (options.reporter_org) {
         report.reporter.org = options.reporter_org;
+      }
+
+      // Add on_behalf_of if provided
+      if (options.on_behalf_of) {
+        report.reporter.on_behalf_of = options.on_behalf_of;
       }
 
       // Add description based on type

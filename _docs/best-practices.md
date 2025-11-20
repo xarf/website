@@ -137,6 +137,65 @@ if len(daily_reports) > 0:
 - Delay critical security issues for batching
 - Send thousands of individual reports when one summary would suffice
 - Report the same incident multiple times
+
+## Reporting On Behalf Of Other Organizations
+
+Infrastructure providers, MSSPs, and abuse reporting services often send reports on behalf of their clients. XARF v4 supports this through the `reporter.on_behalf_of` field.
+
+### When to Use on_behalf_of
+
+**Use Cases:**
+- ISP abuse desks outsourcing report handling to specialized providers
+- Managed Security Service Providers (MSSPs) reporting for customers
+- Threat intelligence platforms submitting reports for subscribers
+- National CERTs reporting for member organizations
+- Abuse reporting infrastructure services (e.g., Abusix reporting for Swisscom)
+
+### Example: Infrastructure Provider Reporting
+
+```json
+{
+  "xarf_version": "4.0.0",
+  "report_id": "550e8400-e29b-41d4-a716-446655440000",
+  "timestamp": "2024-01-15T10:00:00Z",
+  "reporter": {
+    "org": "Abusix",
+    "contact": "reports@abusix.com",
+    "type": "automated",
+    "on_behalf_of": {
+      "org": "Swisscom",
+      "contact": "abuse@swisscom.ch"
+    }
+  },
+  "source_identifier": "192.0.2.100",
+  "class": "connection",
+  "type": "ddos",
+  "description": "DDoS attack targeting Swisscom infrastructure"
+}
+```
+
+### Best Practices for on_behalf_of
+
+**DO:**
+- Always include the infrastructure provider's details in the main `reporter` fields
+- Include the represented organization in `on_behalf_of`
+- Ensure you have authorization to send reports on behalf of the organization
+- Include both organizations' contact information for follow-up
+- Document the relationship in service agreements
+
+**DON'T:**
+- Swap the reporter and on_behalf_of organizations (reporter = sender, on_behalf_of = represented)
+- Use on_behalf_of without proper authorization or service agreement
+- Omit contact information for either organization
+- Use generic/shared email addresses that don't clearly identify the organizations
+
+### Recipient Handling
+
+Recipients should:
+- Recognize the infrastructure provider as the technical sender
+- Direct follow-up communication to the represented organization when appropriate
+- Maintain relationships with both the provider and represented organization
+- Consider the represented organization's reputation and history
 - Send reports during recipient maintenance windows if known
 
 ## Providing Sufficient Context

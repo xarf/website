@@ -280,7 +280,36 @@ How this report was generated.
 "type": "unknown"    // Generation method not specified
 ```
 
-**Complete Reporter Object Example:**
+#### reporter.on_behalf_of
+
+**Type:** `object`
+**Level:** 🔵 Optional
+
+Information about the organization on whose behalf this report is being sent. This is used when a reporting infrastructure provider (like Abusix) sends reports for another organization (like Swisscom).
+
+**Use Case:** Infrastructure providers, MSSPs, and abuse reporting services that send reports on behalf of their clients.
+
+**Sub-fields:**
+
+##### reporter.on_behalf_of.org
+
+**Type:** `string`
+**Level:** 🟠 Mandatory (when on_behalf_of is present)
+**Max Length:** 200 characters
+
+Name of the organization being represented.
+
+##### reporter.on_behalf_of.contact
+
+**Type:** `string`
+**Level:** 🟢 Recommended
+**Format:** email
+
+Contact email address for the represented organization.
+
+**Complete Reporter Object Examples:**
+
+**Standard Report:**
 ```json
 "reporter": {
   "org": "Example Security",
@@ -288,6 +317,25 @@ How this report was generated.
   "type": "automated"
 }
 ```
+
+**Report Sent On Behalf Of Another Organization:**
+```json
+"reporter": {
+  "org": "Abusix",
+  "contact": "reports@abusix.com",
+  "type": "automated",
+  "on_behalf_of": {
+    "org": "Swisscom",
+    "contact": "abuse@swisscom.ch"
+  }
+}
+```
+
+**Use Cases:**
+- ISP abuse desks outsourcing report handling
+- Managed Security Service Providers (MSSPs)
+- Threat intelligence platforms reporting for customers
+- National CERTs reporting for member organizations
 
 ---
 

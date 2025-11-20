@@ -59,6 +59,25 @@ Generate properly formatted XARF reports for testing, development, and documenta
 
     <div class="form-group">
       <label>
+        <input type="checkbox" id="include-on-behalf-of">
+        Report on behalf of another organization
+      </label>
+    </div>
+
+    <div id="on-behalf-of-fields" style="display: none; margin-left: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--color-primary-light);">
+      <div class="form-group">
+        <label for="on-behalf-org">On Behalf Of Organization</label>
+        <input type="text" id="on-behalf-org" placeholder="Client Organization">
+      </div>
+
+      <div class="form-group">
+        <label for="on-behalf-contact">On Behalf Of Contact</label>
+        <input type="email" id="on-behalf-contact" placeholder="abuse@client.com">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
         <input type="checkbox" id="include-evidence" checked>
         Include Evidence
       </label>
