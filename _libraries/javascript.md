@@ -708,7 +708,6 @@ report.validate().then(isValid => {
 
 - **[GitHub Repository](https://github.com/xarf/xarf-javascript)** - Alpha Release
 - **[npm Package](https://www.npmjs.com/package/xarf)** - Alpha Release
-- **[API Documentation](https://xarf-js.dev/)** - In Development
 - **[Examples](https://github.com/xarf/xarf-javascript/tree/main/examples)** - Available
 - **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
 

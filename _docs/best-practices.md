@@ -400,14 +400,14 @@ Invalid YAML, missing required fields, or schema violations.
 Validate all reports against the XARF schema before sending. Use a parser library.
 
 ```python
-import xarf_parser
+import xarf
 
 # Validate before sending
 try:
-    report = xarf_parser.parse(report_yaml)
+    report = xarf.parse(report_yaml)
     if report.validate():
         send_report(report)
-except xarf_parser.ValidationError as e:
+except xarf.ValidationError as e:
     log_error(f"Invalid report: {e}")
 ```
 
@@ -453,7 +453,7 @@ Never send production reports without testing your process.
 ```bash
 # Example validation workflow
 xarf-validator report.yaml
-xarf-parser --validate report.yaml
+xarf --validate report.yaml
 yamllint report.yaml
 ```
 

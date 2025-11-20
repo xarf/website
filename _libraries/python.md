@@ -271,30 +271,6 @@ if handler.verify(evidence):
     print("✓ Evidence integrity verified")
 ```
 
-### Format Conversion
-
-Convert between formats:
-
-```python
-from xarf.converters import ARFConverter, IODEFConverter, CSVConverter
-
-# ARF to XARF
-arf_data = load_arf_report()
-xarf_report = ARFConverter.to_xarf(arf_data)
-
-# XARF to IODEF
-iodef_xml = IODEFConverter.from_xarf(xarf_report)
-
-# XARF to CSV (batch)
-csv_data = CSVConverter.from_xarf_batch(
-    reports,
-    columns=['timestamp', 'classification', 'type', 'source_identifier']
-)
-
-# Save CSV
-with open('reports.csv', 'w') as f:
-    f.write(csv_data)
-```
 
 ### Batch Processing
 
@@ -686,7 +662,6 @@ f.close()
 - Initial stable release
 - Full XARF 4.0 support
 - Schema validation
-- Format converters (ARF, IODEF, CSV)
 - Evidence hashing
 - Type hints
 - Async support

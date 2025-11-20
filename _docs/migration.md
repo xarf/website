@@ -857,11 +857,11 @@ Use existing XARF parsers to validate your reports:
 
 **Python:**
 ```bash
-pip install xarf-parser
+pip install xarf
 ```
 
 ```python
-from xarf_parser import XARFParser
+from xarf import XARFParser
 
 parser = XARFParser()
 result = parser.parse(xarf_report)

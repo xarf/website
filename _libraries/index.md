@@ -39,10 +39,10 @@ Official and community-maintained libraries for implementing XARF in your applic
 </div>
 
 ### JavaScript/Node.js
-<div class="library-card coming-soon">
+<div class="library-card">
   <div class="library-header">
-    <h3>xarf-js</h3>
-    <span class="status-badge coming-soon">Planned Q2 2024</span>
+    <h3>xarf-javascript</h3>
+    <span class="status-badge alpha">Alpha</span>
   </div>
   <p>JavaScript/TypeScript library for browser and Node.js environments.</p>
   <div class="library-meta">
@@ -50,7 +50,7 @@ Official and community-maintained libraries for implementing XARF in your applic
     <span>📚 <a href="/libraries/javascript/">Documentation</a></span>
   </div>
   <div class="library-features">
-    <strong>Planned Features:</strong>
+    <strong>Features:</strong>
     <ul>
       <li>TypeScript definitions</li>
       <li>Browser and Node.js compatible</li>
@@ -61,10 +61,10 @@ Official and community-maintained libraries for implementing XARF in your applic
 </div>
 
 ### Go
-<div class="library-card coming-soon">
+<div class="library-card">
   <div class="library-header">
     <h3>xarf-go</h3>
-    <span class="status-badge coming-soon">Planned Q2 2024</span>
+    <span class="status-badge alpha">Alpha</span>
   </div>
   <p>High-performance Go library for enterprise applications.</p>
   <div class="library-meta">
@@ -72,7 +72,7 @@ Official and community-maintained libraries for implementing XARF in your applic
     <span>📚 <a href="/libraries/go/">Documentation</a></span>
   </div>
   <div class="library-features">
-    <strong>Planned Features:</strong>
+    <strong>Features:</strong>
     <ul>
       <li>Native struct mapping</li>
       <li>Concurrent processing</li>
@@ -83,18 +83,18 @@ Official and community-maintained libraries for implementing XARF in your applic
 </div>
 
 ### Java
-<div class="library-card coming-soon">
+<div class="library-card">
   <div class="library-header">
     <h3>xarf-java</h3>
-    <span class="status-badge coming-soon">Planned Q3 2024</span>
+    <span class="status-badge alpha">Alpha</span>
   </div>
   <p>Enterprise-grade Java library with Spring Boot integration.</p>
   <div class="library-meta">
-    <span>📦 Maven: <code>com.xarf:xarf-java</code></span>
+    <span>📦 Maven: <code>org.xarf:xarf-java</code></span>
     <span>📚 <a href="/libraries/java/">Documentation</a></span>
   </div>
   <div class="library-features">
-    <strong>Planned Features:</strong>
+    <strong>Features:</strong>
     <ul>
       <li>Jackson integration</li>
       <li>Spring Boot autoconfiguration</li>
@@ -105,10 +105,10 @@ Official and community-maintained libraries for implementing XARF in your applic
 </div>
 
 ### C#/.NET
-<div class="library-card coming-soon">
+<div class="library-card">
   <div class="library-header">
-    <h3>XARF.Net</h3>
-    <span class="status-badge coming-soon">Planned Q3 2024</span>
+    <h3>Xarf</h3>
+    <span class="status-badge alpha">Alpha</span>
   </div>
   <p>.NET library for Windows and cross-platform applications.</p>
   <div class="library-meta">
@@ -116,7 +116,7 @@ Official and community-maintained libraries for implementing XARF in your applic
     <span>📚 <a href="/libraries/csharp/">Documentation</a></span>
   </div>
   <div class="library-features">
-    <strong>Planned Features:</strong>
+    <strong>Features:</strong>
     <ul>
       <li>.NET Standard 2.0+</li>
       <li>Newtonsoft.Json and System.Text.Json</li>
@@ -256,14 +256,14 @@ func main() {
 ```java
 // Maven
 <dependency>
-    <groupId>com.xarf</groupId>
+    <groupId>org.xarf</groupId>
     <artifactId>xarf-java</artifactId>
     <version>1.0.0</version>
 </dependency>
 
 // Create a report
-import com.xarf.XARFReport;
-import com.xarf.Reporter;
+import org.xarf.XARFReport;
+import org.xarf.Reporter;
 
 XARFReport report = XARFReport.builder()
     .xarfVersion("4.0.0")
@@ -406,9 +406,9 @@ Community-maintained libraries and integrations:
   margin-bottom: 2rem;
 }
 
-.library-card.coming-soon {
+.library-card.alpha {
   border-left-color: #fb923c;
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 .library-header {
