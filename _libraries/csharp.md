@@ -1,23 +1,17 @@
 ---
 layout: library
-title: "C#/.NET Library - xarf-dotnet"
+title: "C#/.NET Library - xarf-csharp"
 description: "Official C#/.NET library for creating, validating, and processing XARF reports"
 permalink: /libraries/csharp/
 ---
 
 # XARF C#/.NET Library
 
-<span class="status-badge coming-soon">Planned Q3 2024</span>
-
 Official C#/.NET library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
 
-<div class="alert alert-warning">
-  <strong>Status:</strong> This library is planned for future release. The API design below is preliminary and subject to change. <strong>Star the <a href="https://github.com/xarf/xarf-dotnet">GitHub repository</a> for updates.</strong>
-</div>
-
 <div class="library-status">
-  <span class="badge badge-warning">Planned</span>
-  <span>Target Version 1.0.0</span>
+  <span class="badge badge-success">Alpha</span>
+  <span>Version 4.0.0-alpha.1</span>
   <span>.NET Standard 2.0+, .NET 6+</span>
 </div>
 
@@ -44,7 +38,7 @@ Install-Package XARF
 - .NET Standard 2.0+ (compatible with .NET Framework 4.6.1+, .NET Core 2.0+, .NET 5+)
 - Supports both Newtonsoft.Json and System.Text.Json
 
-**Note**: Package coming Q3 2024. Star the [GitHub repository](https://github.com/xarf/xarf-dotnet) for updates.
+**Note**: Alpha release available. Star the [GitHub repository](https://github.com/xarf/xarf-csharp) for updates.
 
 ---
 
@@ -69,7 +63,7 @@ var report = new XARFReport
         Type = ReporterType.Automated
     },
     SourceIdentifier = "192.0.2.100",
-    Classification = "abuse",
+    Category = "abuse",
     Type = "ddos",
     Description = "DDoS attack detected from source IP"
 };
@@ -143,7 +137,7 @@ public class XARFReport
     public string Timestamp { get; set; }
     public Reporter Reporter { get; set; }
     public string SourceIdentifier { get; set; }
-    public string Classification { get; set; }
+    public string Category { get; set; }
     public string Type { get; set; }
     public string? Description { get; set; }
     public Severity? Severity { get; set; }
@@ -332,7 +326,7 @@ var ddosReport = new XARFReport
         Type = ReporterType.Automated
     },
     SourceIdentifier = "203.0.113.50",
-    Classification = "abuse",
+    Category = "abuse",
     Type = "ddos",
     Severity = Severity.High,
     Description = "Volumetric DDoS attack detected",
@@ -463,7 +457,7 @@ var reports = new List<XARFReport> { /* ... */ };
 
 // Query high-severity abuse reports
 var highSeverityReports = reports
-    .Where(r => r.Classification == "abuse")
+    .Where(r => r.Category == "abuse")
     .Where(r => r.Severity == Severity.High)
     .OrderByDescending(r => r.Timestamp)
     .ToList();
@@ -495,7 +489,7 @@ var report = new XARFReport
         Type = ReporterType.Automated
     },
     SourceIdentifier = "192.0.2.100",
-    Classification = "abuse",
+    Category = "abuse",
     Type = "spam",
     TechnicalDetails = new Dictionary<string, object>
     {
@@ -592,7 +586,7 @@ public class AbuseReportEntity
 
     [Required]
     [MaxLength(50)]
-    public string Classification { get; set; }
+    public string Category { get; set; }
 
     [Required]
     [MaxLength(50)]
@@ -613,7 +607,7 @@ public class AbuseReportEntity
         {
             ReportId = Guid.Parse(report.ReportId),
             Timestamp = DateTime.Parse(report.Timestamp),
-            Classification = report.Classification,
+            Category = report.Category,
             Type = report.Type,
             SourceIdentifier = report.SourceIdentifier,
             XarfData = report.ToJson(),
@@ -637,7 +631,7 @@ public class ApplicationDbContext : DbContext
             .HasIndex(e => e.Timestamp);
 
         modelBuilder.Entity<AbuseReportEntity>()
-            .HasIndex(e => e.Classification);
+            .HasIndex(e => e.Category);
     }
 }
 ```
@@ -732,7 +726,7 @@ public class XARFReportTests
                 Type = ReporterType.Automated
             },
             SourceIdentifier = "192.0.2.100",
-            Classification = "abuse",
+            Category = "abuse",
             Type = "ddos"
         };
 
@@ -778,7 +772,7 @@ public class XARFReportTests
                 Type = ReporterType.Automated
             },
             SourceIdentifier = "192.0.2.100",
-            Classification = "abuse",
+            Category = "abuse",
             Type = "spam"
         };
 
@@ -788,7 +782,7 @@ public class XARFReportTests
 
         // Assert
         Assert.Equal(report1.ReportId, report2.ReportId);
-        Assert.Equal(report1.Classification, report2.Classification);
+        Assert.Equal(report1.Category, report2.Category);
         Assert.Equal(report1.Type, report2.Type);
     }
 }
@@ -879,10 +873,10 @@ public class XARFService
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-dotnet)** - Coming Soon
-- **[NuGet Package](https://www.nuget.org/packages/XARF)** - Planned
+- **[GitHub Repository](https://github.com/xarf/xarf-csharp)** - Alpha Release
+- **[NuGet Package](https://www.nuget.org/packages/XARF)** - Alpha Release
 - **[API Documentation](https://docs.xarf.org/dotnet/)** - In Development
-- **[Examples](https://github.com/xarf/xarf-dotnet/tree/main/examples)** - Coming Soon
+- **[Examples](https://github.com/xarf/xarf-csharp/tree/main/examples)** - Available
 - **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
 
 ---
@@ -914,6 +908,11 @@ public class XARFService
 .badge-warning {
   background: rgba(251, 146, 60, 0.2);
   color: #fb923c;
+}
+
+.badge-success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
 .status-badge {

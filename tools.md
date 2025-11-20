@@ -151,12 +151,22 @@ Programmatic XARF support in your language of choice.
   <a href="{{ site.baseurl }}/libraries/javascript/" class="language-link">
     <strong>JavaScript</strong>
     <span>npm install xarf</span>
-    <span class="coming-soon-badge">Coming Soon</span>
+    <span class="alpha-badge">Alpha</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/go/" class="language-link">
     <strong>Go</strong>
     <span>go get github.com/xarf/xarf-go</span>
-    <span class="coming-soon-badge">Coming Soon</span>
+    <span class="alpha-badge">Alpha</span>
+  </a>
+  <a href="{{ site.baseurl }}/libraries/java/" class="language-link">
+    <strong>Java</strong>
+    <span>Maven: org.xarf:xarf-java:4.0.0-alpha.1</span>
+    <span class="alpha-badge">Alpha</span>
+  </a>
+  <a href="{{ site.baseurl }}/libraries/csharp/" class="language-link">
+    <strong>C#</strong>
+    <span>dotnet add package Xarf</span>
+    <span class="alpha-badge">Alpha</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/" class="language-link">
     <strong>View All Libraries →</strong>
@@ -391,6 +401,20 @@ Tools created by the XARF community:
   right: 0.5rem;
   padding: 0.25rem 0.5rem;
   background: var(--color-warning);
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-family: var(--font-family-sans);
+}
+
+.alpha-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-success);
   color: white;
   font-size: 0.625rem;
   font-weight: 600;

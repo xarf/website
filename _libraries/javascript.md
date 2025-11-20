@@ -1,23 +1,17 @@
 ---
 layout: library
-title: "JavaScript Library - xarf-js"
+title: "JavaScript Library - xarf-javascript"
 description: "Official JavaScript/TypeScript library for creating, validating, and processing XARF reports"
 permalink: /libraries/javascript/
 ---
 
 # XARF JavaScript/TypeScript Library
 
-<span class="status-badge coming-soon">Planned Q2 2024</span>
-
 Official JavaScript/TypeScript library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
 
-<div class="alert alert-warning">
-  <strong>Status:</strong> This library is planned for future release. The API design below is preliminary and subject to change. <strong>Star the <a href="https://github.com/xarf/xarf-js">GitHub repository</a> for updates.</strong>
-</div>
-
 <div class="library-status">
-  <span class="badge badge-warning">Planned</span>
-  <span>Target Version 1.0.0</span>
+  <span class="badge badge-success">Alpha</span>
+  <span>Version 4.0.0-alpha.1</span>
   <span>Node.js 16+, Modern Browsers</span>
 </div>
 
@@ -44,7 +38,7 @@ pnpm add xarf
 - Node.js 16+ or modern browser (ES2020+)
 - TypeScript 4.5+ (optional, for type definitions)
 
-**Note**: Package coming Q2 2024. Star the [GitHub repository](https://github.com/xarf/xarf-js) for updates.
+**Note**: Alpha release available. Star the [GitHub repository](https://github.com/xarf/xarf-javascript) for updates.
 
 ---
 
@@ -66,7 +60,7 @@ const report = new XARFReport({
     type: 'automated'
   },
   source_identifier: '192.0.2.100',
-  classification: 'abuse',
+  category: 'abuse',
   type: 'ddos',
   description: 'DDoS attack detected from source IP'
 });
@@ -144,7 +138,7 @@ const report = new XARFReport({
     type: 'automated'
   },
   source_identifier: '192.0.2.100',
-  classification: 'abuse',
+  category: 'abuse',
   type: 'ddos'
 });
 ```
@@ -284,7 +278,7 @@ interface XARFReportData {
   timestamp: string;
   reporter: Reporter;
   source_identifier: string;
-  classification: string;
+  category: string;
   type: string;
   description?: string;
   severity?: 'low' | 'medium' | 'high' | 'critical';
@@ -339,7 +333,7 @@ const ddosReport = new XARFReport({
     type: 'automated'
   },
   source_identifier: '203.0.113.50',
-  classification: 'abuse',
+  category: 'abuse',
   type: 'ddos',
   severity: 'high',
   description: 'Volumetric DDoS attack detected',
@@ -423,7 +417,7 @@ const report = new XARFReport({
     type: 'automated'
   },
   source_identifier: '192.0.2.100',
-  classification: 'abuse',
+  category: 'abuse',
   type: 'spam',
   // Custom fields
   custom_tracking_id: 'TICKET-12345',
@@ -617,7 +611,7 @@ export function useXARFReport() {
           type: 'manual'
         },
         source_identifier: '192.0.2.100',
-        classification: 'abuse',
+        category: 'abuse',
         type: 'spam'
       });
 
@@ -712,10 +706,10 @@ report.validate().then(isValid => {
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-js)** - Coming Soon
-- **[npm Package](https://www.npmjs.com/package/xarf)** - Planned
+- **[GitHub Repository](https://github.com/xarf/xarf-javascript)** - Alpha Release
+- **[npm Package](https://www.npmjs.com/package/xarf)** - Alpha Release
 - **[API Documentation](https://xarf-js.dev/)** - In Development
-- **[Examples](https://github.com/xarf/xarf-js/tree/main/examples)** - Coming Soon
+- **[Examples](https://github.com/xarf/xarf-javascript/tree/main/examples)** - Available
 - **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
 
 ---
@@ -747,6 +741,11 @@ report.validate().then(isValid => {
 .badge-warning {
   background: rgba(251, 146, 60, 0.2);
   color: #fb923c;
+}
+
+.badge-success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
 .status-badge {

@@ -7,17 +7,11 @@ permalink: /libraries/java/
 
 # XARF Java Library
 
-<span class="status-badge coming-soon">Planned Q3 2024</span>
-
 Official Java library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
 
-<div class="alert alert-warning">
-  <strong>Status:</strong> This library is planned for future release. The API design below is preliminary and subject to change. <strong>Star the <a href="https://github.com/xarf/xarf-java">GitHub repository</a> for updates.</strong>
-</div>
-
 <div class="library-status">
-  <span class="badge badge-warning">Planned</span>
-  <span>Target Version 1.0.0</span>
+  <span class="badge badge-success">Alpha</span>
+  <span>Version 4.0.0-alpha.1</span>
   <span>Java 11+</span>
 </div>
 
@@ -30,25 +24,25 @@ Official Java library for creating, validating, and processing XARF (eXtended Ab
 <dependency>
     <groupId>org.xarf</groupId>
     <artifactId>xarf-java</artifactId>
-    <version>1.0.0</version>
+    <version>4.0.0-alpha.1</version>
 </dependency>
 ```
 
 ### Gradle
 ```groovy
-implementation 'org.xarf:xarf-java:1.0.0'
+implementation 'org.xarf:xarf-java:4.0.0-alpha.1'
 ```
 
 ### Gradle (Kotlin DSL)
 ```kotlin
-implementation("org.xarf:xarf-java:1.0.0")
+implementation("org.xarf:xarf-java:4.0.0-alpha.1")
 ```
 
 **Requirements**:
 - Java 11 or higher
 - Dependencies: Jackson for JSON processing, Jakarta Bean Validation
 
-**Note**: Package coming Q3 2024. Star the [GitHub repository](https://github.com/xarf/xarf-java) for updates.
+**Note**: Alpha release available. Star the [GitHub repository](https://github.com/xarf/xarf-java) for updates.
 
 ---
 
@@ -73,7 +67,7 @@ XARFReport report = XARFReport.builder()
         .type("automated")
         .build())
     .sourceIdentifier("192.0.2.100")
-    .classification("abuse")
+    .category("abuse")
     .type("ddos")
     .description("DDoS attack detected from source IP")
     .build();
@@ -143,7 +137,7 @@ XARFReport report = XARFReport.builder()
         .type("automated")
         .build())
     .sourceIdentifier("192.0.2.100")
-    .classification("abuse")
+    .category("abuse")
     .type("ddos")
     .severity("high")
     .description("Attack description")
@@ -304,7 +298,7 @@ public class DDoSReportExample {
                 .type("automated")
                 .build())
             .sourceIdentifier("203.0.113.50")
-            .classification("abuse")
+            .category("abuse")
             .type("ddos")
             .severity("high")
             .description("Volumetric DDoS attack detected")
@@ -419,7 +413,7 @@ XARFReport report = XARFReport.builder()
         .type("automated")
         .build())
     .sourceIdentifier("192.0.2.100")
-    .classification("abuse")
+    .category("abuse")
     .type("spam")
     .technicalDetails(customFields)
     .build();
@@ -505,7 +499,7 @@ public class AbuseReportEntity {
 
     private Instant timestamp;
 
-    private String classification;
+    private String category;
 
     private String type;
 
@@ -606,7 +600,7 @@ class XARFReportTest {
                 .type("automated")
                 .build())
             .sourceIdentifier("192.0.2.100")
-            .classification("abuse")
+            .category("abuse")
             .type("ddos")
             .build();
 
@@ -637,7 +631,7 @@ class XARFReportTest {
                 .type("automated")
                 .build())
             .sourceIdentifier("192.0.2.100")
-            .classification("abuse")
+            .category("abuse")
             .type("spam")
             .build();
 
@@ -645,7 +639,7 @@ class XARFReportTest {
         XARFReport report2 = XARFReport.fromJson(json);
 
         assertEquals(report1.getReportId(), report2.getReportId());
-        assertEquals(report1.getClassification(), report2.getClassification());
+        assertEquals(report1.getCategory(), report2.getCategory());
     }
 }
 ```
@@ -726,10 +720,10 @@ is.close(); // Manual close - might leak
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-java)** - Coming Soon
-- **[Maven Central](https://central.sonatype.com/artifact/org.xarf/xarf-java)** - Planned
+- **[GitHub Repository](https://github.com/xarf/xarf-java)** - Alpha Release
+- **[Maven Central](https://central.sonatype.com/artifact/org.xarf/xarf-java)** - Alpha Release
 - **[Javadoc](https://javadoc.io/doc/org.xarf/xarf-java)** - In Development
-- **[Examples](https://github.com/xarf/xarf-java/tree/main/examples)** - Coming Soon
+- **[Examples](https://github.com/xarf/xarf-java/tree/main/examples)** - Available
 - **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
 
 ---
@@ -761,6 +755,11 @@ is.close(); // Manual close - might leak
 .badge-warning {
   background: rgba(251, 146, 60, 0.2);
   color: #fb923c;
+}
+
+.badge-success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
 .status-badge {

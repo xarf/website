@@ -7,17 +7,11 @@ permalink: /libraries/go/
 
 # XARF Go Library
 
-<span class="status-badge coming-soon">Planned Q2 2024</span>
-
 Official Go library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
 
-<div class="alert alert-warning">
-  <strong>Status:</strong> This library is planned for future release. The API design below is preliminary and subject to change. <strong>Star the <a href="https://github.com/xarf/xarf-go">GitHub repository</a> for updates.</strong>
-</div>
-
 <div class="library-status">
-  <span class="badge badge-warning">Planned</span>
-  <span>Target Version 1.0.0</span>
+  <span class="badge badge-success">Alpha</span>
+  <span>Version 4.0.0-alpha.1</span>
   <span>Go 1.19+</span>
 </div>
 
@@ -33,7 +27,7 @@ go get github.com/xarf/xarf-go
 - Go 1.19 or higher
 - No external dependencies (uses Go standard library only)
 
-**Note**: Package coming Q2 2024. Star the [GitHub repository](https://github.com/xarf/xarf-go) for updates.
+**Note**: Alpha release available. Star the [GitHub repository](https://github.com/xarf/xarf-go) for updates.
 
 ---
 
@@ -63,7 +57,7 @@ func main() {
             Type:    "automated",
         },
         SourceIdentifier: "192.0.2.100",
-        Classification:   "abuse",
+        Category:         "abuse",
         Type:            "ddos",
         Description:     "DDoS attack detected from source IP",
     })
@@ -156,7 +150,7 @@ type Report struct {
     Timestamp        string                 `json:"timestamp"`
     Reporter         Reporter               `json:"reporter"`
     SourceIdentifier string                 `json:"source_identifier"`
-    Classification   string                 `json:"classification"`
+    Category         string                 `json:"category"`
     Type             string                 `json:"type"`
     Description      string                 `json:"description,omitempty"`
     Severity         string                 `json:"severity,omitempty"`
@@ -202,7 +196,7 @@ report := xarf.NewReport(xarf.ReportConfig{
         Type:    "automated",
     },
     SourceIdentifier: "192.0.2.100",
-    Classification:   "abuse",
+    Category:         "abuse",
     Type:            "ddos",
 })
 ```
@@ -331,7 +325,7 @@ func createDDoSReport() (*xarf.Report, error) {
             Type:    "automated",
         },
         SourceIdentifier: "203.0.113.50",
-        Classification:   "abuse",
+        Category:         "abuse",
         Type:            "ddos",
         Severity:        "high",
         Description:     "Volumetric DDoS attack detected",
@@ -451,7 +445,7 @@ report := xarf.NewReport(xarf.ReportConfig{
         Type:    "automated",
     },
     SourceIdentifier: "192.0.2.100",
-    Classification:   "abuse",
+    Category:         "abuse",
     Type:            "spam",
 })
 
@@ -776,9 +770,9 @@ type UnsafeProcessor struct {
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-go)** - Coming Soon
-- **[pkg.go.dev](https://pkg.go.dev/github.com/xarf/xarf-go)** - Planned
-- **[Examples](https://github.com/xarf/xarf-go/tree/main/examples)** - Coming Soon
+- **[GitHub Repository](https://github.com/xarf/xarf-go)** - Alpha Release
+- **[pkg.go.dev](https://pkg.go.dev/github.com/xarf/xarf-go)** - Alpha Release
+- **[Examples](https://github.com/xarf/xarf-go/tree/main/examples)** - Available
 - **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
 
 ---
@@ -810,6 +804,11 @@ type UnsafeProcessor struct {
 .badge-warning {
   background: rgba(251, 146, 60, 0.2);
   color: #fb923c;
+}
+
+.badge-success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
 }
 
 .status-badge {
