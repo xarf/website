@@ -1,0 +1,8 @@
+
+# Claude Flow / Swarm temporary files
+.claude-flow/
+.swarm/
+docs/*_REPORT.md
+docs/*_SUMMARY.md
+docs/*_CHECKLIST.md
+docs/website-feature-test-results.md
