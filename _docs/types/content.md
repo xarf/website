@@ -43,7 +43,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "manual"
   },
   🟠 "source_identifier": "203.0.113.45",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "brand_infringement",
 
   🟠 "url": "https://fake-apple-store.example.com",
@@ -97,7 +97,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "manual"
   },
   🟠 "source_identifier": "198.51.100.88",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "csam",
 
   🟠 "url": "https://illegal-content.example.com/[redacted]",
@@ -151,7 +151,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "manual"
   },
   🟠 "source_identifier": "192.0.2.77",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "csem",
 
   🟠 "url": "https://exploitation-site.example.com/[redacted]",
@@ -203,7 +203,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "manual"
   },
   🟠 "source_identifier": "198.51.100.200",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "exposed_data",
 
   🟠 "url": "https://misconfigured-server.example.com/database-backup.sql",
@@ -256,7 +256,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "automated"
   },
   🟠 "source_identifier": "198.51.100.45",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "fraud",
 
   🟠 "url": "https://get-rich-quick.example.com",
@@ -321,7 +321,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "automated"
   },
   🟠 "source_identifier": "198.51.100.123",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "malware",
 
   🟠 "url": "https://malicious-downloads.example.com/invoice.exe",
@@ -400,7 +400,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "automated"
   },
   🟠 "source_identifier": "203.0.113.45",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "phishing",
 
   🟠 "url": "https://secure-banking-login.example.com/auth",
@@ -463,7 +463,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.150",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "remote_compromise",
 
   🟠 "url": "https://legitimate-website.example.com/wp-content/uploads/shell.php",
@@ -516,7 +516,7 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
     "type": "automated"
   },
   🟠 "source_identifier": "microsof7-login.example.com",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "suspicious_registration",
 
   🟠 "url": "https://microsof7-login.example.com",

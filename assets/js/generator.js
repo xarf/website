@@ -6,7 +6,7 @@
 (function() {
   'use strict';
 
-  // Event type definitions by classification
+  // Event type definitions by category
   const EVENT_TYPES = {
     abuse: ['ddos', 'malware', 'phishing', 'spam', 'scanner'],
     vulnerability: ['cve', 'misconfiguration', 'open_service'],
@@ -18,7 +18,7 @@
     infrastructure: ['botnet', 'compromised_server']
   };
 
-  // Type descriptions for different classifications
+  // Type descriptions for different categories
   const TYPE_DESCRIPTIONS = {
     abuse: {
       ddos: 'DDoS attack detected from this IP address',
@@ -72,7 +72,7 @@
   // Severity levels
   const SEVERITY_LEVELS = ['low', 'medium', 'high', 'critical'];
 
-  // Evidence types based on classification
+  // Evidence types based on category
   const EVIDENCE_TYPES = {
     abuse: ['pcap', 'log', 'screenshot'],
     vulnerability: ['scan_result', 'log', 'screenshot'],
@@ -114,7 +114,7 @@
       });
     }
 
-    // Update type dropdown when classification changes
+    // Update type dropdown when category changes
     if (reportClass && reportType) {
       reportClass.addEventListener('change', function() {
         updateTypeDropdown(reportClass.value);
@@ -129,7 +129,7 @@
       generateBtn.addEventListener('click', function() {
         try {
           const reportOptions = {
-            classification: reportClass.value,
+            category: reportClass.value,
             type: reportType.value,
             source_identifier: sourceIp.value.trim(),
             reporter_org: reporterOrg.value.trim(),
@@ -249,10 +249,10 @@
     }
 
     /**
-     * Update type dropdown based on selected classification
+     * Update type dropdown based on selected category
      */
-    function updateTypeDropdown(classification) {
-      const types = EVENT_TYPES[classification] || [];
+    function updateTypeDropdown(category) {
+      const types = EVENT_TYPES[category] || [];
       reportType.innerHTML = '';
 
       types.forEach(function(type) {
@@ -279,13 +279,13 @@
      * Randomize all form fields
      */
     function randomizeFields() {
-      // Random classification
-      const classifications = Object.keys(EVENT_TYPES);
-      const randomClass = classifications[Math.floor(Math.random() * classifications.length)];
+      // Random category
+      const categories = Object.keys(EVENT_TYPES);
+      const randomClass = categories[Math.floor(Math.random() * categories.length)];
       reportClass.value = randomClass;
       updateTypeDropdown(randomClass);
 
-      // Random type from selected classification
+      // Random type from selected category
       const types = EVENT_TYPES[randomClass];
       reportType.value = types[Math.floor(Math.random() * types.length)];
 
@@ -346,8 +346,8 @@
     /**
      * Generate evidence array
      */
-    function generateEvidence(classification, type) {
-      const evidenceTypes = EVIDENCE_TYPES[classification] || ['log'];
+    function generateEvidence(category, type) {
+      const evidenceTypes = EVIDENCE_TYPES[category] || ['log'];
       const evidenceType = evidenceTypes[Math.floor(Math.random() * evidenceTypes.length)];
 
       return [{
@@ -372,10 +372,10 @@
     }
 
     /**
-     * Generate tags based on classification and type
+     * Generate tags based on category and type
      */
-    function generateTags(classification, type) {
-      const baseTags = [classification, type];
+    function generateTags(category, type) {
+      const baseTags = [category, type];
 
       // Add additional relevant tags
       const additionalTags = {
@@ -389,7 +389,7 @@
         infrastructure: ['network', 'infrastructure']
       };
 
-      return baseTags.concat(additionalTags[classification] || []);
+      return baseTags.concat(additionalTags[category] || []);
     }
 
     /**
@@ -414,7 +414,7 @@
           type: 'automated'
         },
         source_identifier: options.source_identifier,
-        classification: options.classification,
+        category: options.category,
         type: options.type
       };
 
@@ -429,24 +429,24 @@
       }
 
       // Add description based on type
-      const descriptions = TYPE_DESCRIPTIONS[options.classification];
+      const descriptions = TYPE_DESCRIPTIONS[options.category];
       if (descriptions && descriptions[options.type]) {
         report.description = descriptions[options.type];
       }
 
       // Add evidence if requested
       if (options.include_evidence) {
-        report.evidence = generateEvidence(options.classification, options.type);
+        report.evidence = generateEvidence(options.category, options.type);
       }
 
       // Add optional fields if requested
       if (options.include_optional) {
         report.severity = SEVERITY_LEVELS[Math.floor(Math.random() * SEVERITY_LEVELS.length)];
         report.confidence = generateConfidence();
-        report.tags = generateTags(options.classification, options.type);
+        report.tags = generateTags(options.category, options.type);
 
-        // Add attack vector for abuse classification
-        if (options.classification === 'abuse' && options.type === 'ddos') {
+        // Add attack vector for abuse category
+        if (options.category === 'abuse' && options.type === 'ddos') {
           report.attack_vector = 'udp_flood';
         }
 

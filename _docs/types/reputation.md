@@ -41,7 +41,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.150",
-  🟠 "class": "reputation",
+  🟠 "category": "reputation",
   🟠 "type": "blocklist",
 
   🟢 "source_port": 443,
@@ -90,7 +90,7 @@ Threat intelligence data including blocklist entries and indicators of compromis
     "type": "manual"
   },
   🟠 "source_identifier": "198.51.100.75",
-  🟠 "class": "reputation",
+  🟠 "category": "reputation",
   🟠 "type": "threat_intelligence",
 
   🟢 "source_port": 8080,

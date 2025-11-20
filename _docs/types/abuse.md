@@ -21,7 +21,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
 
 **Use Case**: Reports of Distributed Denial of Service attacks targeting system availability. Includes volumetric attacks (SYN floods, UDP floods, HTTP floods) and amplification/reflection attacks (DNS, NTP, memcached, SSDP). Used by ISPs, CDNs, and DDoS mitigation services to coordinate response, track attack sources, and identify misconfigured servers being used as amplifiers.
 
-**Note**: This type uses `class: "connection"` in XARF v4.
+**Note**: This type uses `category: "connection"` in XARF v4.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -43,7 +43,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.155",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "ddos",
 
   🟠 "protocol": "tcp",
@@ -88,7 +88,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
 
 **Use Case**: Reports of malware distribution, hosting, and command & control (C2) servers. Covers trojans, ransomware, droppers, loaders, backdoors, rootkits, infostealers, banking trojans, cryptominers, and other malicious software. Used by security researchers, malware analysis platforms, and network defenders to identify distribution points, block C2 communications, and coordinate takedowns.
 
-**Note**: This type uses `class: "content"` in XARF v4.
+**Note**: This type uses `category: "content"` in XARF v4.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -110,7 +110,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.75",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "malware",
 
   🟢 "url": "http://download-center.example.com/setup.exe",
@@ -150,7 +150,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
 
 **Use Case**: Reports of credential theft and phishing attacks. Covers fake login pages, credential harvesting sites, brand impersonation, and social engineering attacks designed to steal usernames, passwords, payment information, or personal data. Used by brand protection services, anti-phishing organizations, and security teams to coordinate takedowns and protect users.
 
-**Note**: This type uses `class: "content"` in XARF v4.
+**Note**: This type uses `category: "content"` in XARF v4.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -172,7 +172,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
     "type": "automated"
   },
   🟠 "source_identifier": "203.0.113.45",
-  🟠 "class": "content",
+  🟠 "category": "content",
   🟠 "type": "phishing",
 
   🟢 "url": "http://secure-banking-login.example.com/auth",
@@ -213,7 +213,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
 
 **Use Case**: Reports of unsolicited bulk email and messaging spam. Covers commercial spam, phishing spam, malware delivery spam, and other unwanted messages sent via SMTP, SMS, messaging platforms, or social media. Used by email providers, spam filtering services, and network administrators to identify spam sources, improve filtering, and coordinate blocking.
 
-**Note**: This type uses `class: "messaging"` in XARF v4.
+**Note**: This type uses `category: "messaging"` in XARF v4.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -235,7 +235,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
     "type": "automated"
   },
   🟠 "source_identifier": "192.168.1.100",
-  🟠 "class": "messaging",
+  🟠 "category": "messaging",
   🟠 "type": "spam",
 
   🟠 "protocol": "smtp",
@@ -279,7 +279,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
 
 **Use Case**: Reports of port scanning and network probing activities. Covers reconnaissance via port scanning tools (nmap, masscan, zmap) and network enumeration. Indicates potential preparation for attacks, vulnerability assessment, or unauthorized network mapping. Used by network security teams to identify and block scanning sources before actual attacks occur.
 
-**Note**: In XARF v4, port scanning uses `class: "connection"` with `type: "port_scan"`. For vulnerability scanning specifically, use `type: "vulnerability_scan"`.
+**Note**: In XARF v4, port scanning uses `category: "connection"` with `type: "port_scan"`. For vulnerability scanning specifically, use `type: "vulnerability_scan"`.
 
 <details class="sample-report" markdown="1">
 <summary>
@@ -301,7 +301,7 @@ Direct malicious activities and attacks targeting systems, users, and infrastruc
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.99",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "port_scan",
 
   🟠 "protocol": "tcp",

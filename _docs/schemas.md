@@ -120,7 +120,7 @@ All XARF v4 reports must include these base fields:
     "type": "automated"
   },
   "source_identifier": "192.0.2.1",
-  "class": "connection",
+  "category": "connection",
   "type": "ddos"
 }
 ```
@@ -135,8 +135,8 @@ All XARF v4 reports must include these base fields:
 | `reporter.contact` | string (email) | Contact email for follow-up |
 | `reporter.type` | enum | How report was generated: `automated`, `manual`, `unknown` |
 | `source_identifier` | string | IP address, domain, or identifier of abuse source |
-| `class` | enum | Abuse category: `connection`, `content`, `copyright`, `infrastructure`, `messaging`, `reputation`, `vulnerability` |
-| `type` | string | Specific abuse type within the class |
+| `category` | enum | Abuse category: `connection`, `content`, `copyright`, `infrastructure`, `messaging`, `reputation`, `vulnerability` |
+| `type` | string | Specific abuse type within the category |
 
 #### Optional Common Fields
 
@@ -204,7 +204,7 @@ Network-level attacks and suspicious connection patterns.
   },
   "source_identifier": "192.0.2.155",
   "source_port": 12345,
-  "class": "connection",
+  "category": "connection",
   "type": "ddos",
   "protocol": "tcp",
   "first_seen": "2024-01-15T16:45:00Z"
@@ -278,7 +278,7 @@ All content types inherit from [content-base.json](https://github.com/xarf/xarf-
     "type": "automated"
   },
   "source_identifier": "203.0.113.45",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "url": "https://secure-banking-login.example.com/auth"
 }
@@ -322,7 +322,7 @@ Intellectual property infringement and unauthorized distribution.
   },
   "source_identifier": "203.0.113.150",
   "source_port": 6881,
-  "class": "copyright",
+  "category": "copyright",
   "type": "p2p",
   "p2p_protocol": "bittorrent",
   "swarm_info": {
@@ -365,7 +365,7 @@ Compromised or misused infrastructure and systems.
     "type": "automated"
   },
   "source_identifier": "192.0.2.50",
-  "class": "infrastructure",
+  "category": "infrastructure",
   "type": "bot",
   "compromise_evidence": "C2 communication observed to known Mirai C2 server"
 }
@@ -405,7 +405,7 @@ Spam and abuse via messaging platforms.
   },
   "source_identifier": "192.0.2.123",
   "source_port": 25,
-  "class": "messaging",
+  "category": "messaging",
   "type": "spam",
   "protocol": "smtp",
   "smtp_from": "spam@example.com"
@@ -443,7 +443,7 @@ Threat intelligence, blocklists, and reputation data.
     "type": "automated"
   },
   "source_identifier": "192.0.2.200",
-  "class": "reputation",
+  "category": "reputation",
   "type": "blocklist",
   "blocklist_name": "SpamhausSBL"
 }
@@ -478,7 +478,7 @@ Security vulnerabilities and misconfigurations.
     "type": "automated"
   },
   "source_identifier": "192.0.2.75",
-  "class": "vulnerability",
+  "category": "vulnerability",
   "type": "cve",
   "cve_id": "CVE-2021-41773"
 }
@@ -545,7 +545,7 @@ XARF v4 allows custom fields via `additionalProperties: true`. Add organization-
 {
   "xarf_version": "4.0.0",
   "report_id": "...",
-  "class": "messaging",
+  "category": "messaging",
   "type": "spam",
   "my_org_ticket_id": "ABUSE-12345",
   "my_org_priority": "high",
@@ -563,7 +563,7 @@ Use the `_internal` field for operational metadata that should NEVER be transmit
 {
   "xarf_version": "4.0.0",
   "report_id": "...",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "_internal": {
     "ticket": "ABUSE-1234",
@@ -602,8 +602,8 @@ XARF uses semantic versioning. The `xarf_version` field indicates which schema v
 | Missing required property 'xarf_version' | Core field omitted | Add `xarf_version: "4.0.0"` |
 | Invalid UUID format for report_id | Wrong UUID format | Use UUID v4 (e.g., `550e8400-e29b-41d4-a716-446655440000`) |
 | Invalid date-time format | Timestamp not ISO 8601 | Use format: `2024-01-15T14:30:25Z` |
-| Class 'content' requires 'url' field | Type-specific field missing | Add required field based on content type |
-| Invalid enum value for 'class' | Typo or wrong class | Use valid class: `messaging`, `content`, `copyright`, etc. |
+| Category 'content' requires 'url' field | Type-specific field missing | Add required field based on content type |
+| Invalid enum value for 'category' | Typo or wrong category | Use valid category: `messaging`, `content`, `copyright`, etc. |
 | source_port required when protocol=smtp | Conditional requirement not met | Add `source_port` field for SMTP reports |
 
 ## Next Steps

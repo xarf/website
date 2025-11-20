@@ -41,7 +41,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.200",
-  🟠 "class": "messaging",
+  🟠 "category": "messaging",
   🟠 "type": "bulk_messaging",
 
   🟢 "protocol": "smtp",
@@ -106,7 +106,7 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.123",
-  🟠 "class": "messaging",
+  🟠 "category": "messaging",
   🟠 "type": "spam",
 
   🟢 "protocol": "smtp",

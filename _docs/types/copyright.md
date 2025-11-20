@@ -41,7 +41,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "type": "manual"
   },
   🟠 "source_identifier": "198.51.100.75",
-  🟠 "class": "copyright",
+  🟠 "category": "copyright",
   🟠 "type": "copyright",
 
   🟢 "source_port": 443,
@@ -90,7 +90,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "type": "automated"
   },
   🟠 "source_identifier": "203.0.113.100",
-  🟠 "class": "copyright",
+  🟠 "category": "copyright",
   🟠 "type": "cyberlocker",
 
   🟢 "source_port": 443,
@@ -139,7 +139,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.200",
-  🟠 "class": "copyright",
+  🟠 "category": "copyright",
   🟠 "type": "link_site",
 
   🟢 "source_port": 443,
@@ -188,7 +188,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "type": "automated"
   },
   🟠 "source_identifier": "198.51.100.88",
-  🟠 "class": "copyright",
+  🟠 "category": "copyright",
   🟠 "type": "p2p",
 
   🟢 "source_port": 51413,
@@ -237,7 +237,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "type": "manual"
   },
   🟠 "source_identifier": "203.0.113.50",
-  🟠 "class": "copyright",
+  🟠 "category": "copyright",
   🟠 "type": "ugc_platform",
 
   🟢 "source_port": 443,
@@ -286,7 +286,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.175",
-  🟠 "class": "copyright",
+  🟠 "category": "copyright",
   🟠 "type": "usenet",
 
   🟢 "source_port": 119,

@@ -9,27 +9,27 @@ permalink: /docs/best-practices/
 
 Creating effective XARF reports requires attention to detail, proper evidence collection, and adherence to privacy standards. This guide provides practical recommendations for generating high-quality abuse reports that recipients can act upon quickly.
 
-## Choosing the Right Class and Type
+## Choosing the Right Category and Type
 
-Selecting the appropriate `class` and `type` is crucial for proper report routing and handling.
+Selecting the appropriate `category` and `type` is crucial for proper report routing and handling.
 
 ### Guidelines
 
 **DO:**
-- Use specific types when available (e.g., class: `connection`, type: `login-attack` for brute force attacks)
-- Review the full list of 58 types across 7 classes before selecting
-- Consider the primary abuse category for the class, and the most specific type available
-- Use `content` class for hosted malicious content, `connection` for network attacks
+- Use specific types when available (e.g., category: `connection`, type: `login-attack` for brute force attacks)
+- Review the full list of 58 types across 7 categories before selecting
+- Consider the primary abuse category, and the most specific type available
+- Use `content` category for hosted malicious content, `connection` for network attacks
 
 **DON'T:**
 - Mix multiple abuse types in a single report (send separate reports instead)
-- Use incorrect class/type combinations
-- Guess at types—if uncertain, use the most general applicable type within the correct class
+- Use incorrect category/type combinations
+- Guess at types—if uncertain, use the most general applicable type within the correct category
 
 ### Common Scenarios
 
-| Abuse Type | Correct Class | Correct Type | Notes |
-|------------|---------------|--------------|-------|
+| Abuse Type | Correct Category | Correct Type | Notes |
+|------------|------------------|--------------|-------|
 | Brute force SSH attacks | `connection` | `ssh-attack` | Network-level attack |
 | Email spam | `messaging` | `spam` | Messaging abuse |
 | Credit card phishing | `content` | `phishing` | Hosted malicious content |
@@ -168,7 +168,7 @@ Infrastructure providers, MSSPs, and abuse reporting services often send reports
     }
   },
   "source_identifier": "192.0.2.100",
-  "class": "connection",
+  "category": "connection",
   "type": "ddos",
   "description": "DDoS attack targeting Swisscom infrastructure"
 }

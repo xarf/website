@@ -44,8 +44,8 @@ All XARF v4 reports share this common structure:
 | `timestamp` | string | ISO 8601 | When the abuse incident occurred (UTC recommended) |
 | `reporter` | object | - | Information about the reporting organization |
 | `source_identifier` | string | IP/domain | IP address, domain, or identifier of the abuse source |
-| `class` | string | enum | Abuse category (connection, content, copyright, infrastructure, messaging, reputation, vulnerability) |
-| `type` | string | enum | Specific abuse type within the class |
+| `category` | string | enum | Abuse category (connection, content, copyright, infrastructure, messaging, reputation, vulnerability) |
+| `type` | string | enum | Specific abuse type within the category |
 
 <div class="field-category recommended">
 <strong>Recommended Fields</strong> (should be included when available)
@@ -288,7 +288,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T14:30:00Z",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "reporter": {
     "org": "Example Bank Security",
@@ -323,7 +323,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T10:20:30Z",
-  "class": "connection",
+  "category": "connection",
   "type": "ddos",
   "reporter": {
     "org": "DDoS Protection Service",
@@ -359,7 +359,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "987fcdeb-51a2-43d1-9f12-345678901234",
   "timestamp": "2024-01-15T08:45:15Z",
-  "class": "messaging",
+  "category": "messaging",
   "type": "spam",
   "reporter": {
     "org": "SpamCop",
@@ -394,7 +394,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "456789ab-cdef-1234-5678-90abcdef1234",
   "timestamp": "2024-01-15T16:00:00Z",
-  "class": "content",
+  "category": "content",
   "type": "malware",
   "reporter": {
     "org": "Malware Analysis Lab",
@@ -433,7 +433,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "fedcba98-7654-3210-fedc-ba9876543210",
   "timestamp": "2024-01-15T12:30:00Z",
-  "class": "copyright",
+  "category": "copyright",
   "type": "p2p",
   "reporter": {
     "org": "Copyright Protection Agency",
@@ -469,7 +469,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "321fedcb-9876-5432-10fe-dcba98765432",
   "timestamp": "2024-01-15T09:15:30Z",
-  "class": "infrastructure",
+  "category": "infrastructure",
   "type": "botnet",
   "reporter": {
     "org": "Botnet Research Group",
@@ -503,7 +503,7 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "789abcde-f012-3456-7890-abcdef123456",
   "timestamp": "2024-01-15T11:00:00Z",
-  "class": "vulnerability",
+  "category": "vulnerability",
   "type": "cve",
   "reporter": {
     "org": "Security Scanner Service",
@@ -630,7 +630,7 @@ XARF v4 parsers should support automatic conversion of XARF v3 reports for backw
 |---------|---------|-------|
 | `Version` | `xarf_version` | Format: `4.0.0` |
 | `ReporterInfo` | `reporter` | Restructured object with `org`, `contact`, `type` fields |
-| `Report.ReportType` | `class` + `type` | Split into class and type fields |
+| `Report.ReportType` | `category` + `type` | Split into category and type fields |
 | `Report.SourceIp` | `source_identifier` | Supports IPs and domains |
 | `Samples` | `evidence` | Enhanced structure with hashes |
 

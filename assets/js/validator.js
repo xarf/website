@@ -17,7 +17,7 @@
       "type": "automated"
     },
     "source_identifier": "192.0.2.100",
-    "classification": "abuse",
+    "category": "abuse",
     "type": "ddos",
     "severity": "high",
     "description": "DDoS attack detected from this IP address",
@@ -124,7 +124,7 @@
         'timestamp',
         'reporter',
         'source_identifier',
-        'classification',
+        'category',
         'type'
       ];
 
@@ -163,10 +163,10 @@
         }
       }
 
-      // Validate classification
-      const validClassifications = ['abuse', 'vulnerability', 'connection', 'content', 'copyright', 'messaging', 'reputation', 'infrastructure'];
-      if (report.classification && !validClassifications.includes(report.classification)) {
-        errors.push(`Invalid classification "${report.classification}". Must be one of: ${validClassifications.join(', ')}`);
+      // Validate category
+      const validCategories = ['abuse', 'vulnerability', 'connection', 'content', 'copyright', 'messaging', 'reputation', 'infrastructure'];
+      if (report.category && !validCategories.includes(report.category)) {
+        errors.push(`Invalid category "${report.category}". Must be one of: ${validCategories.join(', ')}`);
       }
 
       // Check recommended fields

@@ -15,8 +15,8 @@ This reference documents all common fields that appear in XARF v4 reports across
 |-------|------|-------|-------------|
 | `xarf_version` | string | 🟠 Mandatory | XARF schema version |
 | `report_id` | string | 🟠 Mandatory | Unique report identifier (UUID v4) |
-| `class` | string | 🟠 Mandatory | Primary abuse category |
-| `type` | string | 🟠 Mandatory | Specific abuse type within class |
+| `category` | string | 🟠 Mandatory | Primary abuse category |
+| `type` | string | 🟠 Mandatory | Specific abuse type within category |
 | `timestamp` | string | 🟠 Mandatory | When the abuse occurred (ISO 8601) |
 | `source_identifier` | string | 🟠 Mandatory | IP address, domain, or identifier of abuse source |
 | `reporter` | object | 🟠 Mandatory | Reporting organization information |
@@ -91,7 +91,7 @@ A globally unique identifier for this specific report. Use this for deduplicatio
 
 ---
 
-### class
+### category
 
 **Type:** `string`
 **Level:** 🟠 Mandatory
@@ -101,15 +101,15 @@ The primary abuse classification category. This determines which category-specif
 
 **Example Values:**
 ```json
-"class": "messaging"
-"class": "content"
-"class": "connection"
+"category": "messaging"
+"category": "content"
+"category": "connection"
 ```
 
 **Category Descriptions:**
 
-| Class | Purpose | Examples |
-|-------|---------|----------|
+| Category | Purpose | Examples |
+|----------|---------|----------|
 | `messaging` | Communication abuse | Spam, bulk messaging |
 | `content` | Malicious web content | Phishing, malware, fraud, CSAM |
 | `copyright` | IP infringement | P2P sharing, cyberlockers |
@@ -130,17 +130,17 @@ The primary abuse classification category. This determines which category-specif
 **Type:** `string`
 **Level:** 🟠 Mandatory
 
-The specific abuse type within the class. Valid values depend on the `class` field value.
+The specific abuse type within the category. Valid values depend on the `category` field value.
 
 **Example Values:**
 ```json
-"type": "spam"           // when class=messaging
-"type": "phishing"       // when class=content
-"type": "ddos"          // when class=connection
-"type": "bot"           // when class=infrastructure
+"type": "spam"           // when category=messaging
+"type": "phishing"       // when category=content
+"type": "ddos"          // when category=connection
+"type": "bot"           // when category=infrastructure
 ```
 
-**Common Types by Class:**
+**Common Types by Category:**
 
 **Messaging:** `spam`, `bulk_messaging`
 
@@ -157,7 +157,7 @@ The specific abuse type within the class. Valid values depend on the `class` fie
 **Reputation:** `blocklist`, `threat_intelligence`, `abuse_score`
 
 **Validation Rules:**
-- Must be a valid type for the specified class
+- Must be a valid type for the specified category
 - Case-sensitive (use lowercase with underscores)
 - Determines type-specific required fields
 
@@ -743,7 +743,7 @@ Here's a complete example showing all common fields together:
 {
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "timestamp": "2024-01-15T14:30:25Z",
   "source_identifier": "203.0.113.45",
@@ -783,8 +783,8 @@ Before submitting a XARF v4 report, verify these mandatory fields are present:
 
 - ✅ `xarf_version` - Schema version (e.g., "4.0.0")
 - ✅ `report_id` - UUID v4 identifier
-- ✅ `class` - Abuse category (messaging, content, etc.)
-- ✅ `type` - Specific type within class
+- ✅ `category` - Abuse category (messaging, content, etc.)
+- ✅ `type` - Specific type within category
 - ✅ `timestamp` - ISO 8601 timestamp with timezone
 - ✅ `source_identifier` - IP, domain, or abuse source
 - ✅ `reporter.org` - Organization name

@@ -121,7 +121,7 @@ XARF v4 uses a consistent structure across all report types. Here's how to map y
 |------------|---------------|-------|
 | Report ID / Case Number | `report_id` | Use UUID format |
 | Report Date / Timestamp | `timestamp` | ISO 8601 format required |
-| Abuse Type / Category | `class` + `type` | Map to class (e.g., content) and type (e.g., phishing) |
+| Abuse Type / Category | `category` + `type` | Map to category (e.g., content) and type (e.g., phishing) |
 | Reporter Name | `reporter.org` | Organization name |
 | Reporter Email | `reporter.contact` | Contact email |
 | Reporter Reference | `reporter_reference_id` | Your internal tracking ID |
@@ -137,21 +137,21 @@ Map your abuse categories to XARF v4 content types:
 **Example Mappings:**
 
 ```
-Your Category              → XARF v4 Class + Type
+Your Category              → XARF v4 Category + Type
 ─────────────────────────────────────────────────────
-"Phishing"                → class: content, type: phishing
-"Malware Site"            → class: content, type: malware
-"Spam Email"              → class: messaging, type: spam
-"DDoS Attack"             → class: connection, type: ddos
-"Compromised Server"      → class: infrastructure, type: compromised-server
-"Copyright Violation"     → class: copyright, type: p2p (or other type)
-"Fake Shop"               → class: content, type: fake-shop
-"Botnet Activity"         → class: infrastructure, type: botnet
-"Port Scan"               → class: connection, type: port-scan
-"Brute Force Attack"      → class: connection, type: brute-force
+"Phishing"                → category: content, type: phishing
+"Malware Site"            → category: content, type: malware
+"Spam Email"              → category: messaging, type: spam
+"DDoS Attack"             → category: connection, type: ddos
+"Compromised Server"      → category: infrastructure, type: compromised-server
+"Copyright Violation"     → category: copyright, type: p2p (or other type)
+"Fake Shop"               → category: content, type: fake-shop
+"Botnet Activity"         → category: infrastructure, type: botnet
+"Port Scan"               → category: connection, type: port-scan
+"Brute Force Attack"      → category: connection, type: brute-force
 ```
 
-Review all [58 XARF v4 types across 7 classes](/docs/content-types/) to find the best match for your categories.
+Review all [58 XARF v4 types across 7 categories](/docs/content-types/) to find the best match for your categories.
 
 ### Evidence Structure
 
@@ -353,12 +353,12 @@ import uuid
 from datetime import datetime
 
 def generate_missing_fields(legacy_report):
-    class_type = map_legacy_type(legacy_report["type"])
+    category_type = map_legacy_type(legacy_report["type"])
     return {
         "report_id": str(uuid.uuid4()),
         "timestamp": datetime.utcnow().isoformat() + "Z",
-        "class": class_type["class"],
-        "type": class_type["type"],
+        "category": category_type["category"],
+        "type": category_type["type"],
         "reporter": {
             "org": "Automated Detection System",
             "contact": "abuse@example.com",
@@ -399,26 +399,26 @@ def generate_url_hash(url):
     }
 ```
 
-### Challenge 3: Class and Type Mapping
+### Challenge 3: Category and Type Mapping
 
-**Problem**: Your categories don't map cleanly to XARF v4 class and type structure.
+**Problem**: Your categories don't map cleanly to XARF v4 category and type structure.
 
 **Solution**:
-- Use the most specific type available within the appropriate class
+- Use the most specific type available within the appropriate category
 - Document mapping decisions
 - Use `custom_fields` to preserve original category
 - Review [type categories](/docs/content-types/) for best fit
 
 **Mapping Strategy**:
 ```python
-def map_class_and_type(legacy_category, legacy_subcategory=None):
-    """Map legacy categories to XARF v4 class and type."""
+def map_category_and_type(legacy_category, legacy_subcategory=None):
+    """Map legacy categories to XARF v4 category and type."""
 
     # Exact matches
     exact_mappings = {
-        "phishing": {"class": "content", "type": "phishing"},
-        "malware": {"class": "content", "type": "malware"},
-        "ddos": {"class": "connection", "type": "ddos"},
+        "phishing": {"category": "content", "type": "phishing"},
+        "malware": {"category": "content", "type": "malware"},
+        "ddos": {"category": "connection", "type": "ddos"},
     }
 
     if legacy_category in exact_mappings:
@@ -427,14 +427,14 @@ def map_class_and_type(legacy_category, legacy_subcategory=None):
     # Category + subcategory combinations
     if legacy_category == "copyright":
         if legacy_subcategory == "torrent":
-            return {"class": "copyright", "type": "p2p"}
+            return {"category": "copyright", "type": "p2p"}
         elif legacy_subcategory == "streaming":
-            return {"class": "copyright", "type": "streaming"}
+            return {"category": "copyright", "type": "streaming"}
         else:
-            return {"class": "copyright", "type": "copyright"}
+            return {"category": "copyright", "type": "copyright"}
 
     # Default fallback
-    return {"class": "content", "type": "fraud"}  # Most generic
+    return {"category": "content", "type": "fraud"}  # Most generic
 ```
 
 ### Challenge 4: Downstream System Compatibility
@@ -456,7 +456,7 @@ class LegacyAdapter:
         return {
             "case_id": xarf_report["report_id"],
             "date": xarf_report["timestamp"],
-            "type": f"{xarf_report['class']}-{xarf_report['type']}",
+            "type": f"{xarf_report['category']}-{xarf_report['type']}",
             "reporter": xarf_report["reporter"]["contact"],
             "url": xarf_report.get("url"),
             "description": xarf_report.get("description", ""),
@@ -548,7 +548,7 @@ Security Team
 {
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "timestamp": "2024-01-15T14:30:00Z",
   "reporter": {
@@ -597,7 +597,7 @@ Security Team
 {
   "xarf_version": "4.0.0",
   "report_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
-  "class": "content",
+  "category": "content",
   "type": "malware",
   "timestamp": "2024-01-15T10:00:00Z",
   "reporter": {
@@ -630,7 +630,7 @@ timestamp,source_ip,target_ip,attack_type,packets,severity
 {
   "xarf_version": "4.0.0",
   "report_id": "123e4567-e89b-12d3-a456-426614174000",
-  "class": "connection",
+  "category": "connection",
   "type": "ddos",
   "timestamp": "2024-01-15T08:00:00Z",
   "reporter": {
@@ -666,7 +666,7 @@ Form Submission:
 {
   "xarf_version": "4.0.0",
   "report_id": "b47cc1e4-4c8d-4e8a-9b5c-8f7e6d5c4b3a",
-  "class": "messaging",
+  "category": "messaging",
   "type": "spam",
   "timestamp": "2024-01-15T09:15:00Z",
   "reporter": {
@@ -714,7 +714,7 @@ def test_field_mapping():
     xarf_report = convert_to_xarf(legacy_report)
 
     assert xarf_report["xarf_version"] == "4.0.0"
-    assert xarf_report["class"] == "content"
+    assert xarf_report["category"] == "content"
     assert xarf_report["type"] == "phishing"
     assert "report_id" in xarf_report
     assert xarf_report["timestamp"].endswith("Z")
@@ -750,20 +750,20 @@ def test_schema_validation():
 Ensure you can generate reports for all your abuse types:
 
 ```python
-def test_class_type_coverage():
-    """Test all legacy types map to valid XARF class and type combinations."""
+def test_category_type_coverage():
+    """Test all legacy types map to valid XARF category and type combinations."""
 
     legacy_types = [
         "phishing", "malware", "spam", "ddos",
         "brute_force", "copyright", "botnet"
     ]
 
-    valid_xarf_classes = load_valid_classes()
+    valid_xarf_categories = load_valid_categories()
 
     for legacy_type in legacy_types:
-        class_type = map_class_and_type(legacy_type)
-        assert class_type["class"] in valid_xarf_classes, \
-            f"No mapping for {legacy_type} → {class_type['class']}.{class_type['type']}"
+        category_type = map_category_and_type(legacy_type)
+        assert category_type["category"] in valid_xarf_categories, \
+            f"No mapping for {legacy_type} → {category_type['category']}.{category_type['type']}"
 ```
 
 ### Integration Testing
@@ -783,7 +783,7 @@ def test_downstream_integration():
     # Verify ticket created correctly
     ticket = fetch_ticket(ticket_id)
     assert ticket["severity"] == xarf_report.get("severity")
-    assert ticket["class"] == xarf_report["class"]
+    assert ticket["category"] == xarf_report["category"]
     assert ticket["type"] == xarf_report["type"]
 ```
 
@@ -879,8 +879,8 @@ else:
 Before deploying to production, verify:
 
 - [ ] All reports pass JSON schema validation
-- [ ] All `class` values are valid (connection, content, copyright, infrastructure, messaging, reputation, vulnerability)
-- [ ] All `type` values are valid for their class
+- [ ] All `category` values are valid (connection, content, copyright, infrastructure, messaging, reputation, vulnerability)
+- [ ] All `type` values are valid for their category
 - [ ] `report_id` values are valid UUIDs
 - [ ] `timestamp` values are valid ISO 8601 format
 - [ ] Evidence hashes use supported algorithms (SHA256, SHA512, MD5)

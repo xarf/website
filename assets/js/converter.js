@@ -12,7 +12,7 @@
     xarf: {
       "report_id": "550e8400-e29b-41d4-a716-446655440000",
       "timestamp": "2024-01-15T10:00:00Z",
-      "class": "abuse",
+      "category": "abuse",
       "type": "ddos",
       "source_identifier": "192.0.2.100",
       "source_port": 52311,
@@ -51,7 +51,7 @@ Incident-ID: 550e8400-e29b-41d4-a716-446655440000
 Arrival-Date: 2024-01-15T10:00:00Z
 
 ------=_Part_123--`,
-    csv: `report_id,timestamp,classification,type,source_identifier,source_port,severity,reporter_org,reporter_contact,description
+    csv: `report_id,timestamp,category,type,source_identifier,source_port,severity,reporter_org,reporter_contact,description
 550e8400-e29b-41d4-a716-446655440000,2024-01-15T10:00:00Z,abuse,ddos,192.0.2.100,52311,high,Security Operations,abuse@reporter.example,"DDoS attack targeting example.com"`,
     iodef: `<?xml version="1.0" encoding="UTF-8"?>
 <IODEF-Document version="2.0">
@@ -69,7 +69,7 @@ Arrival-Date: 2024-01-15T10:00:00Z
   const CSV_HEADERS = [
     'report_id',
     'timestamp',
-    'classification',
+    'category',
     'type',
     'source_identifier',
     'source_port',
@@ -149,8 +149,8 @@ Arrival-Date: 2024-01-15T10:00:00Z
           case 'timestamp':
             value = report.timestamp || '';
             break;
-          case 'classification':
-            value = report.class || '';
+          case 'category':
+            value = report.category || '';
             break;
           case 'type':
             value = report.type || '';
@@ -212,7 +212,7 @@ Arrival-Date: 2024-01-15T10:00:00Z
         schema_version: "4.0.0",
         report_id: "",
         timestamp: "",
-        class: "",
+        category: "",
         type: "",
         source_identifier: "",
         reporter: {}
@@ -229,9 +229,8 @@ Arrival-Date: 2024-01-15T10:00:00Z
           case 'timestamp':
             xarfReport.timestamp = value;
             break;
-          case 'classification':
-          case 'class':
-            xarfReport.class = value;
+          case 'category':
+            xarfReport.category = value;
             break;
           case 'type':
             xarfReport.type = value;
@@ -290,7 +289,7 @@ Content-Type: text/plain; charset="UTF-8"
 
 This is an automated abuse report.
 
-Classification: ${report.class || 'unknown'}
+Classification: ${report.category || 'unknown'}
 Type: ${report.type || 'unknown'}
 Source: ${report.source_identifier || 'unknown'}
 ${report.description ? '\nDescription: ' + report.description : ''}
@@ -300,7 +299,7 @@ Reporter: ${report.reporter?.org || 'Unknown Organization'}
 --${boundary}
 Content-Type: message/feedback-report
 
-Feedback-Type: ${this.mapXARFClassToARF(report.class)}
+Feedback-Type: ${this.mapXARFCategoryToARF(report.category)}
 User-Agent: XARF-Converter/1.0
 Version: 1.0
 Incident-ID: ${report.report_id || 'unknown'}
@@ -324,7 +323,7 @@ Reported-From: ${report.reporter?.contact || 'unknown'}
         schema_version: "4.0.0",
         report_id: "",
         timestamp: new Date().toISOString(),
-        class: "abuse",
+        category: "abuse",
         type: "unknown",
         source_identifier: "",
         reporter: {}
@@ -354,7 +353,7 @@ Reported-From: ${report.reporter?.contact || 'unknown'}
 
           switch (key.trim()) {
             case 'Feedback-Type':
-              xarfReport.class = this.mapARFTypeToXARF(value);
+              xarfReport.category = this.mapARFTypeToXARF(value);
               break;
             case 'Incident-ID':
               xarfReport.report_id = value;
@@ -437,7 +436,7 @@ Reported-From: ${report.reporter?.contact || 'unknown'}
         schema_version: "4.0.0",
         report_id: "",
         timestamp: new Date().toISOString(),
-        class: "incident",
+        category: "incident",
         type: "unknown",
         source_identifier: "",
         reporter: {}
@@ -520,9 +519,9 @@ Reported-From: ${report.reporter?.contact || 'unknown'}
     }
 
     /**
-     * Helper: Map XARF classification to ARF feedback type
+     * Helper: Map XARF category to ARF feedback type
      */
-    mapXARFClassToARF(xarfClass) {
+    mapXARFCategoryToARF(xarfCategory) {
       const mapping = {
         'abuse': 'abuse',
         'fraud': 'fraud',
@@ -531,11 +530,11 @@ Reported-From: ${report.reporter?.contact || 'unknown'}
         'malware': 'virus',
         'security': 'abuse'
       };
-      return mapping[xarfClass] || 'other';
+      return mapping[xarfCategory] || 'other';
     }
 
     /**
-     * Helper: Map ARF type to XARF classification
+     * Helper: Map ARF type to XARF category
      */
     mapARFTypeToXARF(arfType) {
       const mapping = {
@@ -557,7 +556,7 @@ Reported-From: ${report.reporter?.contact || 'unknown'}
       // Required fields
       if (!report.report_id) errors.push('Missing required field: report_id');
       if (!report.timestamp) errors.push('Missing required field: timestamp');
-      if (!report.class) errors.push('Missing required field: class');
+      if (!report.category) errors.push('Missing required field: category');
       if (!report.type) errors.push('Missing required field: type');
       if (!report.source_identifier) errors.push('Missing required field: source_identifier');
 

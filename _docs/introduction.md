@@ -29,7 +29,7 @@ Manual parsing required. Time-consuming. Error-prone. No standardization.
 {
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "timestamp": "2024-01-15T14:30:00Z",
   "reporter": {
@@ -195,7 +195,7 @@ Security vulnerabilities and misconfigurations.
 An abuse incident is detected (automated scan, user report, threat feed, etc.)
 
 ### 2. Report Creation
-The incident is structured into a XARF v4 JSON report with the appropriate `class` and `type`
+The incident is structured into a XARF v4 JSON report with the appropriate `category` and `type`
 
 ### 3. Submission
 The report is sent via email, API, or bulk file transfer to the responsible party

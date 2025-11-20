@@ -41,7 +41,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "203.0.113.42",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "infected_host",
 
   🟢 "protocol": "tcp",
@@ -103,7 +103,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.155",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "ddos",
 
   🟢 "protocol": "tcp",
@@ -164,7 +164,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.67",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "login_attack",
 
   🟢 "protocol": "tcp",
@@ -219,7 +219,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.99",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "port_scan",
 
   🟢 "protocol": "tcp",
@@ -274,7 +274,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.111",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "reconnaissance",
 
   🟢 "protocol": "tcp",
@@ -329,7 +329,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "manual"
   },
   🟠 "source_identifier": "192.0.2.133",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "scraping",
 
   🟢 "protocol": "tcp",
@@ -384,7 +384,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.45",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "sql_injection",
 
   🟢 "protocol": "tcp",
@@ -445,7 +445,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.178",
-  🟠 "class": "connection",
+  🟠 "category": "connection",
   🟠 "type": "vulnerability_scan",
 
   🟢 "protocol": "tcp",

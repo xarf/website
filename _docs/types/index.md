@@ -48,7 +48,7 @@ Every XARF v4 report, regardless of type, includes these core fields:
 - `timestamp` - ISO 8601 timestamp of the incident
 - `reporter` - Reporting organization information
 - `source_identifier` - IP address, domain, or identifier of abuse source
-- `class` - Primary abuse category
+- `category` - Primary abuse category
 - `type` - Specific event type within the category
 
 ### Recommended Core Fields

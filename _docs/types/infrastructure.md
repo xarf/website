@@ -41,7 +41,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
     "type": "automated"
   },
   🟠 "source_identifier": "192.0.2.88",
-  🟠 "class": "infrastructure",
+  🟠 "category": "infrastructure",
   🟠 "type": "botnet",
 
   🟢 "source_port": 35412,
@@ -90,7 +90,7 @@ Compromised systems and malicious infrastructure including botnets, command & co
     "type": "automated"
   },
   🟠 "source_identifier": "198.51.100.150",
-  🟠 "class": "infrastructure",
+  🟠 "category": "infrastructure",
   🟠 "type": "compromised_server",
 
   🟢 "source_port": 443,
