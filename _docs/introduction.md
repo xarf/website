@@ -29,19 +29,24 @@ Manual parsing required. Time-consuming. Error-prone. No standardization.
 {
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "content_type": "content-phishing",
+  "class": "content",
+  "type": "phishing",
   "timestamp": "2024-01-15T14:30:00Z",
-  "reporter_info": {
-    "organization": "Example Bank Security",
-    "email": "abuse@examplebank.com"
+  "reporter": {
+    "org": "Example Bank Security",
+    "contact": "abuse@examplebank.com",
+    "type": "automated"
   },
-  "evidence": {
-    "url": "https://example.com/fake-bank",
-    "screenshot_hash": {
-      "algorithm": "SHA256",
-      "value": "abc123..."
+  "source_identifier": "203.0.113.45",
+  "url": "https://example.com/fake-bank",
+  "evidence": [
+    {
+      "content_type": "image/png",
+      "description": "Screenshot of phishing page",
+      "payload": "base64encodeddata...",
+      "hashes": ["sha256:abc123..."]
     }
-  }
+  ]
 }
 ```
 Instant processing. Automated validation. Consistent structure. Actionable data.
@@ -98,7 +103,7 @@ Network-level attacks and suspicious connection patterns.
 
 **Use when:** The abuse involves network connections, traffic patterns, or access attempts
 
-**Content types:** `connection-ddos`, `connection-port-scan`, `connection-login-attack`, `connection-auth-failure`, `connection-brute-force`, `connection-ssh-attack`, `connection-rdp-attack`, `connection-ddos-amplification`, `connection-sql-injection`, `connection-vuln-scanning`, `connection-reconnaissance`, `connection-scraping`, `connection-bot`
+**Types:** `ddos`, `port-scan`, `login-attack`, `auth-failure`, `brute-force`, `ssh-attack`, `rdp-attack`, `ddos-amplification`, `sql-injection`, `vuln-scanning`, `reconnaissance`, `scraping`, `bot`
 
 ### 2. Content-Based Abuse
 Malicious or harmful content hosted or distributed online.
@@ -107,7 +112,7 @@ Malicious or harmful content hosted or distributed online.
 
 **Use when:** The abuse involves hosted content, websites, or distributed files
 
-**Content types:** `content-phishing`, `content-malware`, `content-csam`, `content-csem`, `content-ncii`, `content-fake-shop`, `content-fraud`, `content-ransomware`, `content-cryptojacking`, `content-identity-theft`, `content-scam`, `content-impersonation`, `content-brand_infringement`, `content-exposed-data`, `content-remote_compromise`, `content-suspicious_registration`
+**Types:** `phishing`, `malware`, `csam`, `csem`, `ncii`, `fake-shop`, `fraud`, `ransomware`, `cryptojacking`, `identity-theft`, `scam`, `impersonation`, `brand_infringement`, `exposed-data`, `remote_compromise`, `suspicious_registration`
 
 ### 3. Copyright Violations
 Intellectual property infringement and unauthorized distribution.
@@ -116,7 +121,7 @@ Intellectual property infringement and unauthorized distribution.
 
 **Use when:** The abuse involves copyright infringement or trademark violations
 
-**Content types:** `copyright-p2p`, `copyright-cyberlocker`, `copyright-streaming`, `copyright-link-site`, `copyright-ugc-platform`, `copyright-usenet`, `copyright-copyright`, `copyright-counterfeit`
+**Types:** `p2p`, `cyberlocker`, `streaming`, `link-site`, `ugc-platform`, `usenet`, `copyright`, `counterfeit`
 
 ### 4. Infrastructure Abuse
 Compromised or misused infrastructure and systems.
@@ -125,7 +130,7 @@ Compromised or misused infrastructure and systems.
 
 **Use when:** The abuse involves compromised infrastructure or misused systems
 
-**Content types:** `infrastructure-botnet`, `infrastructure-compromised-server`, `infrastructure-proxy`, `infrastructure-vpn-abuse`, `infrastructure-mining`, `infrastructure-c2`
+**Types:** `botnet`, `compromised-server`, `proxy`, `vpn-abuse`, `mining`, `c2`
 
 ### 5. Messaging Abuse
 Spam and abuse via messaging platforms and channels.
@@ -134,7 +139,7 @@ Spam and abuse via messaging platforms and channels.
 
 **Use when:** The abuse involves messaging platforms, email, or communication channels
 
-**Content types:** `messaging-spam`, `messaging-bulk-messaging`, `messaging-sms-spam`, `messaging-whatsapp-spam`, `messaging-social-spam`, `messaging-voip-spam`
+**Types:** `spam`, `bulk-messaging`, `sms-spam`, `whatsapp-spam`, `social-spam`, `voip-spam`
 
 ### 6. Reputation & Intelligence
 Threat intelligence, blocklists, and reputation data.
@@ -143,7 +148,7 @@ Threat intelligence, blocklists, and reputation data.
 
 **Use when:** Sharing threat intelligence or reputation information
 
-**Content types:** `reputation-blocklist`, `reputation-threat-intelligence`, `reputation-abuse-score`
+**Types:** `blocklist`, `threat-intelligence`, `abuse-score`
 
 ### 7. Vulnerabilities
 Security vulnerabilities and misconfigurations.
@@ -152,7 +157,7 @@ Security vulnerabilities and misconfigurations.
 
 **Use when:** Reporting security vulnerabilities or dangerous configurations
 
-**Content types:** `vulnerability-cve`, `vulnerability-open`, `vulnerability-misconfiguration`
+**Types:** `cve`, `open`, `misconfiguration`
 
 ## Use Cases
 
@@ -190,7 +195,7 @@ Security vulnerabilities and misconfigurations.
 An abuse incident is detected (automated scan, user report, threat feed, etc.)
 
 ### 2. Report Creation
-The incident is structured into a XARF v4 JSON report with the appropriate `content_type`
+The incident is structured into a XARF v4 JSON report with the appropriate `class` and `type`
 
 ### 3. Submission
 The report is sent via email, API, or bulk file transfer to the responsible party

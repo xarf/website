@@ -44,7 +44,8 @@ All XARF v4 reports share this common structure:
 | `timestamp` | string | ISO 8601 | When the abuse incident occurred (UTC recommended) |
 | `reporter` | object | - | Information about the reporting organization |
 | `source_identifier` | string | IP/domain | IP address, domain, or identifier of the abuse source |
-| `content_type` | string | enum | Specific abuse type (format: `category-type`) |
+| `class` | string | enum | Abuse category (connection, content, copyright, infrastructure, messaging, reputation, vulnerability) |
+| `type` | string | enum | Specific abuse type within the class |
 
 <div class="field-category recommended">
 <strong>Recommended Fields</strong> (should be included when available)
@@ -72,10 +73,9 @@ All XARF v4 reports share this common structure:
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `organization` | string | <span class="field-mandatory">Yes</span> | Reporting organization name |
-| `email` | string | <span class="field-mandatory">Yes</span> | Contact email for follow-up |
+| `org` | string | <span class="field-mandatory">Yes</span> | Reporting organization name |
+| `contact` | string | <span class="field-mandatory">Yes</span> | Contact email for follow-up |
 | `type` | string | <span class="field-mandatory">Yes</span> | How report was generated: `automated`, `manual`, `unknown` |
-| `reporter_reference_id` | string | <span class="field-recommended">Recommended</span> | Internal ticket/case ID for correlation |
 
 ### Evidence Item Object
 
@@ -288,13 +288,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T14:30:00Z",
-  "content_type": "content-phishing",
+  "class": "content",
+  "type": "phishing",
   "reporter": {
-    "organization": "Example Bank Security",
-    "email": "abuse@examplebank.com",
-    "type": "automated",
-    "reporter_reference_id": "PHISH-2024-001"
+    "org": "Example Bank Security",
+    "contact": "abuse@examplebank.com",
+    "type": "automated"
   },
+  "reporter_reference_id": "PHISH-2024-001",
   "source_identifier": "192.0.2.100",
   "url": "https://fake-bank-login.example.com/login",
   "target_brand": "Example Bank",
@@ -322,13 +323,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T10:20:30Z",
-  "content_type": "connection-ddos",
+  "class": "connection",
+  "type": "ddos",
   "reporter": {
-    "organization": "DDoS Protection Service",
-    "email": "security@ddosprotect.com",
-    "type": "automated",
-    "reporter_reference_id": "DDOS-2024-789"
+    "org": "DDoS Protection Service",
+    "contact": "security@ddosprotect.com",
+    "type": "automated"
   },
+  "reporter_reference_id": "DDOS-2024-789",
   "source_identifier": "198.51.100.50",
   "source_port": 12345,
   "destination_ip": "203.0.113.100",
@@ -357,13 +359,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "987fcdeb-51a2-43d1-9f12-345678901234",
   "timestamp": "2024-01-15T08:45:15Z",
-  "content_type": "messaging-spam",
+  "class": "messaging",
+  "type": "spam",
   "reporter": {
-    "organization": "SpamCop",
-    "email": "reports@spamcop.net",
-    "type": "automated",
-    "reporter_reference_id": "SC-2024-456"
+    "org": "SpamCop",
+    "contact": "reports@spamcop.net",
+    "type": "automated"
   },
+  "reporter_reference_id": "SC-2024-456",
   "source_identifier": "192.0.2.75",
   "source_port": 25,
   "protocol": "smtp",
@@ -391,13 +394,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "456789ab-cdef-1234-5678-90abcdef1234",
   "timestamp": "2024-01-15T16:00:00Z",
-  "content_type": "content-malware",
+  "class": "content",
+  "type": "malware",
   "reporter": {
-    "organization": "Malware Analysis Lab",
-    "email": "samples@malware-lab.org",
-    "type": "automated",
-    "reporter_reference_id": "MAL-2024-123"
+    "org": "Malware Analysis Lab",
+    "contact": "samples@malware-lab.org",
+    "type": "automated"
   },
+  "reporter_reference_id": "MAL-2024-123",
   "source_identifier": "203.0.113.200",
   "url": "http://malicious-site.example/download/trojan.exe",
   "malware_family": "emotet",
@@ -429,13 +433,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "fedcba98-7654-3210-fedc-ba9876543210",
   "timestamp": "2024-01-15T12:30:00Z",
-  "content_type": "copyright-p2p",
+  "class": "copyright",
+  "type": "p2p",
   "reporter": {
-    "organization": "Copyright Protection Agency",
-    "email": "dmca@copyright-protect.org",
-    "type": "automated",
-    "reporter_reference_id": "DMCA-2024-567"
+    "org": "Copyright Protection Agency",
+    "contact": "dmca@copyright-protect.org",
+    "type": "automated"
   },
+  "reporter_reference_id": "DMCA-2024-567",
   "source_identifier": "198.51.100.150",
   "source_port": 6881,
   "work_title": "Popular Movie Title (2024)",
@@ -464,13 +469,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "321fedcb-9876-5432-10fe-dcba98765432",
   "timestamp": "2024-01-15T09:15:30Z",
-  "content_type": "infrastructure-bot",
+  "class": "infrastructure",
+  "type": "botnet",
   "reporter": {
-    "organization": "Botnet Research Group",
-    "email": "research@botnet-watch.org",
-    "type": "automated",
-    "reporter_reference_id": "BOT-2024-890"
+    "org": "Botnet Research Group",
+    "contact": "research@botnet-watch.org",
+    "type": "automated"
   },
+  "reporter_reference_id": "BOT-2024-890",
   "source_identifier": "192.0.2.250",
   "malware_family": "mirai",
   "c2_server": "evil-c2.example.com",
@@ -497,13 +503,14 @@ Security vulnerabilities and misconfigurations.
   "xarf_version": "4.0.0",
   "report_id": "789abcde-f012-3456-7890-abcdef123456",
   "timestamp": "2024-01-15T11:00:00Z",
-  "content_type": "vulnerability-cve",
+  "class": "vulnerability",
+  "type": "cve",
   "reporter": {
-    "organization": "Security Scanner Service",
-    "email": "vulns@scanner-service.com",
-    "type": "automated",
-    "reporter_reference_id": "VULN-2024-345"
+    "org": "Security Scanner Service",
+    "contact": "vulns@scanner-service.com",
+    "type": "automated"
   },
+  "reporter_reference_id": "VULN-2024-345",
   "source_identifier": "203.0.113.50",
   "service": "OpenSSL",
   "service_version": "1.0.1",
@@ -622,8 +629,8 @@ XARF v4 parsers should support automatic conversion of XARF v3 reports for backw
 | XARF v3 | XARF v4 | Notes |
 |---------|---------|-------|
 | `Version` | `xarf_version` | Format: `4.0.0` |
-| `ReporterInfo` | `reporter` | Restructured object |
-| `Report.ReportType` | `content_type` | Changed to `category-type` format |
+| `ReporterInfo` | `reporter` | Restructured object with `org`, `contact`, `type` fields |
+| `Report.ReportType` | `class` + `type` | Split into class and type fields |
 | `Report.SourceIp` | `source_identifier` | Supports IPs and domains |
 | `Samples` | `evidence` | Enhanced structure with hashes |
 

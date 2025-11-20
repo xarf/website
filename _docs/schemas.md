@@ -135,7 +135,7 @@ All XARF v4 reports must include these base fields:
 | `reporter.contact` | string (email) | Contact email for follow-up |
 | `reporter.type` | enum | How report was generated: `automated`, `manual`, `unknown` |
 | `source_identifier` | string | IP address, domain, or identifier of abuse source |
-| `class` | enum | Abuse category: `messaging`, `content`, `copyright`, `connection`, `vulnerability`, `infrastructure`, `reputation` |
+| `class` | enum | Abuse category: `connection`, `content`, `copyright`, `infrastructure`, `messaging`, `reputation`, `vulnerability` |
 | `type` | string | Specific abuse type within the class |
 
 #### Optional Common Fields

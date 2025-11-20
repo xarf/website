@@ -9,32 +9,33 @@ permalink: /docs/best-practices/
 
 Creating effective XARF reports requires attention to detail, proper evidence collection, and adherence to privacy standards. This guide provides practical recommendations for generating high-quality abuse reports that recipients can act upon quickly.
 
-## Choosing the Right Content Type
+## Choosing the Right Class and Type
 
-Selecting the appropriate `Report-Type` is crucial for proper report routing and handling.
+Selecting the appropriate `class` and `type` is crucial for proper report routing and handling.
 
 ### Guidelines
 
 **DO:**
-- Use specific content types when available (e.g., `login-attack` instead of generic `abuse`)
-- Review the full list of registered content types before defaulting to `fraud` or `abuse`
-- Consider the primary abuse category, not secondary effects (e.g., phishing is `fraud`, even if it contains malware)
+- Use specific types when available (e.g., class: `connection`, type: `login-attack` for brute force attacks)
+- Review the full list of 58 types across 7 classes before selecting
+- Consider the primary abuse category for the class, and the most specific type available
+- Use `content` class for hosted malicious content, `connection` for network attacks
 
 **DON'T:**
 - Mix multiple abuse types in a single report (send separate reports instead)
-- Use deprecated or non-standard content types
-- Guess at content types—if uncertain, use the most general applicable type
+- Use incorrect class/type combinations
+- Guess at types—if uncertain, use the most general applicable type within the correct class
 
 ### Common Scenarios
 
-| Abuse Type | Correct Report-Type | Notes |
-|------------|-------------------|-------|
-| Brute force SSH attacks | `login-attack` | Not `abuse` or `security` |
-| Email spam | `spam` or `email-spam` | Use `email-spam` if registered |
-| Credit card phishing | `fraud` | Primary category is fraud |
-| DDoS attacks | `dos-attack` | Not `network-abuse` |
-| Malware distribution | `malware` | Even if via email |
-| Port scanning | `scanning` | Not `security` or `abuse` |
+| Abuse Type | Correct Class | Correct Type | Notes |
+|------------|---------------|--------------|-------|
+| Brute force SSH attacks | `connection` | `ssh-attack` | Network-level attack |
+| Email spam | `messaging` | `spam` | Messaging abuse |
+| Credit card phishing | `content` | `phishing` | Hosted malicious content |
+| DDoS attacks | `connection` | `ddos` | Network-level attack |
+| Malware distribution | `content` | `malware` | Hosted malicious content |
+| Port scanning | `connection` | `port-scan` | Network reconnaissance |
 
 ## Evidence Collection and Hashing
 

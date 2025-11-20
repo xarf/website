@@ -71,19 +71,19 @@ For bug reports and feature requests:
 
 ### Mailing Lists
 
-Subscribe to stay informed:
+<!-- Mailing lists to be set up based on community growth -->
+**Mailing lists coming soon** - For now, please use [GitHub Discussions](https://github.com/xarf/xarf-spec/discussions) for:
 
-- **[xarf-announce](https://groups.google.com/g/xarf-announce)** - Release announcements (low traffic)
-- **[xarf-dev](https://groups.google.com/g/xarf-dev)** - Development discussions
-- **[xarf-users](https://groups.google.com/g/xarf-users)** - User community support
+- **Announcements** - Release announcements and updates
+- **Development** - Technical discussions
+- **Support** - Community help and questions
 
 ### Social Media
 
-Follow XARF on social media:
+<!-- Social media channels launching soon -->
+**Social media channels launching soon** - Follow [GitHub Discussions](https://github.com/xarf/xarf-spec/discussions/categories/announcements) for launch announcements.
 
-- **[Twitter @xarf_org](https://twitter.com/xarf_org)** - News and updates
-- **[LinkedIn](https://linkedin.com/company/xarf)** - Professional updates
-- **[YouTube](https://youtube.com/@xarf)** - Tutorials and talks
+Share XARF on your social media and tag us when channels are live!
 
 ---
 
@@ -139,27 +139,24 @@ Follow XARF on social media:
 
 ### Presentations & Talks
 
-- **[FIRST Conference 2024](https://example.com)** - "XARF v4: Modernizing Abuse Reporting"
-- **[BSides 2023](https://example.com)** - "Implementing XARF in Your SOC"
-- **[DEF CON 2023](https://example.com)** - "Collaborative Abuse Fighting with XARF"
+<!-- Presentation materials will be available as XARF is presented at conferences -->
+Presentation materials will be added as XARF is featured at security conferences and community events.
 
-**[View All Presentations →](https://github.com/xarf/presentations)**
+**Interested in presenting about XARF?** [Share your presentation in Discussions →](https://github.com/xarf/xarf-spec/discussions/new?category=show-and-tell)
 
 ### Blog Posts & Articles
 
-- **[Introducing XARF v4](https://blog.xarf.org/v4-announcement)** - Official announcement
-- **[Migration from ARF to XARF](https://blog.xarf.org/arf-migration)** - Step-by-step guide
-- **[Building a XARF Validator](https://blog.xarf.org/build-validator)** - Tutorial
+<!-- XARF blog coming soon -->
+**Blog launching soon** - Subscribe to [GitHub Discussions](https://github.com/xarf/xarf-spec/discussions/categories/announcements) for updates and articles.
 
-**[Visit Blog →](https://blog.xarf.org)**
+Share your XARF articles and tutorials in [GitHub Discussions →](https://github.com/xarf/xarf-spec/discussions/new?category=show-and-tell)
 
 ### Video Tutorials
 
-- **Getting Started with XARF** - 15-minute introduction
-- **Implementing XARF in Python** - Complete walkthrough
-- **Converting Legacy Formats** - Migration guide
+<!-- Video tutorials coming soon -->
+**Video tutorials planned** - Watch [GitHub Discussions](https://github.com/xarf/xarf-spec/discussions/categories/announcements) for video content announcements.
 
-**[Watch on YouTube →](https://youtube.com/@xarf)**
+Have you created XARF tutorials? [Share them with the community →](https://github.com/xarf/xarf-spec/discussions/new?category=show-and-tell)
 
 ---
 
@@ -271,17 +268,14 @@ Current specification maintainers:
 
 ### Upcoming
 
-- **XARF Community Call** - Monthly, first Tuesday @ 15:00 UTC
-- **FIRST Conference 2024** - XARF workshop
-- **RSA Conference 2024** - Abuse reporting panel
+<!-- Event calendar coming soon -->
+**Community events launching soon** - Watch [GitHub Discussions Announcements](https://github.com/xarf/xarf-spec/discussions/categories/announcements) for:
 
-**[View Event Calendar →](https://calendar.google.com/calendar/u/0?cid=xarf.org)**
+- XARF Community Calls
+- Conference presentations
+- Virtual workshops and webinars
 
-### Past Events
-
-- **XARF v4 Launch Event** - January 2024
-- **Virtual Hackathon** - December 2023
-- **Community Meetup** - September 2023
+**Organizing an event featuring XARF?** [Let us know →](https://github.com/xarf/xarf-spec/discussions/new?category=show-and-tell)
 
 ---
 

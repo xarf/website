@@ -121,15 +121,14 @@ XARF v4 uses a consistent structure across all report types. Here's how to map y
 |------------|---------------|-------|
 | Report ID / Case Number | `report_id` | Use UUID format |
 | Report Date / Timestamp | `timestamp` | ISO 8601 format required |
-| Abuse Type / Category | `content_type` | Map to one of 58 types |
-| Reporter Name | `reporter_info.organization` | Organization name |
-| Reporter Email | `reporter_info.email` | Contact email |
+| Abuse Type / Category | `class` + `type` | Map to class (e.g., content) and type (e.g., phishing) |
+| Reporter Name | `reporter.org` | Organization name |
+| Reporter Email | `reporter.contact` | Contact email |
 | Reporter Reference | `reporter_reference_id` | Your internal tracking ID |
-| Priority / Severity | `priority` | Map to: low, medium, high, critical |
 | Description | `description` | Free text, keep as-is |
-| Target URL | `evidence.url` | Add to evidence array |
-| Target IP | `evidence.ip` | Add to evidence array |
-| Screenshot | `evidence.file` + `evidence.screenshot_hash` | Add hash values |
+| Target URL | `url` | Direct field (for content-based abuse) |
+| Target IP | `destination_ip` | Direct field (for connection-based abuse) |
+| Screenshot | `evidence` array | Add evidence items with hashes |
 
 ### Content Type Mapping
 
@@ -138,21 +137,21 @@ Map your abuse categories to XARF v4 content types:
 **Example Mappings:**
 
 ```
-Your Category              → XARF v4 Content Type
+Your Category              → XARF v4 Class + Type
 ─────────────────────────────────────────────────────
-"Phishing"                → content-phishing
-"Malware Site"            → content-malware
-"Spam Email"              → messaging-spam
-"DDoS Attack"             → connection-ddos
-"Compromised Server"      → infrastructure-compromised-server
-"Copyright Violation"     → copyright-p2p (or other copyright-* type)
-"Fake Shop"               → content-fake-shop
-"Botnet Activity"         → infrastructure-botnet
-"Port Scan"               → connection-port-scan
-"Brute Force Attack"      → connection-brute-force
+"Phishing"                → class: content, type: phishing
+"Malware Site"            → class: content, type: malware
+"Spam Email"              → class: messaging, type: spam
+"DDoS Attack"             → class: connection, type: ddos
+"Compromised Server"      → class: infrastructure, type: compromised-server
+"Copyright Violation"     → class: copyright, type: p2p (or other type)
+"Fake Shop"               → class: content, type: fake-shop
+"Botnet Activity"         → class: infrastructure, type: botnet
+"Port Scan"               → class: connection, type: port-scan
+"Brute Force Attack"      → class: connection, type: brute-force
 ```
 
-Review all [58 XARF v4 content types](/docs/content-types/) to find the best match for your categories.
+Review all [58 XARF v4 types across 7 classes](/docs/content-types/) to find the best match for your categories.
 
 ### Evidence Structure
 
@@ -170,15 +169,16 @@ XARF v4 uses an `evidence` object containing arrays of evidence items. Transform
 **After (XARF v4):**
 ```json
 {
-  "evidence": {
-    "url": ["https://evil.example.com/phishing"],
-    "ip": ["203.0.113.42"],
-    "file": ["https://screenshots.example.com/abc123.png"],
-    "screenshot_hash": {
-      "algorithm": "SHA256",
-      "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  "url": "https://evil.example.com/phishing",
+  "destination_ip": "203.0.113.42",
+  "evidence": [
+    {
+      "content_type": "image/png",
+      "description": "Screenshot of phishing page",
+      "payload": "base64_encoded_image_data...",
+      "hashes": ["sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"]
     }
-  }
+  ]
 }
 ```
 
@@ -189,7 +189,7 @@ If you have fields that don't map to standard XARF fields, use `reporter_custom_
 **Example:**
 ```json
 {
-  "reporter_custom_fields": {
+  "custom_fields": {
     "internal_case_id": "CASE-2024-12345",
     "detection_system": "automated-scanner-v2",
     "customer_account": "ACC-789012",
@@ -353,13 +353,16 @@ import uuid
 from datetime import datetime
 
 def generate_missing_fields(legacy_report):
+    class_type = map_legacy_type(legacy_report["type"])
     return {
         "report_id": str(uuid.uuid4()),
         "timestamp": datetime.utcnow().isoformat() + "Z",
-        "content_type": map_legacy_type(legacy_report["type"]),
-        "reporter_info": {
-            "organization": "Automated Detection System",
-            "email": "abuse@example.com"
+        "class": class_type["class"],
+        "type": class_type["type"],
+        "reporter": {
+            "org": "Automated Detection System",
+            "contact": "abuse@example.com",
+            "type": "automated"
         }
     }
 ```
@@ -396,26 +399,26 @@ def generate_url_hash(url):
     }
 ```
 
-### Challenge 3: Content Type Ambiguity
+### Challenge 3: Class and Type Mapping
 
-**Problem**: Your categories don't map cleanly to XARF v4 content types.
+**Problem**: Your categories don't map cleanly to XARF v4 class and type structure.
 
 **Solution**:
-- Use the most specific type available
+- Use the most specific type available within the appropriate class
 - Document mapping decisions
-- Use `reporter_custom_fields` to preserve original category
-- Review [content type categories](/docs/content-types/) for best fit
+- Use `custom_fields` to preserve original category
+- Review [type categories](/docs/content-types/) for best fit
 
 **Mapping Strategy**:
 ```python
-def map_content_type(legacy_category, legacy_subcategory=None):
-    """Map legacy categories to XARF v4 content types."""
+def map_class_and_type(legacy_category, legacy_subcategory=None):
+    """Map legacy categories to XARF v4 class and type."""
 
     # Exact matches
     exact_mappings = {
-        "phishing": "content-phishing",
-        "malware": "content-malware",
-        "ddos": "connection-ddos",
+        "phishing": {"class": "content", "type": "phishing"},
+        "malware": {"class": "content", "type": "malware"},
+        "ddos": {"class": "connection", "type": "ddos"},
     }
 
     if legacy_category in exact_mappings:
@@ -424,14 +427,14 @@ def map_content_type(legacy_category, legacy_subcategory=None):
     # Category + subcategory combinations
     if legacy_category == "copyright":
         if legacy_subcategory == "torrent":
-            return "copyright-p2p"
+            return {"class": "copyright", "type": "p2p"}
         elif legacy_subcategory == "streaming":
-            return "copyright-streaming"
+            return {"class": "copyright", "type": "streaming"}
         else:
-            return "copyright-copyright"
+            return {"class": "copyright", "type": "copyright"}
 
     # Default fallback
-    return "content-fraud"  # Most generic type
+    return {"class": "content", "type": "fraud"}  # Most generic
 ```
 
 ### Challenge 4: Downstream System Compatibility
@@ -453,9 +456,9 @@ class LegacyAdapter:
         return {
             "case_id": xarf_report["report_id"],
             "date": xarf_report["timestamp"],
-            "type": self._map_xarf_to_legacy_type(xarf_report["content_type"]),
-            "reporter": xarf_report["reporter_info"]["email"],
-            "url": xarf_report["evidence"].get("url", [None])[0],
+            "type": f"{xarf_report['class']}-{xarf_report['type']}",
+            "reporter": xarf_report["reporter"]["contact"],
+            "url": xarf_report.get("url"),
             "description": xarf_report.get("description", ""),
         }
 ```
@@ -545,23 +548,27 @@ Security Team
 {
   "xarf_version": "4.0.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
-  "content_type": "content-phishing",
+  "class": "content",
+  "type": "phishing",
   "timestamp": "2024-01-15T14:30:00Z",
-  "reporter_info": {
-    "organization": "Example Bank Security Team",
-    "email": "security@bank.example.com",
-    "name": "John Smith"
+  "reporter": {
+    "org": "Example Bank Security Team",
+    "contact": "security@bank.example.com",
+    "type": "manual"
   },
-  "priority": "high",
+  "source_identifier": "203.0.113.45",
+  "url": "https://fake-bank.badguy.com/login",
   "description": "Phishing site impersonating our login page and stealing credentials",
-  "evidence": {
-    "url": ["https://fake-bank.badguy.com/login"],
-    "screenshot_hash": {
-      "algorithm": "SHA256",
-      "value": "a3c5f2e8b1d4c6e9f7a2b5c8d1e4f7a9c3b6d9e2f5a8b1c4d7e0f3a6b9c2d5e8"
+  "severity": "high",
+  "evidence": [
+    {
+      "content_type": "image/png",
+      "description": "Screenshot of phishing page",
+      "payload": "base64_encoded_screenshot...",
+      "hashes": ["sha256:a3c5f2e8b1d4c6e9f7a2b5c8d1e4f7a9c3b6d9e2f5a8b1c4d7e0f3a6b9c2d5e8"]
     }
-  },
-  "reporter_custom_fields": {
+  ],
+  "custom_fields": {
     "analyst": "John Smith",
     "impersonated_brand": "Example Bank"
   }
@@ -590,26 +597,22 @@ Security Team
 {
   "xarf_version": "4.0.0",
   "report_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
-  "content_type": "content-malware",
+  "class": "content",
+  "type": "malware",
   "timestamp": "2024-01-15T10:00:00Z",
-  "reporter_info": {
-    "organization": "Automated Security Scanner",
-    "email": "scanner@example.com"
+  "reporter": {
+    "org": "Automated Security Scanner",
+    "contact": "scanner@example.com",
+    "type": "automated"
   },
+  "source_identifier": "203.0.113.50",
+  "url": "http://malware.example.com/trojan.exe",
   "description": "Trojan downloader detected",
-  "evidence": {
-    "url": ["http://malware.example.com/trojan.exe"],
-    "file_hash": [
-      {
-        "algorithm": "MD5",
-        "value": "d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2"
-      }
-    ]
-  },
-  "reporter_custom_fields": {
+  "file_hash": "d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2",
+  "malware_family": "trojan_downloader",
+  "custom_fields": {
     "detection_system": "automated_scanner",
-    "internal_id": 12345,
-    "malware_family": "trojan_downloader"
+    "internal_id": 12345
   }
 }
 ```
@@ -627,22 +630,21 @@ timestamp,source_ip,target_ip,attack_type,packets,severity
 {
   "xarf_version": "4.0.0",
   "report_id": "123e4567-e89b-12d3-a456-426614174000",
-  "content_type": "connection-ddos",
+  "class": "connection",
+  "type": "ddos",
   "timestamp": "2024-01-15T08:00:00Z",
-  "reporter_info": {
-    "organization": "Network Operations Center",
-    "email": "noc@example.com"
+  "reporter": {
+    "org": "Network Operations Center",
+    "contact": "noc@example.com",
+    "type": "automated"
   },
-  "priority": "critical",
-  "evidence": {
-    "ip": ["198.51.100.42"],
-    "target_ip": ["203.0.113.10"]
-  },
-  "reporter_custom_fields": {
-    "attack_type": "SYN_FLOOD",
-    "packet_count": 1500000,
-    "attack_duration_seconds": 3600
-  }
+  "source_identifier": "198.51.100.42",
+  "destination_ip": "203.0.113.10",
+  "protocol": "tcp",
+  "severity": "critical",
+  "attack_vector": "SYN_FLOOD",
+  "packet_count": 1500000,
+  "duration_seconds": 3600
 }
 ```
 
@@ -664,21 +666,29 @@ Form Submission:
 {
   "xarf_version": "4.0.0",
   "report_id": "b47cc1e4-4c8d-4e8a-9b5c-8f7e6d5c4b3a",
-  "content_type": "messaging-spam",
+  "class": "messaging",
+  "type": "spam",
   "timestamp": "2024-01-15T09:15:00Z",
-  "reporter_info": {
-    "organization": "Spamtrap Network",
-    "email": "abuse@example.com"
+  "reporter": {
+    "org": "Spamtrap Network",
+    "contact": "abuse@example.com",
+    "type": "automated"
   },
-  "evidence": {
-    "ip": ["192.0.2.50"],
-    "email_headers": "Received: from [192.0.2.50]...\nSubject: Buy cheap medications!!!\n..."
-  },
-  "reporter_custom_fields": {
-    "spamtrap_address": "spam-trap-001@example.com",
-    "spam_subject": "Buy cheap medications!!!",
-    "message_id": "<abc123@spammer.com>"
-  }
+  "source_identifier": "192.0.2.50",
+  "source_port": 25,
+  "protocol": "smtp",
+  "smtp_from": "spammer@bad-domain.example",
+  "subject": "Buy cheap medications!!!",
+  "recipient": "spam-trap-001@example.com",
+  "evidence_source": "spamtrap",
+  "evidence": [
+    {
+      "content_type": "message/rfc822",
+      "description": "Complete spam email with headers",
+      "payload": "base64_encoded_email...",
+      "hashes": ["sha256:..."]
+    }
+  ]
 }
 ```
 
@@ -704,10 +714,11 @@ def test_field_mapping():
     xarf_report = convert_to_xarf(legacy_report)
 
     assert xarf_report["xarf_version"] == "4.0.0"
-    assert xarf_report["content_type"] == "content-phishing"
+    assert xarf_report["class"] == "content"
+    assert xarf_report["type"] == "phishing"
     assert "report_id" in xarf_report
     assert xarf_report["timestamp"].endswith("Z")
-    assert xarf_report["evidence"]["url"][0] == "https://evil.example.com"
+    assert xarf_report["url"] == "https://evil.example.com"
 ```
 
 ### Schema Validation Testing
@@ -739,20 +750,20 @@ def test_schema_validation():
 Ensure you can generate reports for all your abuse types:
 
 ```python
-def test_content_type_coverage():
-    """Test all legacy types map to valid XARF content types."""
+def test_class_type_coverage():
+    """Test all legacy types map to valid XARF class and type combinations."""
 
     legacy_types = [
         "phishing", "malware", "spam", "ddos",
         "brute_force", "copyright", "botnet"
     ]
 
-    valid_xarf_types = load_valid_content_types()
+    valid_xarf_classes = load_valid_classes()
 
     for legacy_type in legacy_types:
-        xarf_type = map_content_type(legacy_type)
-        assert xarf_type in valid_xarf_types, \
-            f"No mapping for {legacy_type} → {xarf_type}"
+        class_type = map_class_and_type(legacy_type)
+        assert class_type["class"] in valid_xarf_classes, \
+            f"No mapping for {legacy_type} → {class_type['class']}.{class_type['type']}"
 ```
 
 ### Integration Testing
@@ -771,8 +782,9 @@ def test_downstream_integration():
 
     # Verify ticket created correctly
     ticket = fetch_ticket(ticket_id)
-    assert ticket["priority"] == xarf_report["priority"]
-    assert ticket["type"] == xarf_report["content_type"]
+    assert ticket["severity"] == xarf_report.get("severity")
+    assert ticket["class"] == xarf_report["class"]
+    assert ticket["type"] == xarf_report["type"]
 ```
 
 ### Load Testing
@@ -867,13 +879,14 @@ else:
 Before deploying to production, verify:
 
 - [ ] All reports pass JSON schema validation
-- [ ] All `content_type` values are valid XARF v4 types
+- [ ] All `class` values are valid (connection, content, copyright, infrastructure, messaging, reputation, vulnerability)
+- [ ] All `type` values are valid for their class
 - [ ] `report_id` values are valid UUIDs
 - [ ] `timestamp` values are valid ISO 8601 format
 - [ ] Evidence hashes use supported algorithms (SHA256, SHA512, MD5)
-- [ ] Email addresses in `reporter_info` are valid
-- [ ] Priority values are one of: low, medium, high, critical
-- [ ] Required fields present for each content type
+- [ ] Email addresses in `reporter.contact` are valid
+- [ ] Severity values are one of: low, medium, high, critical (if present)
+- [ ] Required fields present for each type
 - [ ] `xarf_version` is "4.0.0"
 - [ ] Reports are valid UTF-8 JSON
 
@@ -957,7 +970,9 @@ def convert_to_xarf(legacy_report):
     }
 
     # Track converter version for debugging
-    xarf_report["reporter_custom_fields"]["converter_version"] = CONVERTER_VERSION
+    if "custom_fields" not in xarf_report:
+        xarf_report["custom_fields"] = {}
+    xarf_report["custom_fields"]["converter_version"] = CONVERTER_VERSION
 
     return xarf_report
 ```

@@ -69,8 +69,8 @@ report = XARFReport(
         "type": "automated"
     },
     source_identifier="192.0.2.100",
-    classification="abuse",
-    type="ddos"
+    abuse_class="connection",
+    abuse_type="ddos"
 )
 
 # Validate the report
@@ -104,8 +104,8 @@ const report = new XARFReport({
     type: 'automated'
   },
   source_identifier: '192.0.2.100',
-  class: 'abuse',
-  type: 'ddos'
+  abuse_class: 'connection',
+  abuse_type: 'ddos'
 });
 
 // Validate and export
@@ -169,10 +169,11 @@ class AbuseDetector:
     def on_ddos_detected(self, attack_data):
         """Called when DDoS attack is detected"""
         report = self.xarf_reporter.create_report(
-            classification="abuse",
-            type="ddos",
+            abuse_class="connection",
+            abuse_type="ddos",
             source_identifier=attack_data['source_ip'],
             source_port=attack_data['source_port'],
+            protocol=attack_data['protocol'],
             evidence=self._collect_evidence(attack_data),
             tags=[
                 f"protocol:{attack_data['protocol']}",
@@ -198,10 +199,10 @@ def process_abuse_report(json_data):
         report = XARFReport.from_json(json_data)
         report.validate()
 
-        # Route based on classification and type
-        if report.classification == "abuse" and report.type == "ddos":
+        # Route based on class and type
+        if report.abuse_class == "connection" and report.abuse_type == "ddos":
             handle_ddos_report(report)
-        elif report.classification == "vulnerability":
+        elif report.abuse_class == "vulnerability":
             handle_vulnerability_report(report)
 
         # Log receipt
@@ -291,13 +292,13 @@ iodef_xml = IODefConverter.from_xarf(xarf_report)
 ```json
 {
   "error": "ValidationError",
-  "message": "Unknown type 'unknown_type' for class 'abuse'",
+  "message": "Unknown type 'unknown_type' for class 'connection'",
   "path": "$.type",
-  "expected": "One of: ddos, malware, phishing, spam, scanner"
+  "expected": "One of: ddos, port-scan, login-attack, brute-force, etc."
 }
 ```
 
-**Solution**: Use only valid types for each classification. See [Event Types](/docs/types/).
+**Solution**: Use only valid types for each class. See [Content Types](/docs/types/).
 
 ### Best Practices
 
@@ -402,8 +403,8 @@ class TestXARFReports(unittest.TestCase):
                 "type": "automated"
             },
             source_identifier="192.0.2.100",
-            classification="abuse",
-            type="ddos"
+            abuse_class="connection",
+            abuse_type="ddos"
         )
 
         self.assertTrue(report.validate())
@@ -415,10 +416,10 @@ class TestXARFReports(unittest.TestCase):
                 xarf_version="4.0.0",
                 # Missing report_id
                 timestamp="2024-01-15T10:00:00Z",
-                reporter={"org": "Test", "contact": "test@example.com"},
+                reporter={"org": "Test", "contact": "test@example.com", "type": "automated"},
                 source_identifier="192.0.2.100",
-                classification="abuse",
-                type="ddos"
+                abuse_class="connection",
+                abuse_type="ddos"
             )
             report.validate(strict=True)
 ```

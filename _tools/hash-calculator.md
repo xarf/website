@@ -7,6 +7,10 @@ permalink: /tools/hash-calculator/
 
 # Evidence Hash Calculator
 
+<div class="alert alert-info">
+  <strong>Coming Soon:</strong> This tool is currently under development. Check back soon for the full implementation.
+</div>
+
 Calculate cryptographic hashes for evidence data to ensure integrity and enable verification.
 
 <div class="tool-container">

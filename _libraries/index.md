@@ -17,7 +17,7 @@ Official and community-maintained libraries for implementing XARF in your applic
 <div class="library-card">
   <div class="library-header">
     <h3>xarf-python</h3>
-    <span class="badge badge-success">Stable</span>
+    <span class="status-badge beta">Beta</span>
   </div>
   <p>Full-featured Python library with validation, conversion, and schema support.</p>
   <div class="library-meta">
@@ -42,7 +42,7 @@ Official and community-maintained libraries for implementing XARF in your applic
 <div class="library-card coming-soon">
   <div class="library-header">
     <h3>xarf-js</h3>
-    <span class="badge badge-warning">Coming Soon</span>
+    <span class="status-badge coming-soon">Planned Q2 2024</span>
   </div>
   <p>JavaScript/TypeScript library for browser and Node.js environments.</p>
   <div class="library-meta">
@@ -64,7 +64,7 @@ Official and community-maintained libraries for implementing XARF in your applic
 <div class="library-card coming-soon">
   <div class="library-header">
     <h3>xarf-go</h3>
-    <span class="badge badge-warning">Coming Soon</span>
+    <span class="status-badge coming-soon">Planned Q2 2024</span>
   </div>
   <p>High-performance Go library for enterprise applications.</p>
   <div class="library-meta">
@@ -86,7 +86,7 @@ Official and community-maintained libraries for implementing XARF in your applic
 <div class="library-card coming-soon">
   <div class="library-header">
     <h3>xarf-java</h3>
-    <span class="badge badge-warning">Coming Soon</span>
+    <span class="status-badge coming-soon">Planned Q3 2024</span>
   </div>
   <p>Enterprise-grade Java library with Spring Boot integration.</p>
   <div class="library-meta">
@@ -108,7 +108,7 @@ Official and community-maintained libraries for implementing XARF in your applic
 <div class="library-card coming-soon">
   <div class="library-header">
     <h3>XARF.Net</h3>
-    <span class="badge badge-warning">Coming Soon</span>
+    <span class="status-badge coming-soon">Planned Q3 2024</span>
   </div>
   <p>.NET library for Windows and cross-platform applications.</p>
   <div class="library-meta">

@@ -22,7 +22,7 @@ Use these browser-based tools without installing anything.
         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
       </svg>
     </div>
-    <h3>Schema Validator</h3>
+    <h3>Schema Validator <span class="status-badge beta">Beta</span></h3>
     <p>Validate XARF reports against JSON schemas to ensure compliance with the specification.</p>
     <div class="tool-features">
       <span class="feature-tag">Real-time validation</span>
@@ -38,7 +38,7 @@ Use these browser-based tools without installing anything.
         <path d="M12 4v16m8-8H4"/>
       </svg>
     </div>
-    <h3>Sample Generator</h3>
+    <h3>Sample Generator <span class="status-badge coming-soon">Coming Soon</span></h3>
     <p>Generate example XARF reports for testing and development purposes.</p>
     <div class="tool-features">
       <span class="feature-tag">All event types</span>
@@ -54,7 +54,7 @@ Use these browser-based tools without installing anything.
         <path d="M8 7h12M8 12h12M8 17h12M3 7h.01M3 12h.01M3 17h.01"/>
       </svg>
     </div>
-    <h3>Format Converter</h3>
+    <h3>Format Converter <span class="status-badge coming-soon">Coming Soon</span></h3>
     <p>Convert between XARF and other abuse reporting formats (ARF, IODEF, CSV).</p>
     <div class="tool-features">
       <span class="feature-tag">Multiple formats</span>
@@ -70,7 +70,7 @@ Use these browser-based tools without installing anything.
         <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
       </svg>
     </div>
-    <h3>Hash Calculator</h3>
+    <h3>Hash Calculator <span class="status-badge coming-soon">Coming Soon</span></h3>
     <p>Calculate SHA-256 hashes for evidence verification and integrity checking.</p>
     <div class="tool-features">
       <span class="feature-tag">SHA-256</span>
@@ -89,10 +89,13 @@ For integration into automated workflows and scripts.
 
 ### XARF Validator CLI
 
+<!-- Coming Soon -->
+**Status**: <span class="coming-soon-badge">Coming Soon</span>
+
 Validate XARF reports from the command line:
 
 ```bash
-# Install
+# Install (coming soon)
 npm install -g xarf-validator
 
 # Validate a report
@@ -105,22 +108,26 @@ xarf-validator reports/*.json
 xarf-validator --strict report.json
 ```
 
-**Features**:
+**Planned Features**:
 - Batch validation
 - Custom schema paths
 - JSON/text output formats
 - Exit codes for CI/CD integration
 
-**[Download](https://github.com/xarf/xarf-validator)** | **[Documentation](https://github.com/xarf/xarf-validator#readme)**
+<!-- TODO: Add real links when available -->
+**Development**: [Watch GitHub for releases](https://github.com/xarf/xarf-validator)
 
 ---
 
 ### XARF Converter CLI
 
+<!-- Coming Soon -->
+**Status**: <span class="coming-soon-badge">Coming Soon</span>
+
 Convert between formats:
 
 ```bash
-# Install
+# Install (coming soon)
 pip install xarf-converter
 
 # ARF to XARF
@@ -133,13 +140,14 @@ xarf-convert --from xarf --to iodef report.json report.xml
 xarf-convert --from arf --to xarf reports/*.xml --output-dir converted/
 ```
 
-**Features**:
+**Planned Features**:
 - Multiple format support
 - Batch processing
 - Configurable field mapping
 - Validation on output
 
-**[Download](https://github.com/xarf/xarf-converter)** | **[Documentation](https://github.com/xarf/xarf-converter#readme)**
+<!-- TODO: Add real links when available -->
+**Development**: [Watch GitHub for releases](https://github.com/xarf/xarf-converter)
 
 ---
 
@@ -149,26 +157,32 @@ Bring XARF support to your development environment.
 
 ### VS Code Extension
 
-**XARF Language Support** for Visual Studio Code:
+<!-- Coming Soon -->
+**XARF Language Support** for Visual Studio Code <span class="coming-soon-badge">In Development</span>
 
+**Planned Features**:
 - Syntax highlighting for XARF JSON
 - Schema validation as you type
 - Autocomplete for field names
 - Hover documentation
 - Snippets for common reports
 
-**[Install from Marketplace](https://marketplace.visualstudio.com/items?itemName=xarf.xarf-vscode)**
+<!-- TODO: Add real marketplace link when published -->
+**Development**: [Follow progress on GitHub](https://github.com/xarf/xarf-vscode)
 
 ### JetBrains Plugin
 
-**XARF Support** for IntelliJ IDEA, PyCharm, WebStorm:
+<!-- Coming Soon -->
+**XARF Support** for IntelliJ IDEA, PyCharm, WebStorm <span class="coming-soon-badge">Planned</span>
 
+**Planned Features**:
 - JSON schema integration
 - Code completion
 - Quick documentation
 - Live templates
 
-**[Install from Plugin Repository](https://plugins.jetbrains.com/plugin/xarf-support)**
+<!-- TODO: Add real plugin repository link when published -->
+**Development**: [Express interest on GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)
 
 ---
 
@@ -204,9 +218,13 @@ Cloud-based XARF processing and validation.
 
 ### Validation API
 
+<!-- Coming Soon -->
+**Status**: <span class="coming-soon-badge">API Launching Soon</span>
+
 Validate reports via REST API:
 
 ```bash
+# API endpoint coming soon
 curl -X POST https://api.xarf.org/v1/validate \
   -H "Content-Type: application/json" \
   -d @report.json
@@ -222,19 +240,25 @@ curl -X POST https://api.xarf.org/v1/validate \
 }
 ```
 
-**[API Documentation](https://api.xarf.org/docs)**
+<!-- TODO: Add real API docs link when available -->
+**Development**: API documentation will be available at launch
 
 ### Conversion API
+
+<!-- Coming Soon -->
+**Status**: <span class="coming-soon-badge">API Launching Soon</span>
 
 Convert formats via API:
 
 ```bash
+# API endpoint coming soon
 curl -X POST https://api.xarf.org/v1/convert \
   -H "Content-Type: application/json" \
   -d '{"from": "arf", "to": "xarf", "data": "..."}'
 ```
 
-**[API Documentation](https://api.xarf.org/docs)**
+<!-- TODO: Add real API docs link when available -->
+**Development**: API documentation will be available at launch
 
 ---
 
@@ -243,6 +267,9 @@ curl -X POST https://api.xarf.org/v1/convert \
 Integrate XARF validation into your CI/CD pipelines.
 
 ### XARF Validation Action
+
+<!-- Coming Soon -->
+**Status**: <span class="coming-soon-badge">In Development</span>
 
 ```yaml
 name: Validate XARF Reports
@@ -253,34 +280,41 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: xarf/validate-action@v1
+      - uses: xarf/validate-action@v1  # Coming soon
         with:
           reports: 'reports/**/*.json'
           strict: true
 ```
 
-**[GitHub Marketplace](https://github.com/marketplace/actions/xarf-validator)**
+<!-- TODO: Add real GitHub Marketplace link when published -->
+**Development**: [Follow progress on GitHub](https://github.com/xarf/validate-action)
 
 ---
 
 ## Docker Images
+
+<!-- Coming Soon -->
+**Status**: <span class="coming-soon-badge">Planned for Future Release</span>
 
 Pre-configured containers for XARF processing.
 
 ### Validator Container
 
 ```bash
+# Coming soon
 docker run --rm -v $(pwd):/reports xarf/validator:latest /reports/*.json
 ```
 
 ### Converter Container
 
 ```bash
+# Coming soon
 docker run --rm -v $(pwd):/data xarf/converter:latest \
   --from arf --to xarf /data/input.xml /data/output.json
 ```
 
-**[Docker Hub](https://hub.docker.com/u/xarf)**
+<!-- TODO: Add real Docker Hub link when published -->
+**Development**: Docker images will be published as tools are released
 
 ---
 

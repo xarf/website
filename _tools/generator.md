@@ -7,6 +7,10 @@ permalink: /tools/generator/
 
 # XARF Sample Generator
 
+<div class="alert alert-info">
+  <strong>Coming Soon:</strong> This tool is currently under development. Check back soon for the full implementation.
+</div>
+
 Generate properly formatted XARF reports for testing, development, and documentation purposes.
 
 <div class="tool-container">

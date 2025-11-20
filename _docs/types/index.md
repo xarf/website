@@ -7,12 +7,13 @@ permalink: /docs/types/
 
 # Sample Reports
 
-XARF v4 organizes abuse reports into **7 main categories**, each containing specific event types. This reference provides complete samples with field-level annotations showing mandatory, recommended, and optional fields.
+XARF v4 organizes abuse reports into **8 main categories**, each containing specific event types. This reference provides complete samples with field-level annotations showing mandatory, recommended, and optional fields.
 
 ## Quick Navigation
 
 | Category | Event Types | Description |
 |----------|-------------|-------------|
+| [**abuse**]({{ site.baseurl }}/docs/types/abuse/) | 5 types | Direct malicious activities: DDoS, malware, phishing, spam, scanning |
 | [**messaging**]({{ site.baseurl }}/docs/types/messaging/) | 2 types | Email spam, SMS, chat, and other communication abuse |
 | [**connection**]({{ site.baseurl }}/docs/types/connection/) | 8 types | Network attacks including DDoS, port scans, and brute force |
 | [**content**]({{ site.baseurl }}/docs/types/content/) | 10 types | Malicious web content including phishing, malware, and fraud |
@@ -67,6 +68,9 @@ For detailed field documentation, see [Common Fields Reference]({{ site.baseurl 
 ## Category Details
 
 Click on any category below to explore all event types with complete samples:
+
+### [Abuse Category →]({{ site.baseurl }}/docs/types/abuse/)
+Direct malicious activities including DDoS attacks, malware distribution, phishing campaigns, spam operations, and network scanning
 
 ### [Messaging Category →]({{ site.baseurl }}/docs/types/messaging/)
 Communication abuse including spam, phishing emails, and bulk messaging across various protocols (SMTP, SMS, WhatsApp, etc.)

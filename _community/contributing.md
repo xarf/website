@@ -525,8 +525,9 @@ We are committed to providing a welcoming and inclusive environment. All partici
 
 - **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** - General questions, ideas, announcements
 - **[GitHub Issues](https://github.com/xarf/xarf-spec/issues)** - Bug reports, feature requests
-- **[Slack Community](https://xarf.slack.com)** - Real-time chat (request invite)
-- **[Mailing List](https://groups.google.com/g/xarf-dev)** - Development discussions
+
+<!-- Additional channels launching as community grows -->
+**Note**: Slack and mailing lists will be available as the community grows. For now, GitHub Discussions provides the best way to connect with maintainers and contributors.
 
 ---
 
