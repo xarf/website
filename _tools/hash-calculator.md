@@ -416,7 +416,6 @@ sha256sum evidence.pdf
 
 - **[Schema Validator](/tools/validator/)** - Validate reports with evidence hashes
 - **[Sample Generator](/tools/generator/)** - Generate reports with hashed evidence
-- **[Format Converter](/tools/converter/)** - Preserve hashes during conversion
 
 ## Need Help?
 

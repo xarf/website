@@ -51,22 +51,6 @@ Use these browser-based tools without installing anything.
   <div class="tool-card">
     <div class="tool-icon">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M8 7h12M8 12h12M8 17h12M3 7h.01M3 12h.01M3 17h.01"/>
-      </svg>
-    </div>
-    <h3>Format Converter <span class="status-badge coming-soon">Coming Soon</span></h3>
-    <p>Convert between XARF and other abuse reporting formats (ARF, IODEF, CSV).</p>
-    <div class="tool-features">
-      <span class="feature-tag">Multiple formats</span>
-      <span class="feature-tag">Bidirectional</span>
-      <span class="feature-tag">Batch processing</span>
-    </div>
-    <a href="{{ site.baseurl }}/tools/converter/" class="btn btn-primary">Open Converter</a>
-  </div>
-
-  <div class="tool-card">
-    <div class="tool-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
       </svg>
     </div>
@@ -119,37 +103,6 @@ xarf-validator --strict report.json
 
 ---
 
-### XARF Converter CLI
-
-<!-- Coming Soon -->
-**Status**: <span class="coming-soon-badge">Coming Soon</span>
-
-Convert between formats:
-
-```bash
-# Install (coming soon)
-pip install xarf-converter
-
-# ARF to XARF
-xarf-convert --from arf --to xarf input.xml output.json
-
-# XARF to IODEF
-xarf-convert --from xarf --to iodef report.json report.xml
-
-# Batch conversion
-xarf-convert --from arf --to xarf reports/*.xml --output-dir converted/
-```
-
-**Planned Features**:
-- Multiple format support
-- Batch processing
-- Configurable field mapping
-- Validation on output
-
-<!-- TODO: Add real links when available -->
-**Development**: [Watch GitHub for releases](https://github.com/xarf/xarf-converter)
-
----
 
 ## IDE Extensions
 
@@ -243,23 +196,6 @@ curl -X POST https://api.xarf.org/v1/validate \
 <!-- TODO: Add real API docs link when available -->
 **Development**: API documentation will be available at launch
 
-### Conversion API
-
-<!-- Coming Soon -->
-**Status**: <span class="coming-soon-badge">API Launching Soon</span>
-
-Convert formats via API:
-
-```bash
-# API endpoint coming soon
-curl -X POST https://api.xarf.org/v1/convert \
-  -H "Content-Type: application/json" \
-  -d '{"from": "arf", "to": "xarf", "data": "..."}'
-```
-
-<!-- TODO: Add real API docs link when available -->
-**Development**: API documentation will be available at launch
-
 ---
 
 ## GitHub Actions
@@ -303,14 +239,6 @@ Pre-configured containers for XARF processing.
 ```bash
 # Coming soon
 docker run --rm -v $(pwd):/reports xarf/validator:latest /reports/*.json
-```
-
-### Converter Container
-
-```bash
-# Coming soon
-docker run --rm -v $(pwd):/data xarf/converter:latest \
-  --from arf --to xarf /data/input.xml /data/output.json
 ```
 
 <!-- TODO: Add real Docker Hub link when published -->

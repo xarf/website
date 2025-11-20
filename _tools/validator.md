@@ -140,7 +140,6 @@ if (report.validate()) {
 ## Related Tools
 
 - **[Sample Generator](/tools/generator/)** - Generate example XARF reports
-- **[Format Converter](/tools/converter/)** - Convert between XARF and other formats
 - **[Evidence Hash Calculator](/tools/hash-calculator/)** - Calculate SHA-256 hashes for evidence
 
 ## Need Help?

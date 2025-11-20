@@ -294,7 +294,6 @@ curl -X POST https://xarf.github.io/website/api/generate \
 ## Related Tools
 
 - **[Schema Validator](/tools/validator/)** - Validate generated reports
-- **[Format Converter](/tools/converter/)** - Convert to other formats
 - **[Evidence Hash Calculator](/tools/hash-calculator/)** - Generate evidence hashes
 
 ## Need Help?
