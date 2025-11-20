@@ -312,33 +312,32 @@ Standalone tools for working with XARF.
 <div class="download-section">
   <div class="download-grid">
     <div class="download-card">
-      <h4>CLI Validator</h4>
-      <p>Command-line XARF validation tool</p>
-      <div class="download-links">
-        <a href="https://github.com/xarf/xarf-validator/releases/latest" class="btn btn-primary">
-          Download
-        </a>
-        <span class="file-info">Linux, macOS, Windows</span>
-      </div>
-    </div>
-
-    <div class="download-card">
-      <h4>Format Converter</h4>
-      <p>Convert between XARF, ARF, and IODEF</p>
-      <div class="download-links">
-        <a href="https://github.com/xarf/xarf-converter/releases/latest" class="btn btn-primary">
-          Download
-        </a>
-        <span class="file-info">Python script</span>
-      </div>
-    </div>
-
-    <div class="download-card">
       <h4>Web Validator</h4>
       <p>Browser-based validation tool</p>
       <div class="download-links">
-        <a href="{{ site.baseurl }}/tools/validator/" class="btn btn-secondary">
+        <a href="{{ site.baseurl }}/tools/validator/" class="btn btn-primary">
           Use Online
+        </a>
+      </div>
+    </div>
+
+    <div class="download-card">
+      <h4>Python Library</h4>
+      <p>Full-featured Python library with CLI tools</p>
+      <div class="download-links">
+        <a href="https://github.com/xarf/xarf-python" class="btn btn-primary">
+          View on GitHub
+        </a>
+        <span class="file-info">pip install xarf</span>
+      </div>
+    </div>
+
+    <div class="download-card">
+      <h4>All Libraries</h4>
+      <p>Python, JavaScript, Go, Java, C#</p>
+      <div class="download-links">
+        <a href="{{ site.baseurl }}/libraries/" class="btn btn-secondary">
+          Browse Libraries
         </a>
       </div>
     </div>
