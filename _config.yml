@@ -1,8 +1,11 @@
 # Site settings
 title: "XARF - eXtended Abuse Reporting Format"
-description: "The modern standard for real-time abuse reporting"
-url: "https://xarf.github.io"
-baseurl: "/website"
+description: "XARF v4.0.0 - Modern JSON-based abuse reporting format with parser libraries for JavaScript, Go, Java, and C#. Open source, developer-friendly, and production-ready."
+url: "https://xarf.org"
+baseurl: ""
+lang: "en"
+author: "XARF Project"
+tagline: "Modern abuse reporting for the real-time internet"
 
 # Build settings
 markdown: kramdown
@@ -130,7 +133,7 @@ defaults:
     values:
       layout: "docs"
 
-# SEO
+# SEO & Social
 twitter:
   username: xarf_org
   card: summary_large_image
@@ -138,7 +141,16 @@ twitter:
 social:
   name: XARF Project
   links:
-    - https://github.com/xarf/xarf-spec
+    - https://github.com/xarf
+
+logo: /assets/images/xarf-logo.png
+
+# SEO defaults for jekyll-seo-tag
+defaults_seo:
+  image: /assets/images/xarf-og-image.png
+
+# Keywords for search engines
+keywords: "XARF, abuse reporting, incident reporting, JSON format, parser library, security, XARF v4, abuse detection, malware reporting, phishing detection"
 
 # GitHub Pages
 github_username: xarf

@@ -1,0 +1,41 @@
+# XARF.org - Robots Configuration
+# Allows all search engines and AI crawlers to index all content
+
+User-agent: *
+Allow: /
+
+# Sitemaps (Jekyll automatically generates sitemap.xml)
+Sitemap: https://xarf.org/sitemap.xml
+
+# AI Search Engines - Explicitly allow for maximum visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# No restrictions - index everything for maximum discoverability

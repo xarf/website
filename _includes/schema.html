@@ -1,0 +1,85 @@
+<!-- Schema.org structured data for enhanced search results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "XARF Project",
+  "url": "https://xarf.org",
+  "logo": "https://xarf.org/assets/images/xarf-logo.png",
+  "description": "{{ site.description }}",
+  "sameAs": [
+    "https://github.com/xarf"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Technical Support",
+    "url": "https://github.com/xarf/xarf-spec/issues"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://xarf.org",
+  "name": "{{ site.title }}",
+  "description": "{{ site.description }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://xarf.org/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+{% if page.layout == "docs" or page.collection == "docs" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "{{ page.title }}",
+  "description": "{{ page.description | default: page.excerpt | strip_html | truncatewords: 30 }}",
+  "author": {
+    "@type": "Organization",
+    "name": "XARF Project"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "XARF Project",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://xarf.org/assets/images/xarf-logo.png"
+    }
+  },
+  "datePublished": "{{ page.date | default: site.time | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | default: site.time | date_to_xmlschema }}"
+}
+</script>
+{% endif %}
+
+{% if page.layout == "library" or page.collection == "libraries" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ page.title }}",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "{{ page.description | default: page.excerpt | strip_html | truncatewords: 30 }}",
+  "softwareVersion": "{{ page.version | default: '4.0.0' }}",
+  "author": {
+    "@type": "Organization",
+    "name": "XARF Project"
+  }
+}
+</script>
+{% endif %}
