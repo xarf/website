@@ -140,9 +140,9 @@ Choose your language and get started in minutes:
   <button class="tab-button" data-lang="csharp">C#</button>
 </div>
 
-<div class="tab-content active" data-lang="python">
+<div class="tab-content active" data-lang="python" markdown="1">
 
-```python
+{% highlight python %}
 # Install
 pip install xarf
 
@@ -168,15 +168,15 @@ report = XARFReport(
 if report.validate():
     print("✓ Report is valid!")
     print(report.to_json(indent=2))
-```
+{% endhighlight %}
 
 **[→ Full Python Documentation](/libraries/python/)**
 
 </div>
 
-<div class="tab-content" data-lang="javascript">
+<div class="tab-content" data-lang="javascript" markdown="1">
 
-```javascript
+{% highlight javascript %}
 // Install
 npm install xarf
 
@@ -202,15 +202,15 @@ if (report.validate()) {
   console.log('✓ Report is valid!');
   console.log(report.toJSON(null, 2));
 }
-```
+{% endhighlight %}
 
 **Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
 
 </div>
 
-<div class="tab-content" data-lang="go">
+<div class="tab-content" data-lang="go" markdown="1">
 
-```go
+{% highlight go %}
 // Install
 go get github.com/xarf/xarf-go
 
@@ -245,15 +245,15 @@ func main() {
         fmt.Println(string(json))
     }
 }
-```
+{% endhighlight %}
 
 **Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
 
 </div>
 
-<div class="tab-content" data-lang="java">
+<div class="tab-content" data-lang="java" markdown="1">
 
-```java
+{% highlight java %}
 // Maven
 <dependency>
     <groupId>org.xarf</groupId>
@@ -284,15 +284,15 @@ if (report.validate()) {
     System.out.println("✓ Report is valid!");
     System.out.println(report.toJson());
 }
-```
+{% endhighlight %}
 
 **Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
 
 </div>
 
-<div class="tab-content" data-lang="csharp">
+<div class="tab-content" data-lang="csharp" markdown="1">
 
-```csharp
+{% highlight csharp %}
 // Install
 Install-Package XARF
 
@@ -321,7 +321,7 @@ if (report.Validate())
     Console.WriteLine("✓ Report is valid!");
     Console.WriteLine(report.ToJson());
 }
-```
+{% endhighlight %}
 
 **Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
 
