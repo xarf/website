@@ -41,18 +41,23 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   "category": "content",
   "type": "phishing",
   "timestamp": "2025-01-16T14:30:00Z",
+  "reporter": {
+    "org": "Example Bank Security",
+    "contact": "abuse@example.com",
+    "type": "automated"
+  },
+  "sender": {
+    "org": "Example Bank Security",
+    "contact": "abuse@example.com"
+  },
   "source_identifier": "203.0.113.45",
   "url": "http://fake-bank.example.com",
   "target_brand": "Example Bank",
-  "geolocation": "US",
-  "device": "mobile",
   "evidence": [{
     "content_type": "image/png",
-    "description": "Screenshot of phishing page",
+    "description": "Screenshot",
     "payload": "iVBORw0KGg...",
-    "hashes": [
-      "sha256:a1b2c3d4e5f6..."
-    ]
+    "hashes": ["sha256:a1b2c3..."]
   }],
   "tags": ["phishing:banking"]
 }</code></pre>

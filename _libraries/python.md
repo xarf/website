@@ -47,6 +47,10 @@ report = XARFReport(
         "contact": "abuse@example.com",
         "type": "automated"
     },
+    sender={
+        "org": "Security Operations",
+        "contact": "abuse@example.com"
+    },
     source_identifier="192.0.2.100",
     classification="abuse",
     type="ddos"
@@ -95,6 +99,7 @@ XARFReport(
     report_id: str,
     timestamp: str,
     reporter: dict,
+    sender: dict,
     source_identifier: str,
     classification: str,
     type: str,

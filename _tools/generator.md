@@ -48,7 +48,7 @@ Generate properly formatted XARF reports for testing, development, and documenta
     </div>
 
     <div class="form-group">
-      <label for="reporter-org">Reporter Organization</label>
+      <label for="reporter-org">Reporter Organization (Who identified the abuse)</label>
       <input type="text" id="reporter-org" placeholder="Security Operations" value="Security Operations">
     </div>
 
@@ -59,20 +59,20 @@ Generate properly formatted XARF reports for testing, development, and documenta
 
     <div class="form-group">
       <label>
-        <input type="checkbox" id="include-on-behalf-of">
-        Report on behalf of another organization
+        <input type="checkbox" id="different-sender">
+        Sender is different from reporter (e.g., using reporting platform)
       </label>
     </div>
 
-    <div id="on-behalf-of-fields" style="display: none; margin-left: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--color-primary-light);">
+    <div id="sender-fields" style="display: none; margin-left: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--color-primary-light);">
       <div class="form-group">
-        <label for="on-behalf-org">On Behalf Of Organization</label>
-        <input type="text" id="on-behalf-org" placeholder="Client Organization">
+        <label for="sender-org">Sender Organization (Who is transmitting this report)</label>
+        <input type="text" id="sender-org" placeholder="Reporting Platform">
       </div>
 
       <div class="form-group">
-        <label for="on-behalf-contact">On Behalf Of Contact</label>
-        <input type="email" id="on-behalf-contact" placeholder="abuse@client.com">
+        <label for="sender-contact">Sender Contact</label>
+        <input type="email" id="sender-contact" placeholder="reports@platform.com">
       </div>
     </div>
 

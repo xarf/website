@@ -9,6 +9,72 @@ permalink: /docs/migration/
 
 This guide helps you migrate from any proprietary or legacy abuse reporting format to XARF v4. Whether you're moving from email-based reporting, CSV files, custom JSON formats, or older XARF versions, this guide provides a practical roadmap for successful migration.
 
+## ⚠️ Breaking Changes in v4.0.0
+
+### Reporter/Sender Split
+
+**IMPORTANT:** XARF v4.0.0 introduces a breaking change to the reporter structure.
+
+**What Changed:** The optional `reporter.on_behalf_of` pattern has been replaced with explicit `reporter` and `sender` fields.
+
+**Why:** Clearer semantics and no conditional logic required:
+- `reporter` = the organization that identified/complained about the abuse (complainant)
+- `sender` = the organization transmitting this report (infrastructure provider)
+
+**Before (v3 or early v4 drafts with on_behalf_of):**
+```json
+{
+  "reporter": {
+    "org": "Abusix",
+    "contact": "reports@abusix.com",
+    "type": "automated",
+    "on_behalf_of": {
+      "org": "Swisscom",
+      "contact": "abuse@swisscom.ch"
+    }
+  }
+}
+```
+
+**After (v4.0.0+):**
+```json
+{
+  "reporter": {
+    "org": "Swisscom Abuse Desk",
+    "contact": "abuse@swisscom.ch",
+    "type": "automated"
+  },
+  "sender": {
+    "org": "Abusix",
+    "contact": "reports@abusix.com"
+  }
+}
+```
+
+**When reporter and sender are the same (most common):**
+```json
+{
+  "reporter": {
+    "org": "Example Security",
+    "contact": "abuse@example.com",
+    "type": "automated"
+  },
+  "sender": {
+    "org": "Example Security",
+    "contact": "abuse@example.com"
+  }
+}
+```
+
+**Migration Impact:**
+- ✅ All reports MUST include both `reporter` and `sender` objects
+- ✅ For same-organization reports, duplicate the values
+- ✅ For infrastructure providers, split the information clearly
+- ✅ Remove any `on_behalf_of` fields from your reports
+- ✅ Update parsers and validators to require both fields
+
+---
+
 ## Why Migrate to XARF v4?
 
 ### The Cost of Proprietary Formats
@@ -556,6 +622,10 @@ Security Team
     "contact": "security@bank.example.com",
     "type": "manual"
   },
+  "sender": {
+    "org": "Example Bank Security Team",
+    "contact": "security@bank.example.com"
+  },
   "source_identifier": "203.0.113.45",
   "url": "https://fake-bank.badguy.com/login",
   "description": "Phishing site impersonating our login page and stealing credentials",
@@ -605,6 +675,10 @@ Security Team
     "contact": "scanner@example.com",
     "type": "automated"
   },
+  "sender": {
+    "org": "Automated Security Scanner",
+    "contact": "scanner@example.com"
+  },
   "source_identifier": "203.0.113.50",
   "url": "http://malware.example.com/trojan.exe",
   "description": "Trojan downloader detected",
@@ -637,6 +711,10 @@ timestamp,source_ip,target_ip,attack_type,packets,severity
     "org": "Network Operations Center",
     "contact": "noc@example.com",
     "type": "automated"
+  },
+  "sender": {
+    "org": "Network Operations Center",
+    "contact": "noc@example.com"
   },
   "source_identifier": "198.51.100.42",
   "destination_ip": "203.0.113.10",
@@ -673,6 +751,10 @@ Form Submission:
     "org": "Spamtrap Network",
     "contact": "abuse@example.com",
     "type": "automated"
+  },
+  "sender": {
+    "org": "Spamtrap Network",
+    "contact": "abuse@example.com"
   },
   "source_identifier": "192.0.2.50",
   "source_port": 25,

@@ -42,7 +42,8 @@ All XARF v4 reports share this common structure:
 | `xarf_version` | string | `^4\.[0-9]+\.[0-9]+$` | XARF schema version (semantic versioning) |
 | `report_id` | string | UUID v4 | Unique report identifier for tracking and deduplication |
 | `timestamp` | string | ISO 8601 | When the abuse incident occurred (UTC recommended) |
-| `reporter` | object | - | Information about the reporting organization |
+| `reporter` | object | - | Organization that identified/complained about the abuse |
+| `sender` | object | - | Organization transmitting this report (often same as reporter) |
 | `source_identifier` | string | IP/domain | IP address, domain, or identifier of the abuse source |
 | `category` | string | enum | Abuse category (connection, content, copyright, infrastructure, messaging, reputation, vulnerability) |
 | `type` | string | enum | Specific abuse type within the category |
@@ -71,11 +72,56 @@ All XARF v4 reports share this common structure:
 
 ### Reporter Object
 
+The `reporter` identifies the organization that **identified or complained about the abuse** (the actual complainant).
+
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `org` | string | <span class="field-mandatory">Yes</span> | Reporting organization name |
-| `contact` | string | <span class="field-mandatory">Yes</span> | Contact email for follow-up |
+| `org` | string | <span class="field-mandatory">Yes</span> | Name of the organization that identified the abuse |
+| `contact` | string | <span class="field-mandatory">Yes</span> | Contact email of the complaining organization |
 | `type` | string | <span class="field-mandatory">Yes</span> | How report was generated: `automated`, `manual`, `unknown` |
+
+### Sender Object
+
+The `sender` identifies the organization that **is transmitting this report** (the sender/infrastructure provider). In many cases, reporter and sender are the same organization, but they may differ when using reporting infrastructure providers.
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `org` | string | <span class="field-mandatory">Yes</span> | Name of the organization sending/transmitting the report |
+| `contact` | string | <span class="field-mandatory">Yes</span> | Contact email for the sending organization |
+
+**When to use different reporter vs sender:**
+- **ISP abuse desks** using third-party reporting infrastructure (e.g., ISP = reporter, Abusix = sender)
+- **Brand protection companies** sending reports on behalf of clients (brand = reporter, protection service = sender)
+- **Anti-abuse services** forwarding reports from their customers (customer = reporter, service = sender)
+- **National CERTs** reporting on behalf of member organizations (member = reporter, CERT = sender)
+
+**Common scenarios:**
+
+**Same organization (typical):**
+```json
+"reporter": {
+  "org": "Example Security",
+  "contact": "abuse@example.com",
+  "type": "automated"
+},
+"sender": {
+  "org": "Example Security",
+  "contact": "abuse@example.com"
+}
+```
+
+**Different organizations (infrastructure provider):**
+```json
+"reporter": {
+  "org": "Swisscom Abuse Desk",
+  "contact": "abuse@swisscom.ch",
+  "type": "automated"
+},
+"sender": {
+  "org": "Abusix",
+  "contact": "reports@abusix.com"
+}
+```
 
 ### Evidence Item Object
 
@@ -295,6 +341,10 @@ Security vulnerabilities and misconfigurations.
     "contact": "abuse@examplebank.com",
     "type": "automated"
   },
+  "sender": {
+    "org": "Example Bank Security",
+    "contact": "abuse@examplebank.com"
+  },
   "reporter_reference_id": "PHISH-2024-001",
   "source_identifier": "192.0.2.100",
   "url": "https://fake-bank-login.example.com/login",
@@ -329,6 +379,10 @@ Security vulnerabilities and misconfigurations.
     "org": "DDoS Protection Service",
     "contact": "security@ddosprotect.com",
     "type": "automated"
+  },
+  "sender": {
+    "org": "DDoS Protection Service",
+    "contact": "security@ddosprotect.com"
   },
   "reporter_reference_id": "DDOS-2024-789",
   "source_identifier": "198.51.100.50",
@@ -366,6 +420,10 @@ Security vulnerabilities and misconfigurations.
     "contact": "reports@spamcop.net",
     "type": "automated"
   },
+  "sender": {
+    "org": "SpamCop",
+    "contact": "reports@spamcop.net"
+  },
   "reporter_reference_id": "SC-2024-456",
   "source_identifier": "192.0.2.75",
   "source_port": 25,
@@ -400,6 +458,10 @@ Security vulnerabilities and misconfigurations.
     "org": "Malware Analysis Lab",
     "contact": "samples@malware-lab.org",
     "type": "automated"
+  },
+  "sender": {
+    "org": "Malware Analysis Lab",
+    "contact": "samples@malware-lab.org"
   },
   "reporter_reference_id": "MAL-2024-123",
   "source_identifier": "203.0.113.200",
@@ -440,6 +502,10 @@ Security vulnerabilities and misconfigurations.
     "contact": "dmca@copyright-protect.org",
     "type": "automated"
   },
+  "sender": {
+    "org": "Copyright Protection Agency",
+    "contact": "dmca@copyright-protect.org"
+  },
   "reporter_reference_id": "DMCA-2024-567",
   "source_identifier": "198.51.100.150",
   "source_port": 6881,
@@ -476,6 +542,10 @@ Security vulnerabilities and misconfigurations.
     "contact": "research@botnet-watch.org",
     "type": "automated"
   },
+  "sender": {
+    "org": "Botnet Research Group",
+    "contact": "research@botnet-watch.org"
+  },
   "reporter_reference_id": "BOT-2024-890",
   "source_identifier": "192.0.2.250",
   "malware_family": "mirai",
@@ -509,6 +579,10 @@ Security vulnerabilities and misconfigurations.
     "org": "Security Scanner Service",
     "contact": "vulns@scanner-service.com",
     "type": "automated"
+  },
+  "sender": {
+    "org": "Security Scanner Service",
+    "contact": "vulns@scanner-service.com"
   },
   "reporter_reference_id": "VULN-2024-345",
   "source_identifier": "203.0.113.50",
