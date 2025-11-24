@@ -27,10 +27,11 @@ This guide helps you migrate from any proprietary or legacy abuse reporting form
   "reporter": {
     "org": "Abusix",
     "contact": "reports@abusix.com",
-    "type": "automated",
+    "domain": "abusix.com",
     "on_behalf_of": {
       "org": "Swisscom",
-      "contact": "abuse@swisscom.ch"
+      "contact": "abuse@swisscom.ch",
+      "domain": "swisscom.ch"
     }
   }
 }
@@ -42,11 +43,12 @@ This guide helps you migrate from any proprietary or legacy abuse reporting form
   "reporter": {
     "org": "Swisscom Abuse Desk",
     "contact": "abuse@swisscom.ch",
-    "type": "automated"
+    "domain": "swisscom.ch"
   },
   "sender": {
     "org": "Abusix",
-    "contact": "reports@abusix.com"
+    "contact": "reports@abusix.com",
+    "domain": "abusix.com"
   }
 }
 ```
@@ -57,21 +59,23 @@ This guide helps you migrate from any proprietary or legacy abuse reporting form
   "reporter": {
     "org": "Example Security",
     "contact": "abuse@example.com",
-    "type": "automated"
+    "domain": "example.com"
   },
   "sender": {
     "org": "Example Security",
-    "contact": "abuse@example.com"
+    "contact": "abuse@example.com",
+    "domain": "example.com"
   }
 }
 ```
 
 **Migration Impact:**
 - ✅ All reports MUST include both `reporter` and `sender` objects
-- ✅ For same-organization reports, duplicate the values
-- ✅ For infrastructure providers, split the information clearly
+- ✅ Each object requires three fields: `org`, `contact`, and `domain` (all required)
+- ✅ For same-organization reports, duplicate all three values in both objects
+- ✅ For infrastructure providers, split the information clearly between reporter and sender
 - ✅ Remove any `on_behalf_of` fields from your reports
-- ✅ Update parsers and validators to require both fields
+- ✅ Update parsers and validators to require both fields with correct structure
 
 ---
 
@@ -190,6 +194,7 @@ XARF v4 uses a consistent structure across all report types. Here's how to map y
 | Abuse Type / Category | `category` + `type` | Map to category (e.g., content) and type (e.g., phishing) |
 | Reporter Name | `reporter.org` | Organization name |
 | Reporter Email | `reporter.contact` | Contact email |
+| Reporter Domain | `reporter.domain` | Reporter's domain (required) |
 | Reporter Reference | `reporter_reference_id` | Your internal tracking ID |
 | Description | `description` | Free text, keep as-is |
 | Target URL | `url` | Direct field (for content-based abuse) |
@@ -428,7 +433,12 @@ def generate_missing_fields(legacy_report):
         "reporter": {
             "org": "Automated Detection System",
             "contact": "abuse@example.com",
-            "type": "automated"
+            "domain": "example.com"
+        },
+        "sender": {
+            "org": "Automated Detection System",
+            "contact": "abuse@example.com",
+            "domain": "example.com"
         }
     }
 ```
@@ -620,11 +630,12 @@ Security Team
   "reporter": {
     "org": "Example Bank Security Team",
     "contact": "security@bank.example.com",
-    "type": "manual"
+    "domain": "bank.example.com"
   },
   "sender": {
     "org": "Example Bank Security Team",
-    "contact": "security@bank.example.com"
+    "contact": "security@bank.example.com",
+    "domain": "bank.example.com"
   },
   "source_identifier": "203.0.113.45",
   "url": "https://fake-bank.badguy.com/login",
@@ -673,11 +684,12 @@ Security Team
   "reporter": {
     "org": "Automated Security Scanner",
     "contact": "scanner@example.com",
-    "type": "automated"
+    "domain": "example.com"
   },
   "sender": {
     "org": "Automated Security Scanner",
-    "contact": "scanner@example.com"
+    "contact": "scanner@example.com",
+    "domain": "example.com"
   },
   "source_identifier": "203.0.113.50",
   "url": "http://malware.example.com/trojan.exe",
@@ -710,11 +722,12 @@ timestamp,source_ip,target_ip,attack_type,packets,severity
   "reporter": {
     "org": "Network Operations Center",
     "contact": "noc@example.com",
-    "type": "automated"
+    "domain": "example.com"
   },
   "sender": {
     "org": "Network Operations Center",
-    "contact": "noc@example.com"
+    "contact": "noc@example.com",
+    "domain": "example.com"
   },
   "source_identifier": "198.51.100.42",
   "destination_ip": "203.0.113.10",
@@ -750,11 +763,12 @@ Form Submission:
   "reporter": {
     "org": "Spamtrap Network",
     "contact": "abuse@example.com",
-    "type": "automated"
+    "domain": "example.com"
   },
   "sender": {
     "org": "Spamtrap Network",
-    "contact": "abuse@example.com"
+    "contact": "abuse@example.com",
+    "domain": "example.com"
   },
   "source_identifier": "192.0.2.50",
   "source_port": 25,

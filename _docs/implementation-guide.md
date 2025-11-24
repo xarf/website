@@ -449,7 +449,7 @@ def test_end_to_end_workflow():
 
 ### Test Data
 
-Use our [Sample Generator](/tools/generator/) to create test reports for different scenarios.
+Create test reports using the sample files in the specification or use the libraries to generate valid XARF reports programmatically.
 
 ---
 

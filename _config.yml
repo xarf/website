@@ -66,12 +66,6 @@ nav_links:
     dropdown:
       - title: "Schema Validator"
         url: "/tools/validator/"
-      - title: "Sample Generator"
-        url: "/tools/generator/"
-      - title: "Format Converter"
-        url: "/tools/converter/"
-      - title: "Evidence Hash Calculator"
-        url: "/tools/hash-calculator/"
   - title: "Libraries"
     url: "/libraries/"
     dropdown:

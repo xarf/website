@@ -32,37 +32,6 @@ Use these browser-based tools without installing anything.
     <a href="{{ site.baseurl }}/tools/validator/" class="btn btn-primary">Open Validator</a>
   </div>
 
-  <div class="tool-card">
-    <div class="tool-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M12 4v16m8-8H4"/>
-      </svg>
-    </div>
-    <h3>Sample Generator <span class="status-badge coming-soon">Coming Soon</span></h3>
-    <p>Generate example XARF reports for testing and development purposes.</p>
-    <div class="tool-features">
-      <span class="feature-tag">All event types</span>
-      <span class="feature-tag">Customizable fields</span>
-      <span class="feature-tag">Download JSON</span>
-    </div>
-    <a href="{{ site.baseurl }}/tools/generator/" class="btn btn-primary">Open Generator</a>
-  </div>
-
-  <div class="tool-card">
-    <div class="tool-icon">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-      </svg>
-    </div>
-    <h3>Hash Calculator <span class="status-badge coming-soon">Coming Soon</span></h3>
-    <p>Calculate SHA-256 hashes for evidence verification and integrity checking.</p>
-    <div class="tool-features">
-      <span class="feature-tag">SHA-256</span>
-      <span class="feature-tag">File upload</span>
-      <span class="feature-tag">Verification</span>
-    </div>
-    <a href="{{ site.baseurl }}/tools/hash-calculator/" class="btn btn-primary">Open Calculator</a>
-  </div>
 </div>
 
 ---

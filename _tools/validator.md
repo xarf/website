@@ -137,11 +137,6 @@ if (report.validate()) {
 ```
 </details>
 
-## Related Tools
-
-- **[Sample Generator](/tools/generator/)** - Generate example XARF reports
-- **[Evidence Hash Calculator](/tools/hash-calculator/)** - Calculate SHA-256 hashes for evidence
-
 ## Need Help?
 
 - **[Implementation Guide](/docs/implementation-guide/)** - Step-by-step integration guide
