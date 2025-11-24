@@ -198,7 +198,7 @@ curl -X POST https://api.xarf.org/v1/validate \
 {
   "valid": true,
   "version": "4.0.0",
-  "classification": "abuse",
+  "category": "connection",
   "type": "ddos"
 }
 ```

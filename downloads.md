@@ -234,7 +234,7 @@ def create_abuse_report(source_ip, abuse_type):
             "type": "automated"
         },
         source_identifier=source_ip,
-        classification="abuse",
+        category="connection",
         type=abuse_type
     )
 

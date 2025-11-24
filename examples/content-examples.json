@@ -9,7 +9,7 @@
       "type": "automated"
     },
     "source_identifier": "203.0.113.45",
-    "class": "content",
+    "category": "content",
     "type": "phishing",
     "url": "https://secure-banking-login.example.com/auth",
     "domain": "secure-banking-login.example.com",
@@ -40,7 +40,7 @@
       "type": "automated"
     },
     "source_identifier": "198.51.100.123",
-    "class": "content",
+    "category": "content",
     "type": "malware",
     "url": "https://malicious-downloads.example.com/invoice.exe",
     "domain": "malicious-downloads.example.com",
@@ -76,7 +76,7 @@
       "type": "automated"
     },
     "source_identifier": "198.51.100.45",
-    "class": "content",
+    "category": "content",
     "type": "fraud",
     "url": "https://get-rich-quick.example.com",
     "domain": "get-rich-quick.example.com",
@@ -110,7 +110,7 @@
       "type": "automated"
     },
     "source_identifier": "203.0.113.77",
-    "class": "content",
+    "category": "content",
     "type": "brand_infringement",
     "url": "https://amaz0n-deals.example.com",
     "domain": "amaz0n-deals.example.com",
@@ -141,7 +141,7 @@
       "type": "automated"
     },
     "source_identifier": "198.51.100.99",
-    "class": "content",
+    "category": "content",
     "type": "data_leak",
     "url": "http://exposed-database.example.com:8080/dump.sql",
     "domain": "exposed-database.example.com",
@@ -174,7 +174,7 @@
       "type": "automated"
     },
     "source_identifier": "192.0.2.150",
-    "class": "content",
+    "category": "content",
     "type": "remote_compromise",
     "url": "https://compromised-site.example.com/wp-content/uploads/shell.php",
     "domain": "compromised-site.example.com",
@@ -213,7 +213,7 @@
       "type": "automated"
     },
     "source_identifier": "192.0.2.200",
-    "class": "content",
+    "category": "content",
     "type": "suspicious_registration",
     "url": "https://amaz0n-secure.example",
     "domain": "amaz0n-secure.example",

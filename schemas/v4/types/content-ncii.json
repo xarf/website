@@ -91,7 +91,7 @@
 				"type": "victim_advocate"
 			},
 			"source_identifier": "203.0.113.100",
-			"class": "content",
+			"category": "content",
 			"type": "ncii",
 			"url": "https://example-platform.com/user/post/12345",
 			"material_type": "image",

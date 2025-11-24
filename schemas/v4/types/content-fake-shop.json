@@ -74,7 +74,7 @@
 				"type": "consumer_protection"
 			},
 			"source_identifier": "192.0.2.50",
-			"class": "content",
+			"category": "content",
 			"type": "fake-shop",
 			"url": "https://super-deals-electronics.example",
 			"shop_characteristics": [

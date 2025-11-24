@@ -18,9 +18,9 @@ Generate properly formatted XARF reports for testing, development, and documenta
     <h2>Configure Report</h2>
 
     <div class="form-group">
-      <label for="report-class">Classification</label>
+      <label for="report-class">Category</label>
       <select id="report-class">
-        <option value="abuse">Abuse</option>
+        <option value="connection">Connection</option>
         <option value="vulnerability">Vulnerability</option>
         <option value="connection">Connection</option>
         <option value="content">Content</option>
@@ -132,7 +132,7 @@ Generate test reports to validate your XARF parser implementation:
 for i in {1..100}; do
   curl -X POST https://xarf.github.io/website/api/generate \
     -H "Content-Type: application/json" \
-    -d '{"class": "abuse", "randomize": true}' \
+    -d '{"category": "connection", "randomize": true}' \
     -o "test_report_${i}.json"
 done
 ```
@@ -282,7 +282,7 @@ const reportJson = await response.json();
 curl -X POST https://xarf.github.io/website/api/generate \
   -H "Content-Type: application/json" \
   -d '{
-    "class": "abuse",
+    "category": "connection",
     "type": "ddos",
     "source_identifier": "192.0.2.100",
     "include_evidence": true,

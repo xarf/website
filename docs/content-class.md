@@ -140,7 +140,7 @@ For visual abuse types (phishing, fraud, brand infringement), screenshot evidenc
     "type": "automated"
   },
   "source_identifier": "203.0.113.45",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "url": "https://secure-bank-login.example.com/auth",
   "domain": "secure-bank-login.example.com",

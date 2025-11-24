@@ -23,8 +23,8 @@ Every XARF v4 report contains these required fields:
 | `timestamp` | ISO 8601 | When the incident occurred |
 | `reporter` | object | Organization reporting the abuse |
 | `source_identifier` | string | IP, domain, or other identifier |
-| `class` | enum | One of 7 abuse classes |
-| `type` | string | Specific abuse type within class |
+| `category` | enum | One of 7 abuse categories |
+| `type` | string | Specific abuse type within category |
 
 ### Optional Fields
 
@@ -283,7 +283,7 @@ Reports converted from v3 include:
     "type": "automated"
   },
   "source_identifier": "203.0.113.45",
-  "class": "content",
+  "category": "content",
   "type": "phishing",
   "url": "https://secure-bank.example.com",
   "domain": "secure-bank.example.com",
@@ -312,7 +312,7 @@ Reports converted from v3 include:
     "type": "automated"
   },
   "source_identifier": "198.51.100.0/24",
-  "class": "connection",
+  "category": "connection",
   "type": "ddos",
   "attack_type": "syn_flood",
   "destination_ip": "192.0.2.1",
