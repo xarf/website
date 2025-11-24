@@ -79,8 +79,6 @@ nav_links:
         url: "/libraries/java/"
       - title: "C#/.NET"
         url: "/libraries/csharp/"
-      - title: "All Libraries"
-        url: "/libraries/"
   - title: "Downloads"
     url: "/downloads/"
   - title: "Community"

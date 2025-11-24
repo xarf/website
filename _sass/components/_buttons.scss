@@ -13,34 +13,41 @@
   border: 1px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease;
-  
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
   &:hover {
     text-decoration: none;
     transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 
 // Button variants
 .btn-primary {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: #ffffff;
   border-color: var(--color-primary);
-  
+
   &:hover {
-    background-color: var(--color-primary-dark);
-    border-color: var(--color-primary-dark);
-    color: var(--color-white);
+    background-color: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    color: #ffffff;
   }
 }
 
 .btn-secondary {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-primary);
-  border-color: var(--color-border-primary);
-  
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+
   &:hover {
-    background-color: var(--color-bg-tertiary);
-    border-color: var(--color-border-secondary);
+    background-color: var(--color-secondary-hover);
+    border-color: var(--color-secondary-hover);
+    color: #ffffff;
   }
 }
 
@@ -48,9 +55,50 @@
   background-color: transparent;
   color: var(--color-primary);
   border-color: var(--color-primary);
-  
+  border-width: 2px;
+
   &:hover {
     background-color: var(--color-primary);
-    color: var(--color-white);
+    color: #ffffff;
   }
+}
+
+// Dark mode specific enhancements
+[data-theme="dark"] {
+  .btn {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+    color: #ffffff;
+    border-color: var(--color-secondary);
+  }
+
+  .btn-outline {
+    color: var(--color-primary-light);
+    border-color: var(--color-primary-light);
+
+    &:hover {
+      background-color: var(--color-primary);
+      color: #ffffff;
+      border-color: var(--color-primary);
+    }
+  }
+}
+
+// Small button variant
+.btn-small {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
 }

@@ -218,7 +218,8 @@ Ready-to-use code snippets and templates.
   <div class="template-card">
     <h4>Python Template</h4>
     <p>Basic XARF report creation and validation</p>
-    ```python
+    <div class="code-wrapper">
+{% highlight python %}
 from xarf import XARFReport
 from datetime import datetime
 
@@ -242,14 +243,16 @@ def create_abuse_report(source_ip, abuse_type):
         return report.to_json()
     else:
         raise ValueError(report.validation_errors)
-    ```
+{% endhighlight %}
+    </div>
     <a href="https://github.com/xarf/xarf-spec/blob/main/templates/python/basic_report.py" class="btn btn-small btn-secondary">Download Template</a>
   </div>
 
   <div class="template-card">
     <h4>Flask API Template</h4>
     <p>REST API endpoint for receiving XARF reports</p>
-    ```python
+    <div class="code-wrapper">
+{% highlight python %}
 from flask import Flask, request, jsonify
 from xarf import XARFReport, ValidationError
 
@@ -267,14 +270,16 @@ def submit_report():
         return jsonify({'status': 'accepted', 'report_id': report.report_id}), 202
     except ValidationError as e:
         return jsonify({'status': 'invalid', 'errors': e.errors}), 400
-    ```
+{% endhighlight %}
+    </div>
     <a href="https://github.com/xarf/xarf-spec/blob/main/templates/python/flask_api.py" class="btn btn-small btn-secondary">Download Template</a>
   </div>
 
   <div class="template-card">
     <h4>Evidence Handler Template</h4>
     <p>Evidence collection and hashing</p>
-    ```python
+    <div class="code-wrapper">
+{% highlight python %}
 import hashlib
 import base64
 
@@ -298,7 +303,8 @@ def add_evidence_to_report(report, file_path, description):
             "value": sha256_hash
         }
     )
-    ```
+{% endhighlight %}
+    </div>
     <a href="https://github.com/xarf/xarf-spec/blob/main/templates/python/evidence_handler.py" class="btn btn-small btn-secondary">Download Template</a>
   </div>
 </div>
@@ -363,7 +369,7 @@ Access older XARF specification versions.
     <tbody>
       <tr>
         <td><strong>v4.0.0</strong></td>
-        <td>2024-01-15</td>
+        <td>Q1 2026</td>
         <td><span class="badge badge-success">Current</span></td>
         <td>
           <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.0.0">Schemas</a> |
@@ -373,7 +379,7 @@ Access older XARF specification versions.
       </tr>
       <tr>
         <td>v3.1.0</td>
-        <td>2023-06-20</td>
+        <td>Q2 2025</td>
         <td><span class="badge badge-warning">Deprecated</span></td>
         <td>
           <a href="https://github.com/xarf/xarf-spec/releases/tag/v3.1.0">Schemas</a> |
@@ -382,7 +388,7 @@ Access older XARF specification versions.
       </tr>
       <tr>
         <td>v3.0.0</td>
-        <td>2022-11-10</td>
+        <td>Q4 2024</td>
         <td><span class="badge badge-warning">Deprecated</span></td>
         <td>
           <a href="https://github.com/xarf/xarf-spec/releases/tag/v3.0.0">Schemas</a> |
@@ -513,6 +519,16 @@ All XARF resources are released under the MIT License.
   color: var(--color-text-light);
   font-size: 0.875rem;
   margin-bottom: 1rem;
+}
+
+.template-card .code-wrapper {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.template-card .code-wrapper .highlight {
+  margin: 0;
 }
 
 .template-card pre {
