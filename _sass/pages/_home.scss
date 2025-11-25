@@ -53,3 +53,59 @@
   font-size: var(--font-size-3xl);
   margin-bottom: var(--space-8);
 }
+
+// Hero code block
+.hero-code {
+  margin-top: var(--space-8);
+}
+
+.code-preview {
+  background: var(--color-background-alt);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  margin: 0 auto;
+
+  .code-header {
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .code-title {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+    }
+
+    .code-badge {
+      font-size: var(--font-size-xs);
+      padding: 0.25rem 0.5rem;
+      background: var(--color-primary);
+      color: white;
+      border-radius: var(--radius-sm);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  // Ensure code block wrapper has proper positioning
+  .code-block-wrapper {
+    position: relative;
+  }
+
+  pre {
+    margin: 0;
+    padding: var(--space-4);
+    background: var(--color-background-alt);
+    overflow-x: auto;
+    max-height: 400px;
+
+    code {
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+    }
+  }
+}
