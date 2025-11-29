@@ -55,6 +55,8 @@ nav_links:
         url: "/docs/common-fields/"
       - title: "Implementation Guide"
         url: "/docs/implementation-guide/"
+      - title: "Email Transport (SMTP)"
+        url: "/docs/email-transport/"
       - title: "Schema Reference"
         url: "/docs/schemas/"
       - title: "Migration Guide"
