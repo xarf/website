@@ -1,19 +1,14 @@
 
 # AI Tool Coordination (auto-generated, do not commit)
+.claude/
 .claude-flow/
 .swarm/
 .aider/
 .cursor/
 .copilot/
 
-# AI Tool Databases
-*.db
-!.claude/**/*.db
-
 # AI Tool Generated Reports
 docs/*_REPORT.md
 docs/*_SUMMARY.md
 docs/*_CHECKLIST.md
 docs/website-feature-test-results.md
-
-# Note: .claude/ directory IS tracked (for documentation)
