@@ -117,7 +117,12 @@ All XARF v4 reports must include these base fields:
   "reporter": {
     "org": "Example Security Org",
     "contact": "abuse@example.com",
-    "type": "automated"
+    "domain": "example.com"
+  },
+  "sender": {
+    "org": "Example Security Org",
+    "contact": "abuse@example.com",
+    "domain": "example.com"
   },
   "source_identifier": "192.0.2.1",
   "category": "connection",
@@ -133,7 +138,7 @@ All XARF v4 reports must include these base fields:
 | `reporter` | object | Organization reporting the incident |
 | `reporter.org` | string | Organization name (max 200 chars) |
 | `reporter.contact` | string (email) | Contact email for follow-up |
-| `reporter.type` | enum | How report was generated: `automated`, `manual`, `unknown` |
+| `reporter.domain` | string | Reporter's domain name |
 | `source_identifier` | string | IP address, domain, or identifier of abuse source |
 | `category` | enum | Abuse category: `connection`, `content`, `copyright`, `infrastructure`, `messaging`, `reputation`, `vulnerability` |
 | `type` | string | Specific abuse type within the category |
@@ -200,7 +205,12 @@ Network-level attacks and suspicious connection patterns.
   "reporter": {
     "org": "DDoS Protection Service",
     "contact": "ddos@protection.net",
-    "type": "automated"
+    "domain": "protection.net"
+  },
+  "sender": {
+    "org": "DDoS Protection Service",
+    "contact": "ddos@protection.net",
+    "domain": "protection.net"
   },
   "source_identifier": "192.0.2.155",
   "source_port": 12345,
@@ -275,7 +285,12 @@ All content types inherit from [content-base.json](https://github.com/xarf/xarf-
   "reporter": {
     "org": "Phishing Detection Service",
     "contact": "reports@antiphishing.example",
-    "type": "automated"
+    "domain": "antiphishing.example"
+  },
+  "sender": {
+    "org": "Phishing Detection Service",
+    "contact": "reports@antiphishing.example",
+    "domain": "antiphishing.example"
   },
   "source_identifier": "203.0.113.45",
   "category": "content",
@@ -318,7 +333,12 @@ Intellectual property infringement and unauthorized distribution.
   "reporter": {
     "org": "Content Protection Agency",
     "contact": "reports@cpa.org",
-    "type": "automated"
+    "domain": "cpa.org"
+  },
+  "sender": {
+    "org": "Content Protection Agency",
+    "contact": "reports@cpa.org",
+    "domain": "cpa.org"
   },
   "source_identifier": "203.0.113.150",
   "source_port": 6881,
@@ -362,7 +382,12 @@ Compromised or misused infrastructure and systems.
   "reporter": {
     "org": "Botnet Tracking Service",
     "contact": "reports@bottracker.net",
-    "type": "automated"
+    "domain": "bottracker.net"
+  },
+  "sender": {
+    "org": "Botnet Tracking Service",
+    "contact": "reports@bottracker.net",
+    "domain": "bottracker.net"
   },
   "source_identifier": "192.0.2.50",
   "category": "infrastructure",
@@ -401,7 +426,12 @@ Spam and abuse via messaging platforms.
   "reporter": {
     "org": "SpamCop",
     "contact": "reports@spamcop.net",
-    "type": "automated"
+    "domain": "spamcop.net"
+  },
+  "sender": {
+    "org": "SpamCop",
+    "contact": "reports@spamcop.net",
+    "domain": "spamcop.net"
   },
   "source_identifier": "192.0.2.123",
   "source_port": 25,
@@ -440,7 +470,12 @@ Threat intelligence, blocklists, and reputation data.
   "reporter": {
     "org": "Blocklist Service",
     "contact": "reports@blocklist.org",
-    "type": "automated"
+    "domain": "blocklist.org"
+  },
+  "sender": {
+    "org": "Blocklist Service",
+    "contact": "reports@blocklist.org",
+    "domain": "blocklist.org"
   },
   "source_identifier": "192.0.2.200",
   "category": "reputation",
@@ -475,7 +510,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "Vulnerability Scan Service",
     "contact": "vulns@scanner.org",
-    "type": "automated"
+    "domain": "scanner.org"
+  },
+  "sender": {
+    "org": "Vulnerability Scan Service",
+    "contact": "vulns@scanner.org",
+    "domain": "scanner.org"
   },
   "source_identifier": "192.0.2.75",
   "category": "vulnerability",

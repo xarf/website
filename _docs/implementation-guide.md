@@ -66,6 +66,8 @@ report = XARFReport(
     reporter={
         "org": "Security Operations",
         "contact": "abuse@example.com",
+        "domain": "example.com",
+        "sender": "abuse@example.com",
         "type": "automated"
     },
     source_identifier="192.0.2.100",
@@ -101,6 +103,8 @@ const report = new XARFReport({
   reporter: {
     org: 'Security Operations',
     contact: 'abuse@example.com',
+    domain: 'example.com',
+    sender: 'abuse@example.com',
     type: 'automated'
   },
   source_identifier: '192.0.2.100',
@@ -268,7 +272,7 @@ iodef_xml = IODefConverter.from_xarf(xarf_report)
   "error": "ValidationError",
   "message": "Missing required field: 'reporter'",
   "path": "$",
-  "expected": "object with 'org', 'contact', 'type'"
+  "expected": "object with 'org', 'contact', 'domain', 'sender', 'type'"
 }
 ```
 
@@ -400,6 +404,8 @@ class TestXARFReports(unittest.TestCase):
             reporter={
                 "org": "Test Security",
                 "contact": "test@example.com",
+                "domain": "example.com",
+                "sender": "test@example.com",
                 "type": "automated"
             },
             source_identifier="192.0.2.100",
@@ -416,7 +422,13 @@ class TestXARFReports(unittest.TestCase):
                 xarf_version="4.0.0",
                 # Missing report_id
                 timestamp="2024-01-15T10:00:00Z",
-                reporter={"org": "Test", "contact": "test@example.com", "type": "automated"},
+                reporter={
+                    "org": "Test",
+                    "contact": "test@example.com",
+                    "domain": "example.com",
+                    "sender": "test@example.com",
+                    "type": "automated"
+                },
                 source_identifier="192.0.2.100",
                 category="connection",
                 abuse_type="ddos"

@@ -6,7 +6,12 @@
     "reporter": {
       "org": "Phishing Detection Service",
       "contact": "reports@antiphishing.example",
-      "type": "automated"
+      "domain": "antiphishing.example"
+    },
+    "sender": {
+      "org": "Phishing Detection Service",
+      "contact": "reports@antiphishing.example",
+      "domain": "antiphishing.example"
     },
     "source_identifier": "203.0.113.45",
     "category": "content",
@@ -37,7 +42,12 @@
     "reporter": {
       "org": "Malware Analysis Lab",
       "contact": "alerts@malwarelab.example",
-      "type": "automated"
+      "domain": "malwarelab.example"
+    },
+    "sender": {
+      "org": "Malware Analysis Lab",
+      "contact": "alerts@malwarelab.example",
+      "domain": "malwarelab.example"
     },
     "source_identifier": "198.51.100.123",
     "category": "content",
@@ -73,7 +83,12 @@
     "reporter": {
       "org": "Anti-Fraud Coalition",
       "contact": "reports@antifraud.example",
-      "type": "automated"
+      "domain": "antifraud.example"
+    },
+    "sender": {
+      "org": "Anti-Fraud Coalition",
+      "contact": "reports@antifraud.example",
+      "domain": "antifraud.example"
     },
     "source_identifier": "198.51.100.45",
     "category": "content",
@@ -107,7 +122,12 @@
     "reporter": {
       "org": "Brand Protection Services",
       "contact": "enforcement@brandprotect.example",
-      "type": "automated"
+      "domain": "brandprotect.example"
+    },
+    "sender": {
+      "org": "Brand Protection Services",
+      "contact": "enforcement@brandprotect.example",
+      "domain": "brandprotect.example"
     },
     "source_identifier": "203.0.113.77",
     "category": "content",
@@ -138,7 +158,12 @@
     "reporter": {
       "org": "Data Breach Monitor",
       "contact": "alerts@breachmonitor.example",
-      "type": "automated"
+      "domain": "breachmonitor.example"
+    },
+    "sender": {
+      "org": "Data Breach Monitor",
+      "contact": "alerts@breachmonitor.example",
+      "domain": "breachmonitor.example"
     },
     "source_identifier": "198.51.100.99",
     "category": "content",
@@ -171,7 +196,12 @@
     "reporter": {
       "org": "Web Security Scanner",
       "contact": "abuse@websecscanner.example",
-      "type": "automated"
+      "domain": "websecscanner.example"
+    },
+    "sender": {
+      "org": "Web Security Scanner",
+      "contact": "abuse@websecscanner.example",
+      "domain": "websecscanner.example"
     },
     "source_identifier": "192.0.2.150",
     "category": "content",
@@ -210,7 +240,12 @@
     "reporter": {
       "org": "Domain Threat Intelligence",
       "contact": "alerts@domainthreat.example",
-      "type": "automated"
+      "domain": "domainthreat.example"
+    },
+    "sender": {
+      "org": "Domain Threat Intelligence",
+      "contact": "alerts@domainthreat.example",
+      "domain": "domainthreat.example"
     },
     "source_identifier": "192.0.2.200",
     "category": "content",

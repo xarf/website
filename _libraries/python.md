@@ -45,11 +45,13 @@ report = XARFReport(
     reporter={
         "org": "Security Operations",
         "contact": "abuse@example.com",
+        "domain": "example.com",
         "type": "automated"
     },
     sender={
         "org": "Security Operations",
-        "contact": "abuse@example.com"
+        "contact": "abuse@example.com",
+        "domain": "example.com"
     },
     source_identifier="192.0.2.100",
     classification="abuse",
@@ -482,6 +484,7 @@ class TestXARFReports(unittest.TestCase):
             "reporter": {
                 "org": "Test Security",
                 "contact": "test@example.com",
+                "domain": "example.com",
                 "type": "automated"
             },
             "source_identifier": "192.0.2.100",
@@ -529,6 +532,7 @@ def sample_report():
         reporter={
             "org": "Test Security",
             "contact": "test@example.com",
+            "domain": "example.com",
             "type": "automated"
         },
         source_identifier="192.0.2.100",

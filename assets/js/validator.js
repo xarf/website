@@ -16,6 +16,10 @@
       "contact": "abuse@example.com",
       "type": "automated"
     },
+    "sender": {
+      "org": "Example ISP",
+      "contact": "noc@example-isp.com"
+    },
     "source_identifier": "192.0.2.100",
     "category": "abuse",
     "type": "ddos",

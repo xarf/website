@@ -35,7 +35,12 @@ Manual parsing required. Time-consuming. Error-prone. No standardization.
   "reporter": {
     "org": "Example Bank Security",
     "contact": "abuse@examplebank.com",
-    "type": "automated"
+    "domain": "examplebank.com"
+  },
+  "sender": {
+    "org": "Example Bank Security",
+    "contact": "abuse@examplebank.com",
+    "domain": "examplebank.com"
   },
   "source_identifier": "203.0.113.45",
   "url": "https://example.com/fake-bank",

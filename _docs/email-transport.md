@@ -219,11 +219,12 @@ The base64-encoded payload decodes to this XARF v4 report:
   "reporter": {
     "org": "Example Security",
     "contact": "abuse@example.com",
-    "type": "automated"
+    "domain": "example.com"
   },
   "sender": {
     "org": "Example Security",
-    "contact": "abuse@example.com"
+    "contact": "abuse@example.com",
+    "domain": "example.com"
   },
   "source_identifier": "192.0.2.100",
   "source_port": 54321,
@@ -320,11 +321,12 @@ xarf_report = {
     "reporter": {
         "org": "Example Security",
         "contact": "abuse@example.com",
-        "type": "automated"
+        "domain": "example.com"
     },
     "sender": {
         "org": "Example Security",
-        "contact": "abuse@example.com"
+        "contact": "abuse@example.com",
+        "domain": "example.com"
     },
     "source_identifier": "192.0.2.100"
 }

@@ -339,11 +339,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "Example Bank Security",
     "contact": "abuse@examplebank.com",
-    "type": "automated"
+    "domain": "examplebank.com"
   },
   "sender": {
     "org": "Example Bank Security",
-    "contact": "abuse@examplebank.com"
+    "contact": "abuse@examplebank.com",
+    "domain": "examplebank.com"
   },
   "reporter_reference_id": "PHISH-2024-001",
   "source_identifier": "192.0.2.100",
@@ -378,11 +379,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "DDoS Protection Service",
     "contact": "security@ddosprotect.com",
-    "type": "automated"
+    "domain": "ddosprotect.com"
   },
   "sender": {
     "org": "DDoS Protection Service",
-    "contact": "security@ddosprotect.com"
+    "contact": "security@ddosprotect.com",
+    "domain": "ddosprotect.com"
   },
   "reporter_reference_id": "DDOS-2024-789",
   "source_identifier": "198.51.100.50",
@@ -418,11 +420,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "SpamCop",
     "contact": "reports@spamcop.net",
-    "type": "automated"
+    "domain": "spamcop.net"
   },
   "sender": {
     "org": "SpamCop",
-    "contact": "reports@spamcop.net"
+    "contact": "reports@spamcop.net",
+    "domain": "spamcop.net"
   },
   "reporter_reference_id": "SC-2024-456",
   "source_identifier": "192.0.2.75",
@@ -457,11 +460,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "Malware Analysis Lab",
     "contact": "samples@malware-lab.org",
-    "type": "automated"
+    "domain": "malware-lab.org"
   },
   "sender": {
     "org": "Malware Analysis Lab",
-    "contact": "samples@malware-lab.org"
+    "contact": "samples@malware-lab.org",
+    "domain": "malware-lab.org"
   },
   "reporter_reference_id": "MAL-2024-123",
   "source_identifier": "203.0.113.200",
@@ -500,11 +504,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "Copyright Protection Agency",
     "contact": "dmca@copyright-protect.org",
-    "type": "automated"
+    "domain": "copyright-protect.org"
   },
   "sender": {
     "org": "Copyright Protection Agency",
-    "contact": "dmca@copyright-protect.org"
+    "contact": "dmca@copyright-protect.org",
+    "domain": "copyright-protect.org"
   },
   "reporter_reference_id": "DMCA-2024-567",
   "source_identifier": "198.51.100.150",
@@ -540,11 +545,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "Botnet Research Group",
     "contact": "research@botnet-watch.org",
-    "type": "automated"
+    "domain": "botnet-watch.org"
   },
   "sender": {
     "org": "Botnet Research Group",
-    "contact": "research@botnet-watch.org"
+    "contact": "research@botnet-watch.org",
+    "domain": "botnet-watch.org"
   },
   "reporter_reference_id": "BOT-2024-890",
   "source_identifier": "192.0.2.250",
@@ -578,11 +584,12 @@ Security vulnerabilities and misconfigurations.
   "reporter": {
     "org": "Security Scanner Service",
     "contact": "vulns@scanner-service.com",
-    "type": "automated"
+    "domain": "scanner-service.com"
   },
   "sender": {
     "org": "Security Scanner Service",
-    "contact": "vulns@scanner-service.com"
+    "contact": "vulns@scanner-service.com",
+    "domain": "scanner-service.com"
   },
   "reporter_reference_id": "VULN-2024-345",
   "source_identifier": "203.0.113.50",

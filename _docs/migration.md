@@ -25,9 +25,9 @@ This guide helps you migrate from any proprietary or legacy abuse reporting form
 ```json
 {
   "reporter": {
+    "type": "organization",
     "org": "Abusix",
     "contact": "reports@abusix.com",
-    "domain": "abusix.com",
     "on_behalf_of": {
       "org": "Swisscom",
       "contact": "abuse@swisscom.ch",
@@ -53,16 +53,16 @@ This guide helps you migrate from any proprietary or legacy abuse reporting form
 }
 ```
 
-**When reporter and sender are the same (most common):**
+**When reporter and sender are the same organization (most common):**
 ```json
 {
   "reporter": {
-    "org": "Example Security",
+    "org": "Example Security Team",
     "contact": "abuse@example.com",
     "domain": "example.com"
   },
   "sender": {
-    "org": "Example Security",
+    "org": "Example Security Team",
     "contact": "abuse@example.com",
     "domain": "example.com"
   }
@@ -71,11 +71,15 @@ This guide helps you migrate from any proprietary or legacy abuse reporting form
 
 **Migration Impact:**
 - ✅ All reports MUST include both `reporter` and `sender` objects
-- ✅ Each object requires three fields: `org`, `contact`, and `domain` (all required)
-- ✅ For same-organization reports, duplicate all three values in both objects
-- ✅ For infrastructure providers, split the information clearly between reporter and sender
-- ✅ Remove any `on_behalf_of` fields from your reports
-- ✅ Update parsers and validators to require both fields with correct structure
+- ✅ Each object requires three fields: `org`, `contact`, and `domain` (all required, no `type` field)
+- ✅ The `reporter` identifies who discovered/complained about the abuse (the complainant)
+- ✅ The `sender` identifies who is transmitting this report (the infrastructure provider)
+- ✅ For direct reports (same organization), duplicate all three values in both `reporter` and `sender`
+- ✅ For infrastructure providers (reporting on behalf of clients), split the information:
+  - `reporter` = the actual complainant/client organization
+  - `sender` = the infrastructure provider transmitting the report
+- ✅ Remove any `on_behalf_of` fields and `type` fields from your reports
+- ✅ Update parsers and validators to require both `reporter` and `sender` with the correct structure
 
 ---
 
