@@ -42,13 +42,13 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   "type": "phishing",
   "timestamp": "2025-01-16T14:30:00Z",
   "reporter": {
-    "org": "Example Bank Security",
-    "contact": "abuse@example.com",
+    "organization": "Example Bank Security",
+    "contact_email": "security@example-bank.com",
     "type": "automated"
   },
   "sender": {
-    "org": "Example Bank Security",
-    "contact": "abuse@example.com"
+    "organization": "Example Bank Security",
+    "contact_email": "abuse@example-bank.com"
   },
   "source_identifier": "203.0.113.45",
   "url": "http://fake-bank.example.com",

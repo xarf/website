@@ -40,7 +40,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Brand Protection Service",
     "contact": "brandprotection@example.com",
-    "type": "manual"
+    "domain": "example.com"
+  },
+  🟠 "sender": {
+    "org": "Brand Protection Service",
+    "contact": "brandprotection@example.com",
+    "domain": "example.com"
   },
   🟠 "source_identifier": "203.0.113.45",
   🟠 "category": "content",
@@ -94,7 +99,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "NCMEC CyberTipline",
     "contact": "reports@cybertipline.org",
-    "type": "manual"
+    "domain": "cybertipline.org"
+  },
+  🟠 "sender": {
+    "org": "NCMEC CyberTipline",
+    "contact": "reports@cybertipline.org",
+    "domain": "cybertipline.org"
   },
   🟠 "source_identifier": "198.51.100.88",
   🟠 "category": "content",
@@ -148,7 +158,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Internet Watch Foundation",
     "contact": "hotline@iwf.org.uk",
-    "type": "manual"
+    "domain": "iwf.org.uk"
+  },
+  🟠 "sender": {
+    "org": "Internet Watch Foundation",
+    "contact": "hotline@iwf.org.uk",
+    "domain": "iwf.org.uk"
   },
   🟠 "source_identifier": "192.0.2.77",
   🟠 "category": "content",
@@ -200,7 +215,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Security Research Team",
     "contact": "disclosures@security.example",
-    "type": "manual"
+    "domain": "security.example"
+  },
+  🟠 "sender": {
+    "org": "Security Research Team",
+    "contact": "disclosures@security.example",
+    "domain": "security.example"
   },
   🟠 "source_identifier": "198.51.100.200",
   🟠 "category": "content",
@@ -253,7 +273,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Anti-Fraud Coalition",
     "contact": "reports@antifraud.example",
-    "type": "automated"
+    "domain": "antifraud.example"
+  },
+  🟠 "sender": {
+    "org": "Anti-Fraud Coalition",
+    "contact": "reports@antifraud.example",
+    "domain": "antifraud.example"
   },
   🟠 "source_identifier": "198.51.100.45",
   🟠 "category": "content",
@@ -318,7 +343,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Malware Analysis Lab",
     "contact": "alerts@malwarelab.example",
-    "type": "automated"
+    "domain": "malwarelab.example"
+  },
+  🟠 "sender": {
+    "org": "Malware Analysis Lab",
+    "contact": "alerts@malwarelab.example",
+    "domain": "malwarelab.example"
   },
   🟠 "source_identifier": "198.51.100.123",
   🟠 "category": "content",
@@ -397,7 +427,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Phishing Detection Service",
     "contact": "reports@antiphishing.example",
-    "type": "automated"
+    "domain": "antiphishing.example"
+  },
+  🟠 "sender": {
+    "org": "Phishing Detection Service",
+    "contact": "reports@antiphishing.example",
+    "domain": "antiphishing.example"
   },
   🟠 "source_identifier": "203.0.113.45",
   🟠 "category": "content",
@@ -460,7 +495,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Web Security Scanner",
     "contact": "security@scanner.example",
-    "type": "automated"
+    "domain": "scanner.example"
+  },
+  🟠 "sender": {
+    "org": "Web Security Scanner",
+    "contact": "security@scanner.example",
+    "domain": "scanner.example"
   },
   🟠 "source_identifier": "192.0.2.150",
   🟠 "category": "content",
@@ -513,7 +553,12 @@ Web-based abuse including phishing websites, malware distribution, fraud sites, 
   🟠 "reporter": {
     "org": "Domain Monitoring Service",
     "contact": "monitoring@domainwatch.example",
-    "type": "automated"
+    "domain": "domainwatch.example"
+  },
+  🟠 "sender": {
+    "org": "Domain Monitoring Service",
+    "contact": "monitoring@domainwatch.example",
+    "domain": "domainwatch.example"
   },
   🟠 "source_identifier": "microsof7-login.example.com",
   🟠 "category": "content",

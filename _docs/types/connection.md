@@ -38,7 +38,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "Botnet Tracking System",
     "contact": "abuse@bottracker.example",
-    "type": "automated"
+    "domain": "bottracker.example"
+  },
+  🟠 "sender": {
+    "org": "Botnet Tracking System",
+    "contact": "abuse@bottracker.example",
+    "domain": "bottracker.example"
   },
   🟠 "source_identifier": "203.0.113.42",
   🟠 "category": "connection",
@@ -100,7 +105,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "DDoS Protection Service",
     "contact": "ddos@protectionservice.net",
-    "type": "automated"
+    "domain": "protectionservice.net"
+  },
+  🟠 "sender": {
+    "org": "DDoS Protection Service",
+    "contact": "ddos@protectionservice.net",
+    "domain": "protectionservice.net"
   },
   🟠 "source_identifier": "192.0.2.155",
   🟠 "category": "connection",
@@ -161,7 +171,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "Web Security Service",
     "contact": "security@websec.example",
-    "type": "automated"
+    "domain": "websec.example"
+  },
+  🟠 "sender": {
+    "org": "Web Security Service",
+    "contact": "security@websec.example",
+    "domain": "websec.example"
   },
   🟠 "source_identifier": "192.0.2.67",
   🟠 "category": "connection",
@@ -216,7 +231,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "Network Security Monitoring",
     "contact": "noc@example.com",
-    "type": "automated"
+    "domain": "example.com"
+  },
+  🟠 "sender": {
+    "org": "Network Security Monitoring",
+    "contact": "noc@example.com",
+    "domain": "example.com"
   },
   🟠 "source_identifier": "192.0.2.99",
   🟠 "category": "connection",
@@ -271,7 +291,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "Threat Intelligence Platform",
     "contact": "threats@example.com",
-    "type": "automated"
+    "domain": "example.com"
+  },
+  🟠 "sender": {
+    "org": "Threat Intelligence Platform",
+    "contact": "threats@example.com",
+    "domain": "example.com"
   },
   🟠 "source_identifier": "192.0.2.111",
   🟠 "category": "connection",
@@ -326,7 +351,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "E-commerce Platform",
     "contact": "abuse@ecommerce.example",
-    "type": "manual"
+    "domain": "ecommerce.example"
+  },
+  🟠 "sender": {
+    "org": "E-commerce Platform",
+    "contact": "abuse@ecommerce.example",
+    "domain": "ecommerce.example"
   },
   🟠 "source_identifier": "192.0.2.133",
   🟠 "category": "connection",
@@ -381,7 +411,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "Web Application Firewall",
     "contact": "security@waf.example",
-    "type": "automated"
+    "domain": "waf.example"
+  },
+  🟠 "sender": {
+    "org": "Web Application Firewall",
+    "contact": "security@waf.example",
+    "domain": "waf.example"
   },
   🟠 "source_identifier": "192.0.2.45",
   🟠 "category": "connection",
@@ -442,7 +477,12 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
   🟠 "reporter": {
     "org": "Security Operations Center",
     "contact": "soc@example.com",
-    "type": "automated"
+    "domain": "example.com"
+  },
+  🟠 "sender": {
+    "org": "Security Operations Center",
+    "contact": "soc@example.com",
+    "domain": "example.com"
   },
   🟠 "source_identifier": "192.0.2.178",
   🟠 "category": "connection",

@@ -159,13 +159,18 @@ Infrastructure providers, MSSPs, and abuse reporting services often send reports
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T10:00:00Z",
   "reporter": {
-    "org": "Abusix",
-    "contact": "reports@abusix.com",
-    "type": "automated",
+    "org": "Swisscom",
+    "contact": "abuse@swisscom.ch",
+    "domain": "swisscom.ch",
     "on_behalf_of": {
       "org": "Swisscom",
       "contact": "abuse@swisscom.ch"
     }
+  },
+  "sender": {
+    "org": "Abusix",
+    "contact": "reports@abusix.com",
+    "domain": "abusix.com"
   },
   "source_identifier": "192.0.2.100",
   "category": "connection",
@@ -177,14 +182,15 @@ Infrastructure providers, MSSPs, and abuse reporting services often send reports
 ### Best Practices for on_behalf_of
 
 **DO:**
-- Always include the infrastructure provider's details in the main `reporter` fields
-- Include the represented organization in `on_behalf_of`
+- Always include the represented organization's details in the main `reporter` fields
+- Include the infrastructure provider in the `sender` field
+- Include the represented organization in `on_behalf_of` for clarity
 - Ensure you have authorization to send reports on behalf of the organization
 - Include both organizations' contact information for follow-up
 - Document the relationship in service agreements
 
 **DON'T:**
-- Swap the reporter and on_behalf_of organizations (reporter = sender, on_behalf_of = represented)
+- Swap the reporter and sender organizations (reporter = represented organization, sender = infrastructure provider)
 - Use on_behalf_of without proper authorization or service agreement
 - Omit contact information for either organization
 - Use generic/shared email addresses that don't clearly identify the organizations
@@ -192,9 +198,10 @@ Infrastructure providers, MSSPs, and abuse reporting services often send reports
 ### Recipient Handling
 
 Recipients should:
-- Recognize the infrastructure provider as the technical sender
+- Recognize the infrastructure provider in the `sender` field as the technical sender
+- Recognize the represented organization in the `reporter` field as the source of the report
 - Direct follow-up communication to the represented organization when appropriate
-- Maintain relationships with both the provider and represented organization
+- Maintain relationships with both the sender (provider) and reporter (represented organization)
 - Consider the represented organization's reputation and history
 - Send reports during recipient maintenance windows if known
 
@@ -459,19 +466,26 @@ yamllint report.yaml
 
 ### Test Report Template
 
-```yaml
-%YAML 1.2
----
-Report-ID: test-12345-67890
-Report-Type: test
-Date: 2025-03-16T15:30:00Z
-Source: 192.0.2.1
-Source-Type: ip-address
-Attachment: ABUSE
-Reported-From: security@example.com
-Category: abuse
-User-Agent: XARF-Reporter/1.0 (Test Mode)
-Schema-URL: http://www.x-arf.org/schema/abuse_test_0.1.2.json
+```json
+{
+  "xarf_version": "4.0.0",
+  "report_id": "test-12345-67890",
+  "timestamp": "2025-03-16T15:30:00Z",
+  "reporter": {
+    "org": "Example Security Inc.",
+    "contact": "security@example.com",
+    "domain": "example.com"
+  },
+  "sender": {
+    "org": "Example Security Inc.",
+    "contact": "security@example.com",
+    "domain": "example.com"
+  },
+  "source_identifier": "192.0.2.1",
+  "category": "connection",
+  "type": "port-scan",
+  "description": "Test report - not a real incident"
+}
 ```
 
 ## Handling Responses and Feedback
