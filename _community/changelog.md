@@ -25,8 +25,8 @@ XARF v4.0 is a major release representing a complete redesign of the abuse repor
 #### Core Features
 - **JSON-based format** - Modern, machine-readable structure replacing XML/email-based formats
 - **JSON Schema validation** - Comprehensive validation for all report types
-- **8 event classifications** - Organized taxonomy covering all abuse categories
-- **58+ event types** - Specific types for granular abuse categorization
+- **7 categories** - Organized taxonomy covering all abuse categories
+- **32 types** - Specific types for granular abuse categorization
 - **Evidence framework** - Structured evidence collection with hashing support
 - **Reporter metadata** - Rich context about report sources
 - **Confidence scoring** - Optional confidence levels for automated reports

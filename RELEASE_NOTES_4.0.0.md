@@ -16,7 +16,7 @@ We're excited to announce the **production release** of the XARF website at **ht
 #### 1. XARF v4 Specification
 - Full specification documentation
 - All 7 categories detailed
-- 58 content types documented
+- 32 types documented
 - Field reference guide
 - Validation requirements
 

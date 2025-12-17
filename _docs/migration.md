@@ -107,7 +107,7 @@ Migrating to XARF v4 delivers immediate benefits:
 
 **Evidence Integrity**: Cryptographic hashes ensure evidence authenticity
 
-**Comprehensive Coverage**: 58 content types cover virtually all abuse scenarios
+**Comprehensive Coverage**: 32 types cover virtually all abuse scenarios
 
 **Future-Proof**: Extensible design accommodates new abuse types without breaking changes
 
@@ -226,7 +226,7 @@ Your Category              → XARF v4 Category + Type
 "Brute Force Attack"      → category: connection, type: brute-force
 ```
 
-Review all [58 XARF v4 types across 7 categories](/docs/content-types/) to find the best match for your categories.
+Review all [32 XARF v4 types across 7 categories](/docs/content-types/) to find the best match for your categories.
 
 ### Evidence Structure
 

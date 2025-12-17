@@ -290,7 +290,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
       </div>
       <div class="feature">
         <div class="feature-icon">🌍</div>
-        <h3>58 Abuse Types</h3>
+        <h3>32 Abuse Types</h3>
         <p>Phishing, malware, DDoS, spam, CSAM, CSEM, disinformation, and more. Specialized schemas for each threat.</p>
       </div>
     </div>
@@ -301,7 +301,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   <div class="container">
     <div class="stats-grid">
       <div class="stat">
-        <div class="stat-number">58</div>
+        <div class="stat-number">32</div>
         <div class="stat-label">Abuse Types</div>
       </div>
       <div class="stat">
@@ -340,7 +340,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
         <div class="adoption-icon">✅</div>
         <div class="adoption-text">
           <strong>Full JSON Schema validation</strong><br>
-          58 type-specific schemas
+          32 type-specific schemas
         </div>
       </div>
       <div class="adoption-stat">
@@ -370,7 +370,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
         <div class="step-number">2</div>
         <div class="step-content">
           <h3>Understand the Format</h3>
-          <p>Review comprehensive docs and sample reports for all 58 abuse types.</p>
+          <p>Review comprehensive docs and sample reports for all 32 abuse types.</p>
           <a href="{{ '/docs/introduction' | relative_url }}" class="step-link">Read Documentation →</a>
         </div>
       </div>

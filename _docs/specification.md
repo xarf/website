@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: "Technical Specification"
-description: "Complete XARF v4 specification with all 58 content types and field definitions"
+description: "Complete XARF v4 specification with all 32 types and field definitions"
 permalink: /docs/specification/
 ---
 
@@ -16,10 +16,10 @@ permalink: /docs/specification/
 
 ## Overview
 
-XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 58 content types organized into 7 categories.
+XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 32 types organized into 7 categories.
 
 **Key Features:**
-- **58 specialized content types** covering modern internet abuse scenarios
+- **32 specialized types** covering modern internet abuse scenarios
 - **7 logical categories** for easy classification and routing
 - **Evidence-first design** with cryptographic validation support
 - **Real-time processing** optimized for automated workflows
@@ -177,27 +177,22 @@ Different abuse categories require different context. Here are the category-spec
 
 ## Content Type Categories
 
-XARF v4 organizes its 58 content types into 7 logical categories:
+XARF v4 organizes its 32 types into 7 logical categories:
 
-### 1. Connection-Based Abuse (13 types)
+### 1. Connection-Based Abuse (8 types)
 
 Network-level attacks and suspicious connection patterns.
 
-| Content Type | Description |
-|-------------|-------------|
-| `connection-ddos` | Distributed Denial of Service attacks |
-| `connection-port-scan` | Network port scanning activity |
-| `connection-login-attack` | Brute force login attempts (generic) |
-| `connection-auth-failure` | Authentication failure patterns |
-| `connection-brute-force` | Credential stuffing and brute force attacks |
-| `connection-ssh-attack` | SSH-specific brute force attacks |
-| `connection-rdp-attack` | RDP-specific brute force attacks |
-| `connection-ddos-amplification` | DDoS amplification attacks (DNS, NTP, etc.) |
-| `connection-sql-injection` | SQL injection attack attempts |
-| `connection-vuln-scanning` | Vulnerability scanning activities |
-| `connection-reconnaissance` | Probing of sensitive files (.env, .git, .htaccess) |
-| `connection-scraping` | Web crawling and scraping activities |
-| `connection-bot` | Automated web bot activity (AI agents, search bots) |
+| Type | Description |
+|------|-------------|
+| `login_attack` | Brute force login attempts and authentication attacks |
+| `port_scan` | Network port scanning and reconnaissance activities |
+| `ddos` | Distributed Denial of Service attacks |
+| `infected_host` | Compromised systems participating in botnets |
+| `reconnaissance` | Network reconnaissance and information gathering |
+| `scraping` | Automated content scraping and harvesting |
+| `sql_injection` | SQL injection attack attempts |
+| `vuln_scanning` | Vulnerability scanning activities |
 
 **Evidence sources:** `honeypot`, `firewall_logs`, `ids_detection`, `flow_analysis`
 
@@ -205,28 +200,21 @@ Network-level attacks and suspicious connection patterns.
 
 ---
 
-### 2. Content-Based Abuse (16 types)
+### 2. Content-Based Abuse (9 types)
 
 Malicious or harmful content hosted or distributed online.
 
-| Content Type | Description |
-|-------------|-------------|
-| `content-phishing` | Phishing sites impersonating legitimate brands |
-| `content-malware` | Malware distribution sites and downloads |
-| `content-csam` | Child Sexual Abuse Material (baseline/A1/A2/B1/B2 illegal content) |
-| `content-csem` | Child Sexual Exploitation Material (grooming, solicitation, sextortion) |
-| `content-ncii` | Non-Consensual Intimate Images |
-| `content-fake-shop` | Fraudulent e-commerce sites |
-| `content-fraud` | Generic online fraud and scams |
-| `content-ransomware` | Ransomware distribution or payment sites |
-| `content-cryptojacking` | Unauthorized cryptocurrency mining scripts |
-| `content-identity-theft` | Identity theft and credential harvesting |
-| `content-scam` | Investment scams, advance-fee fraud, etc. |
-| `content-impersonation` | Brand or individual impersonation |
-| `content-brand_infringement` | Trademark and brand abuse |
-| `content-exposed-data` | Exposed sensitive data repositories |
-| `content-remote_compromise` | Remote access trojans and backdoors |
-| `content-suspicious_registration` | Suspicious domain registrations |
+| Type | Description |
+|------|-------------|
+| `phishing` | Phishing websites and credential harvesting |
+| `malware` | Malware hosting and distribution |
+| `csam` | Child Sexual Abuse Material |
+| `csem` | Child Sexual Exploitation Material |
+| `exposed_data` | Exposed sensitive data and information leaks |
+| `brand_infringement` | Brand impersonation and trademark violations |
+| `fraud` | Fraudulent websites and scam content |
+| `remote_compromise` | Remote compromise and webshell infections |
+| `suspicious_registration` | Suspicious domain registrations and threat indicators |
 
 **Evidence sources:** `crawler`, `user_report`, `automated_scan`, `spam_analysis`
 
@@ -234,20 +222,18 @@ Malicious or harmful content hosted or distributed online.
 
 ---
 
-### 3. Copyright Violations (8 types)
+### 3. Copyright Violations (6 types)
 
 Intellectual property infringement and unauthorized distribution.
 
-| Content Type | Description |
-|-------------|-------------|
-| `copyright-p2p` | Peer-to-peer file sharing (BitTorrent, etc.) |
-| `copyright-cyberlocker` | File hosting services with pirated content |
-| `copyright-streaming` | Unauthorized streaming sites |
-| `copyright-link-site` | Link aggregation sites for pirated content |
-| `copyright-ugc-platform` | User-generated content platforms with infringement |
-| `copyright-usenet` | Usenet newsgroup piracy |
-| `copyright-copyright` | Generic copyright infringement (DMCA notices) |
-| `copyright-counterfeit` | Counterfeit goods and trademark violations |
+| Type | Description |
+|------|-------------|
+| `copyright` | Generic copyright infringement and DMCA violations |
+| `p2p` | Peer-to-peer copyright infringement (BitTorrent, etc.) |
+| `cyberlocker` | File hosting service copyright infringement |
+| `ugc_platform` | User-generated content platform infringement |
+| `link_site` | Link aggregation site infringement |
+| `usenet` | Usenet newsgroup copyright infringement |
 
 **Evidence sources:** `automated_scan`, `rights_holder_report`, `crawler`
 
@@ -255,18 +241,14 @@ Intellectual property infringement and unauthorized distribution.
 
 ---
 
-### 4. Infrastructure Abuse (6 types)
+### 4. Infrastructure Abuse (2 types)
 
 Compromised or misused infrastructure and systems.
 
-| Content Type | Description |
-|-------------|-------------|
-| `infrastructure-botnet` | Botnet-infected systems |
-| `infrastructure-compromised-server` | Compromised servers and web applications |
-| `infrastructure-proxy` | Open proxies and anonymous proxy abuse |
-| `infrastructure-vpn-abuse` | VPN service abuse |
-| `infrastructure-mining` | Unauthorized cryptocurrency mining |
-| `infrastructure-c2` | Command and Control (C2) servers |
+| Type | Description |
+|------|-------------|
+| `botnet` | Botnet infections and compromised systems |
+| `compromised_server` | Compromised servers and infrastructure |
 
 **Evidence sources:** `traffic_analysis`, `researcher_analysis`, `automated_discovery`
 
@@ -274,18 +256,14 @@ Compromised or misused infrastructure and systems.
 
 ---
 
-### 5. Messaging Abuse (6 types)
+### 5. Messaging Abuse (2 types)
 
 Spam and abuse via messaging platforms and channels.
 
-| Content Type | Description |
-|-------------|-------------|
-| `messaging-spam` | Email spam (generic) |
-| `messaging-bulk-messaging` | Bulk messaging campaigns |
-| `messaging-sms-spam` | SMS/text message spam |
-| `messaging-whatsapp-spam` | WhatsApp spam and abuse |
-| `messaging-social-spam` | Social media spam (Facebook, Twitter, etc.) |
-| `messaging-voip-spam` | VoIP spam calls (robocalls, vishing) |
+| Type | Description |
+|------|-------------|
+| `spam` | Unsolicited commercial messages and unwanted email |
+| `bulk_messaging` | Legitimate but unwanted bulk communications |
 
 **Evidence sources:** `spamtrap`, `user_complaint`, `automated_filter`, `honeypot`
 
@@ -293,15 +271,14 @@ Spam and abuse via messaging platforms and channels.
 
 ---
 
-### 6. Reputation & Intelligence (3 types)
+### 6. Reputation & Intelligence (2 types)
 
 Threat intelligence, blocklists, and reputation data.
 
-| Content Type | Description |
-|-------------|-------------|
-| `reputation-blocklist` | IP/domain blocklist entries |
-| `reputation-threat-intelligence` | Threat intelligence indicators |
-| `reputation-abuse-score` | Reputation scoring and assessment |
+| Type | Description |
+|------|-------------|
+| `blocklist` | IP/domain blocklist inclusion reports |
+| `threat_intelligence` | Threat intelligence and IOC reports |
 
 **Evidence sources:** `threat_intelligence`, `automated_analysis`, `researcher_analysis`
 
@@ -313,11 +290,11 @@ Threat intelligence, blocklists, and reputation data.
 
 Security vulnerabilities and misconfigurations.
 
-| Content Type | Description |
-|-------------|-------------|
-| `vulnerability-cve` | CVE-identified vulnerabilities |
-| `vulnerability-open` | Open services and ports |
-| `vulnerability-misconfiguration` | Security misconfigurations |
+| Type | Description |
+|------|-------------|
+| `cve` | Common Vulnerabilities and Exposures reports |
+| `open` | Open services and exposed resources |
+| `misconfiguration` | Security misconfigurations and hardening issues |
 
 **Evidence sources:** `vulnerability_scan`, `researcher_analysis`, `automated_discovery`
 
