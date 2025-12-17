@@ -1,5 +1,5 @@
 ---
-layout: library
+layout: docs
 title: "Python Library - xarf-python"
 description: "Official Python library for creating, validating, and processing XARF reports"
 permalink: /libraries/python/

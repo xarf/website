@@ -1,5 +1,5 @@
 ---
-layout: library
+layout: docs
 title: "Go Library - xarf-go"
 description: "Official Go library for creating, validating, and processing XARF reports"
 permalink: /libraries/go/

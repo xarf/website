@@ -82,50 +82,6 @@ Official and community-maintained libraries for implementing XARF in your applic
   </div>
 </div>
 
-### Java
-<div class="library-card">
-  <div class="library-header">
-    <h3>xarf-java</h3>
-    <span class="status-badge alpha">Alpha</span>
-  </div>
-  <p>Enterprise-grade Java library with Spring Boot integration.</p>
-  <div class="library-meta">
-    <span>📦 Maven: <code>org.xarf:xarf-java</code></span>
-    <span>📚 <a href="/libraries/java/">Documentation</a></span>
-  </div>
-  <div class="library-features">
-    <strong>Features:</strong>
-    <ul>
-      <li>Jackson integration</li>
-      <li>Spring Boot autoconfiguration</li>
-      <li>Bean validation support</li>
-      <li>JMS/Kafka integration</li>
-    </ul>
-  </div>
-</div>
-
-### C#/.NET
-<div class="library-card">
-  <div class="library-header">
-    <h3>Xarf</h3>
-    <span class="status-badge alpha">Alpha</span>
-  </div>
-  <p>.NET library for Windows and cross-platform applications.</p>
-  <div class="library-meta">
-    <span>📦 NuGet: <code>Install-Package XARF</code></span>
-    <span>📚 <a href="/libraries/csharp/">Documentation</a></span>
-  </div>
-  <div class="library-features">
-    <strong>Features:</strong>
-    <ul>
-      <li>.NET Standard 2.0+</li>
-      <li>Newtonsoft.Json and System.Text.Json</li>
-      <li>LINQ integration</li>
-      <li>Async streams</li>
-    </ul>
-  </div>
-</div>
-
 ---
 
 ## Quick Start
@@ -136,8 +92,6 @@ Choose your language and get started in minutes:
   <button class="tab-button active" data-lang="python">Python</button>
   <button class="tab-button" data-lang="javascript">JavaScript</button>
   <button class="tab-button" data-lang="go">Go</button>
-  <button class="tab-button" data-lang="java">Java</button>
-  <button class="tab-button" data-lang="csharp">C#</button>
 </div>
 
 <div class="tab-content active" data-lang="python" markdown="1">
@@ -251,82 +205,6 @@ func main() {
 
 </div>
 
-<div class="tab-content" data-lang="java" markdown="1">
-
-{% highlight java %}
-// Maven
-<dependency>
-    <groupId>org.xarf</groupId>
-    <artifactId>xarf-java</artifactId>
-    <version>1.0.0</version>
-</dependency>
-
-// Create a report
-import org.xarf.XARFReport;
-import org.xarf.Reporter;
-
-XARFReport report = XARFReport.builder()
-    .xarfVersion("4.0.0")
-    .reportId("550e8400-e29b-41d4-a716-446655440000")
-    .timestamp(Instant.now().toString())
-    .reporter(Reporter.builder()
-        .org("Security Operations")
-        .contact("abuse@example.com")
-        .type("automated")
-        .build())
-    .sourceIdentifier("192.0.2.100")
-    .classification("abuse")
-    .type("ddos")
-    .build();
-
-// Validate
-if (report.validate()) {
-    System.out.println("✓ Report is valid!");
-    System.out.println(report.toJson());
-}
-{% endhighlight %}
-
-**Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
-
-</div>
-
-<div class="tab-content" data-lang="csharp" markdown="1">
-
-{% highlight csharp %}
-// Install
-Install-Package XARF
-
-// Create a report
-using XARF;
-
-var report = new XARFReport
-{
-    XarfVersion = "4.0.0",
-    ReportId = "550e8400-e29b-41d4-a716-446655440000",
-    Timestamp = DateTime.UtcNow.ToString("o"),
-    Reporter = new Reporter
-    {
-        Org = "Security Operations",
-        Contact = "abuse@example.com",
-        Type = "automated"
-    },
-    SourceIdentifier = "192.0.2.100",
-    Class = "abuse",
-    Type = "ddos"
-};
-
-// Validate
-if (report.Validate())
-{
-    Console.WriteLine("✓ Report is valid!");
-    Console.WriteLine(report.ToJson());
-}
-{% endhighlight %}
-
-**Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
-
-</div>
-
 ---
 
 ## Community Libraries
@@ -356,8 +234,6 @@ Community-maintained libraries and integrations:
 - **Flask/Django** (Python) - REST API integration
 - **Express.js** (Node.js) - Middleware for abuse reporting
 - **Gin/Echo** (Go) - High-performance handlers
-- **Spring Boot** (Java) - Enterprise integration
-- **ASP.NET Core** (C#) - MVC/API controllers
 
 ### Message Queues
 
@@ -377,14 +253,14 @@ Community-maintained libraries and integrations:
 
 ## Library Features Comparison
 
-| Feature | Python | JavaScript | Go | Java | C# |
-|---------|--------|------------|-----|------|-----|
-| **Schema Validation** | ✓ | 🚧 | 🚧 | 🚧 | 🚧 |
-| **Type Safety** | ✓ | 🚧 | 🚧 | 🚧 | 🚧 |
-| **Async/Await** | ✓ | 🚧 | N/A | 🚧 | 🚧 |
-| **Format Conversion** | ✓ | 🚧 | 🚧 | 🚧 | 🚧 |
-| **Evidence Hashing** | ✓ | 🚧 | 🚧 | 🚧 | 🚧 |
-| **Streaming** | ✓ | 🚧 | 🚧 | 🚧 | 🚧 |
+| Feature | Python | JavaScript | Go |
+|---------|--------|------------|-----|
+| **Schema Validation** | ✓ | 🚧 | 🚧 |
+| **Type Safety** | ✓ | 🚧 | 🚧 |
+| **Async/Await** | ✓ | 🚧 | N/A |
+| **Format Conversion** | ✓ | 🚧 | 🚧 |
+| **Evidence Hashing** | ✓ | 🚧 | 🚧 |
+| **Streaming** | ✓ | 🚧 | 🚧 |
 
 **Legend**: ✓ Available | 🚧 Coming Soon | N/A Not Applicable
 

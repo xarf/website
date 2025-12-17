@@ -1,5 +1,5 @@
 ---
-layout: library
+layout: docs
 title: "JavaScript Library - xarf-javascript"
 description: "Official JavaScript/TypeScript library for creating, validating, and processing XARF reports"
 permalink: /libraries/javascript/
