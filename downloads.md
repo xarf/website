@@ -232,7 +232,12 @@ def create_abuse_report(source_ip, abuse_type):
         reporter={
             "org": "Your Organization",
             "contact": "abuse@example.com",
-            "type": "automated"
+            "domain": "example.com"
+        },
+        sender={
+            "org": "Your Organization",
+            "contact": "abuse@example.com",
+            "domain": "example.com"
         },
         source_identifier=source_ip,
         category="connection",

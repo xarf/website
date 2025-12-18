@@ -66,13 +66,16 @@ report = XARFReport(
     reporter={
         "org": "Security Operations",
         "contact": "abuse@example.com",
-        "domain": "example.com",
-        "sender": "abuse@example.com",
-        "type": "automated"
+        "domain": "example.com"
+    },
+    sender={
+        "org": "Security Operations",
+        "contact": "abuse@example.com",
+        "domain": "example.com"
     },
     source_identifier="192.0.2.100",
     category="connection",
-    abuse_type="ddos"
+    type="ddos"
 )
 
 # Validate the report
@@ -103,13 +106,16 @@ const report = new XARFReport({
   reporter: {
     org: 'Security Operations',
     contact: 'abuse@example.com',
-    domain: 'example.com',
-    sender: 'abuse@example.com',
-    type: 'automated'
+    domain: 'example.com'
+  },
+  sender: {
+    org: 'Security Operations',
+    contact: 'abuse@example.com',
+    domain: 'example.com'
   },
   source_identifier: '192.0.2.100',
   category: 'connection',
-  abuse_type: 'ddos'
+  type: 'ddos'
 });
 
 // Validate and export
@@ -272,7 +278,7 @@ iodef_xml = IODefConverter.from_xarf(xarf_report)
   "error": "ValidationError",
   "message": "Missing required field: 'reporter'",
   "path": "$",
-  "expected": "object with 'org', 'contact', 'domain', 'sender', 'type'"
+  "expected": "object with 'org', 'contact', 'domain'"
 }
 ```
 
@@ -404,13 +410,16 @@ class TestXARFReports(unittest.TestCase):
             reporter={
                 "org": "Test Security",
                 "contact": "test@example.com",
-                "domain": "example.com",
-                "sender": "test@example.com",
-                "type": "automated"
+                "domain": "example.com"
+            },
+            sender={
+                "org": "Test Security",
+                "contact": "test@example.com",
+                "domain": "example.com"
             },
             source_identifier="192.0.2.100",
             category="connection",
-            abuse_type="ddos"
+            type="ddos"
         )
 
         self.assertTrue(report.validate())
@@ -425,13 +434,16 @@ class TestXARFReports(unittest.TestCase):
                 reporter={
                     "org": "Test",
                     "contact": "test@example.com",
-                    "domain": "example.com",
-                    "sender": "test@example.com",
-                    "type": "automated"
+                    "domain": "example.com"
+                },
+                sender={
+                    "org": "Test",
+                    "contact": "test@example.com",
+                    "domain": "example.com"
                 },
                 source_identifier="192.0.2.100",
                 category="connection",
-                abuse_type="ddos"
+                type="ddos"
             )
             report.validate(strict=True)
 ```
