@@ -204,7 +204,7 @@ class XARFReport:
 export interface XARFReport {
   report_id: string;
   timestamp: string;
-  classification: string;
+  category: string;
   type: string;
 }
 
@@ -384,8 +384,8 @@ Base your schema on existing types:
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://xarf.org/schemas/v4/types/abuse-ddos.json",
-  "title": "XARF Abuse - DDoS Attack",
+  "$id": "https://xarf.org/schemas/v4/types/connection-ddos.json",
+  "title": "XARF Connection - DDoS Attack",
   "description": "Reports of distributed denial of service attacks",
   "type": "object",
   "required": [
@@ -394,12 +394,12 @@ Base your schema on existing types:
     "timestamp",
     "reporter",
     "source_identifier",
-    "classification",
+    "category",
     "type"
   ],
   "properties": {
     "xarf_version": { "$ref": "../common.json#/$defs/xarf_version" },
-    "classification": { "const": "abuse" },
+    "category": { "const": "connection" },
     "type": { "const": "ddos" },
 
     "attack_vector": {
@@ -428,10 +428,15 @@ Provide a complete, valid example:
   "reporter": {
     "org": "Example Security",
     "contact": "abuse@example.com",
-    "type": "automated"
+    "domain": "example.com"
+  },
+  "sender": {
+    "org": "Example Security",
+    "contact": "abuse@example.com",
+    "domain": "example.com"
   },
   "source_identifier": "192.0.2.100",
-  "classification": "abuse",
+  "category": "connection",
   "type": "ddos",
   "attack_vector": "udp_flood"
 }
@@ -464,7 +469,7 @@ Add documentation to the website:
 Add to `docs/event-types.md`:
 
 ```markdown
-| `ddos` | Distributed denial of service attack | abuse |
+| `ddos` | Distributed denial of service attack | connection |
 ```
 
 ### 6. Submit Pull Request
