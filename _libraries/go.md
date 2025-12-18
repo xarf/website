@@ -54,12 +54,17 @@ func main() {
         Reporter: xarf.Reporter{
             Org:     "Security Operations",
             Contact: "abuse@example.com",
-            Type:    "automated",
+            Domain:  "example.com",
+        },
+        Sender: xarf.Sender{
+            Org:     "Security Operations",
+            Contact: "abuse@example.com",
+            Domain:  "example.com",
         },
         SourceIdentifier: "192.0.2.100",
-        Category:         "abuse",
-        Type:            "ddos",
-        Description:     "DDoS attack detected from source IP",
+        Category:         "connection",
+        Type:             "ddos",
+        Description:      "DDoS attack detected from source IP",
     })
 
     // Validate
@@ -193,11 +198,16 @@ report := xarf.NewReport(xarf.ReportConfig{
     Reporter: xarf.Reporter{
         Org:     "Security Ops",
         Contact: "abuse@example.com",
-        Type:    "automated",
+        Domain:  "example.com",
+    },
+    Sender: xarf.Sender{
+        Org:     "Security Ops",
+        Contact: "abuse@example.com",
+        Domain:  "example.com",
     },
     SourceIdentifier: "192.0.2.100",
-    Category:         "abuse",
-    Type:            "ddos",
+    Category:         "connection",
+    Type:             "ddos",
 })
 ```
 
@@ -322,23 +332,25 @@ func createDDoSReport() (*xarf.Report, error) {
         Reporter: xarf.Reporter{
             Org:     "Network Security Team",
             Contact: "noc@example.com",
-            Type:    "automated",
+            Domain:  "example.com",
+        },
+        Sender: xarf.Sender{
+            Org:     "Network Security Team",
+            Contact: "noc@example.com",
+            Domain:  "example.com",
         },
         SourceIdentifier: "203.0.113.50",
-        Category:         "abuse",
-        Type:            "ddos",
-        Severity:        "high",
-        Description:     "Volumetric DDoS attack detected",
+        Category:         "connection",
+        Type:             "ddos",
+        Description:      "Volumetric DDoS attack detected",
     })
 
-    // Add technical details
-    report.TechnicalDetails = map[string]interface{}{
-        "protocol":              "UDP",
-        "port":                  53,
-        "packets_per_second":    150000,
-        "bandwidth_mbps":        1200,
-        "attack_duration_seconds": 300,
-    }
+    // Add DDoS-specific fields
+    report.Protocol = "udp"
+    report.DestinationPort = 53
+    report.PeakPPS = 150000
+    report.PeakBPS = 1200000000
+    report.DurationSeconds = 300
 
     if err := report.Validate(); err != nil {
         return nil, err
@@ -442,15 +454,20 @@ report := xarf.NewReport(xarf.ReportConfig{
     Reporter: xarf.Reporter{
         Org:     "Security Team",
         Contact: "abuse@example.com",
-        Type:    "automated",
+        Domain:  "example.com",
+    },
+    Sender: xarf.Sender{
+        Org:     "Security Team",
+        Contact: "abuse@example.com",
+        Domain:  "example.com",
     },
     SourceIdentifier: "192.0.2.100",
-    Category:         "abuse",
-    Type:            "spam",
+    Category:         "messaging",
+    Type:             "spam",
 })
 
-// Add custom fields via TechnicalDetails
-report.TechnicalDetails = map[string]interface{}{
+// Add custom fields via CustomFields
+report.CustomFields = map[string]interface{}{
     "custom_tracking_id":       "TICKET-12345",
     "internal_severity_score":  8.5,
     "automated_response":       true,

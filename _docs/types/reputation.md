@@ -38,7 +38,12 @@ Threat intelligence data including blocklist entries and indicators of compromis
   🟠 "reporter": {
     "org": "Threat Intelligence Platform",
     "contact": "intel@threatintel.example",
-    "type": "automated"
+    "domain": "threatintel.example"
+  },
+  🟠 "sender": {
+    "org": "Threat Intelligence Platform",
+    "contact": "intel@threatintel.example",
+    "domain": "threatintel.example"
   },
   🟠 "source_identifier": "192.0.2.150",
   🟠 "category": "reputation",
@@ -87,7 +92,12 @@ Threat intelligence data including blocklist entries and indicators of compromis
   🟠 "reporter": {
     "org": "Security Research Lab",
     "contact": "research@seclab.example",
-    "type": "manual"
+    "domain": "seclab.example"
+  },
+  🟠 "sender": {
+    "org": "Security Research Lab",
+    "contact": "research@seclab.example",
+    "domain": "seclab.example"
   },
   🟠 "source_identifier": "198.51.100.75",
   🟠 "category": "reputation",

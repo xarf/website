@@ -38,28 +38,31 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
       </div>
       <pre><code class="language-json">{
   "xarf_version": "4.0.0",
-  "category": "content",
-  "type": "phishing",
-  "timestamp": "2025-01-16T14:30:00Z",
+  "report_id": "1a5ec293-0849-40a4-9eba-d5926262ff05",
+  "timestamp": "2025-01-11T15:15:24Z",
   "reporter": {
-    "organization": "Example Bank Security",
-    "contact_email": "security@example-bank.com",
-    "type": "automated"
+    "org": "Example Bank Security",
+    "contact": "security@example-bank.com",
+    "domain": "example-bank.com"
   },
   "sender": {
-    "organization": "Example Bank Security",
-    "contact_email": "abuse@example-bank.com"
+    "org": "Example Bank Security",
+    "contact": "security@example-bank.com",
+    "domain": "example-bank.com"
   },
   "source_identifier": "203.0.113.45",
+  "category": "content",
+  "type": "phishing",
+  "evidence_source": "automated_scan",
   "url": "http://fake-bank.example.com",
   "target_brand": "Example Bank",
   "evidence": [{
     "content_type": "image/png",
-    "description": "Screenshot",
+    "description": "Screenshot of phishing page",
     "payload": "iVBORw0KGg...",
-    "hashes": ["sha256:a1b2c3..."]
+    "hash": "sha256:a1b2c3d4e5f6..."
   }],
-  "tags": ["phishing:banking"]
+  "tags": ["target:banking", "severity:high"]
 }</code></pre>
     </div>
   </div>

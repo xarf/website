@@ -78,7 +78,7 @@ The `reporter` identifies the organization that **identified or complained about
 |-------|------|----------|-------------|
 | `org` | string | <span class="field-mandatory">Yes</span> | Name of the organization that identified the abuse |
 | `contact` | string | <span class="field-mandatory">Yes</span> | Contact email of the complaining organization |
-| `type` | string | <span class="field-mandatory">Yes</span> | How report was generated: `automated`, `manual`, `unknown` |
+| `domain` | string | <span class="field-mandatory">Yes</span> | Domain name of the reporting organization |
 
 ### Sender Object
 
@@ -88,6 +88,7 @@ The `sender` identifies the organization that **is transmitting this report** (t
 |-------|------|----------|-------------|
 | `org` | string | <span class="field-mandatory">Yes</span> | Name of the organization sending/transmitting the report |
 | `contact` | string | <span class="field-mandatory">Yes</span> | Contact email for the sending organization |
+| `domain` | string | <span class="field-mandatory">Yes</span> | Domain name of the sending organization |
 
 **When to use different reporter vs sender:**
 - **ISP abuse desks** using third-party reporting infrastructure (e.g., ISP = reporter, Abusix = sender)
@@ -102,11 +103,12 @@ The `sender` identifies the organization that **is transmitting this report** (t
 "reporter": {
   "org": "Example Security",
   "contact": "abuse@example.com",
-  "type": "automated"
+  "domain": "example.com"
 },
 "sender": {
   "org": "Example Security",
-  "contact": "abuse@example.com"
+  "contact": "abuse@example.com",
+  "domain": "example.com"
 }
 ```
 
@@ -115,11 +117,12 @@ The `sender` identifies the organization that **is transmitting this report** (t
 "reporter": {
   "org": "Swisscom Abuse Desk",
   "contact": "abuse@swisscom.ch",
-  "type": "automated"
+  "domain": "swisscom.ch"
 },
 "sender": {
   "org": "Abusix",
-  "contact": "reports@abusix.com"
+  "contact": "reports@abusix.com",
+  "domain": "abusix.com"
 }
 ```
 
@@ -130,7 +133,7 @@ The `sender` identifies the organization that **is transmitting this report** (t
 | `content_type` | string | <span class="field-mandatory">Yes</span> | MIME type (e.g., `image/png`, `message/rfc822`, `text/plain`) |
 | `payload` | string | <span class="field-mandatory">Yes</span> | Base64-encoded evidence data |
 | `description` | string | <span class="field-recommended">Recommended</span> | Human-readable description of evidence |
-| `hashes` | array | <span class="field-recommended">Recommended</span> | Array of cryptographic hashes (e.g., `["sha256:abc123", "md5:def456"]`) |
+| `hash` | string | <span class="field-recommended">Recommended</span> | Cryptographic hash in format `algorithm:hexvalue` (e.g., `sha256:abc123...`) |
 | `size` | integer | <span class="field-optional">Optional</span> | Size in bytes (pre-encoding) |
 
 ---
@@ -333,10 +336,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "image/png",
       "description": "Screenshot of phishing page",
       "payload": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB...",
-      "hashes": [
-        "sha256:abc123def456...",
-        "md5:789ghi012jkl..."
-      ]
+      "hash": "sha256:abc123def456789..."
     }
   ],
   "tags": ["phishing:banking", "severity:high"],
@@ -377,7 +377,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "Network flow data showing attack pattern",
       "payload": "VGltZXN0YW1wLCBTcmNJUCwgRHN0SUAs...",
-      "hashes": ["sha256:def789ghi012..."]
+      "hash": "sha256:def789ghi012abc345..."
     }
   ],
   "tags": ["attack:volumetric", "severity:critical"],
@@ -417,7 +417,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "message/rfc822",
       "description": "Complete spam email with headers",
       "payload": "UmVjZWl2ZWQ6IGZyb20gWzE5Mi4wLjIu...",
-      "hashes": ["sha256:ghi345jkl678..."]
+      "hash": "sha256:ghi345jkl678abc901..."
     }
   ],
   "tags": ["spam:pharma", "severity:medium"],
@@ -456,11 +456,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "application/octet-stream",
       "description": "Password-protected malware sample (password: infected)",
       "payload": "UEsDBBQACQAIAA...",
-      "hashes": [
-        "md5:5d41402abc4b2a76b9719d911017c592",
-        "sha1:2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
-        "sha256:d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
-      ],
+      "hash": "sha256:d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592",
       "size": 245760
     }
   ],
@@ -502,7 +498,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "BitTorrent peer list and metadata",
       "payload": "SW5mb0hhc2g6IGFiY2QxMjM0ZWY1Njc4...",
-      "hashes": ["sha256:jkl901mno234..."]
+      "hash": "sha256:jkl901mno234abc567..."
     }
   ],
   "tags": ["copyright:film", "severity:medium"],
@@ -541,7 +537,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "C2 communication logs",
       "payload": "Q29ubmVjdGlvbiB0byBldmlsLWMyLmV4...",
-      "hashes": ["sha256:mno567pqr890..."]
+      "hash": "sha256:mno567pqr890abc123..."
     }
   ],
   "tags": ["botnet:mirai", "severity:high"],
@@ -584,7 +580,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "Vulnerability scan results",
       "payload": "VnVsbmVyYWJpbGl0eSBEZXRhaWxzOiBIZWFy...",
-      "hashes": ["sha256:pqr123stu456..."]
+      "hash": "sha256:pqr123stu456def789..."
     }
   ],
   "tags": ["cve:CVE-2014-0160", "severity:high"],

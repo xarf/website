@@ -37,11 +37,16 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
   🟠 "timestamp": "2024-01-15T16:45:10Z",
   🟠 "reporter": {
     "org": "Email Service Provider",
-    "contact": "abuse@esp-provider.com"
+    "contact": "abuse@esp-provider.com",
+    "domain": "esp-provider.com"
+  },
+  🟠 "sender": {
+    "org": "Email Service Provider",
+    "contact": "abuse@esp-provider.com",
+    "domain": "esp-provider.com"
   },
   🟠 "source_identifier": "192.0.2.200",
-  🟠 "domain": "company.example",
-  🟠 "sender": "newsletter@company.example",
+  🟢 "smtp_from": "newsletter@company.example",
   🟠 "category": "messaging",
   🟠 "type": "bulk_messaging",
 
@@ -103,11 +108,15 @@ Communication abuse including spam, phishing emails, and bulk messaging across v
   🟠 "timestamp": "2024-01-15T14:30:25Z",
   🟠 "reporter": {
     "org": "SpamCop",
-    "contact": "reports@spamcop.net"
+    "contact": "reports@spamcop.net",
+    "domain": "spamcop.net"
+  },
+  🟠 "sender": {
+    "org": "SpamCop",
+    "contact": "reports@spamcop.net",
+    "domain": "spamcop.net"
   },
   🟠 "source_identifier": "192.0.2.123",
-  🟠 "domain": "example.com",
-  🟠 "sender": "fake@example.com",
   🟠 "category": "messaging",
   🟠 "type": "spam",
 

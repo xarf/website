@@ -111,10 +111,15 @@ report = XARFReport(
     reporter={
         "org": "Security Operations",
         "contact": "abuse@example.com",
-        "type": "automated"
+        "domain": "example.com"
+    },
+    sender={
+        "org": "Security Operations",
+        "contact": "abuse@example.com",
+        "domain": "example.com"
     },
     source_identifier="192.0.2.100",
-    classification="abuse",
+    category="connection",
     type="ddos"
 )
 
@@ -144,10 +149,15 @@ const report = new XARFReport({
   reporter: {
     org: 'Security Operations',
     contact: 'abuse@example.com',
-    type: 'automated'
+    domain: 'example.com'
+  },
+  sender: {
+    org: 'Security Operations',
+    contact: 'abuse@example.com',
+    domain: 'example.com'
   },
   source_identifier: '192.0.2.100',
-  class: 'abuse',
+  category: 'connection',
   type: 'ddos'
 });
 
@@ -185,10 +195,15 @@ func main() {
         Reporter: xarf.Reporter{
             Org: "Security Operations",
             Contact: "abuse@example.com",
-            Type: "automated",
+            Domain: "example.com",
+        },
+        Sender: xarf.Sender{
+            Org: "Security Operations",
+            Contact: "abuse@example.com",
+            Domain: "example.com",
         },
         SourceIdentifier: "192.0.2.100",
-        Class: "abuse",
+        Category: "connection",
         Type: "ddos",
     }
 

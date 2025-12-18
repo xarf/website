@@ -38,7 +38,12 @@ Compromised systems and malicious infrastructure including botnets, command & co
   🟠 "reporter": {
     "org": "Botnet Tracking Service",
     "contact": "botnet@security.example",
-    "type": "automated"
+    "domain": "security.example"
+  },
+  🟠 "sender": {
+    "org": "Botnet Tracking Service",
+    "contact": "botnet@security.example",
+    "domain": "security.example"
   },
   🟠 "source_identifier": "192.0.2.88",
   🟠 "category": "infrastructure",
@@ -87,7 +92,12 @@ Compromised systems and malicious infrastructure including botnets, command & co
   🟠 "reporter": {
     "org": "Threat Intelligence Platform",
     "contact": "intel@threat.example",
-    "type": "automated"
+    "domain": "threat.example"
+  },
+  🟠 "sender": {
+    "org": "Threat Intelligence Platform",
+    "contact": "intel@threat.example",
+    "domain": "threat.example"
   },
   🟠 "source_identifier": "198.51.100.150",
   🟠 "category": "infrastructure",
