@@ -133,18 +133,18 @@ social:
   links:
     - https://github.com/xarf
 
-logo: /assets/images/xarf-logo.png
+logo: /assets/images/favicon.svg
 
 # SEO defaults for jekyll-seo-tag
 defaults_seo:
-  image: /assets/images/xarf-og-image.png
+  image: /assets/images/favicon.svg
 
 # Keywords for search engines
 keywords: "XARF, abuse reporting, incident reporting, JSON format, parser library, security, XARF v4, abuse detection, malware reporting, phishing detection"
 
 # GitHub Pages
 github_username: xarf
-repository: xarf/website
+repository: xarf/xarf-website
 
 # Exclude files
 exclude:

@@ -83,7 +83,7 @@ if (valid) {
 
 ### Using Online Validator
 
-Try the **[XARF Online Validator Tool](/validator/)** - paste your JSON report and get instant validation feedback with detailed error messages.
+Try the **[XARF Online Validator Tool](/tools/validator/)** - paste your JSON report and get instant validation feedback with detailed error messages.
 
 ## Schema Files on GitHub
 
@@ -548,7 +548,7 @@ go get github.com/xeipuuv/gojsonschema
 
 ### Online Validation
 
-**XARF Online Validator**: [https://xarf.org/validator/](/validator/)
+**XARF Online Validator**: [https://xarf.org/tools/validator/](/tools/validator/)
 
 Features:
 - Paste JSON reports for instant validation
@@ -632,7 +632,7 @@ XARF uses semantic versioning. The `xarf_version` field indicates which schema v
 
 - **[Technical Specification](/docs/specification/)** - Complete XARF v4 technical details
 - **[Common Fields Reference](/docs/common-fields/)** - Deep dive into core fields
-- **[Content Type Examples](/docs/content-types/)** - Real-world example reports
+- **[Sample Reports](/docs/types/)** - Real-world example reports
 - **[Best Practices](/docs/best-practices/)** - Guidelines for effective XARF implementation
 
 ## Questions?

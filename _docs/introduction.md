@@ -223,7 +223,7 @@ Ready to implement XARF v4? Here's where to go next:
 
 - **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 32 types
 - **[Common Fields Reference](/docs/common-fields/)** - Understanding the core XARF fields
-- **[Content Type Examples](/docs/content-types/)** - Sample reports for each abuse type
+- **[Sample Reports](/docs/types/)** - Sample reports for each abuse type
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation
 - **[Best Practices](/docs/best-practices/)** - Guidelines for effective reporting
 

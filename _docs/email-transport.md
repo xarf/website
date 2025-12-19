@@ -531,7 +531,7 @@ While email is common, XARF supports multiple transport mechanisms:
 | **Webhook** | Event-driven workflows | Real-time notifications |
 | **FTP/SFTP** | Batch delivery | Large volumes, scheduled delivery |
 
-See our [API Integration Guide](/docs/api-integration/) for non-email transport methods.
+See our [Implementation Guide](/docs/implementation-guide/) for non-email transport methods.
 
 ---
 
@@ -572,7 +572,7 @@ A: Yes, the MIME structure is identical. Only the JSON payload schema differs be
 - **[Technical Specification](/docs/specification/)** - Complete XARF v4 schema
 - **[Implementation Guide](/docs/implementation-guide/)** - General integration patterns
 - **[Best Practices](/docs/best-practices/)** - Advanced tips and recommendations
-- **[API Integration](/docs/api-integration/)** - Using HTTPS/REST transport
+- **[Schema Reference](/docs/schemas/)** - JSON Schema details
 
 ---
 

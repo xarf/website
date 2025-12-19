@@ -938,7 +938,7 @@ Include these when information is available:
 
 ## Next Steps
 
-- **[Content Type Examples](/docs/content-types/)** - See complete examples for each abuse type
+- **[Sample Reports](/docs/types/)** - See complete examples for each abuse type
 - **[Technical Specification](/docs/specification/)** - Deep dive into XARF v4 spec
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation
 - **[Best Practices](/docs/best-practices/)** - Guidelines for effective reporting

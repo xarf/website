@@ -573,6 +573,6 @@ By following these best practices, you'll create reports that recipients can tru
 ## Additional Resources
 
 - [XARF Specification](/docs/specification/)
-- [Schema Reference](/docs/schema/)
-- [Example Reports](/docs/examples/)
-- [Implementation Guide](/docs/implementation/)
+- [Schema Reference](/docs/schemas/)
+- [Sample Reports](/docs/types/)
+- [Implementation Guide](/docs/implementation-guide/)

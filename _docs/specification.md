@@ -693,7 +693,7 @@ XARF v4 parsers should support automatic conversion of XARF v3 reports for backw
 ## Additional Resources
 
 - **[Common Fields Reference](/docs/common-fields/)** - Detailed field definitions
-- **[Content Type Examples](/docs/content-types/)** - Sample reports for each type
+- **[Sample Reports](/docs/types/)** - Sample reports for each type
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation
 - **[Best Practices](/docs/best-practices/)** - Implementation guidelines
 

@@ -67,8 +67,7 @@ xarf-validator --strict report.json
 - JSON/text output formats
 - Exit codes for CI/CD integration
 
-<!-- TODO: Add real links when available -->
-**Development**: [Watch GitHub for releases](https://github.com/xarf/xarf-validator)
+**Development**: Coming soon - watch [GitHub](https://github.com/xarf/xarf-spec) for announcements
 
 ---
 
@@ -89,8 +88,7 @@ Bring XARF support to your development environment.
 - Hover documentation
 - Snippets for common reports
 
-<!-- TODO: Add real marketplace link when published -->
-**Development**: [Follow progress on GitHub](https://github.com/xarf/xarf-vscode)
+**Development**: Coming soon - watch [GitHub](https://github.com/xarf/xarf-spec) for announcements
 
 ### JetBrains Plugin
 
@@ -125,16 +123,6 @@ Programmatic XARF support in your language of choice.
   <a href="{{ site.baseurl }}/libraries/go/" class="language-link">
     <strong>Go</strong>
     <span>go get github.com/xarf/xarf-go</span>
-    <span class="alpha-badge">Alpha</span>
-  </a>
-  <a href="{{ site.baseurl }}/libraries/java/" class="language-link">
-    <strong>Java</strong>
-    <span>Maven: org.xarf:xarf-java:4.0.0-alpha.1</span>
-    <span class="alpha-badge">Alpha</span>
-  </a>
-  <a href="{{ site.baseurl }}/libraries/csharp/" class="language-link">
-    <strong>C#</strong>
-    <span>dotnet add package Xarf</span>
     <span class="alpha-badge">Alpha</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/" class="language-link">
@@ -201,8 +189,7 @@ jobs:
           strict: true
 ```
 
-<!-- TODO: Add real GitHub Marketplace link when published -->
-**Development**: [Follow progress on GitHub](https://github.com/xarf/validate-action)
+**Development**: Coming soon - watch [GitHub](https://github.com/xarf/xarf-spec) for announcements
 
 ---
 

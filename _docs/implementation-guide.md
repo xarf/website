@@ -17,11 +17,9 @@ This guide walks you through implementing XARF (eXtended Abuse Reporting Format)
 
 XARF provides libraries for multiple programming languages:
 
-- **[Python](/libraries/python/)** - Full-featured library with validation and schema support
-- **JavaScript/Node.js** (Coming Soon) - Browser and Node.js compatible
-- **Go** (Coming Soon) - High-performance implementation
-- **Java** (Coming Soon) - Enterprise-grade library
-- **C#/.NET** (Coming Soon) - Windows and cross-platform support
+- **[Python](/libraries/python/)** (Beta) - Full-featured library with validation and schema support
+- **[JavaScript/Node.js](/libraries/javascript/)** (Alpha) - Browser and Node.js compatible
+- **[Go](/libraries/go/)** (Alpha) - High-performance implementation
 
 ### 2. Install the Library
 

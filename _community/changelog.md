@@ -251,7 +251,7 @@ Upgrade before 2024-12-31 when v3.x support ends.
 
 **Steps**:
 1. Read the [Migration Guide](/docs/migration/)
-2. Test with the [Format Converter](/tools/converter/)
+2. Test with the [Schema Validator](/tools/validator/)
 3. Update libraries to v4-compatible versions
 4. Validate reports with new schemas
 5. Deploy updated integration

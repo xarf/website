@@ -48,6 +48,7 @@ Official and community-maintained libraries for implementing XARF in your applic
   <div class="library-meta">
     <span>📦 npm: <code>npm install xarf</code></span>
     <span>📚 <a href="/libraries/javascript/">Documentation</a></span>
+    <span>⭐ <a href="https://github.com/xarf/xarf-javascript">GitHub</a></span>
   </div>
   <div class="library-features">
     <strong>Features:</strong>
@@ -70,6 +71,7 @@ Official and community-maintained libraries for implementing XARF in your applic
   <div class="library-meta">
     <span>📦 go get: <code>go get github.com/xarf/xarf-go</code></span>
     <span>📚 <a href="/libraries/go/">Documentation</a></span>
+    <span>⭐ <a href="https://github.com/xarf/xarf-go">GitHub</a></span>
   </div>
   <div class="library-features">
     <strong>Features:</strong>
