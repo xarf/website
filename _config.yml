@@ -1,6 +1,6 @@
 # Site settings
 title: "XARF - eXtended Abuse Reporting Format"
-description: "XARF v4.0.0 - Modern JSON-based abuse reporting format with parser libraries for JavaScript, Go, Java, and C#. Open source, developer-friendly, and production-ready."
+description: "XARF v4.0.0 - Modern JSON-based abuse reporting format with parser libraries for Python, JavaScript, and Go. Open source, developer-friendly, and production-ready."
 url: "https://xarf.org"
 baseurl: ""
 lang: "en"
@@ -77,10 +77,6 @@ nav_links:
         url: "/libraries/javascript/"
       - title: "Go"
         url: "/libraries/go/"
-      - title: "Java"
-        url: "/libraries/java/"
-      - title: "C#/.NET"
-        url: "/libraries/csharp/"
   - title: "Downloads"
     url: "/downloads/"
   - title: "Community"

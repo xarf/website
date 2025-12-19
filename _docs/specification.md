@@ -57,7 +57,7 @@ All XARF v4 reports share this common structure:
 | `source_port` | integer | 1-65535 | Source port number (critical for CGNAT networks) |
 | `evidence` | array | - | Structured evidence items with cryptographic validation |
 | `evidence_source` | string | varies | Quality indicator (e.g., `spamtrap`, `honeypot`, `automated_scan`) |
-| `reporter_reference_id` | string | - | Reporter's internal ticket/case ID for correlation |
+| `confidence` | number | 0.0-1.0 | Confidence score for automated reports |
 
 <div class="field-category optional">
 <strong>Optional Fields</strong> (may be included for additional context)
@@ -66,9 +66,9 @@ All XARF v4 reports share this common structure:
 | Field | Type | Format | Description |
 |-------|------|--------|-------------|
 | `tags` | array | `namespace:value` | Categorization tags (e.g., `malware:emotet`, `campaign:2024q1`) |
-| `confidence` | number | 0.0-1.0 | Confidence score for automated reports |
-| `severity` | string | enum | Impact assessment (low, medium, high, critical) |
-| `custom_fields` | object | - | Organization-specific data for internal workflows |
+| `description` | string | - | Human-readable description of the abuse incident |
+| `legacy_version` | string | "3" | Original XARF version if converted from v3 format |
+| `_internal` | object | - | Internal operational metadata (never transmitted) |
 
 ### Reporter Object
 

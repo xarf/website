@@ -504,9 +504,10 @@ The actual evidence data, base64-encoded.
 - Maximum 5MB per evidence item
 - Maximum 15MB total evidence per report
 
-#### description (optional in evidence)
+#### description (recommended in evidence)
 
 **Type:** `string`
+**Level:** 🟢 Recommended
 **Max Length:** 500 characters
 
 Human-readable description of this evidence item.
@@ -518,9 +519,10 @@ Human-readable description of this evidence item.
 "description": "Network flow analysis logs"
 ```
 
-#### hash (optional in evidence)
+#### hash (recommended in evidence)
 
 **Type:** `string`
+**Level:** 🟢 Recommended
 **Format:** `algorithm:hexvalue`
 
 Hash of evidence for integrity verification.
