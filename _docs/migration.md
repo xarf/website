@@ -107,7 +107,7 @@ Migrating to XARF v4 delivers immediate benefits:
 
 **Evidence Integrity**: Cryptographic hashes ensure evidence authenticity
 
-**Comprehensive Coverage**: 58 content types cover virtually all abuse scenarios
+**Comprehensive Coverage**: 32 types cover virtually all abuse scenarios
 
 **Future-Proof**: Extensible design accommodates new abuse types without breaking changes
 
@@ -226,7 +226,7 @@ Your Category              → XARF v4 Category + Type
 "Brute Force Attack"      → category: connection, type: brute-force
 ```
 
-Review all [58 XARF v4 types across 7 categories](/docs/content-types/) to find the best match for your categories.
+Review all [32 XARF v4 types across 7 categories](/docs/types/) to find the best match for your categories.
 
 ### Evidence Structure
 
@@ -487,7 +487,7 @@ def generate_url_hash(url):
 - Use the most specific type available within the appropriate category
 - Document mapping decisions
 - Use `custom_fields` to preserve original category
-- Review [type categories](/docs/content-types/) for best fit
+- Review [type categories](/docs/types/) for best fit
 
 **Mapping Strategy**:
 ```python
@@ -1211,7 +1211,7 @@ Now that you understand migration to XARF v4:
 1. **Complete your assessment** - Use the worksheets in this guide
 2. **Choose your strategy** - Pick the migration approach that fits your needs
 3. **Review the spec** - Read the [Technical Specification](/docs/specification/)
-4. **Study examples** - Examine [Content Type Examples](/docs/content-types/)
+4. **Study examples** - Examine [Sample Reports](/docs/types/)
 5. **Build your converter** - Start with a pilot implementation
 6. **Test thoroughly** - Validate before production deployment
 7. **Deploy gradually** - Roll out in phases if possible
@@ -1222,6 +1222,6 @@ Now that you understand migration to XARF v4:
 **Related Documentation:**
 - [Introduction to XARF](/docs/introduction/)
 - [Technical Specification](/docs/specification/)
-- [Content Type Examples](/docs/content-types/)
+- [Sample Reports](/docs/types/)
 - [Common Fields Reference](/docs/common-fields/)
 - [Best Practices](/docs/best-practices/)

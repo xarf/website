@@ -504,9 +504,10 @@ The actual evidence data, base64-encoded.
 - Maximum 5MB per evidence item
 - Maximum 15MB total evidence per report
 
-#### description (optional in evidence)
+#### description (recommended in evidence)
 
 **Type:** `string`
+**Level:** 🟢 Recommended
 **Max Length:** 500 characters
 
 Human-readable description of this evidence item.
@@ -518,9 +519,10 @@ Human-readable description of this evidence item.
 "description": "Network flow analysis logs"
 ```
 
-#### hash (optional in evidence)
+#### hash (recommended in evidence)
 
 **Type:** `string`
+**Level:** 🟢 Recommended
 **Format:** `algorithm:hexvalue`
 
 Hash of evidence for integrity verification.
@@ -936,7 +938,7 @@ Include these when information is available:
 
 ## Next Steps
 
-- **[Content Type Examples](/docs/content-types/)** - See complete examples for each abuse type
+- **[Sample Reports](/docs/types/)** - See complete examples for each abuse type
 - **[Technical Specification](/docs/specification/)** - Deep dive into XARF v4 spec
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation
 - **[Best Practices](/docs/best-practices/)** - Guidelines for effective reporting

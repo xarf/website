@@ -1,5 +1,5 @@
 ---
-layout: library
+layout: docs
 title: "Python Library - xarf-python"
 description: "Official Python library for creating, validating, and processing XARF reports"
 permalink: /libraries/python/
@@ -45,8 +45,7 @@ report = XARFReport(
     reporter={
         "org": "Security Operations",
         "contact": "abuse@example.com",
-        "domain": "example.com",
-        "type": "automated"
+        "domain": "example.com"
     },
     sender={
         "org": "Security Operations",
@@ -54,7 +53,7 @@ report = XARFReport(
         "domain": "example.com"
     },
     source_identifier="192.0.2.100",
-    classification="abuse",
+    category="connection",
     type="ddos"
 )
 
@@ -103,7 +102,7 @@ XARFReport(
     reporter: dict,
     sender: dict,
     source_identifier: str,
-    classification: str,
+    category: str,
     type: str,
     **kwargs
 )
@@ -113,10 +112,11 @@ XARFReport(
 - `xarf_version` (str): XARF specification version (e.g., "4.0.0")
 - `report_id` (str): Unique report identifier (UUID recommended)
 - `timestamp` (str): ISO 8601 timestamp
-- `reporter` (dict): Reporter information
+- `reporter` (dict): Reporter information (requires: org, contact, domain)
+- `sender` (dict): Sender information (requires: org, contact, domain)
 - `source_identifier` (str): Source IP/domain
-- `classification` (str): Report classification
-- `type` (str): Specific type within classification
+- `category` (str): Abuse category (messaging, content, connection, etc.)
+- `type` (str): Specific type within category
 - `**kwargs`: Additional optional fields
 
 #### Methods
@@ -484,11 +484,15 @@ class TestXARFReports(unittest.TestCase):
             "reporter": {
                 "org": "Test Security",
                 "contact": "test@example.com",
-                "domain": "example.com",
-                "type": "automated"
+                "domain": "example.com"
+            },
+            "sender": {
+                "org": "Test Security",
+                "contact": "test@example.com",
+                "domain": "example.com"
             },
             "source_identifier": "192.0.2.100",
-            "classification": "abuse",
+            "category": "connection",
             "type": "ddos"
         }
 
@@ -532,12 +536,16 @@ def sample_report():
         reporter={
             "org": "Test Security",
             "contact": "test@example.com",
-            "domain": "example.com",
-            "type": "automated"
+            "domain": "example.com"
+        },
+        sender={
+            "org": "Test Security",
+            "contact": "test@example.com",
+            "domain": "example.com"
         },
         source_identifier="192.0.2.100",
-        classification="abuse",
-        "type": "ddos"
+        category="connection",
+        type="ddos"
     )
 
 def test_report_validation(sample_report):

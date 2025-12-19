@@ -17,7 +17,7 @@ Selecting the appropriate `category` and `type` is crucial for proper report rou
 
 **DO:**
 - Use specific types when available (e.g., category: `connection`, type: `login-attack` for brute force attacks)
-- Review the full list of 58 types across 7 categories before selecting
+- Review the full list of 32 types across 7 categories before selecting
 - Consider the primary abuse category, and the most specific type available
 - Use `content` category for hosted malicious content, `connection` for network attacks
 
@@ -573,6 +573,6 @@ By following these best practices, you'll create reports that recipients can tru
 ## Additional Resources
 
 - [XARF Specification](/docs/specification/)
-- [Schema Reference](/docs/schema/)
-- [Example Reports](/docs/examples/)
-- [Implementation Guide](/docs/implementation/)
+- [Schema Reference](/docs/schemas/)
+- [Sample Reports](/docs/types/)
+- [Implementation Guide](/docs/implementation-guide/)

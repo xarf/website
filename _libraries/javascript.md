@@ -1,5 +1,5 @@
 ---
-layout: library
+layout: docs
 title: "JavaScript Library - xarf-javascript"
 description: "Official JavaScript/TypeScript library for creating, validating, and processing XARF reports"
 permalink: /libraries/javascript/
@@ -57,10 +57,15 @@ const report = new XARFReport({
   reporter: {
     org: 'Security Operations',
     contact: 'abuse@example.com',
-    type: 'automated'
+    domain: 'example.com'
+  },
+  sender: {
+    org: 'Security Operations',
+    contact: 'abuse@example.com',
+    domain: 'example.com'
   },
   source_identifier: '192.0.2.100',
-  category: 'abuse',
+  category: 'connection',
   type: 'ddos',
   description: 'DDoS attack detected from source IP'
 });
@@ -135,10 +140,15 @@ const report = new XARFReport({
   reporter: {
     org: 'Security Ops',
     contact: 'abuse@example.com',
-    type: 'automated'
+    domain: 'example.com'
+  },
+  sender: {
+    org: 'Security Ops',
+    contact: 'abuse@example.com',
+    domain: 'example.com'
   },
   source_identifier: '192.0.2.100',
-  category: 'abuse',
+  category: 'connection',
   type: 'ddos'
 });
 ```
@@ -330,20 +340,22 @@ const ddosReport = new XARFReport({
   reporter: {
     org: 'Network Security Team',
     contact: 'noc@example.com',
-    type: 'automated'
+    domain: 'example.com'
+  },
+  sender: {
+    org: 'Network Security Team',
+    contact: 'noc@example.com',
+    domain: 'example.com'
   },
   source_identifier: '203.0.113.50',
-  category: 'abuse',
+  category: 'connection',
   type: 'ddos',
-  severity: 'high',
   description: 'Volumetric DDoS attack detected',
-  technical_details: {
-    protocol: 'UDP',
-    port: 53,
-    packets_per_second: 150000,
-    bandwidth_mbps: 1200,
-    attack_duration_seconds: 300
-  }
+  protocol: 'udp',
+  destination_port: 53,
+  peak_pps: 150000,
+  peak_bps: 1200000000,
+  duration_seconds: 300
 });
 
 if (await ddosReport.validate()) {
@@ -414,10 +426,15 @@ const report = new XARFReport({
   reporter: {
     org: 'Security Team',
     contact: 'abuse@example.com',
-    type: 'automated'
+    domain: 'example.com'
+  },
+  sender: {
+    org: 'Security Team',
+    contact: 'abuse@example.com',
+    domain: 'example.com'
   },
   source_identifier: '192.0.2.100',
-  category: 'abuse',
+  category: 'messaging',
   type: 'spam',
   // Custom fields
   custom_tracking_id: 'TICKET-12345',
@@ -608,10 +625,15 @@ export function useXARFReport() {
         reporter: {
           org: 'Security Team',
           contact: 'abuse@example.com',
-          type: 'manual'
+          domain: 'example.com'
+        },
+        sender: {
+          org: 'Security Team',
+          contact: 'abuse@example.com',
+          domain: 'example.com'
         },
         source_identifier: '192.0.2.100',
-        category: 'abuse',
+        category: 'messaging',
         type: 'spam'
       });
 

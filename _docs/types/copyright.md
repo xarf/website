@@ -38,7 +38,12 @@ Intellectual property violations including DMCA notices, trademark infringement,
   🟠 "reporter": {
     "org": "Copyright Protection Service",
     "contact": "dmca@copyright.example",
-    "type": "manual"
+    "domain": "copyright.example"
+  },
+  🟠 "sender": {
+    "org": "Copyright Protection Service",
+    "contact": "dmca@copyright.example",
+    "domain": "copyright.example"
   },
   🟠 "source_identifier": "198.51.100.75",
   🟠 "category": "copyright",
@@ -87,7 +92,12 @@ Intellectual property violations including DMCA notices, trademark infringement,
   🟠 "reporter": {
     "org": "Anti-Piracy Organization",
     "contact": "antipiracy@content.example",
-    "type": "automated"
+    "domain": "content.example"
+  },
+  🟠 "sender": {
+    "org": "Anti-Piracy Organization",
+    "contact": "antipiracy@content.example",
+    "domain": "content.example"
   },
   🟠 "source_identifier": "203.0.113.100",
   🟠 "category": "copyright",
@@ -136,7 +146,12 @@ Intellectual property violations including DMCA notices, trademark infringement,
   🟠 "reporter": {
     "org": "Content Protection Agency",
     "contact": "protection@agency.example",
-    "type": "automated"
+    "domain": "agency.example"
+  },
+  🟠 "sender": {
+    "org": "Content Protection Agency",
+    "contact": "protection@agency.example",
+    "domain": "agency.example"
   },
   🟠 "source_identifier": "192.0.2.200",
   🟠 "category": "copyright",
@@ -185,7 +200,12 @@ Intellectual property violations including DMCA notices, trademark infringement,
   🟠 "reporter": {
     "org": "P2P Monitoring Service",
     "contact": "p2p@monitoring.example",
-    "type": "automated"
+    "domain": "monitoring.example"
+  },
+  🟠 "sender": {
+    "org": "P2P Monitoring Service",
+    "contact": "p2p@monitoring.example",
+    "domain": "monitoring.example"
   },
   🟠 "source_identifier": "198.51.100.88",
   🟠 "category": "copyright",
@@ -234,7 +254,12 @@ Intellectual property violations including DMCA notices, trademark infringement,
   🟠 "reporter": {
     "org": "Music Rights Organization",
     "contact": "copyright@musicrights.example",
-    "type": "manual"
+    "domain": "musicrights.example"
+  },
+  🟠 "sender": {
+    "org": "Music Rights Organization",
+    "contact": "copyright@musicrights.example",
+    "domain": "musicrights.example"
   },
   🟠 "source_identifier": "203.0.113.50",
   🟠 "category": "copyright",
@@ -283,7 +308,12 @@ Intellectual property violations including DMCA notices, trademark infringement,
   🟠 "reporter": {
     "org": "Usenet Monitoring Service",
     "contact": "usenet@monitoring.example",
-    "type": "automated"
+    "domain": "monitoring.example"
+  },
+  🟠 "sender": {
+    "org": "Usenet Monitoring Service",
+    "contact": "usenet@monitoring.example",
+    "domain": "monitoring.example"
   },
   🟠 "source_identifier": "192.0.2.175",
   🟠 "category": "copyright",

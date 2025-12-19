@@ -63,7 +63,7 @@ XARF v4 represents a complete evolution of abuse reporting, designed for the cha
 ### Key Improvements Over Previous Formats
 
 #### 🎯 **Comprehensive Coverage**
-- **58 specialized content types** covering everything from phishing to CSAM/CSEM to copyright infringement
+- **32 specialized types** covering everything from phishing to CSAM/CSEM to copyright infringement
 - Detailed categorization ensures reports contain relevant, type-specific information
 - Extensible design allows for future abuse types without breaking changes
 
@@ -99,63 +99,63 @@ XARF v4 represents a complete evolution of abuse reporting, designed for the cha
 
 ## Content Type Categories
 
-XARF v4 organizes its 58 content types into 7 logical categories:
+XARF v4 organizes its 32 types into 7 logical categories:
 
-### 1. Connection-Based Abuse
+### 1. Connection-Based Abuse (8 types)
 Network-level attacks and suspicious connection patterns.
 
-**Examples:** DDoS attacks, port scanning, brute force attempts, authentication failures
+**Examples:** DDoS attacks, port scanning, brute force attempts, infected hosts
 
 **Use when:** The abuse involves network connections, traffic patterns, or access attempts
 
-**Types:** `ddos`, `port-scan`, `login-attack`, `auth-failure`, `brute-force`, `ssh-attack`, `rdp-attack`, `ddos-amplification`, `sql-injection`, `vuln-scanning`, `reconnaissance`, `scraping`, `bot`
+**Types:** `login_attack`, `port_scan`, `ddos`, `infected_host`, `reconnaissance`, `scraping`, `sql_injection`, `vuln_scanning`
 
-### 2. Content-Based Abuse
+### 2. Content-Based Abuse (9 types)
 Malicious or harmful content hosted or distributed online.
 
-**Examples:** Phishing sites, malware distribution, CSEM, NCII, fake shops, ransomware
+**Examples:** Phishing sites, malware distribution, CSAM, CSEM, fraud, brand infringement
 
 **Use when:** The abuse involves hosted content, websites, or distributed files
 
-**Types:** `phishing`, `malware`, `csam`, `csem`, `ncii`, `fake-shop`, `fraud`, `ransomware`, `cryptojacking`, `identity-theft`, `scam`, `impersonation`, `brand_infringement`, `exposed-data`, `remote_compromise`, `suspicious_registration`
+**Types:** `phishing`, `malware`, `csam`, `csem`, `exposed_data`, `brand_infringement`, `fraud`, `remote_compromise`, `suspicious_registration`
 
-### 3. Copyright Violations
+### 3. Copyright Violations (6 types)
 Intellectual property infringement and unauthorized distribution.
 
-**Examples:** P2P file sharing, cyberlockers, streaming sites, counterfeit goods
+**Examples:** P2P file sharing, cyberlockers, link sites, UGC platforms
 
-**Use when:** The abuse involves copyright infringement or trademark violations
+**Use when:** The abuse involves copyright infringement
 
-**Types:** `p2p`, `cyberlocker`, `streaming`, `link-site`, `ugc-platform`, `usenet`, `copyright`, `counterfeit`
+**Types:** `copyright`, `p2p`, `cyberlocker`, `ugc_platform`, `link_site`, `usenet`
 
-### 4. Infrastructure Abuse
+### 4. Infrastructure Abuse (2 types)
 Compromised or misused infrastructure and systems.
 
-**Examples:** Botnet nodes, compromised servers, open proxies, C2 servers
+**Examples:** Botnet nodes, compromised servers
 
 **Use when:** The abuse involves compromised infrastructure or misused systems
 
-**Types:** `botnet`, `compromised-server`, `proxy`, `vpn-abuse`, `mining`, `c2`
+**Types:** `botnet`, `compromised_server`
 
-### 5. Messaging Abuse
+### 5. Messaging Abuse (2 types)
 Spam and abuse via messaging platforms and channels.
 
-**Examples:** Email spam, SMS spam, social media spam, VoIP spam
+**Examples:** Email spam, bulk messaging campaigns
 
 **Use when:** The abuse involves messaging platforms, email, or communication channels
 
-**Types:** `spam`, `bulk-messaging`, `sms-spam`, `whatsapp-spam`, `social-spam`, `voip-spam`
+**Types:** `spam`, `bulk_messaging`
 
-### 6. Reputation & Intelligence
+### 6. Reputation & Intelligence (2 types)
 Threat intelligence, blocklists, and reputation data.
 
-**Examples:** Known bad actors, threat feeds, reputation scores, blocklists
+**Examples:** Known bad actors, threat feeds, blocklists
 
 **Use when:** Sharing threat intelligence or reputation information
 
-**Types:** `blocklist`, `threat-intelligence`, `abuse-score`
+**Types:** `blocklist`, `threat_intelligence`
 
-### 7. Vulnerabilities
+### 7. Vulnerabilities (3 types)
 Security vulnerabilities and misconfigurations.
 
 **Examples:** CVE reports, open services, security misconfigurations
@@ -221,9 +221,9 @@ Optional: Outcomes can be reported back using the `reporter_reference_id`
 
 Ready to implement XARF v4? Here's where to go next:
 
-- **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 58 content types
+- **[Technical Specification](/docs/specification/)** - Complete XARF v4 spec with all 32 types
 - **[Common Fields Reference](/docs/common-fields/)** - Understanding the core XARF fields
-- **[Content Type Examples](/docs/content-types/)** - Sample reports for each abuse type
+- **[Sample Reports](/docs/types/)** - Sample reports for each abuse type
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation
 - **[Best Practices](/docs/best-practices/)** - Guidelines for effective reporting
 

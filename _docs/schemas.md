@@ -83,7 +83,7 @@ if (valid) {
 
 ### Using Online Validator
 
-Try the **[XARF Online Validator Tool](/validator/)** - paste your JSON report and get instant validation feedback with detailed error messages.
+Try the **[XARF Online Validator Tool](/tools/validator/)** - paste your JSON report and get instant validation feedback with detailed error messages.
 
 ## Schema Files on GitHub
 
@@ -97,7 +97,7 @@ All XARF v4 schemas are open source and available on GitHub:
 |------|---------|-----|
 | **xarf-v4-master.json** | Master schema with type-specific validation | [View on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/xarf-v4-master.json) |
 | **xarf-core.json** | Base schema with common fields for all reports | [View on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/xarf-core.json) |
-| **types/content-base.json** | Base schema for all content-class types | [View on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-base.json) |
+| **types/content-base.json** | Base schema for all content-category types | [View on GitHub](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-base.json) |
 
 **Schema ID Base**: `https://xarf.org/schemas/v4/`
 
@@ -178,22 +178,22 @@ All XARF v4 reports must include these base fields:
 
 ## Content Types by Category
 
-XARF v4 includes **58 specialized content types** organized into 7 categories.
+XARF v4 includes **32 specialized types** organized into 7 categories.
 
 ### 1. Connection-Based Abuse (8 types)
 
 Network-level attacks and suspicious connection patterns.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `connection-ddos` | [connection-ddos.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json) | `protocol`, `first_seen` | Distributed Denial of Service attacks |
-| `connection-port-scan` | [connection-port-scan.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-port-scan.json) | `protocol` | Port scanning activity |
-| `connection-login-attack` | [connection-login-attack.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-login-attack.json) | `protocol`, `target_service` | Login attacks and credential stuffing |
-| `connection-auth-failure` | [connection-auth-failure.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-auth-failure.json) | `protocol` | Authentication failures |
-| `connection-brute-force` | connection-brute-force.json | `protocol`, `attempts` | Brute force attacks |
-| `connection-ssh-attack` | connection-ssh-attack.json | `protocol` | SSH-specific attacks |
-| `connection-rdp-attack` | connection-rdp-attack.json | `protocol` | RDP-specific attacks |
-| `connection-ddos-amplification` | [connection-ddos-amplification.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos-amplification.json) | `protocol`, `amplification_protocol` | DDoS amplification attacks |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `login_attack` | [connection-login-attack.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-login-attack.json) | Brute force login attempts and authentication attacks |
+| `port_scan` | [connection-port-scan.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-port-scan.json) | Network port scanning and reconnaissance activities |
+| `ddos` | [connection-ddos.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json) | Distributed Denial of Service attacks |
+| `infected_host` | [connection-infected-host.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-infected-host.json) | Compromised systems participating in botnets |
+| `reconnaissance` | [connection-reconnaissance.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-reconnaissance.json) | Network reconnaissance and information gathering |
+| `scraping` | [connection-scraping.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-scraping.json) | Automated content scraping and harvesting |
+| `sql_injection` | [connection-sql-injection.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-sql-injection.json) | SQL injection attack attempts |
+| `vuln_scanning` | [connection-vulnerability-scan.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vulnerability-scan.json) | Vulnerability scanning activities |
 
 #### Example: Minimal Valid DDoS Report
 
@@ -231,28 +231,21 @@ Network-level attacks and suspicious connection patterns.
 - `peak_bps` (optional): Peak bits per second
 - `duration_seconds` (optional): Attack duration
 
-### 2. Content-Based Abuse (15 types)
+### 2. Content-Based Abuse (9 types)
 
 Malicious or harmful content hosted or distributed online.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `content-phishing` | [content-phishing.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json) | `url` | Phishing websites and credential harvesting |
-| `content-malware` | [content-malware.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json) | `url` | Malware distribution sites |
-| `content-csam` | content-csam.json | `url` | Child Sexual Abuse Material |
-| `content-csem` | content-csem.json | `url` | Child Sexual Exploitation Material |
-| `content-ncii` | content-ncii.json | `url` | Non-Consensual Intimate Images |
-| `content-fake-shop` | content-fake-shop.json | `url` | Fraudulent e-commerce sites |
-| `content-fraud` | [content-fraud.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json) | `url` | General fraud content |
-| `content-ransomware` | content-ransomware.json | `url` | Ransomware distribution |
-| `content-cryptojacking` | content-cryptojacking.json | `url` | Cryptocurrency mining scripts |
-| `content-identity-theft` | content-identity-theft.json | `url` | Identity theft schemes |
-| `content-scam` | content-scam.json | `url` | Various scam content |
-| `content-impersonation` | content-impersonation.json | `url` | Brand/entity impersonation |
-| `content-brand_infringement` | [content-brand_infringement.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json) | `url` | Brand/trademark infringement |
-| `content-exposed-data` | [content-exposed-data.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json) | `url` | Exposed sensitive data |
-| `content-remote_compromise` | [content-remote_compromise.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json) | `url` | Remote system compromise |
-| `content-suspicious_registration` | [content-suspicious_registration.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json) | `url` | Suspicious domain registrations |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `phishing` | [content-phishing.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json) | Phishing websites and credential harvesting |
+| `malware` | [content-malware.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json) | Malware hosting and distribution |
+| `csam` | [content-csam.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csam.json) | Child Sexual Abuse Material |
+| `csem` | [content-csem.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csem.json) | Child Sexual Exploitation Material |
+| `exposed_data` | [content-exposed-data.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json) | Exposed sensitive data and information leaks |
+| `brand_infringement` | [content-brand_infringement.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json) | Brand impersonation and trademark violations |
+| `fraud` | [content-fraud.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json) | Fraudulent websites and scam content |
+| `remote_compromise` | [content-remote_compromise.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json) | Remote compromise and webshell infections |
+| `suspicious_registration` | [content-suspicious_registration.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json) | Suspicious domain registrations and threat indicators |
 
 #### Content-Base Schema
 
@@ -308,20 +301,18 @@ All content types inherit from [content-base.json](https://github.com/xarf/xarf-
 - `detection_evasion`: Evasion techniques used
 - `lure_type`: Social engineering lure (e.g., `account_suspension`, `security_alert`)
 
-### 3. Copyright Violations (8 types)
+### 3. Copyright Violations (6 types)
 
 Intellectual property infringement and unauthorized distribution.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `copyright-p2p` | [copyright-p2p.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-p2p.json) | `p2p_protocol`, `swarm_info` | Peer-to-peer file sharing |
-| `copyright-cyberlocker` | [copyright-cyberlocker.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-cyberlocker.json) | `url` | File hosting services |
-| `copyright-streaming` | copyright-streaming.json | `url` | Illegal streaming sites |
-| `copyright-link-site` | [copyright-link-site.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-link-site.json) | `url` | Link aggregation sites |
-| `copyright-ugc-platform` | [copyright-ugc-platform.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-ugc-platform.json) | `platform_name`, `content_id` | User-generated content platforms |
-| `copyright-usenet` | [copyright-usenet.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-usenet.json) | `newsgroup`, `message_id` | Usenet infringement |
-| `copyright-copyright` | [copyright-copyright.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-copyright.json) | - | General copyright infringement |
-| `copyright-counterfeit` | copyright-counterfeit.json | `url` | Counterfeit goods |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `copyright` | [copyright-copyright.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-copyright.json) | Generic copyright infringement and DMCA violations |
+| `p2p` | [copyright-p2p.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-p2p.json) | Peer-to-peer copyright infringement (BitTorrent, etc.) |
+| `cyberlocker` | [copyright-cyberlocker.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-cyberlocker.json) | File hosting service copyright infringement |
+| `ugc_platform` | [copyright-ugc-platform.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-ugc-platform.json) | User-generated content platform infringement |
+| `link_site` | [copyright-link-site.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-link-site.json) | Link aggregation site infringement |
+| `usenet` | [copyright-usenet.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-usenet.json) | Usenet newsgroup copyright infringement |
 
 #### Example: Minimal Valid P2P Report
 
@@ -359,18 +350,14 @@ Intellectual property infringement and unauthorized distribution.
 - `rights_holder` (optional): Copyright holder
 - `work_category` (optional): `movie`, `tv_show`, `music`, `software`, `ebook`, `game`, etc.
 
-### 4. Infrastructure Abuse (6 types)
+### 4. Infrastructure Abuse (2 types)
 
 Compromised or misused infrastructure and systems.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `infrastructure-botnet` | [infrastructure-botnet.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json) | `compromise_evidence` | Botnet infections |
-| `infrastructure-compromised-server` | [infrastructure-compromised-server.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json) | `compromise_evidence` | Compromised servers |
-| `infrastructure-proxy` | infrastructure-proxy.json | `proxy_type` | Open proxies |
-| `infrastructure-vpn-abuse` | infrastructure-vpn-abuse.json | - | VPN abuse |
-| `infrastructure-mining` | infrastructure-mining.json | `cryptocurrency` | Cryptocurrency mining |
-| `infrastructure-c2` | infrastructure-c2.json | `malware_family` | Command & control servers |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `botnet` | [infrastructure-botnet.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json) | Botnet infections and compromised systems |
+| `compromised_server` | [infrastructure-compromised-server.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json) | Compromised servers and infrastructure |
 
 #### Example: Minimal Valid Bot Report
 
@@ -403,18 +390,14 @@ Compromised or misused infrastructure and systems.
 - `c2_protocol` (optional): `http`, `https`, `tcp`, `udp`, `dns`, `irc`, `p2p`, `custom`
 - `bot_capabilities` (optional): Array of capabilities (e.g., `ddos`, `spam`, `proxy`)
 
-### 5. Messaging Abuse (6 types)
+### 5. Messaging Abuse (2 types)
 
 Spam and abuse via messaging platforms.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `messaging-spam` | [messaging-spam.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json) | `protocol` | Email spam (unsolicited commercial) |
-| `messaging-bulk-messaging` | [messaging-bulk-messaging.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json) | `protocol` | Bulk messaging abuse |
-| `messaging-sms-spam` | messaging-sms-spam.json | `protocol` | SMS spam |
-| `messaging-whatsapp-spam` | messaging-whatsapp-spam.json | `protocol` | WhatsApp spam |
-| `messaging-social-spam` | messaging-social-spam.json | `protocol`, `platform` | Social media spam |
-| `messaging-voip-spam` | messaging-voip-spam.json | `protocol` | VoIP spam (SPIT) |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `spam` | [messaging-spam.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json) | Unsolicited commercial messages and unwanted email |
+| `bulk_messaging` | [messaging-bulk-messaging.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json) | Legitimate but unwanted bulk communications |
 
 #### Example: Minimal Valid Spam Report
 
@@ -450,15 +433,14 @@ Spam and abuse via messaging platforms.
 - `message_id` (optional): Message ID from headers
 - `spam_indicators` (optional): Object with detection indicators
 
-### 6. Reputation & Intelligence (3 types)
+### 6. Reputation & Intelligence (2 types)
 
 Threat intelligence, blocklists, and reputation data.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `reputation-blocklist` | [reputation-blocklist.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json) | `blocklist_name` | Blocklist entries |
-| `reputation-threat-intelligence` | [reputation-threat-intelligence.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-threat-intelligence.json) | `threat_category` | Threat intelligence feeds |
-| `reputation-abuse-score` | reputation-abuse-score.json | `score` | Abuse reputation scores |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `blocklist` | [reputation-blocklist.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json) | IP/domain blocklist inclusion reports |
+| `threat_intelligence` | [reputation-threat-intelligence.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-threat-intelligence.json) | Threat intelligence and IOC reports |
 
 #### Example: Minimal Valid Blocklist Report
 
@@ -494,11 +476,11 @@ Threat intelligence, blocklists, and reputation data.
 
 Security vulnerabilities and misconfigurations.
 
-| Content Type | Schema File | Required Fields | Description |
-|--------------|-------------|-----------------|-------------|
-| `vulnerability-cve` | [vulnerability-cve.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-cve.json) | `cve_id` | CVE-identified vulnerabilities |
-| `vulnerability-open` | [vulnerability-open.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-open.json) | `service`, `port` | Open/exposed services |
-| `vulnerability-misconfiguration` | [vulnerability-misconfiguration.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-misconfiguration.json) | `misconfiguration_type` | Security misconfigurations |
+| Type | Schema File | Description |
+|------|-------------|-------------|
+| `cve` | [vulnerability-cve.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-cve.json) | Common Vulnerabilities and Exposures reports |
+| `open` | [vulnerability-open-service.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-open-service.json) | Open services and exposed resources |
+| `misconfiguration` | [vulnerability-misconfiguration.json](https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-misconfiguration.json) | Security misconfigurations and hardening issues |
 
 #### Example: Minimal Valid CVE Report
 
@@ -566,7 +548,7 @@ go get github.com/xeipuuv/gojsonschema
 
 ### Online Validation
 
-**XARF Online Validator**: [https://xarf.org/validator/](/validator/)
+**XARF Online Validator**: [https://xarf.org/tools/validator/](/tools/validator/)
 
 Features:
 - Paste JSON reports for instant validation
@@ -650,7 +632,7 @@ XARF uses semantic versioning. The `xarf_version` field indicates which schema v
 
 - **[Technical Specification](/docs/specification/)** - Complete XARF v4 technical details
 - **[Common Fields Reference](/docs/common-fields/)** - Deep dive into core fields
-- **[Content Type Examples](/docs/content-types/)** - Real-world example reports
+- **[Sample Reports](/docs/types/)** - Real-world example reports
 - **[Best Practices](/docs/best-practices/)** - Guidelines for effective XARF implementation
 
 ## Questions?

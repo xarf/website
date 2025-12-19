@@ -44,51 +44,64 @@ Official JSON Schema files for validating XARF reports.
   <details class="schema-list">
     <summary>Individual Schemas by Type</summary>
 
-    <h4>Abuse</h4>
+    <h4>Connection (8 types)</h4>
     <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/abuse-ddos.json">abuse-ddos.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/abuse-malware.json">abuse-malware.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/abuse-phishing.json">abuse-phishing.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/abuse-spam.json">abuse-spam.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/abuse-scanner.json">abuse-scanner.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-ddos.json">connection-ddos.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-infected-host.json">connection-infected-host.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-login-attack.json">connection-login-attack.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-port-scan.json">connection-port-scan.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-reconnaissance.json">connection-reconnaissance.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-scraping.json">connection-scraping.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-sql-injection.json">connection-sql-injection.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-vulnerability-scan.json">connection-vulnerability-scan.json</a></li>
     </ul>
 
-    <h4>Vulnerability</h4>
+    <h4>Content (9 types)</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-phishing.json">content-phishing.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malware.json">content-malware.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csam.json">content-csam.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-csem.json">content-csem.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-exposed-data.json">content-exposed-data.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-brand_infringement.json">content-brand_infringement.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-fraud.json">content-fraud.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-remote_compromise.json">content-remote_compromise.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-suspicious_registration.json">content-suspicious_registration.json</a></li>
+    </ul>
+
+    <h4>Copyright (6 types)</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-copyright.json">copyright-copyright.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-p2p.json">copyright-p2p.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-cyberlocker.json">copyright-cyberlocker.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-ugc-platform.json">copyright-ugc-platform.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-link-site.json">copyright-link-site.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-usenet.json">copyright-usenet.json</a></li>
+    </ul>
+
+    <h4>Infrastructure (2 types)</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-botnet.json">infrastructure-botnet.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-compromised-server.json">infrastructure-compromised-server.json</a></li>
+    </ul>
+
+    <h4>Messaging (2 types)</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-spam.json">messaging-spam.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-bulk-messaging.json">messaging-bulk-messaging.json</a></li>
+    </ul>
+
+    <h4>Reputation (2 types)</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json">reputation-blocklist.json</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-threat-intelligence.json">reputation-threat-intelligence.json</a></li>
+    </ul>
+
+    <h4>Vulnerability (3 types)</h4>
     <ul>
       <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-cve.json">vulnerability-cve.json</a></li>
       <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-misconfiguration.json">vulnerability-misconfiguration.json</a></li>
       <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/vulnerability-open-service.json">vulnerability-open-service.json</a></li>
-    </ul>
-
-    <h4>Connection</h4>
-    <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-compromised.json">connection-compromised.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-botnet.json">connection-botnet.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/connection-malicious.json">connection-malicious.json</a></li>
-    </ul>
-
-    <h4>Content</h4>
-    <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-illegal.json">content-illegal.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-malicious.json">content-malicious.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/content-policy.json">content-policy.json</a></li>
-    </ul>
-
-    <h4>Copyright</h4>
-    <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-infringement.json">copyright-infringement.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-dmca.json">copyright-dmca.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/copyright-trademark.json">copyright-trademark.json</a></li>
-    </ul>
-
-    <h4>Other</h4>
-    <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-sms.json">messaging-sms.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/messaging-robocall.json">messaging-robocall.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-blocklist.json">reputation-blocklist.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/reputation-trust.json">reputation-trust.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-dns.json">infrastructure-dns.json</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/schemas/v4/types/infrastructure-bgp.json">infrastructure-bgp.json</a></li>
     </ul>
   </details>
 </div>
@@ -128,27 +141,32 @@ Sample XARF reports demonstrating each event type.
   <details class="schema-list">
     <summary>Example Reports by Category</summary>
 
-    <h4>Abuse</h4>
+    <h4>Connection</h4>
     <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/abuse/ddos.json">DDoS Attack Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/abuse/malware.json">Malware Distribution Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/abuse/phishing.json">Phishing Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/abuse/spam.json">Spam Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/abuse/scanner.json">Scanner Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/connection-ddos.json">DDoS Attack Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/connection-login-attack.json">Login Attack Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/connection-port-scan.json">Port Scan Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/connection-infected-host.json">Infected Host Example</a></li>
+    </ul>
+
+    <h4>Content</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/content-phishing.json">Phishing Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/content-malware.json">Malware Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/content-fraud.json">Fraud Example</a></li>
+    </ul>
+
+    <h4>Messaging</h4>
+    <ul>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/messaging-spam.json">Spam Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/messaging-bulk-messaging.json">Bulk Messaging Example</a></li>
     </ul>
 
     <h4>Vulnerability</h4>
     <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/vulnerability/cve.json">CVE Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/vulnerability/misconfiguration.json">Misconfiguration Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/vulnerability/open-service.json">Open Service Example</a></li>
-    </ul>
-
-    <h4>Connection</h4>
-    <ul>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/connection/compromised.json">Compromised Host Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/connection/botnet.json">Botnet Example</a></li>
-      <li><a href="https://github.com/xarf/xarf-spec/blob/main/examples/connection/malicious.json">Malicious Traffic Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/vulnerability-cve.json">CVE Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/vulnerability-misconfiguration.json">Misconfiguration Example</a></li>
+      <li><a href="https://github.com/xarf/xarf-spec/blob/main/samples/v4/vulnerability-open.json">Open Service Example</a></li>
     </ul>
   </details>
 </div>
@@ -232,7 +250,12 @@ def create_abuse_report(source_ip, abuse_type):
         reporter={
             "org": "Your Organization",
             "contact": "abuse@example.com",
-            "type": "automated"
+            "domain": "example.com"
+        },
+        sender={
+            "org": "Your Organization",
+            "contact": "abuse@example.com",
+            "domain": "example.com"
         },
         source_identifier=source_ip,
         category="connection",
@@ -245,7 +268,7 @@ def create_abuse_report(source_ip, abuse_type):
         raise ValueError(report.validation_errors)
 {% endhighlight %}
     </div>
-    <a href="https://github.com/xarf/xarf-spec/blob/main/templates/python/basic_report.py" class="btn btn-small btn-secondary">Download Template</a>
+    <a href="{{ site.baseurl }}/libraries/python/" class="btn btn-small btn-secondary">View Python Library</a>
   </div>
 
   <div class="template-card">
@@ -272,7 +295,7 @@ def submit_report():
         return jsonify({'status': 'invalid', 'errors': e.errors}), 400
 {% endhighlight %}
     </div>
-    <a href="https://github.com/xarf/xarf-spec/blob/main/templates/python/flask_api.py" class="btn btn-small btn-secondary">Download Template</a>
+    <a href="{{ site.baseurl }}/libraries/python/" class="btn btn-small btn-secondary">View Python Library</a>
   </div>
 
   <div class="template-card">
@@ -305,7 +328,7 @@ def add_evidence_to_report(report, file_path, description):
     )
 {% endhighlight %}
     </div>
-    <a href="https://github.com/xarf/xarf-spec/blob/main/templates/python/evidence_handler.py" class="btn btn-small btn-secondary">Download Template</a>
+    <a href="{{ site.baseurl }}/libraries/python/" class="btn btn-small btn-secondary">View Python Library</a>
   </div>
 </div>
 
@@ -340,7 +363,7 @@ Standalone tools for working with XARF.
 
     <div class="download-card">
       <h4>All Libraries</h4>
-      <p>Python, JavaScript, Go, Java, C#</p>
+      <p>Python, JavaScript, Go</p>
       <div class="download-links">
         <a href="{{ site.baseurl }}/libraries/" class="btn btn-secondary">
           Browse Libraries

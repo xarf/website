@@ -1,7 +1,7 @@
 ---
 layout: docs
 title: "Technical Specification"
-description: "Complete XARF v4 specification with all 58 content types and field definitions"
+description: "Complete XARF v4 specification with all 32 types and field definitions"
 permalink: /docs/specification/
 ---
 
@@ -16,10 +16,10 @@ permalink: /docs/specification/
 
 ## Overview
 
-XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 58 content types organized into 7 categories.
+XARF v4 is a comprehensive, JSON-based format for structured abuse reporting. This specification defines the complete schema, validation rules, field requirements, and all 32 types organized into 7 categories.
 
 **Key Features:**
-- **58 specialized content types** covering modern internet abuse scenarios
+- **32 specialized types** covering modern internet abuse scenarios
 - **7 logical categories** for easy classification and routing
 - **Evidence-first design** with cryptographic validation support
 - **Real-time processing** optimized for automated workflows
@@ -57,7 +57,7 @@ All XARF v4 reports share this common structure:
 | `source_port` | integer | 1-65535 | Source port number (critical for CGNAT networks) |
 | `evidence` | array | - | Structured evidence items with cryptographic validation |
 | `evidence_source` | string | varies | Quality indicator (e.g., `spamtrap`, `honeypot`, `automated_scan`) |
-| `reporter_reference_id` | string | - | Reporter's internal ticket/case ID for correlation |
+| `confidence` | number | 0.0-1.0 | Confidence score for automated reports |
 
 <div class="field-category optional">
 <strong>Optional Fields</strong> (may be included for additional context)
@@ -66,9 +66,9 @@ All XARF v4 reports share this common structure:
 | Field | Type | Format | Description |
 |-------|------|--------|-------------|
 | `tags` | array | `namespace:value` | Categorization tags (e.g., `malware:emotet`, `campaign:2024q1`) |
-| `confidence` | number | 0.0-1.0 | Confidence score for automated reports |
-| `severity` | string | enum | Impact assessment (low, medium, high, critical) |
-| `custom_fields` | object | - | Organization-specific data for internal workflows |
+| `description` | string | - | Human-readable description of the abuse incident |
+| `legacy_version` | string | "3" | Original XARF version if converted from v3 format |
+| `_internal` | object | - | Internal operational metadata (never transmitted) |
 
 ### Reporter Object
 
@@ -78,7 +78,7 @@ The `reporter` identifies the organization that **identified or complained about
 |-------|------|----------|-------------|
 | `org` | string | <span class="field-mandatory">Yes</span> | Name of the organization that identified the abuse |
 | `contact` | string | <span class="field-mandatory">Yes</span> | Contact email of the complaining organization |
-| `type` | string | <span class="field-mandatory">Yes</span> | How report was generated: `automated`, `manual`, `unknown` |
+| `domain` | string | <span class="field-mandatory">Yes</span> | Domain name of the reporting organization |
 
 ### Sender Object
 
@@ -88,6 +88,7 @@ The `sender` identifies the organization that **is transmitting this report** (t
 |-------|------|----------|-------------|
 | `org` | string | <span class="field-mandatory">Yes</span> | Name of the organization sending/transmitting the report |
 | `contact` | string | <span class="field-mandatory">Yes</span> | Contact email for the sending organization |
+| `domain` | string | <span class="field-mandatory">Yes</span> | Domain name of the sending organization |
 
 **When to use different reporter vs sender:**
 - **ISP abuse desks** using third-party reporting infrastructure (e.g., ISP = reporter, Abusix = sender)
@@ -102,11 +103,12 @@ The `sender` identifies the organization that **is transmitting this report** (t
 "reporter": {
   "org": "Example Security",
   "contact": "abuse@example.com",
-  "type": "automated"
+  "domain": "example.com"
 },
 "sender": {
   "org": "Example Security",
-  "contact": "abuse@example.com"
+  "contact": "abuse@example.com",
+  "domain": "example.com"
 }
 ```
 
@@ -115,11 +117,12 @@ The `sender` identifies the organization that **is transmitting this report** (t
 "reporter": {
   "org": "Swisscom Abuse Desk",
   "contact": "abuse@swisscom.ch",
-  "type": "automated"
+  "domain": "swisscom.ch"
 },
 "sender": {
   "org": "Abusix",
-  "contact": "reports@abusix.com"
+  "contact": "reports@abusix.com",
+  "domain": "abusix.com"
 }
 ```
 
@@ -130,7 +133,7 @@ The `sender` identifies the organization that **is transmitting this report** (t
 | `content_type` | string | <span class="field-mandatory">Yes</span> | MIME type (e.g., `image/png`, `message/rfc822`, `text/plain`) |
 | `payload` | string | <span class="field-mandatory">Yes</span> | Base64-encoded evidence data |
 | `description` | string | <span class="field-recommended">Recommended</span> | Human-readable description of evidence |
-| `hashes` | array | <span class="field-recommended">Recommended</span> | Array of cryptographic hashes (e.g., `["sha256:abc123", "md5:def456"]`) |
+| `hash` | string | <span class="field-recommended">Recommended</span> | Cryptographic hash in format `algorithm:hexvalue` (e.g., `sha256:abc123...`) |
 | `size` | integer | <span class="field-optional">Optional</span> | Size in bytes (pre-encoding) |
 
 ---
@@ -177,27 +180,22 @@ Different abuse categories require different context. Here are the category-spec
 
 ## Content Type Categories
 
-XARF v4 organizes its 58 content types into 7 logical categories:
+XARF v4 organizes its 32 types into 7 logical categories:
 
-### 1. Connection-Based Abuse (13 types)
+### 1. Connection-Based Abuse (8 types)
 
 Network-level attacks and suspicious connection patterns.
 
-| Content Type | Description |
-|-------------|-------------|
-| `connection-ddos` | Distributed Denial of Service attacks |
-| `connection-port-scan` | Network port scanning activity |
-| `connection-login-attack` | Brute force login attempts (generic) |
-| `connection-auth-failure` | Authentication failure patterns |
-| `connection-brute-force` | Credential stuffing and brute force attacks |
-| `connection-ssh-attack` | SSH-specific brute force attacks |
-| `connection-rdp-attack` | RDP-specific brute force attacks |
-| `connection-ddos-amplification` | DDoS amplification attacks (DNS, NTP, etc.) |
-| `connection-sql-injection` | SQL injection attack attempts |
-| `connection-vuln-scanning` | Vulnerability scanning activities |
-| `connection-reconnaissance` | Probing of sensitive files (.env, .git, .htaccess) |
-| `connection-scraping` | Web crawling and scraping activities |
-| `connection-bot` | Automated web bot activity (AI agents, search bots) |
+| Type | Description |
+|------|-------------|
+| `login_attack` | Brute force login attempts and authentication attacks |
+| `port_scan` | Network port scanning and reconnaissance activities |
+| `ddos` | Distributed Denial of Service attacks |
+| `infected_host` | Compromised systems participating in botnets |
+| `reconnaissance` | Network reconnaissance and information gathering |
+| `scraping` | Automated content scraping and harvesting |
+| `sql_injection` | SQL injection attack attempts |
+| `vuln_scanning` | Vulnerability scanning activities |
 
 **Evidence sources:** `honeypot`, `firewall_logs`, `ids_detection`, `flow_analysis`
 
@@ -205,28 +203,21 @@ Network-level attacks and suspicious connection patterns.
 
 ---
 
-### 2. Content-Based Abuse (16 types)
+### 2. Content-Based Abuse (9 types)
 
 Malicious or harmful content hosted or distributed online.
 
-| Content Type | Description |
-|-------------|-------------|
-| `content-phishing` | Phishing sites impersonating legitimate brands |
-| `content-malware` | Malware distribution sites and downloads |
-| `content-csam` | Child Sexual Abuse Material (baseline/A1/A2/B1/B2 illegal content) |
-| `content-csem` | Child Sexual Exploitation Material (grooming, solicitation, sextortion) |
-| `content-ncii` | Non-Consensual Intimate Images |
-| `content-fake-shop` | Fraudulent e-commerce sites |
-| `content-fraud` | Generic online fraud and scams |
-| `content-ransomware` | Ransomware distribution or payment sites |
-| `content-cryptojacking` | Unauthorized cryptocurrency mining scripts |
-| `content-identity-theft` | Identity theft and credential harvesting |
-| `content-scam` | Investment scams, advance-fee fraud, etc. |
-| `content-impersonation` | Brand or individual impersonation |
-| `content-brand_infringement` | Trademark and brand abuse |
-| `content-exposed-data` | Exposed sensitive data repositories |
-| `content-remote_compromise` | Remote access trojans and backdoors |
-| `content-suspicious_registration` | Suspicious domain registrations |
+| Type | Description |
+|------|-------------|
+| `phishing` | Phishing websites and credential harvesting |
+| `malware` | Malware hosting and distribution |
+| `csam` | Child Sexual Abuse Material |
+| `csem` | Child Sexual Exploitation Material |
+| `exposed_data` | Exposed sensitive data and information leaks |
+| `brand_infringement` | Brand impersonation and trademark violations |
+| `fraud` | Fraudulent websites and scam content |
+| `remote_compromise` | Remote compromise and webshell infections |
+| `suspicious_registration` | Suspicious domain registrations and threat indicators |
 
 **Evidence sources:** `crawler`, `user_report`, `automated_scan`, `spam_analysis`
 
@@ -234,20 +225,18 @@ Malicious or harmful content hosted or distributed online.
 
 ---
 
-### 3. Copyright Violations (8 types)
+### 3. Copyright Violations (6 types)
 
 Intellectual property infringement and unauthorized distribution.
 
-| Content Type | Description |
-|-------------|-------------|
-| `copyright-p2p` | Peer-to-peer file sharing (BitTorrent, etc.) |
-| `copyright-cyberlocker` | File hosting services with pirated content |
-| `copyright-streaming` | Unauthorized streaming sites |
-| `copyright-link-site` | Link aggregation sites for pirated content |
-| `copyright-ugc-platform` | User-generated content platforms with infringement |
-| `copyright-usenet` | Usenet newsgroup piracy |
-| `copyright-copyright` | Generic copyright infringement (DMCA notices) |
-| `copyright-counterfeit` | Counterfeit goods and trademark violations |
+| Type | Description |
+|------|-------------|
+| `copyright` | Generic copyright infringement and DMCA violations |
+| `p2p` | Peer-to-peer copyright infringement (BitTorrent, etc.) |
+| `cyberlocker` | File hosting service copyright infringement |
+| `ugc_platform` | User-generated content platform infringement |
+| `link_site` | Link aggregation site infringement |
+| `usenet` | Usenet newsgroup copyright infringement |
 
 **Evidence sources:** `automated_scan`, `rights_holder_report`, `crawler`
 
@@ -255,18 +244,14 @@ Intellectual property infringement and unauthorized distribution.
 
 ---
 
-### 4. Infrastructure Abuse (6 types)
+### 4. Infrastructure Abuse (2 types)
 
 Compromised or misused infrastructure and systems.
 
-| Content Type | Description |
-|-------------|-------------|
-| `infrastructure-botnet` | Botnet-infected systems |
-| `infrastructure-compromised-server` | Compromised servers and web applications |
-| `infrastructure-proxy` | Open proxies and anonymous proxy abuse |
-| `infrastructure-vpn-abuse` | VPN service abuse |
-| `infrastructure-mining` | Unauthorized cryptocurrency mining |
-| `infrastructure-c2` | Command and Control (C2) servers |
+| Type | Description |
+|------|-------------|
+| `botnet` | Botnet infections and compromised systems |
+| `compromised_server` | Compromised servers and infrastructure |
 
 **Evidence sources:** `traffic_analysis`, `researcher_analysis`, `automated_discovery`
 
@@ -274,18 +259,14 @@ Compromised or misused infrastructure and systems.
 
 ---
 
-### 5. Messaging Abuse (6 types)
+### 5. Messaging Abuse (2 types)
 
 Spam and abuse via messaging platforms and channels.
 
-| Content Type | Description |
-|-------------|-------------|
-| `messaging-spam` | Email spam (generic) |
-| `messaging-bulk-messaging` | Bulk messaging campaigns |
-| `messaging-sms-spam` | SMS/text message spam |
-| `messaging-whatsapp-spam` | WhatsApp spam and abuse |
-| `messaging-social-spam` | Social media spam (Facebook, Twitter, etc.) |
-| `messaging-voip-spam` | VoIP spam calls (robocalls, vishing) |
+| Type | Description |
+|------|-------------|
+| `spam` | Unsolicited commercial messages and unwanted email |
+| `bulk_messaging` | Legitimate but unwanted bulk communications |
 
 **Evidence sources:** `spamtrap`, `user_complaint`, `automated_filter`, `honeypot`
 
@@ -293,15 +274,14 @@ Spam and abuse via messaging platforms and channels.
 
 ---
 
-### 6. Reputation & Intelligence (3 types)
+### 6. Reputation & Intelligence (2 types)
 
 Threat intelligence, blocklists, and reputation data.
 
-| Content Type | Description |
-|-------------|-------------|
-| `reputation-blocklist` | IP/domain blocklist entries |
-| `reputation-threat-intelligence` | Threat intelligence indicators |
-| `reputation-abuse-score` | Reputation scoring and assessment |
+| Type | Description |
+|------|-------------|
+| `blocklist` | IP/domain blocklist inclusion reports |
+| `threat_intelligence` | Threat intelligence and IOC reports |
 
 **Evidence sources:** `threat_intelligence`, `automated_analysis`, `researcher_analysis`
 
@@ -313,11 +293,11 @@ Threat intelligence, blocklists, and reputation data.
 
 Security vulnerabilities and misconfigurations.
 
-| Content Type | Description |
-|-------------|-------------|
-| `vulnerability-cve` | CVE-identified vulnerabilities |
-| `vulnerability-open` | Open services and ports |
-| `vulnerability-misconfiguration` | Security misconfigurations |
+| Type | Description |
+|------|-------------|
+| `cve` | Common Vulnerabilities and Exposures reports |
+| `open` | Open services and exposed resources |
+| `misconfiguration` | Security misconfigurations and hardening issues |
 
 **Evidence sources:** `vulnerability_scan`, `researcher_analysis`, `automated_discovery`
 
@@ -356,10 +336,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "image/png",
       "description": "Screenshot of phishing page",
       "payload": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB...",
-      "hashes": [
-        "sha256:abc123def456...",
-        "md5:789ghi012jkl..."
-      ]
+      "hash": "sha256:abc123def456789..."
     }
   ],
   "tags": ["phishing:banking", "severity:high"],
@@ -400,7 +377,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "Network flow data showing attack pattern",
       "payload": "VGltZXN0YW1wLCBTcmNJUCwgRHN0SUAs...",
-      "hashes": ["sha256:def789ghi012..."]
+      "hash": "sha256:def789ghi012abc345..."
     }
   ],
   "tags": ["attack:volumetric", "severity:critical"],
@@ -440,7 +417,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "message/rfc822",
       "description": "Complete spam email with headers",
       "payload": "UmVjZWl2ZWQ6IGZyb20gWzE5Mi4wLjIu...",
-      "hashes": ["sha256:ghi345jkl678..."]
+      "hash": "sha256:ghi345jkl678abc901..."
     }
   ],
   "tags": ["spam:pharma", "severity:medium"],
@@ -479,11 +456,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "application/octet-stream",
       "description": "Password-protected malware sample (password: infected)",
       "payload": "UEsDBBQACQAIAA...",
-      "hashes": [
-        "md5:5d41402abc4b2a76b9719d911017c592",
-        "sha1:2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
-        "sha256:d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592"
-      ],
+      "hash": "sha256:d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e592",
       "size": 245760
     }
   ],
@@ -525,7 +498,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "BitTorrent peer list and metadata",
       "payload": "SW5mb0hhc2g6IGFiY2QxMjM0ZWY1Njc4...",
-      "hashes": ["sha256:jkl901mno234..."]
+      "hash": "sha256:jkl901mno234abc567..."
     }
   ],
   "tags": ["copyright:film", "severity:medium"],
@@ -564,7 +537,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "C2 communication logs",
       "payload": "Q29ubmVjdGlvbiB0byBldmlsLWMyLmV4...",
-      "hashes": ["sha256:mno567pqr890..."]
+      "hash": "sha256:mno567pqr890abc123..."
     }
   ],
   "tags": ["botnet:mirai", "severity:high"],
@@ -607,7 +580,7 @@ Security vulnerabilities and misconfigurations.
       "content_type": "text/plain",
       "description": "Vulnerability scan results",
       "payload": "VnVsbmVyYWJpbGl0eSBEZXRhaWxzOiBIZWFy...",
-      "hashes": ["sha256:pqr123stu456..."]
+      "hash": "sha256:pqr123stu456def789..."
     }
   ],
   "tags": ["cve:CVE-2014-0160", "severity:high"],
@@ -720,7 +693,7 @@ XARF v4 parsers should support automatic conversion of XARF v3 reports for backw
 ## Additional Resources
 
 - **[Common Fields Reference](/docs/common-fields/)** - Detailed field definitions
-- **[Content Type Examples](/docs/content-types/)** - Sample reports for each type
+- **[Sample Reports](/docs/types/)** - Sample reports for each type
 - **[Schema Reference](/docs/schemas/)** - JSON schemas for validation
 - **[Best Practices](/docs/best-practices/)** - Implementation guidelines
 

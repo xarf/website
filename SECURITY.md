@@ -183,7 +183,7 @@ Currently, we do not offer a bug bounty program. However, we deeply appreciate s
 
 - **Security Email**: contact@xarf.org
 - **PGP Key**: Not yet available
-- **GitHub Security Advisories**: https://github.com/xarf/website/security/advisories
+- **GitHub Security Advisories**: https://github.com/xarf/xarf-website/security/advisories
 
 ## Additional Resources
 
