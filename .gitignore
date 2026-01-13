@@ -1,4 +1,3 @@
-
 # AI Tool Coordination (auto-generated, do not commit)
 .claude/
 .claude-flow/
@@ -12,4 +11,3 @@ docs/*_REPORT.md
 docs/*_SUMMARY.md
 docs/*_CHECKLIST.md
 docs/website-feature-test-results.md
-.claude/
