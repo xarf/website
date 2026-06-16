@@ -10,24 +10,24 @@ permalink: /libraries/go/
 Official Go library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
 
 <div class="library-status">
-  <span class="badge badge-success">Alpha</span>
-  <span>Version 4.0.0-alpha.1</span>
+  <span class="badge badge-warning">Coming Soon</span>
+  <span>Not yet publicly available</span>
   <span>Go 1.19+</span>
+</div>
+
+<div class="alert alert-warning" markdown="1">
+**Note**: The Go library is not yet publicly available. The API documentation below describes the planned interface and is subject to change. To follow progress or express interest, join the [GitHub Discussions](https://github.com/xarf/xarf-spec/discussions).
 </div>
 
 ---
 
 ## Installation
 
-```bash
-go get github.com/xarf/xarf-go
-```
+The Go library is not yet publicly available. Installation instructions will be published here once the first release is available.
 
-**Requirements**:
+**Requirements** (planned):
 - Go 1.19 or higher
 - No external dependencies (uses Go standard library only)
-
-**Note**: Alpha release available. Star the [GitHub repository](https://github.com/xarf/xarf-go) for updates.
 
 ---
 
@@ -787,10 +787,10 @@ type UnsafeProcessor struct {
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-go)** - Alpha Release
-- **[pkg.go.dev](https://pkg.go.dev/github.com/xarf/xarf-go)** - Alpha Release
-- **[Examples](https://github.com/xarf/xarf-go/tree/main/examples)** - Available
-- **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
+- **GitHub Repository** - Coming soon (not yet publicly available)
+- **pkg.go.dev** - Coming soon
+- **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** - Follow progress and express interest
+- **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report spec issues
 
 ---
 

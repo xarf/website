@@ -324,7 +324,7 @@ Stay updated on XARF releases:
 ---
 
 [4.0.0]: https://github.com/xarf/xarf-spec/releases/tag/v4.0.0
-[3.1.0]: https://github.com/xarf/xarf-spec/releases/tag/v3.1.0
-[3.0.0]: https://github.com/xarf/xarf-spec/releases/tag/v3.0.0
-[2.5.0]: https://github.com/xarf/xarf-spec/releases/tag/v2.5.0
-[2.0.0]: https://github.com/xarf/xarf-spec/releases/tag/v2.0.0
+[3.1.0]: https://github.com/abusix/xarf
+[3.0.0]: https://github.com/abusix/xarf
+[2.5.0]: https://github.com/abusix/xarf
+[2.0.0]: https://github.com/abusix/xarf

@@ -21,17 +21,17 @@ Official JavaScript/TypeScript library for creating, validating, and processing 
 
 ### npm
 ```bash
-npm install xarf
+npm install @xarf/xarf
 ```
 
 ### yarn
 ```bash
-yarn add xarf
+yarn add @xarf/xarf
 ```
 
 ### pnpm
 ```bash
-pnpm add xarf
+pnpm add @xarf/xarf
 ```
 
 **Requirements**:

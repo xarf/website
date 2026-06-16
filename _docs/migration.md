@@ -955,9 +955,9 @@ print(message)
 
 Use existing XARF parsers to validate your reports:
 
-**Python:**
+**Python:** _(alpha — not yet on PyPI)_
 ```bash
-pip install xarf
+pip install git+https://github.com/xarf/xarf-python.git
 ```
 
 ```python
