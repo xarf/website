@@ -20,8 +20,10 @@ Official Python library for creating, validating, and processing XARF (eXtended 
 ## Installation
 
 ```bash
-pip install xarf
+pip install git+https://github.com/xarf/xarf-python.git
 ```
+
+_(alpha — not yet on PyPI)_
 
 **Requirements**:
 - Python 3.8 or higher

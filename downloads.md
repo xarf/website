@@ -23,10 +23,9 @@ Official JSON Schema files for validating XARF reports.
       <h4>Complete Schema Package</h4>
       <p>All XARF schemas in a single archive</p>
       <div class="download-links">
-        <a href="https://github.com/xarf/xarf-spec/releases/download/v4.0.0/xarf-schemas-v4.0.0.zip" class="btn btn-primary">
-          Download ZIP
+        <a href="https://github.com/xarf/xarf-spec/releases" class="btn btn-primary">
+          View Releases
         </a>
-        <span class="file-info">~50 KB</span>
       </div>
     </div>
 
@@ -120,10 +119,9 @@ Sample XARF reports demonstrating each event type.
       <h4>Complete Examples Package</h4>
       <p>All example reports for all event types</p>
       <div class="download-links">
-        <a href="https://github.com/xarf/xarf-spec/releases/download/v4.0.0/xarf-examples-v4.0.0.zip" class="btn btn-primary">
-          Download ZIP
+        <a href="https://github.com/xarf/xarf-spec/releases" class="btn btn-primary">
+          View Releases
         </a>
-        <span class="file-info">~100 KB</span>
       </div>
     </div>
 
@@ -183,10 +181,9 @@ Complete XARF documentation in various formats.
       <h4>Specification PDF</h4>
       <p>Complete XARF v4.0 specification</p>
       <div class="download-links">
-        <a href="https://github.com/xarf/xarf-spec/releases/download/v4.0.0/XARF-Specification-v4.0.0.pdf" class="btn btn-primary">
-          Download PDF
+        <a href="https://github.com/xarf/xarf-spec/releases" class="btn btn-primary">
+          View Releases
         </a>
-        <span class="file-info">~2 MB</span>
       </div>
     </div>
 
@@ -194,10 +191,9 @@ Complete XARF documentation in various formats.
       <h4>Quick Reference Card</h4>
       <p>One-page XARF quick reference</p>
       <div class="download-links">
-        <a href="https://github.com/xarf/xarf-spec/releases/download/v4.0.0/XARF-QuickRef-v4.0.0.pdf" class="btn btn-primary">
-          Download PDF
+        <a href="https://github.com/xarf/xarf-spec/releases" class="btn btn-primary">
+          View Releases
         </a>
-        <span class="file-info">~500 KB</span>
       </div>
     </div>
 
@@ -205,10 +201,9 @@ Complete XARF documentation in various formats.
       <h4>Implementation Guide PDF</h4>
       <p>Step-by-step implementation guide</p>
       <div class="download-links">
-        <a href="https://github.com/xarf/xarf-spec/releases/download/v4.0.0/XARF-Implementation-Guide-v4.0.0.pdf" class="btn btn-primary">
-          Download PDF
+        <a href="{{ site.baseurl }}/docs/implementation-guide/" class="btn btn-primary">
+          View Online
         </a>
-        <span class="file-info">~1.5 MB</span>
       </div>
     </div>
 
@@ -357,7 +352,7 @@ Standalone tools for working with XARF.
         <a href="https://github.com/xarf/xarf-python" class="btn btn-primary">
           View on GitHub
         </a>
-        <span class="file-info">pip install xarf</span>
+        <span class="file-info">pip install git+https://github.com/xarf/xarf-python.git</span>
       </div>
     </div>
 
@@ -405,8 +400,7 @@ Access older XARF specification versions.
         <td>Q2 2025</td>
         <td><span class="badge badge-warning">Deprecated</span></td>
         <td>
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v3.1.0">Schemas</a> |
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v3.1.0">Examples</a>
+          <a href="https://github.com/abusix/xarf">Archived repo (abusix/xarf)</a>
         </td>
       </tr>
       <tr>
@@ -414,8 +408,7 @@ Access older XARF specification versions.
         <td>Q4 2024</td>
         <td><span class="badge badge-warning">Deprecated</span></td>
         <td>
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v3.0.0">Schemas</a> |
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v3.0.0">Examples</a>
+          <a href="https://github.com/abusix/xarf">Archived repo (abusix/xarf)</a>
         </td>
       </tr>
     </tbody>

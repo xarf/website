@@ -27,7 +27,8 @@ XARF provides libraries for multiple programming languages:
 <summary>Python</summary>
 
 ```bash
-pip install xarf
+# alpha — not yet on PyPI
+pip install git+https://github.com/xarf/xarf-python.git
 ```
 </details>
 
@@ -35,16 +36,14 @@ pip install xarf
 <summary>JavaScript/Node.js</summary>
 
 ```bash
-npm install xarf
+npm install @xarf/xarf
 ```
 </details>
 
 <details class="code-example" markdown="1">
 <summary>Go</summary>
 
-```bash
-go get github.com/xarf/xarf-go
-```
+The Go library is not yet publicly available (coming soon).
 </details>
 
 ### 3. Create Your First Report

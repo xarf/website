@@ -21,7 +21,7 @@ Official and community-maintained libraries for implementing XARF in your applic
   </div>
   <p>Full-featured Python library with validation, conversion, and schema support.</p>
   <div class="library-meta">
-    <span>📦 PyPI: <code>pip install xarf</code></span>
+    <span>📦 <code>pip install git+https://github.com/xarf/xarf-python.git</code> <em>(alpha — not yet on PyPI)</em></span>
     <span>📚 <a href="/libraries/python/">Documentation</a></span>
     <span>⭐ <a href="https://github.com/xarf/xarf-python">GitHub</a></span>
   </div>
@@ -46,7 +46,7 @@ Official and community-maintained libraries for implementing XARF in your applic
   </div>
   <p>JavaScript/TypeScript library for browser and Node.js environments.</p>
   <div class="library-meta">
-    <span>📦 npm: <code>npm install xarf</code></span>
+    <span>📦 npm: <code>npm install @xarf/xarf</code></span>
     <span>📚 <a href="/libraries/javascript/">Documentation</a></span>
     <span>⭐ <a href="https://github.com/xarf/xarf-javascript">GitHub</a></span>
   </div>
@@ -65,16 +65,16 @@ Official and community-maintained libraries for implementing XARF in your applic
 <div class="library-card">
   <div class="library-header">
     <h3>xarf-go</h3>
-    <span class="status-badge alpha">Alpha</span>
+    <span class="status-badge coming-soon">Coming Soon</span>
   </div>
   <p>High-performance Go library for enterprise applications.</p>
   <div class="library-meta">
-    <span>📦 go get: <code>go get github.com/xarf/xarf-go</code></span>
+    <span>📦 Not yet publicly available</span>
     <span>📚 <a href="/libraries/go/">Documentation</a></span>
-    <span>⭐ <a href="https://github.com/xarf/xarf-go">GitHub</a></span>
+    <span>💬 <a href="https://github.com/xarf/xarf-spec/discussions">Express interest</a></span>
   </div>
   <div class="library-features">
-    <strong>Features:</strong>
+    <strong>Planned features:</strong>
     <ul>
       <li>Native struct mapping</li>
       <li>Concurrent processing</li>
@@ -99,8 +99,8 @@ Choose your language and get started in minutes:
 <div class="tab-content active" data-lang="python" markdown="1">
 
 {% highlight python %}
-# Install
-pip install xarf
+# Install (alpha — not yet on PyPI)
+pip install git+https://github.com/xarf/xarf-python.git
 
 # Create a report
 from xarf import XARFReport
@@ -139,10 +139,10 @@ if report.validate():
 
 {% highlight javascript %}
 // Install
-npm install xarf
+npm install @xarf/xarf
 
 // Create a report
-const { XARFReport } = require('xarf');
+const { XARFReport } = require('@xarf/xarf');
 
 const report = new XARFReport({
   xarf_version: '4.0.0',
@@ -177,8 +177,8 @@ if (report.validate()) {
 <div class="tab-content" data-lang="go" markdown="1">
 
 {% highlight go %}
-// Install
-go get github.com/xarf/xarf-go
+// The Go library is not yet publicly available (coming soon).
+// The example below shows the planned API.
 
 // Create a report
 package main

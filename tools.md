@@ -113,17 +113,18 @@ Programmatic XARF support in your language of choice.
 <div class="language-quick-links">
   <a href="{{ site.baseurl }}/libraries/python/" class="language-link">
     <strong>Python</strong>
-    <span>pip install xarf</span>
+    <span>pip install git+https://github.com/xarf/xarf-python.git</span>
+    <span class="alpha-badge">Alpha</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/javascript/" class="language-link">
     <strong>JavaScript</strong>
-    <span>npm install xarf</span>
+    <span>npm install @xarf/xarf</span>
     <span class="alpha-badge">Alpha</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/go/" class="language-link">
     <strong>Go</strong>
-    <span>go get github.com/xarf/xarf-go</span>
-    <span class="alpha-badge">Alpha</span>
+    <span>Not yet publicly available</span>
+    <span class="alpha-badge">Coming Soon</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/" class="language-link">
     <strong>View All Libraries →</strong>
