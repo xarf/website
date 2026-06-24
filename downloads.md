@@ -16,7 +16,7 @@ Download XARF resources including JSON schemas, example reports, documentation, 
 Official JSON Schema files for validating XARF reports.
 
 <div class="download-section">
-  <h3>XARF v4.0.0 Schemas</h3>
+  <h3>XARF v4.2.0 Schemas</h3>
 
   <div class="download-grid">
     <div class="download-card">
@@ -179,7 +179,7 @@ Complete XARF documentation in various formats.
   <div class="download-grid">
     <div class="download-card">
       <h4>Specification PDF</h4>
-      <p>Complete XARF v4.0 specification</p>
+      <p>Complete XARF v4.2 specification</p>
       <div class="download-links">
         <a href="https://github.com/xarf/xarf-spec/releases" class="btn btn-primary">
           View Releases
@@ -233,15 +233,15 @@ Ready-to-use code snippets and templates.
     <p>Basic XARF report creation and validation</p>
     <div class="code-wrapper">
 {% highlight python %}
-from xarf import XARFReport
-from datetime import datetime
+from xarf import create_report
 
 def create_abuse_report(source_ip, abuse_type):
     """Create a basic XARF abuse report"""
-    report = XARFReport(
-        xarf_version="4.0.0",
-        report_id=str(uuid.uuid4()),
-        timestamp=datetime.utcnow().isoformat() + "Z",
+    # create_report auto-fills xarf_version, report_id, and timestamp
+    result = create_report(
+        category="connection",
+        type=abuse_type,
+        source_identifier=source_ip,
         reporter={
             "org": "Your Organization",
             "contact": "abuse@example.com",
@@ -252,15 +252,11 @@ def create_abuse_report(source_ip, abuse_type):
             "contact": "abuse@example.com",
             "domain": "example.com"
         },
-        source_identifier=source_ip,
-        category="connection",
-        type=abuse_type
     )
 
-    if report.validate():
-        return report.to_json()
-    else:
-        raise ValueError(report.validation_errors)
+    if result.errors:
+        raise ValueError(result.errors)
+    return result.report.model_dump(by_alias=True, exclude_none=True)
 {% endhighlight %}
     </div>
     <a href="{{ site.baseurl }}/libraries/python/" class="btn btn-small btn-secondary">View Python Library</a>
@@ -272,22 +268,23 @@ def create_abuse_report(source_ip, abuse_type):
     <div class="code-wrapper">
 {% highlight python %}
 from flask import Flask, request, jsonify
-from xarf import XARFReport, ValidationError
+from xarf import parse
 
 app = Flask(__name__)
 
 @app.route('/xarf/submit', methods=['POST'])
 def submit_report():
-    try:
-        report = XARFReport.from_json(request.get_json())
-        report.validate(strict=True)
+    result = parse(request.get_json())
+    if result.errors:
+        return jsonify({
+            'status': 'invalid',
+            'errors': [e.message for e in result.errors]
+        }), 400
 
-        # Process report
-        process_abuse_report(report)
+    # Process the validated report
+    process_abuse_report(result.report)
 
-        return jsonify({'status': 'accepted', 'report_id': report.report_id}), 202
-    except ValidationError as e:
-        return jsonify({'status': 'invalid', 'errors': e.errors}), 400
+    return jsonify({'status': 'accepted', 'report_id': result.report.report_id}), 202
 {% endhighlight %}
     </div>
     <a href="{{ site.baseurl }}/libraries/python/" class="btn btn-small btn-secondary">View Python Library</a>
@@ -352,13 +349,13 @@ Standalone tools for working with XARF.
         <a href="https://github.com/xarf/xarf-python" class="btn btn-primary">
           View on GitHub
         </a>
-        <span class="file-info">pip install git+https://github.com/xarf/xarf-python.git</span>
+        <span class="file-info">pip install xarf</span>
       </div>
     </div>
 
     <div class="download-card">
       <h4>All Libraries</h4>
-      <p>Python, JavaScript, Go</p>
+      <p>Python, JavaScript, Go, C#/.NET</p>
       <div class="download-links">
         <a href="{{ site.baseurl }}/libraries/" class="btn btn-secondary">
           Browse Libraries
@@ -386,13 +383,13 @@ Access older XARF specification versions.
     </thead>
     <tbody>
       <tr>
-        <td><strong>v4.0.0</strong></td>
-        <td>Q1 2026</td>
+        <td><strong>v4.2.0</strong></td>
+        <td>2026</td>
         <td><span class="badge badge-success">Current</span></td>
         <td>
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.0.0">Schemas</a> |
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.0.0">Examples</a> |
-          <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.0.0">Docs</a>
+          <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.2.0">Schemas</a> |
+          <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.2.0">Examples</a> |
+          <a href="https://github.com/xarf/xarf-spec/releases/tag/v4.2.0">Docs</a>
         </td>
       </tr>
       <tr>

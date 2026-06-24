@@ -7,797 +7,405 @@ permalink: /libraries/go/
 
 # XARF Go Library
 
-Official Go library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
+Official Go library for parsing, validating, and generating XARF (eXtended Abuse Reporting Format) v4 reports.
 
 <div class="library-status">
-  <span class="badge badge-warning">Coming Soon</span>
-  <span>Not yet publicly available</span>
-  <span>Go 1.19+</span>
+  <span class="badge badge-success">Stable</span>
+  <span>v1.1.0 · Apache-2.0</span>
+  <span>Go 1.21+</span>
 </div>
 
-<div class="alert alert-warning" markdown="1">
-**Note**: The Go library is not yet publicly available. The API documentation below describes the planned interface and is subject to change. To follow progress or express interest, join the [GitHub Discussions](https://github.com/xarf/xarf-spec/discussions).
+<div class="alert alert-success" markdown="1">
+**Published on [pkg.go.dev](https://pkg.go.dev/github.com/xarf/xarf-go).** Implements XARF specification **v4.2.0** with support for all 7 categories: messaging, connection, content, infrastructure, copyright, vulnerability, and reputation.
 </div>
 
 ---
 
 ## Installation
 
-The Go library is not yet publicly available. Installation instructions will be published here once the first release is available.
+```bash
+go get github.com/xarf/xarf-go
+```
 
-**Requirements** (planned):
-- Go 1.19 or higher
-- No external dependencies (uses Go standard library only)
+**Requirements**:
+- Go 1.21 or higher
+- Zero runtime dependencies (testing only)
 
 ---
 
-## Quick Start
+## Two APIs
 
-### Creating a Report
+The library offers two complementary surfaces:
+
+- **Package-level functions** (`Parse`, `CreateReport`, `CreateEvidence`) mirror the official [JavaScript library](https://www.npmjs.com/package/@xarf/xarf): the same schema-driven validation against the embedded v4.2.0 schemas, v3 auto-detection and conversion, strict mode, and identical evidence encoding.
+- **Typed constructors** (`NewParser`, `NewValidator`, `NewGenerator`) provide strongly-typed Go structs (`MessagingReport`, `ConnectionReport`, etc.) for category-specific field access.
+
+---
+
+## Package-level API (JavaScript parity)
+
+```go
+import "github.com/xarf/xarf-go"
+
+// Parse returns a result with errors/warnings rather than failing; an error is
+// returned only for malformed JSON or input exceeding MaxInputBytes. v3 reports
+// are auto-detected and converted (with a deprecation warning in Warnings).
+result, err := xarf.Parse(data, &xarf.ParseOptions{ShowMissingOptional: true})
+if err != nil { /* malformed JSON */ }
+if len(result.Errors) == 0 {
+    // result.Report is the validated report object (map[string]interface{})
+}
+// result.Warnings — unknown fields, v3 deprecation
+// result.Info     — missing optional/recommended fields (ShowMissingOptional)
+
+// CreateReport auto-fills xarf_version, report_id (UUID), and timestamp.
+created := xarf.CreateReport(map[string]any{
+    "category": "messaging", "type": "spam",
+    "source_identifier": "192.0.2.100", "source_port": 25,
+    "protocol": "smtp", "smtp_from": "spammer@example.com",
+    "evidence_source": "spamtrap",
+    "reporter": map[string]any{"org": "Acme", "contact": "abuse@acme.example", "domain": "acme.example"},
+    "sender":   map[string]any{"org": "Acme", "contact": "abuse@acme.example", "domain": "acme.example"},
+}, nil)
+
+// CreateEvidence base64-encodes the payload and prefixes the hash with the algorithm.
+ev := xarf.CreateEvidence("message/rfc822", rawEmail, &xarf.EvidenceOptions{
+    Description: "Original spam email", HashAlgorithm: "sha256",
+})
+// ev.Payload (base64), ev.Hash ("sha256:<hex>"), ev.Size
+```
+
+`ParseOptions.Strict` reports warnings and `x-recommended` fields as errors.
+
+**Version constants**: `xarf.SpecVersion` (`"4.2.0"`), `xarf.BundledSpecVersion` (`"v4.2.0"`), `xarf.Version` (library version).
+
+---
+
+## Typed API
+
+### Parsing a XARF Report
 
 ```go
 package main
 
 import (
     "fmt"
-    "time"
+    "log"
 
     "github.com/xarf/xarf-go"
 )
 
 func main() {
-    // Create a new XARF report
-    report := xarf.NewReport(xarf.ReportConfig{
-        XARFVersion:      "4.0.0",
-        ReportID:         "550e8400-e29b-41d4-a716-446655440000",
-        Timestamp:        time.Now().UTC().Format(time.RFC3339),
-        Reporter: xarf.Reporter{
-            Org:     "Security Operations",
-            Contact: "abuse@example.com",
-            Domain:  "example.com",
+    jsonData := []byte(`{
+        "xarf_version": "4.2.0",
+        "report_id": "550e8400-e29b-41d4-a716-446655440000",
+        "timestamp": "2024-01-15T10:30:00Z",
+        "reporter": {
+            "org": "Security Team",
+            "contact": "abuse@example.com",
+            "type": "automated"
         },
-        Sender: xarf.Sender{
-            Org:     "Security Operations",
-            Contact: "abuse@example.com",
-            Domain:  "example.com",
-        },
-        SourceIdentifier: "192.0.2.100",
-        Category:         "connection",
-        Type:             "ddos",
-        Description:      "DDoS attack detected from source IP",
-    })
+        "source_identifier": "192.0.2.100",
+        "category": "connection",
+        "type": "ddos",
+        "evidence_source": "honeypot",
+        "destination_ip": "203.0.113.10",
+        "protocol": "tcp"
+    }`)
 
-    // Validate
-    if err := report.Validate(); err != nil {
-        fmt.Printf("Validation error: %v\n", err)
-        return
-    }
-
-    fmt.Println("✓ Report is valid!")
-
-    // Export to JSON
-    jsonData, err := report.MarshalJSON()
+    parser := xarf.NewParser(false)
+    report, err := parser.Parse(jsonData)
     if err != nil {
-        fmt.Printf("Marshal error: %v\n", err)
-        return
+        log.Fatal(err)
     }
 
-    fmt.Printf("%s\n", jsonData)
-}
-```
-
-### Loading from JSON
-
-```go
-package main
-
-import (
-    "fmt"
-    "os"
-
-    "github.com/xarf/xarf-go"
-)
-
-func main() {
-    // Load from JSON string
-    jsonData := `{"xarf_version": "4.0.0", ...}`
-    report, err := xarf.UnmarshalJSON([]byte(jsonData))
-    if err != nil {
-        fmt.Printf("Parse error: %v\n", err)
-        return
-    }
-
-    // Load from file
-    data, err := os.ReadFile("report.json")
-    if err != nil {
-        fmt.Printf("Read error: %v\n", err)
-        return
-    }
-
-    report, err = xarf.UnmarshalJSON(data)
-    if err != nil {
-        fmt.Printf("Parse error: %v\n", err)
-        return
-    }
-
-    // Validate
-    if err := report.Validate(); err == nil {
-        fmt.Printf("Loaded report: %s\n", report.ReportID)
+    // Type assertion to access category-specific fields
+    if connReport, ok := report.(*xarf.ConnectionReport); ok {
+        fmt.Printf("DDoS attack from %s to %s\n",
+            connReport.SourceIdentifier,
+            connReport.DestinationIP)
     }
 }
 ```
 
----
-
-## Core Features
-
-- **Report Creation and Validation** - Struct-based API with full validation
-- **Schema Validation** - Validates against XARF 4.0 JSON schema
-- **Evidence Handling** - Base64 encoding, hashing (SHA-256/SHA-512), and verification
-- **Format Conversion** - JSON marshaling/unmarshaling with proper error handling
-- **Type Safety** - Strongly-typed Go structs
-- **Zero Dependencies** - Uses only Go standard library
-- **Concurrent Processing** - Goroutine-safe operations
-- **Context Support** - Context-aware processing for cancellation and timeouts
-
----
-
-## API Reference
-
-### Report Type
-
-Main struct for creating and manipulating XARF reports.
-
-```go
-type Report struct {
-    XARFVersion      string                 `json:"xarf_version"`
-    ReportID         string                 `json:"report_id"`
-    Timestamp        string                 `json:"timestamp"`
-    Reporter         Reporter               `json:"reporter"`
-    SourceIdentifier string                 `json:"source_identifier"`
-    Category         string                 `json:"category"`
-    Type             string                 `json:"type"`
-    Description      string                 `json:"description,omitempty"`
-    Severity         string                 `json:"severity,omitempty"`
-    Evidence         []Evidence             `json:"evidence,omitempty"`
-    TechnicalDetails map[string]interface{} `json:"technical_details,omitempty"`
-}
-
-type Reporter struct {
-    Org     string `json:"org"`
-    Contact string `json:"contact"`
-    Type    string `json:"type"`
-    URL     string `json:"url,omitempty"`
-}
-
-type Evidence struct {
-    ContentType string                 `json:"content_type"`
-    Description string                 `json:"description"`
-    Payload     string                 `json:"payload"`
-    Hash        *Hash                  `json:"hash,omitempty"`
-    Timestamp   string                 `json:"timestamp,omitempty"`
-}
-
-type Hash struct {
-    Algorithm string `json:"algorithm"`
-    Value     string `json:"value"`
-}
-```
-
-### Functions
-
-#### `NewReport(config ReportConfig) *Report`
-
-Create a new XARF report.
-
-```go
-report := xarf.NewReport(xarf.ReportConfig{
-    XARFVersion:      "4.0.0",
-    ReportID:         "550e8400-e29b-41d4-a716-446655440000",
-    Timestamp:        time.Now().UTC().Format(time.RFC3339),
-    Reporter: xarf.Reporter{
-        Org:     "Security Ops",
-        Contact: "abuse@example.com",
-        Domain:  "example.com",
-    },
-    Sender: xarf.Sender{
-        Org:     "Security Ops",
-        Contact: "abuse@example.com",
-        Domain:  "example.com",
-    },
-    SourceIdentifier: "192.0.2.100",
-    Category:         "connection",
-    Type:             "ddos",
-})
-```
-
-#### `(*Report) Validate() error`
-
-Validate the report against the JSON schema.
-
-```go
-if err := report.Validate(); err != nil {
-    log.Printf("Validation failed: %v", err)
-    return err
-}
-```
-
-**Returns**: `error` - nil if valid, error describing validation failures
-
-#### `(*Report) MarshalJSON() ([]byte, error)`
-
-Export report to JSON bytes.
-
-```go
-jsonData, err := report.MarshalJSON()
-if err != nil {
-    return err
-}
-fmt.Printf("%s\n", jsonData)
-```
-
-**Returns**: `([]byte, error)` - JSON bytes and error
-
-#### `(*Report) MarshalIndent() ([]byte, error)`
-
-Export report to pretty-printed JSON.
-
-```go
-jsonData, err := report.MarshalIndent()
-if err != nil {
-    return err
-}
-```
-
-**Returns**: `([]byte, error)` - Pretty-printed JSON bytes
-
-#### `UnmarshalJSON(data []byte) (*Report, error)`
-
-Create report from JSON bytes.
-
-```go
-report, err := xarf.UnmarshalJSON(jsonData)
-if err != nil {
-    return nil, err
-}
-```
-
-**Returns**: `(*Report, error)` - Report and error
-
-#### `(*Report) AddEvidence(evidence Evidence)`
-
-Add evidence to the report.
-
-```go
-report.AddEvidence(xarf.Evidence{
-    ContentType: "text/plain",
-    Description: "Server logs",
-    Payload:     "YmFzZTY0IGVuY29kZWQgZGF0YQ==",
-    Hash: &xarf.Hash{
-        Algorithm: "sha256",
-        Value:     "abc123...",
-    },
-})
-```
-
-### Validator Type
-
-Validates XARF reports.
-
-```go
-validator := xarf.NewValidator()
-if err := validator.Validate(report); err != nil {
-    log.Printf("Invalid: %v", err)
-}
-```
-
-### EvidenceHelper Type
-
-Handles evidence creation and verification.
-
-```go
-evidence, err := xarf.CreateEvidenceFromFile("./evidence.pdf")
-if err != nil {
-    log.Fatal(err)
-}
-```
-
-### Error Types
-
-```go
-var (
-    ErrInvalidJSON   = errors.New("invalid JSON")
-    ErrValidation    = errors.New("validation failed")
-    ErrMissingField  = errors.New("missing required field")
-)
-```
-
----
-
-## Examples
-
-### Creating a DDoS Report
-
-```go
-import (
-    "time"
-    "github.com/xarf/xarf-go"
-)
-
-func createDDoSReport() (*xarf.Report, error) {
-    report := xarf.NewReport(xarf.ReportConfig{
-        XARFVersion:      "4.0.0",
-        ReportID:         generateUUID(),
-        Timestamp:        time.Now().UTC().Format(time.RFC3339),
-        Reporter: xarf.Reporter{
-            Org:     "Network Security Team",
-            Contact: "noc@example.com",
-            Domain:  "example.com",
-        },
-        Sender: xarf.Sender{
-            Org:     "Network Security Team",
-            Contact: "noc@example.com",
-            Domain:  "example.com",
-        },
-        SourceIdentifier: "203.0.113.50",
-        Category:         "connection",
-        Type:             "ddos",
-        Description:      "Volumetric DDoS attack detected",
-    })
-
-    // Add DDoS-specific fields
-    report.Protocol = "udp"
-    report.DestinationPort = 53
-    report.PeakPPS = 150000
-    report.PeakBPS = 1200000000
-    report.DurationSeconds = 300
-
-    if err := report.Validate(); err != nil {
-        return nil, err
-    }
-
-    return report, nil
-}
-```
-
-### Adding Evidence
-
-```go
-import (
-    "crypto/sha256"
-    "encoding/base64"
-    "io"
-    "os"
-)
-
-func createEvidenceFromFile(filename string) (*xarf.Evidence, error) {
-    // Read file
-    file, err := os.Open(filename)
-    if err != nil {
-        return nil, err
-    }
-    defer file.Close()
-
-    // Calculate hash and read data
-    hash := sha256.New()
-    data, err := io.ReadAll(io.TeeReader(file, hash))
-    if err != nil {
-        return nil, err
-    }
-
-    // Encode to base64
-    payload := base64.StdEncoding.EncodeToString(data)
-
-    return &xarf.Evidence{
-        ContentType: "application/octet-stream",
-        Description: "Evidence from file",
-        Payload:     payload,
-        Hash: &xarf.Hash{
-            Algorithm: "sha256",
-            Value:     fmt.Sprintf("%x", hash.Sum(nil)),
-        },
-        Timestamp: time.Now().UTC().Format(time.RFC3339),
-    }, nil
-}
-```
-
-### Batch Validation
-
-```go
-type BatchProcessor struct {
-    reports []*xarf.Report
-    mu      sync.RWMutex
-}
-
-func NewBatchProcessor() *BatchProcessor {
-    return &BatchProcessor{
-        reports: make([]*xarf.Report, 0),
-    }
-}
-
-func (bp *BatchProcessor) AddReport(jsonData []byte) error {
-    report, err := xarf.UnmarshalJSON(jsonData)
-    if err != nil {
-        return err
-    }
-
-    bp.mu.Lock()
-    bp.reports = append(bp.reports, report)
-    bp.mu.Unlock()
-
-    return nil
-}
-
-func (bp *BatchProcessor) ValidateAll() (valid, invalid []*xarf.Report) {
-    bp.mu.RLock()
-    defer bp.mu.RUnlock()
-
-    for _, report := range bp.reports {
-        if err := report.Validate(); err == nil {
-            valid = append(valid, report)
-        } else {
-            invalid = append(invalid, report)
-        }
-    }
-
-    return valid, invalid
-}
-```
-
-### Custom Fields
-
-```go
-report := xarf.NewReport(xarf.ReportConfig{
-    XARFVersion:      "4.0.0",
-    ReportID:         generateUUID(),
-    Timestamp:        time.Now().UTC().Format(time.RFC3339),
-    Reporter: xarf.Reporter{
-        Org:     "Security Team",
-        Contact: "abuse@example.com",
-        Domain:  "example.com",
-    },
-    Sender: xarf.Sender{
-        Org:     "Security Team",
-        Contact: "abuse@example.com",
-        Domain:  "example.com",
-    },
-    SourceIdentifier: "192.0.2.100",
-    Category:         "messaging",
-    Type:             "spam",
-})
-
-// Add custom fields via CustomFields
-report.CustomFields = map[string]interface{}{
-    "custom_tracking_id":       "TICKET-12345",
-    "internal_severity_score":  8.5,
-    "automated_response":       true,
-}
-```
-
----
-
-## Advanced Usage
-
-### Concurrent Processing
-
-Process reports concurrently using goroutines:
-
-```go
-func processReports(files []string) error {
-    var wg sync.WaitGroup
-    errors := make(chan error, len(files))
-
-    for _, file := range files {
-        wg.Add(1)
-        go func(filename string) {
-            defer wg.Done()
-
-            data, err := os.ReadFile(filename)
-            if err != nil {
-                errors <- fmt.Errorf("%s: %w", filename, err)
-                return
-            }
-
-            report, err := xarf.UnmarshalJSON(data)
-            if err != nil {
-                errors <- fmt.Errorf("%s: %w", filename, err)
-                return
-            }
-
-            if err := report.Validate(); err != nil {
-                errors <- fmt.Errorf("%s: %w", filename, err)
-                return
-            }
-
-            if err := handleReport(report); err != nil {
-                errors <- err
-            }
-        }(file)
-    }
-
-    wg.Wait()
-    close(errors)
-
-    for err := range errors {
-        log.Printf("Error: %v", err)
-    }
-
-    return nil
-}
-```
-
-### Context-Aware Processing
-
-Use context for cancellation and timeouts:
-
-```go
-func processReportWithContext(ctx context.Context, report *xarf.Report) error {
-    // Create a channel for the result
-    done := make(chan error, 1)
-
-    go func() {
-        if err := report.Validate(); err != nil {
-            done <- err
-            return
-        }
-
-        if err := submitReport(report); err != nil {
-            done <- err
-            return
-        }
-
-        done <- nil
-    }()
-
-    select {
-    case <-ctx.Done():
-        return ctx.Err()
-    case err := <-done:
-        return err
-    }
-}
-
-// Usage
-ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-defer cancel()
-
-if err := processReportWithContext(ctx, report); err != nil {
-    log.Printf("Processing failed: %v", err)
-}
-```
-
----
-
-## Integration Examples
-
-### HTTP Server
+### Generating a XARF Report
 
 ```go
 package main
 
 import (
     "encoding/json"
-    "io"
+    "fmt"
     "log"
-    "net/http"
 
     "github.com/xarf/xarf-go"
 )
 
 func main() {
-    http.HandleFunc("/xarf/submit", submitHandler)
-    log.Fatal(http.ListenAndServe(":8080", nil))
-}
+    gen := xarf.NewGenerator()
 
-func submitHandler(w http.ResponseWriter, r *http.Request) {
-    if r.Method != http.MethodPost {
-        http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-        return
+    opts := xarf.ReportOptions{
+        Category:         xarf.CategoryConnection,
+        Type:             "ddos",
+        SourceIdentifier: "192.0.2.100",
+        ReporterContact:  "abuse@example.com",
+        ReporterOrg:      "Example Security Team",
+        Description:      "Sustained DDoS attack detected",
+        Severity:         xarf.SeverityHigh,
     }
 
-    // Read body
-    body, err := io.ReadAll(r.Body)
+    report, err := gen.GenerateReport(opts)
     if err != nil {
-        http.Error(w, "Failed to read body", http.StatusBadRequest)
-        return
-    }
-    defer r.Body.Close()
-
-    // Parse report
-    report, err := xarf.UnmarshalJSON(body)
-    if err != nil {
-        http.Error(w, "Invalid JSON", http.StatusBadRequest)
-        return
+        log.Fatal(err)
     }
 
-    // Validate
-    if err := report.Validate(); err != nil {
-        w.Header().Set("Content-Type", "application/json")
-        w.WriteHeader(http.StatusBadRequest)
-        json.NewEncoder(w).Encode(map[string]string{
-            "status": "invalid",
-            "error":  err.Error(),
-        })
-        return
-    }
-
-    // Process
-    if err := processAbuseReport(report); err != nil {
-        http.Error(w, "Processing failed", http.StatusInternalServerError)
-        return
-    }
-
-    // Response
-    w.Header().Set("Content-Type", "application/json")
-    w.WriteHeader(http.StatusAccepted)
-    json.NewEncoder(w).Encode(map[string]string{
-        "status":    "accepted",
-        "report_id": report.ReportID,
-    })
-}
-
-func processAbuseReport(report *xarf.Report) error {
-    // Implementation
-    return nil
+    jsonData, _ := json.MarshalIndent(report, "", "  ")
+    fmt.Println(string(jsonData))
 }
 ```
 
-### CLI Application
+### Validating a Report
 
 ```go
 package main
 
 import (
-    "flag"
     "fmt"
-    "os"
+    "log"
 
     "github.com/xarf/xarf-go"
 )
 
 func main() {
-    validateCmd := flag.NewFlagSet("validate", flag.ExitOnError)
-    createCmd := flag.NewFlagSet("create", flag.ExitOnError)
-
-    if len(os.Args) < 2 {
-        fmt.Println("Usage: xarf-cli <command> [arguments]")
-        os.Exit(1)
+    parser := xarf.NewParser(false)
+    report, err := parser.Parse(jsonData)
+    if err != nil {
+        log.Fatal(err)
     }
 
-    switch os.Args[1] {
-    case "validate":
-        validateCmd.Parse(os.Args[2:])
-        if validateCmd.NArg() < 1 {
-            fmt.Println("Usage: xarf-cli validate <file>")
-            os.Exit(1)
+    validator := xarf.NewValidator()
+    valid, errors := validator.ValidateReport(report)
+
+    if !valid {
+        fmt.Println("Validation errors:")
+        for _, err := range errors {
+            fmt.Printf("  - %s\n", err)
         }
-        validateFile(validateCmd.Arg(0))
-
-    case "create":
-        createCmd.Parse(os.Args[2:])
-        createReport()
-
-    default:
-        fmt.Println("Unknown command:", os.Args[1])
-        os.Exit(1)
+    } else {
+        fmt.Println("Report is valid!")
     }
-}
-
-func validateFile(filename string) {
-    data, err := os.ReadFile(filename)
-    if err != nil {
-        fmt.Printf("Error reading file: %v\n", err)
-        os.Exit(1)
-    }
-
-    report, err := xarf.UnmarshalJSON(data)
-    if err != nil {
-        fmt.Printf("Error parsing JSON: %v\n", err)
-        os.Exit(1)
-    }
-
-    if err := report.Validate(); err != nil {
-        fmt.Printf("✗ Validation failed: %v\n", err)
-        os.Exit(1)
-    }
-
-    fmt.Println("✓ Report is valid!")
 }
 ```
 
 ---
 
-## Best Practices
+## XARF v3 Backwards Compatibility
 
-### 1. Always Check Errors
-
-```go
-// ✓ GOOD
-report, err := xarf.UnmarshalJSON(data)
-if err != nil {
-    return fmt.Errorf("parse failed: %w", err)
-}
-
-if err := report.Validate(); err != nil {
-    return fmt.Errorf("validation failed: %w", err)
-}
-
-// ✗ BAD
-report, _ := xarf.UnmarshalJSON(data) // Ignoring errors!
-report.Validate() // Not checking result
-```
-
-### 2. Use Defer for Cleanup
+The library automatically detects legacy XARF v3 reports and converts them to v4 transparently. With the package-level `Parse`, a v3 deprecation notice is surfaced in `result.Warnings`. With the typed parser, conversion happens in place:
 
 ```go
-// ✓ GOOD
-file, err := os.Open("report.json")
-if err != nil {
-    return err
-}
-defer file.Close()
+package main
 
-// ✗ BAD
-file, _ := os.Open("report.json")
-// No defer - might leak resources
-```
+import (
+    "fmt"
+    "log"
 
-### 3. Use Context for Cancellation
+    "github.com/xarf/xarf-go"
+)
 
-```go
-// ✓ GOOD
-func process(ctx context.Context, report *xarf.Report) error {
-    select {
-    case <-ctx.Done():
-        return ctx.Err()
-    default:
-        return handleReport(report)
+func main() {
+    // V3 format report
+    v3Data := []byte(`{
+        "Version": "3.0.0",
+        "ReporterInfo": {
+            "ReporterOrg": "Security Team",
+            "ReporterOrgEmail": "abuse@example.com"
+        },
+        "Report": {
+            "ReportClass": "Messaging",
+            "ReportType": "spam",
+            "SourceIP": "192.0.2.100"
+        }
+    }`)
+
+    // Parser automatically detects and converts v3
+    parser := xarf.NewParser(false)
+    report, err := parser.Parse(v3Data)
+    if err != nil {
+        log.Fatal(err)
     }
-}
 
-// ✗ BAD
-func process(report *xarf.Report) error {
-    // No way to cancel
-    return handleReport(report)
+    // Now in v4 format
+    fmt.Printf("Category: %s\n", report.GetCategory())
 }
 ```
 
-### 4. Handle Concurrency Safely
+---
+
+## Third-Party Reporting (Reporter vs Sender)
+
+XARF v4 supports third-party reporting through separate `reporter` and `sender` fields:
+
+- **reporter**: The original entity that detected/reported the abuse.
+- **sender**: The entity transmitting the report (may be different).
+
+### Direct Reporting (Reporter = Sender)
+
+When you're reporting abuse you directly detected:
 
 ```go
-// ✓ GOOD
-type SafeProcessor struct {
-    reports []*xarf.Report
-    mu      sync.RWMutex
-}
+package main
 
-func (sp *SafeProcessor) Add(r *xarf.Report) {
-    sp.mu.Lock()
-    defer sp.mu.Unlock()
-    sp.reports = append(sp.reports, r)
-}
+import (
+    "encoding/json"
+    "fmt"
+    "time"
 
-// ✗ BAD
-type UnsafeProcessor struct {
-    reports []*xarf.Report // Race condition!
+    "github.com/xarf/xarf-go"
+)
+
+func main() {
+    // Direct reporting: you are both reporter and sender
+    contactInfo := xarf.ContactInfo{
+        Org:     "Example Security Team",
+        Contact: "abuse@example.com",
+        Domain:  "example.com",
+    }
+
+    report := xarf.MessagingReport{
+        Report: xarf.Report{
+            XARFVersion:      "4.2.0",
+            ReportID:         "550e8400-e29b-41d4-a716-446655440000",
+            Timestamp:        time.Now(),
+            Reporter:         contactInfo, // You detected it
+            Sender:           contactInfo, // You're sending it
+            SourceIdentifier: "192.0.2.100",
+            Category:         xarf.CategoryMessaging,
+            Type:             "spam",
+            EvidenceSource:   xarf.EvidenceSourceSpamtrap,
+        },
+        Protocol: "smtp",
+    }
+
+    jsonData, _ := json.MarshalIndent(report, "", "  ")
+    fmt.Println(string(jsonData))
 }
 ```
+
+### Third-Party Reporting (Reporter ≠ Sender)
+
+When forwarding abuse reports on behalf of others (e.g., an ISP forwarding customer reports):
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+    "time"
+
+    "github.com/xarf/xarf-go"
+)
+
+func main() {
+    // Original reporter (your customer)
+    reporter := xarf.ContactInfo{
+        Org:     "Customer Organization",
+        Contact: "security@customer.com",
+        Domain:  "customer.com",
+    }
+
+    // Sender (you, forwarding on their behalf)
+    sender := xarf.ContactInfo{
+        Org:     "Internet Service Provider",
+        Contact: "abuse@isp.com",
+        Domain:  "isp.com",
+    }
+
+    report := xarf.MessagingReport{
+        Report: xarf.Report{
+            XARFVersion:      "4.2.0",
+            ReportID:         "550e8400-e29b-41d4-a716-446655440001",
+            Timestamp:        time.Now(),
+            Reporter:         reporter, // Customer who detected abuse
+            Sender:           sender,   // ISP forwarding the report
+            SourceIdentifier: "192.0.2.100",
+            Category:         xarf.CategoryMessaging,
+            Type:             "spam",
+            EvidenceSource:   xarf.EvidenceSourceUserReport,
+        },
+        Protocol: "smtp",
+    }
+
+    jsonData, _ := json.MarshalIndent(report, "", "  ")
+    fmt.Println(string(jsonData))
+}
+```
+
+---
+
+## Supported Categories
+
+All 7 XARF v4.2.0 categories are supported, each with a dedicated typed report struct:
+
+| Category | Report Type | Coverage |
+|----------|-------------|----------|
+| Messaging | `MessagingReport` | Email and messaging abuse (spam, phishing, social engineering, bulk messaging) |
+| Connection | `ConnectionReport` | Network connection abuse (DDoS, port scans, login attacks, SQL injection) |
+| Content | `ContentReport` | Web content abuse (phishing sites, malware distribution, defacement) |
+| Infrastructure | `InfrastructureReport` | Infrastructure compromise (botnets, compromised servers) |
+| Copyright | `CopyrightReport` | Copyright infringement (DMCA, trademark, P2P, cyberlocker) |
+| Vulnerability | `VulnerabilityReport` | Security vulnerabilities (CVE, misconfigurations, open services) |
+| Reputation | `ReputationReport` | Reputation and threat intelligence (blocklists, threat feeds) |
+
+---
+
+## Key Types & Functions
+
+**Types**
+
+- `Report` — Base XARF report structure (embedded by all category reports)
+- `MessagingReport`, `ConnectionReport`, `ContentReport`, `InfrastructureReport`, `CopyrightReport`, `VulnerabilityReport`, `ReputationReport`
+
+**Constructors**
+
+- `NewParser(strict bool)` — Create a new parser
+- `NewValidator()` — Create a new validator
+- `NewGenerator()` — Create a new generator
+
+**Package-level functions**
+
+- `Parse(data, *ParseOptions)` — Schema-driven parse returning a result with errors/warnings/info
+- `CreateReport(map[string]any, *ReportOptions)` — Build a report with auto-filled `xarf_version`, `report_id`, and `timestamp`
+- `CreateEvidence(contentType, payload, *EvidenceOptions)` — Base64-encode a payload and compute its hash
+
+---
+
+## Specification Compliance
+
+This library strictly implements the **XARF v4.2.0** specification, requiring the `category` field for all reports. Reports using the deprecated `class` field will fail validation.
+
+- ✅ Only the `category` field is accepted (XARF v4 spec requirement)
+- ✅ Always outputs `category` when generating
+- ❌ The `class` field is not supported
+
+The library uses independent versioning starting from v1.0.0, allowing the library version to evolve independently of the XARF specification version.
 
 ---
 
 ## Resources
 
-- **GitHub Repository** - Coming soon (not yet publicly available)
-- **pkg.go.dev** - Coming soon
-- **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** - Follow progress and express interest
-- **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report spec issues
+- **[GitHub Repository](https://github.com/xarf/xarf-go)** — Source, issues, and examples
+- **[pkg.go.dev](https://pkg.go.dev/github.com/xarf/xarf-go)** — Full API documentation
+- **[XARF Specification](https://github.com/xarf/xarf-spec)** — v4.2.0
+- **[GitHub Issues](https://github.com/xarf/xarf-go/issues)** — Report a bug or request a feature
 
 ---
 
 ## Support
 
-- **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** - Ask questions
-- **[Stack Overflow](https://stackoverflow.com/questions/tagged/xarf)** - Tag: `xarf`
+- **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** — Ask questions
+- **[Issue Tracker](https://github.com/xarf/xarf-go/issues)** — Library issues
 
 <style>
 .library-status {
@@ -853,6 +461,12 @@ type UnsafeProcessor struct {
 .alert-warning {
   background: rgba(251, 146, 60, 0.1);
   border-color: #fb923c;
+  color: var(--color-text);
+}
+
+.alert-success {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: #22c55e;
   color: var(--color-text);
 }
 </style>

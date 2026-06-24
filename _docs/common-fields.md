@@ -51,7 +51,7 @@ The XARF schema version using semantic versioning. This field identifies which v
 
 **Example Values:**
 ```json
-"xarf_version": "4.0.0"
+"xarf_version": "4.2.0"
 "xarf_version": "4.1.2"
 "xarf_version": "4.6.1"
 ```
@@ -829,7 +829,7 @@ Here's a complete example showing all common fields together:
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "category": "content",
   "type": "phishing",
@@ -874,7 +874,7 @@ Here's a complete example showing all common fields together:
 
 Before submitting a XARF v4 report, verify these mandatory fields are present:
 
-- ✅ `xarf_version` - Schema version (e.g., "4.0.0")
+- ✅ `xarf_version` - Schema version (e.g., "4.2.0")
 - ✅ `report_id` - UUID v4 identifier
 - ✅ `category` - Abuse category (messaging, content, etc.)
 - ✅ `type` - Specific type within category

@@ -61,7 +61,7 @@
 </script>
 {% endif %}
 
-{% if page.layout == "library" or page.collection == "libraries" %}
+{% if page.collection == "libraries" %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -75,7 +75,7 @@
     "priceCurrency": "USD"
   },
   "description": "{{ page.description | default: page.excerpt | strip_html | truncatewords: 30 }}",
-  "softwareVersion": "{{ page.version | default: '4.0.0' }}",
+  "softwareVersion": "{{ page.version | default: '4.2.0' }}",
   "author": {
     "@type": "Organization",
     "name": "XARF Project"

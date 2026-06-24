@@ -14,6 +14,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.2.0] - 2026
+
+### Overview
+
+XARF v4.2.0 is the current specification release. It refines and extends the v4.0 format through the v4.1 and v4.2 minor releases; see the [xarf-spec repository](https://github.com/xarf/xarf-spec) for the complete change history and JSON schemas.
+
+### Libraries
+
+Official, stable parser libraries are available for four languages, all implementing the v4.2.0 schemas with automatic v3 backward compatibility:
+
+- **Python** — [`xarf`](https://pypi.org/project/xarf/) on PyPI
+- **JavaScript/TypeScript** — [`@xarf/xarf`](https://www.npmjs.com/package/@xarf/xarf) on npm
+- **Go** — [`github.com/xarf/xarf-go`](https://pkg.go.dev/github.com/xarf/xarf-go) on pkg.go.dev
+- **C#/.NET** — [`Xarf`](https://www.nuget.org/packages/Xarf) on NuGet
+
+---
+
 ## [4.0.0] - 2024-01-15
 
 ### Overview
@@ -214,7 +231,8 @@ N/A - Initial v4.0 release
 
 | Version | Release Date | Status | Support Until |
 |---------|--------------|--------|---------------|
-| **4.0.0** | 2024-01-15 | Current | Active |
+| **4.2.0** | 2026 | Current | Active |
+| 4.0.0 | 2024-01-15 | Superseded | Active |
 | 3.1.0 | 2023-06-20 | Deprecated | 2024-12-31 |
 | 3.0.0 | 2022-11-10 | End of Life | 2023-12-31 |
 | 2.5.0 | 2021-08-15 | End of Life | 2023-06-30 |
@@ -276,19 +294,13 @@ Version 2.x is end-of-life with no security updates.
 
 ## Future Roadmap
 
-### v4.1 (Q2 2024)
-- Additional AI/ML abuse types
-- Enhanced validation rules
-- Performance improvements
+> **v4.1** and **v4.2** have been released — **v4.2.0** is the current specification. See the [xarf-spec repository](https://github.com/xarf/xarf-spec) for their full change history.
 
-### v4.2 (Q4 2024)
-- Blockchain abuse reporting
-- Enhanced cryptocurrency support
-- New evidence types
+### Future
 
-### v5.0 (2025)
-- TBD based on community feedback
-- Potential breaking changes will be announced 12 months in advance
+- Additional abuse types driven by community feedback
+- Continued refinement of validation rules and tooling
+- Any future major (v5.0) breaking changes will be announced at least 12 months in advance
 
 ---
 
@@ -323,6 +335,7 @@ Stay updated on XARF releases:
 
 ---
 
+[4.2.0]: https://github.com/xarf/xarf-spec/releases/tag/v4.2.0
 [4.0.0]: https://github.com/xarf/xarf-spec/releases/tag/v4.0.0
 [3.1.0]: https://github.com/abusix/xarf
 [3.0.0]: https://github.com/abusix/xarf

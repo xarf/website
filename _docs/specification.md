@@ -10,7 +10,7 @@ permalink: /docs/specification/
 <div class="version-selector">
   <label for="xarf-version">XARF Version:</label>
   <select id="xarf-version" onchange="window.location.href=this.value">
-    <option value="/docs/specification/" selected>v4.0.0 (Current)</option>
+    <option value="/docs/specification/" selected>v4.2.0 (Current)</option>
   </select>
 </div>
 
@@ -311,7 +311,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T14:30:00Z",
   "category": "content",
@@ -348,7 +348,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T10:20:30Z",
   "category": "connection",
@@ -389,7 +389,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "987fcdeb-51a2-43d1-9f12-345678901234",
   "timestamp": "2024-01-15T08:45:15Z",
   "category": "messaging",
@@ -429,7 +429,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "456789ab-cdef-1234-5678-90abcdef1234",
   "timestamp": "2024-01-15T16:00:00Z",
   "category": "content",
@@ -469,7 +469,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "fedcba98-7654-3210-fedc-ba9876543210",
   "timestamp": "2024-01-15T12:30:00Z",
   "category": "copyright",
@@ -510,7 +510,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "321fedcb-9876-5432-10fe-dcba98765432",
   "timestamp": "2024-01-15T09:15:30Z",
   "category": "infrastructure",
@@ -549,7 +549,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "789abcde-f012-3456-7890-abcdef123456",
   "timestamp": "2024-01-15T11:00:00Z",
   "category": "vulnerability",
@@ -682,7 +682,7 @@ XARF v4 parsers should support automatic conversion of XARF v3 reports for backw
 
 | XARF v3 | XARF v4 | Notes |
 |---------|---------|-------|
-| `Version` | `xarf_version` | Format: `4.0.0` |
+| `Version` | `xarf_version` | Format: `4.2.0` |
 | `ReporterInfo` | `reporter` | Restructured object with `org`, `contact`, `type` fields |
 | `Report.ReportType` | `category` + `type` | Split into category and type fields |
 | `Report.SourceIp` | `source_identifier` | Supports IPs and domains |

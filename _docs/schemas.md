@@ -111,7 +111,7 @@ All XARF v4 reports must include these base fields:
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T14:30:25Z",
   "reporter": {
@@ -199,7 +199,7 @@ Network-level attacks and suspicious connection patterns.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "ddos-789a0123-b456-78c9-d012-345678901234",
   "timestamp": "2024-01-15T16:55:42Z",
   "reporter": {
@@ -272,7 +272,7 @@ All content types inherit from [content-base.json](https://github.com/xarf/xarf-
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "b2c3d4e5-f6g7-8901-bcde-f2345678901a",
   "timestamp": "2025-01-15T15:15:24Z",
   "reporter": {
@@ -318,7 +318,7 @@ Intellectual property infringement and unauthorized distribution.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "p2p-789a1234-b567-89c0-d123-456789abcdef",
   "timestamp": "2024-01-15T18:30:45Z",
   "reporter": {
@@ -363,7 +363,7 @@ Compromised or misused infrastructure and systems.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "bot-123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T12:00:00Z",
   "reporter": {
@@ -403,7 +403,7 @@ Spam and abuse via messaging platforms.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "spam-123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T14:30:25Z",
   "reporter": {
@@ -446,7 +446,7 @@ Threat intelligence, blocklists, and reputation data.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "bl-123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T10:00:00Z",
   "reporter": {
@@ -486,7 +486,7 @@ Security vulnerabilities and misconfigurations.
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "vuln-123e4567-e89b-12d3-a456-426614174000",
   "timestamp": "2024-01-15T09:00:00Z",
   "reporter": {
@@ -565,7 +565,7 @@ XARF v4 allows custom fields via `additionalProperties: true`. Add organization-
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "...",
   "category": "messaging",
   "type": "spam",
@@ -583,7 +583,7 @@ Use the `_internal` field for operational metadata that should NEVER be transmit
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "...",
   "category": "content",
   "type": "phishing",
@@ -601,8 +601,9 @@ Use the `_internal` field for operational metadata that should NEVER be transmit
 
 XARF uses semantic versioning. The `xarf_version` field indicates which schema version to validate against:
 
-- `4.0.0` - Initial XARF v4 release
+- `4.2.0` - Current release
 - `4.1.0` - Minor enhancements, backward compatible
+- `4.0.0` - Initial XARF v4 release
 - `4.0.1` - Patch fixes, fully compatible
 
 **Migration**: When XARF schemas are updated, existing reports remain valid if they comply with the base version's requirements.
@@ -621,7 +622,7 @@ XARF uses semantic versioning. The `xarf_version` field indicates which schema v
 
 | Error | Cause | Fix |
 |-------|-------|-----|
-| Missing required property 'xarf_version' | Core field omitted | Add `xarf_version: "4.0.0"` |
+| Missing required property 'xarf_version' | Core field omitted | Add `xarf_version: "4.2.0"` |
 | Invalid UUID format for report_id | Wrong UUID format | Use UUID v4 (e.g., `550e8400-e29b-41d4-a716-446655440000`) |
 | Invalid date-time format | Timestamp not ISO 8601 | Use format: `2024-01-15T14:30:25Z` |
 | Category 'content' requires 'url' field | Type-specific field missing | Add required field based on content type |
