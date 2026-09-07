@@ -155,7 +155,7 @@ Infrastructure providers, MSSPs, and abuse reporting services often send reports
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T10:00:00Z",
   "reporter": {
@@ -468,7 +468,7 @@ yamllint report.yaml
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "test-12345-67890",
   "timestamp": "2025-03-16T15:30:00Z",
   "reporter": {

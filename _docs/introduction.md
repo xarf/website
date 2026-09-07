@@ -27,7 +27,7 @@ Manual parsing required. Time-consuming. Error-prone. No standardization.
 **With XARF v4:**
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "category": "content",
   "type": "phishing",

@@ -32,7 +32,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T10:00:00Z",
   🟠 "reporter": {
@@ -86,7 +86,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T11:00:00Z",
   🟠 "reporter": {
@@ -140,7 +140,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T12:00:00Z",
   🟠 "reporter": {
@@ -194,7 +194,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T14:00:00Z",
   🟠 "reporter": {
@@ -248,7 +248,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T15:30:00Z",
   🟠 "reporter": {
@@ -302,7 +302,7 @@ Intellectual property violations including DMCA notices, trademark infringement,
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T17:00:00Z",
   🟠 "reporter": {
