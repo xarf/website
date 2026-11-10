@@ -42,7 +42,7 @@ All samples use the following notation to indicate field requirements:
 Every XARF v4 report, regardless of type, includes these core fields:
 
 ### Mandatory Core Fields
-- `xarf_version` - XARF schema version (e.g., "4.0.0")
+- `xarf_version` - XARF schema version (e.g., "4.2.0")
 - `report_id` - Unique UUID v4 identifier
 - `timestamp` - ISO 8601 timestamp of the incident
 - `reporter` - Reporting organization information

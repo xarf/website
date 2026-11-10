@@ -1,6 +1,6 @@
 # XARF Website
 
-Official website for the eXtended Abuse Reporting Format (XARF) v4.
+Official website for the eXtended Abuse Reporting Format (XARF) v4.2.
 
 ## 🌐 Live Site
 
@@ -13,7 +13,7 @@ This Jekyll website provides:
 
 - **Professional Homepage**: Marketing and overview content
 - **Interactive Tools**: Schema validator, sample generator, format converter
-- **Parser Libraries**: Comprehensive SDK documentation for 5+ languages
+- **Parser Libraries**: SDK documentation for JavaScript/TypeScript, Go, C#/.NET, and Python (4 published libraries)
 - **Documentation**: User guides, technical specs, best practices
 - **Community Hub**: Contributing guides, changelog, support resources
 

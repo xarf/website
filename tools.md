@@ -22,7 +22,7 @@ Use these browser-based tools without installing anything.
         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
       </svg>
     </div>
-    <h3>Schema Validator <span class="status-badge beta">Beta</span></h3>
+    <h3>Schema Validator</h3>
     <p>Validate XARF reports against JSON schemas to ensure compliance with the specification.</p>
     <div class="tool-features">
       <span class="feature-tag">Real-time validation</span>
@@ -113,18 +113,23 @@ Programmatic XARF support in your language of choice.
 <div class="language-quick-links">
   <a href="{{ site.baseurl }}/libraries/python/" class="language-link">
     <strong>Python</strong>
-    <span>pip install git+https://github.com/xarf/xarf-python.git</span>
-    <span class="alpha-badge">Alpha</span>
+    <span>pip install xarf</span>
+    <span class="stable-badge">Stable</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/javascript/" class="language-link">
     <strong>JavaScript</strong>
     <span>npm install @xarf/xarf</span>
-    <span class="alpha-badge">Alpha</span>
+    <span class="stable-badge">Stable</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/go/" class="language-link">
     <strong>Go</strong>
-    <span>Not yet publicly available</span>
-    <span class="alpha-badge">Coming Soon</span>
+    <span>go get github.com/xarf/xarf-go</span>
+    <span class="stable-badge">Stable</span>
+  </a>
+  <a href="{{ site.baseurl }}/libraries/csharp/" class="language-link">
+    <strong>C#/.NET</strong>
+    <span>dotnet add package Xarf</span>
+    <span class="stable-badge">Stable</span>
   </a>
   <a href="{{ site.baseurl }}/libraries/" class="language-link">
     <strong>View All Libraries →</strong>
@@ -155,7 +160,7 @@ curl -X POST https://api.xarf.org/v1/validate \
 ```json
 {
   "valid": true,
-  "version": "4.0.0",
+  "version": "4.2.0",
   "category": "connection",
   "type": "ddos"
 }
@@ -366,7 +371,7 @@ Tools created by the XARF community:
   font-family: var(--font-family-sans);
 }
 
-.alpha-badge {
+.stable-badge {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;

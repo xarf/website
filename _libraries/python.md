@@ -7,12 +7,13 @@ permalink: /libraries/python/
 
 # XARF Python Library
 
-Official Python library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
+Official Python library for parsing, validating, and generating XARF (eXtended Abuse Reporting Format) reports. Built on Pydantic v2 with typed discriminated-union models for all 7 categories.
 
 <div class="library-status">
   <span class="badge badge-success">Stable</span>
   <span>Version 1.0.0</span>
-  <span>Python 3.8+</span>
+  <span>XARF Spec v4.2.0</span>
+  <span>Python 3 · Pydantic v2</span>
 </div>
 
 ---
@@ -20,688 +21,317 @@ Official Python library for creating, validating, and processing XARF (eXtended 
 ## Installation
 
 ```bash
-pip install git+https://github.com/xarf/xarf-python.git
+pip install xarf
 ```
 
-_(alpha — not yet on PyPI)_
-
 **Requirements**:
-- Python 3.8 or higher
-- Dependencies: `jsonschema`, `python-dateutil`
+- Python 3
+- Pydantic v2 (installed as a dependency)
+
+- **PyPI**: [pypi.org/project/xarf](https://pypi.org/project/xarf/)
+- **License**: MIT
+
+---
+
+## Features
+
+- **Parse** XARF reports from JSON with validation and typed results
+- **Generate** XARF-compliant reports with auto-generated metadata (UUIDs, timestamps)
+- **Validate** reports against the official JSON schemas with detailed errors and warnings
+- **Full type support** with Pydantic v2 discriminated union models for all 7 categories: `messaging`, `connection`, `content`, `infrastructure`, `copyright`, `vulnerability`, `reputation`
+- **v3 backward compatibility** with automatic detection and conversion
+- **Schema-driven** — validation rules derived from the official [xarf-spec](https://github.com/xarf/xarf-spec) schemas, not hardcoded
 
 ---
 
 ## Quick Start
 
+### Parsing a Report
+
+```python
+from xarf import parse
+
+# Missing first_seen and source_port produce validation warnings.
+result = parse({
+    "xarf_version": "4.2.0",
+    "report_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "timestamp": "2024-01-15T10:30:00Z",
+    # "first_seen": "2024-01-15T10:00:00Z",
+    "reporter": {
+        "org": "Security Team",
+        "contact": "abuse@example.com",
+        "domain": "example.com",
+    },
+    "sender": {
+        "org": "Security Team",
+        "contact": "abuse@example.com",
+        "domain": "example.com",
+    },
+    "source_identifier": "192.0.2.100",
+    # "source_port": 1234,
+    "category": "connection",
+    "type": "ddos",
+    "evidence_source": "honeypot",
+    "destination_ip": "203.0.113.10",
+    "protocol": "tcp",
+})
+
+if not result.errors:
+    print(result.report.category)  # 'connection'
+else:
+    for e in result.errors:
+        print(f"{e.field}: {e.message}")
+```
+
 ### Creating a Report
 
 ```python
-from xarf import XARFReport
-from datetime import datetime
+from xarf import create_report, create_evidence
 
-# Create a new XARF report
-report = XARFReport(
-    xarf_version="4.0.0",
-    report_id="550e8400-e29b-41d4-a716-446655440000",
-    timestamp=datetime.utcnow().isoformat() + "Z",
-    reporter={
-        "org": "Security Operations",
-        "contact": "abuse@example.com",
-        "domain": "example.com"
-    },
-    sender={
-        "org": "Security Operations",
-        "contact": "abuse@example.com",
-        "domain": "example.com"
-    },
-    source_identifier="192.0.2.100",
-    category="connection",
-    type="ddos"
+# Returns XARFEvidence with content_type, payload (base64), hash, size, description
+evidence = create_evidence(
+    "message/rfc822",
+    raw_email_bytes,
+    description="Original spam email",
+    hash_algorithm="sha256",
 )
 
-# Validate
-if report.validate():
-    print("✓ Report is valid!")
+# xarf_version, report_id, and timestamp are auto-generated
+result = create_report(
+    category="messaging",
+    type="spam",
+    source_identifier="192.0.2.100",
+    reporter={
+        "org": "Example Security",
+        "contact": "abuse@example.com",
+        "domain": "example.com",
+    },
+    sender={
+        "org": "Example Security",
+        "contact": "abuse@example.com",
+        "domain": "example.com",
+    },
+    evidence_source="spamtrap",
+    description="Spam email detected from source",
+    protocol="smtp",
+    smtp_from="spammer@evil.example.com",
+    evidence=[evidence],
+)
 
-# Export to JSON
-json_output = report.to_json(indent=2)
-print(json_output)
-```
-
-### Loading from JSON
-
-```python
-from xarf import XARFReport
-
-# Load from JSON string
-json_data = '{"xarf_version": "4.0.0", ...}'
-report = XARFReport.from_json(json_data)
-
-# Load from file
-with open('report.json', 'r') as f:
-    report = XARFReport.from_file(f)
-
-# Validate
-if report.validate():
-    print(f"Loaded report: {report.report_id}")
+import json
+print(json.dumps(result.report.model_dump(by_alias=True, exclude_none=True), indent=2))
 ```
 
 ---
 
 ## API Reference
 
-### XARFReport Class
+The library exposes a **functional API**. There is no `XARFReport` class to construct directly — use `parse()`, `create_report()`, and `create_evidence()`, which return typed Pydantic models.
 
-Main class for creating and manipulating XARF reports.
+### `parse(json_data, strict=False, show_missing_optional=False)`
 
-#### Constructor
+Parse and validate a XARF report from JSON. Supports both v4 and v3 (legacy) formats — v3 reports are automatically converted to v4 with deprecation warnings.
 
 ```python
-XARFReport(
-    xarf_version: str,
-    report_id: str,
-    timestamp: str,
-    reporter: dict,
-    sender: dict,
-    source_identifier: str,
-    category: str,
-    type: str,
-    **kwargs
+from xarf import parse
+
+result = parse(json_data, strict=False, show_missing_optional=False)
+```
+
+**Parameters**:
+- `json_data: str | dict` — JSON string or dict containing a XARF report
+- `strict: bool` — Return `report=None` on validation failures (default: `False`)
+- `show_missing_optional: bool` — Populate `result.info` with missing optional field details (default: `False`)
+
+**Returns `ParseResult`**:
+- `report: AnyXARFReport | None` — The parsed report, typed by category (e.g., `DdosReport`, `SpamReport`)
+- `errors: list[ValidationError]` — Structured validation errors (each has `.field`, `.message`, `.value`)
+- `warnings: list[ValidationWarning]` — Structured validation warnings
+- `info: list[dict[str, str]] | None` — Missing optional field info (only when `show_missing_optional=True`)
+
+### `create_report(*, category, type, source_identifier, reporter, sender, **kwargs)`
+
+Create a validated XARF report with auto-generated metadata. Automatically fills `xarf_version`, `report_id` (UUID v4), and `timestamp` (ISO 8601 UTC).
+
+```python
+from xarf import create_report
+
+result = create_report(
+    category="messaging",
+    type="spam",
+    source_identifier="192.0.2.100",
+    reporter={"org": "...", "contact": "...", "domain": "..."},
+    sender={"org": "...", "contact": "...", "domain": "..."},
+    # category-specific fields as keyword arguments
+    protocol="smtp",
 )
 ```
 
 **Parameters**:
-- `xarf_version` (str): XARF specification version (e.g., "4.0.0")
-- `report_id` (str): Unique report identifier (UUID recommended)
-- `timestamp` (str): ISO 8601 timestamp
-- `reporter` (dict): Reporter information (requires: org, contact, domain)
-- `sender` (dict): Sender information (requires: org, contact, domain)
-- `source_identifier` (str): Source IP/domain
-- `category` (str): Abuse category (messaging, content, connection, etc.)
-- `type` (str): Specific type within category
-- `**kwargs`: Additional optional fields
+- `category: str` — One of the 7 XARF categories
+- `type: str` — Report type within the category
+- `source_identifier: str` — IP address or identifier of the abuse source
+- `reporter: dict | ContactInfo` — Reporting organization details
+- `sender: dict | ContactInfo` — Sending organization details
+- `strict: bool` — Return `report=None` on validation failures (default: `False`)
+- `show_missing_optional: bool` — Populate `result.info` with missing optional field details (default: `False`)
+- `**kwargs` — Category-specific fields (e.g., `protocol`, `destination_ip`, `smtp_from`)
 
-#### Methods
+**Returns `CreateReportResult`**:
+- `report: AnyXARFReport | None` — The generated report
+- `errors: list[ValidationError]` — Structured validation errors (`field`, `message`, `value`)
+- `warnings: list[ValidationWarning]` — Structured validation warnings
+- `info: list[dict[str, str]] | None` — Missing optional field info (only when `show_missing_optional=True`)
 
-##### `validate(strict=False) -> bool`
+### `create_evidence(content_type, payload, *, description=None, hash_algorithm="sha256")`
 
-Validate the report against the JSON schema.
-
-```python
-if report.validate():
-    print("Valid!")
-else:
-    for error in report.validation_errors:
-        print(f"Error: {error}")
-```
-
-**Parameters**:
-- `strict` (bool): If True, raise `ValidationError` on failure
-
-**Returns**: `bool` - True if valid, False otherwise
-
-##### `to_json(indent=None) -> str`
-
-Export report to JSON string.
+Create an evidence object with automatic base64 encoding, hashing, and size calculation.
 
 ```python
-json_str = report.to_json(indent=2)
-```
+from xarf import create_evidence
 
-**Parameters**:
-- `indent` (int, optional): JSON indentation
-
-**Returns**: `str` - JSON representation
-
-##### `to_dict() -> dict`
-
-Convert report to dictionary.
-
-```python
-data = report.to_dict()
-```
-
-**Returns**: `dict` - Report as dictionary
-
-##### `from_json(json_str: str) -> XARFReport`
-
-Create report from JSON string (class method).
-
-```python
-report = XARFReport.from_json('{"xarf_version": "4.0.0", ...}')
-```
-
-**Parameters**:
-- `json_str` (str): JSON string
-
-**Returns**: `XARFReport` instance
-
-##### `from_file(file) -> XARFReport`
-
-Create report from file object (class method).
-
-```python
-with open('report.json', 'r') as f:
-    report = XARFReport.from_file(f)
-```
-
-**Parameters**:
-- `file`: File object
-
-**Returns**: `XARFReport` instance
-
-##### `add_evidence(content_type, description, payload, **kwargs)`
-
-Add evidence to the report.
-
-```python
-report.add_evidence(
-    content_type="text/plain",
-    description="Server logs",
-    payload="base64_encoded_data",
-    hash={
-        "algorithm": "sha256",
-        "value": "abc123..."
-    }
+evidence = create_evidence(
+    "message/rfc822",
+    raw_bytes,
+    description="Original email",
+    hash_algorithm="sha256",
 )
 ```
 
 **Parameters**:
-- `content_type` (str): MIME type
-- `description` (str): Evidence description
-- `payload` (str): Base64-encoded data
-- `**kwargs`: Additional fields (e.g., `hash`)
+- `content_type: str` — MIME type of the evidence (e.g., `'message/rfc822'`)
+- `payload: bytes | str` — The evidence data (strings are UTF-8 encoded)
+- `description: str | None` — Human-readable description
+- `hash_algorithm: Literal["sha256", "sha512", "sha1", "md5"]` — Hash algorithm (default: `"sha256"`)
 
----
+**Returns `XARFEvidence`** with computed `hash`, `size`, and base64-encoded `payload`.
 
-## Advanced Usage
+### `schema_registry`
 
-### Type Hints and Dataclasses
-
-The library provides full type hint support:
+Access schema-derived validation rules and metadata programmatically.
 
 ```python
-from xarf import XARFReport, Reporter, Evidence
-from typing import List
+from xarf import schema_registry
 
-def process_reports(reports: List[XARFReport]) -> None:
-    for report in reports:
-        reporter: Reporter = report.reporter
-        print(f"From: {reporter.org}")
+# Get all valid categories
+schema_registry.get_categories()
+# {'messaging', 'connection', 'content', 'infrastructure', 'copyright', 'vulnerability', 'reputation'}
 
-        evidence: List[Evidence] = report.evidence
-        print(f"Evidence count: {len(evidence)}")
-```
+# Get valid types for a category
+schema_registry.get_types_for_category("connection")
+# {'ddos', 'port_scan', 'login_attack', ...}
 
-### Async Support
+# Check if a category/type combination is valid
+schema_registry.is_valid_type("connection", "ddos")  # True
 
-Process reports asynchronously:
-
-```python
-import asyncio
-from xarf import XARFReport
-from xarf.async_client import AsyncXARFClient
-
-async def send_report(report: XARFReport):
-    async with AsyncXARFClient() as client:
-        response = await client.submit(report)
-        print(f"Submitted: {response.report_id}")
-
-# Submit multiple reports
-async def send_batch(reports: List[XARFReport]):
-    tasks = [send_report(r) for r in reports]
-    await asyncio.gather(*tasks)
-
-asyncio.run(send_batch(reports))
-```
-
-### Evidence Handling
-
-Hash and verify evidence:
-
-```python
-from xarf.evidence import EvidenceHandler
-import hashlib
-
-# Create evidence handler
-handler = EvidenceHandler()
-
-# Add evidence with automatic hashing
-evidence = handler.add(
-    content_type="application/pdf",
-    description="Phishing email screenshot",
-    file_path="/path/to/evidence.pdf"
-)
-
-print(f"SHA-256: {evidence.hash.value}")
-
-# Verify evidence integrity
-if handler.verify(evidence):
-    print("✓ Evidence integrity verified")
-```
-
-
-### Batch Processing
-
-Process multiple reports efficiently:
-
-```python
-from xarf import XARFBatch
-
-# Create batch processor
-batch = XARFBatch()
-
-# Add reports
-for json_file in glob.glob('reports/*.json'):
-    with open(json_file, 'r') as f:
-        batch.add_report(f.read())
-
-# Validate all
-results = batch.validate_all()
-
-print(f"Valid: {len(results.valid)}")
-print(f"Invalid: {len(results.invalid)}")
-
-# Process valid reports
-for report in results.valid:
-    process_report(report)
-
-# Log invalid reports
-for error in results.invalid:
-    log_error(error.report_id, error.errors)
+# Get field metadata including descriptions
+schema_registry.get_field_metadata("confidence")
+# FieldMetadata(description='...', required=False, recommended=True, ...)
 ```
 
 ---
 
-## Integration Examples
+## Validation Details
 
-### Flask REST API
+Both `parse()` and `create_report()` run validation internally. Additional behaviors:
+
+- **Unknown fields** trigger warnings (or cause `report=None` in strict mode)
+- **Missing optional fields** can be discovered with `show_missing_optional=True`:
 
 ```python
-from flask import Flask, request, jsonify
-from xarf import XARFReport, ValidationError
+result = parse(report, show_missing_optional=True)
 
-app = Flask(__name__)
-
-@app.route('/xarf/submit', methods=['POST'])
-def submit_report():
-    try:
-        # Parse request
-        report = XARFReport.from_json(request.get_json())
-
-        # Validate
-        report.validate(strict=True)
-
-        # Process
-        process_abuse_report(report)
-
-        return jsonify({
-            'status': 'accepted',
-            'report_id': report.report_id
-        }), 202
-
-    except ValidationError as e:
-        return jsonify({
-            'status': 'invalid',
-            'errors': e.errors
-        }), 400
+if result.info:
+    for item in result.info:
+        print(f"{item['field']}: {item['message']}")
+        # e.g., "description: OPTIONAL - Human-readable description of the abuse"
+        # e.g., "confidence: RECOMMENDED - Confidence score between 0.0 and 1.0"
 ```
 
-### Django Model
+**Type narrowing** after parsing — use `isinstance` or check `.category`/`.type`:
 
 ```python
-from django.db import models
-from xarf import XARFReport
-import json
+from xarf import parse, DdosReport
 
-class AbuseReport(models.Model):
-    report_id = models.UUIDField(primary_key=True)
-    timestamp = models.DateTimeField()
-    classification = models.CharField(max_length=50)
-    type = models.CharField(max_length=50)
-    source_ip = models.GenericIPAddressField()
-    xarf_data = models.JSONField()
+result = parse(json_data)
+if isinstance(result.report, DdosReport):
+    print(result.report.destination_ip)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    processed = models.BooleanField(default=False)
-
-    @classmethod
-    def from_xarf(cls, report: XARFReport):
-        """Create model instance from XARF report"""
-        return cls(
-            report_id=report.report_id,
-            timestamp=report.timestamp,
-            classification=report.classification,
-            type=report.type,
-            source_ip=report.source_identifier,
-            xarf_data=report.to_dict()
-        )
-
-    def to_xarf(self) -> XARFReport:
-        """Convert to XARF report"""
-        return XARFReport.from_dict(self.xarf_data)
-```
-
-### Celery Task
-
-```python
-from celery import Celery
-from xarf import XARFReport
-
-app = Celery('tasks')
-
-@app.task
-def process_xarf_report(json_data: str):
-    """Process XARF report asynchronously"""
-    report = XARFReport.from_json(json_data)
-
-    if not report.validate():
-        return {'status': 'invalid', 'errors': report.validation_errors}
-
-    # Process based on classification
-    if report.classification == 'abuse':
-        handle_abuse(report)
-    elif report.classification == 'vulnerability':
-        handle_vulnerability(report)
-
-    return {'status': 'processed', 'report_id': report.report_id}
-
-# Submit report for processing
-process_xarf_report.delay(json_data)
-```
-
-### Logging Integration
-
-```python
-import logging
-from xarf import XARFReport
-
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-# Log report processing
-report = XARFReport.from_json(data)
-
-logger.info(
-    "Processing XARF report",
-    extra={
-        'report_id': report.report_id,
-        'classification': report.classification,
-        'type': report.type,
-        'source': report.source_identifier,
-        'reporter': report.reporter.org
-    }
-)
+# or check attributes directly
+if result.report and result.report.category == "connection":
+    print(result.report.type)
 ```
 
 ---
 
-## Configuration
+## v3 Backward Compatibility
 
-### Custom Schema Path
-
-```python
-from xarf import XARFReport
-
-# Use custom schema directory
-XARFReport.set_schema_path('/path/to/schemas')
-
-# Validate against custom schema
-report.validate()
-```
-
-### Validation Options
+The library automatically detects XARF v3 reports (by the `Version` field) and converts them to v4 during parsing. Converted reports include `legacy_version: '3'` and deprecation warnings.
 
 ```python
-from xarf import ValidationOptions
+from xarf import parse
 
-# Configure validation
-options = ValidationOptions(
-    strict=True,              # Raise on errors
-    check_recommended=True,   # Validate recommended fields
-    allow_additional=False    # Disallow extra fields
-)
+result = parse(v3_report)
 
-report.validate(options=options)
+print(result.report.xarf_version)   # '4.2.0'
+print(result.report.category)       # mapped category (e.g., 'messaging')
+print(result.report.legacy_version) # '3'
+# result.warnings includes deprecation notice + conversion details
 ```
+
+You can also use the low-level utilities directly:
+
+```python
+from xarf import is_v3_report, convert_v3_to_v4, get_v3_deprecation_warning
+
+if is_v3_report(json_data):
+    v4_data = convert_v3_to_v4(json_data)
+    print(get_v3_deprecation_warning())
+```
+
+Unknown v3 report types cause a parse error listing the supported types.
 
 ---
 
-## Testing
+## Schema Management
 
-### Unit Tests
+This library validates against the official [xarf-spec](https://github.com/xarf/xarf-spec) JSON schemas. Schemas are bundled with the package and pinned to the spec version configured in `pyproject.toml`:
 
-```python
-import unittest
-from xarf import XARFReport
-
-class TestXARFReports(unittest.TestCase):
-
-    def setUp(self):
-        self.report_data = {
-            "xarf_version": "4.0.0",
-            "report_id": "test-001",
-            "timestamp": "2024-01-15T10:00:00Z",
-            "reporter": {
-                "org": "Test Security",
-                "contact": "test@example.com",
-                "domain": "example.com"
-            },
-            "sender": {
-                "org": "Test Security",
-                "contact": "test@example.com",
-                "domain": "example.com"
-            },
-            "source_identifier": "192.0.2.100",
-            "category": "connection",
-            "type": "ddos"
-        }
-
-    def test_create_valid_report(self):
-        """Test creating a valid report"""
-        report = XARFReport(**self.report_data)
-        self.assertTrue(report.validate())
-
-    def test_missing_mandatory_field(self):
-        """Test validation fails without mandatory field"""
-        data = self.report_data.copy()
-        del data['report_id']
-
-        with self.assertRaises(ValidationError):
-            report = XARFReport(**data)
-            report.validate(strict=True)
-
-    def test_json_roundtrip(self):
-        """Test JSON serialization/deserialization"""
-        report1 = XARFReport(**self.report_data)
-        json_str = report1.to_json()
-        report2 = XARFReport.from_json(json_str)
-
-        self.assertEqual(report1.report_id, report2.report_id)
-        self.assertEqual(report1.to_dict(), report2.to_dict())
+```toml
+[tool.xarf]
+spec_version = "v4.2.0"
 ```
 
-### Fixtures
+```bash
+# Re-fetch schemas (e.g., to pick up a newer spec version)
+python -m xarf fetch-schemas
 
-```python
-import pytest
-from xarf import XARFReport
-
-@pytest.fixture
-def sample_report():
-    """Create sample XARF report for testing"""
-    return XARFReport(
-        xarf_version="4.0.0",
-        report_id="550e8400-e29b-41d4-a716-446655440000",
-        timestamp="2024-01-15T10:00:00Z",
-        reporter={
-            "org": "Test Security",
-            "contact": "test@example.com",
-            "domain": "example.com"
-        },
-        sender={
-            "org": "Test Security",
-            "contact": "test@example.com",
-            "domain": "example.com"
-        },
-        source_identifier="192.0.2.100",
-        category="connection",
-        type="ddos"
-    )
-
-def test_report_validation(sample_report):
-    """Test report validates correctly"""
-    assert sample_report.validate()
+# Check whether a newer spec version is available
+python -m xarf check-schema-updates
 ```
+
+To update to a newer spec version, change `spec_version` in `pyproject.toml` and run `python -m xarf fetch-schemas`.
 
 ---
 
-## Error Handling
+## Development
 
-### Common Errors
-
-```python
-from xarf import (
-    XARFReport,
-    ValidationError,
-    SchemaError,
-    ParseError
-)
-
-try:
-    report = XARFReport.from_json(json_data)
-    report.validate(strict=True)
-
-except ParseError as e:
-    print(f"Invalid JSON: {e}")
-
-except SchemaError as e:
-    print(f"Schema error: {e}")
-
-except ValidationError as e:
-    print("Validation failed:")
-    for error in e.errors:
-        print(f"  {error.path}: {error.message}")
+```bash
+pytest                        # Run tests
+pytest --cov=xarf             # Run tests with coverage
+ruff check xarf/              # Lint
+ruff format --check xarf/     # Check formatting
+mypy --strict xarf/           # Type-check
 ```
-
-### Custom Error Handling
-
-```python
-class ReportProcessor:
-    def process(self, json_data: str) -> dict:
-        """Process report with comprehensive error handling"""
-        try:
-            report = XARFReport.from_json(json_data)
-
-            if not report.validate():
-                return {
-                    'status': 'invalid',
-                    'errors': report.validation_errors
-                }
-
-            # Process report
-            self.handle_report(report)
-
-            return {
-                'status': 'success',
-                'report_id': report.report_id
-            }
-
-        except ParseError:
-            return {'status': 'error', 'message': 'Invalid JSON'}
-
-        except Exception as e:
-            return {'status': 'error', 'message': str(e)}
-```
-
----
-
-## Best Practices
-
-### 1. Always Validate
-
-```python
-# ✓ GOOD
-report = XARFReport.from_json(data)
-if report.validate():
-    process(report)
-
-# ✗ BAD
-report = XARFReport.from_json(data)
-process(report)  # No validation!
-```
-
-### 2. Use Type Hints
-
-```python
-# ✓ GOOD
-def process_report(report: XARFReport) -> None:
-    ...
-
-# ✗ BAD
-def process_report(report):
-    ...
-```
-
-### 3. Handle Errors Gracefully
-
-```python
-# ✓ GOOD
-try:
-    report = XARFReport.from_json(data)
-    report.validate(strict=True)
-except ValidationError as e:
-    log_error(e)
-    return error_response(e.errors)
-
-# ✗ BAD
-report = XARFReport.from_json(data)
-report.validate()  # Exceptions not handled
-```
-
-### 4. Use Context Managers
-
-```python
-# ✓ GOOD
-with open('report.json', 'r') as f:
-    report = XARFReport.from_file(f)
-
-# ✗ BAD
-f = open('report.json', 'r')
-report = XARFReport.from_file(f)
-f.close()
-```
-
----
-
-## Changelog
-
-### Version 1.0.0 (2024-01-15)
-- Initial stable release
-- Full XARF 4.0 support
-- Schema validation
-- Evidence hashing
-- Type hints
-- Async support
 
 ---
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-python)** - Source code
-- **[PyPI Package](https://pypi.org/project/xarf/)** - Package repository
-- **[API Documentation](https://xarf-python.readthedocs.io/)** - Full API docs
-- **[Examples](https://github.com/xarf/xarf-python/tree/main/examples)** - Code examples
-- **[Issue Tracker](https://github.com/xarf/xarf-python/issues)** - Report bugs
-
----
-
-## Support
-
-- **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** - Ask questions
-- **[GitHub Issues](https://github.com/xarf/xarf-python/issues)** - Report bugs
-- **[Stack Overflow](https://stackoverflow.com/questions/tagged/xarf)** - Tag: `xarf`
+- **[GitHub Repository](https://github.com/xarf/xarf-python)** — Source code
+- **[PyPI Package](https://pypi.org/project/xarf/)** — Package repository
+- **[XARF Specification](https://xarf.org)** — Spec v4.2.0
+- **[Issue Tracker](https://github.com/xarf/xarf-python/issues)** — Report bugs
 
 <style>
 .library-status {

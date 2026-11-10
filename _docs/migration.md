@@ -626,7 +626,7 @@ Security Team
 **After (XARF v4):**
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "category": "content",
   "type": "phishing",
@@ -680,7 +680,7 @@ Security Team
 **After (XARF v4):**
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
   "category": "content",
   "type": "malware",
@@ -718,7 +718,7 @@ timestamp,source_ip,target_ip,attack_type,packets,severity
 **After (XARF v4):**
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "123e4567-e89b-12d3-a456-426614174000",
   "category": "connection",
   "type": "ddos",
@@ -759,7 +759,7 @@ Form Submission:
 **After (XARF v4):**
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "b47cc1e4-4c8d-4e8a-9b5c-8f7e6d5c4b3a",
   "category": "messaging",
   "type": "spam",
@@ -813,7 +813,7 @@ def test_field_mapping():
 
     xarf_report = convert_to_xarf(legacy_report)
 
-    assert xarf_report["xarf_version"] == "4.0.0"
+    assert xarf_report["xarf_version"] == "4.2.0"
     assert xarf_report["category"] == "content"
     assert xarf_report["type"] == "phishing"
     assert "report_id" in xarf_report
@@ -955,23 +955,23 @@ print(message)
 
 Use existing XARF parsers to validate your reports:
 
-**Python:** _(alpha — not yet on PyPI)_
+**Python:**
 ```bash
-pip install git+https://github.com/xarf/xarf-python.git
+pip install xarf
 ```
 
 ```python
-from xarf import XARFParser
+from xarf import parse
 
-parser = XARFParser()
-result = parser.parse(xarf_report)
+result = parse(xarf_report)
 
-if result.is_valid:
+if not result.errors:
     print("Valid XARF report!")
-    print(f"Content type: {result.content_type}")
-    print(f"Evidence URLs: {result.evidence.urls}")
+    print(f"Category: {result.report.category}")
+    print(f"Type: {result.report.type}")
 else:
-    print(f"Validation errors: {result.errors}")
+    for error in result.errors:
+        print(f"Validation error in {error.field}: {error.message}")
 ```
 
 ### Validation Checklist
@@ -987,7 +987,7 @@ Before deploying to production, verify:
 - [ ] Email addresses in `reporter.contact` are valid
 - [ ] Severity values are one of: low, medium, high, critical (if present)
 - [ ] Required fields present for each type
-- [ ] `xarf_version` is "4.0.0"
+- [ ] `xarf_version` is "4.2.0"
 - [ ] Reports are valid UTF-8 JSON
 
 ### Testing Tools
@@ -1065,7 +1065,7 @@ CONVERTER_VERSION = "1.2.0"
 
 def convert_to_xarf(legacy_report):
     xarf_report = {
-        "xarf_version": "4.0.0",
+        "xarf_version": "4.2.0",
         # ... conversion logic ...
     }
 

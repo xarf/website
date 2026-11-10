@@ -7,738 +7,274 @@ permalink: /libraries/javascript/
 
 # XARF JavaScript/TypeScript Library
 
-Official JavaScript/TypeScript library for creating, validating, and processing XARF (eXtended Abuse Reporting Format) reports.
+Official JavaScript/TypeScript library for parsing, validating, and generating XARF (eXtended Abuse Reporting Format) reports. Implements XARF spec v4.2.0 and supports all 7 categories: messaging, connection, content, infrastructure, copyright, vulnerability, and reputation.
 
 <div class="library-status">
-  <span class="badge badge-success">Alpha</span>
-  <span>Version 4.0.0-alpha.1</span>
-  <span>Node.js 16+, Modern Browsers</span>
+  <span class="badge badge-success">Stable</span>
+  <span>Version 1.1.0</span>
+  <span>Node.js 18+</span>
 </div>
 
 ---
 
 ## Installation
 
-### npm
 ```bash
 npm install @xarf/xarf
 ```
 
-### yarn
-```bash
-yarn add @xarf/xarf
-```
-
-### pnpm
-```bash
-pnpm add @xarf/xarf
-```
-
 **Requirements**:
-- Node.js 16+ or modern browser (ES2020+)
-- TypeScript 4.5+ (optional, for type definitions)
+- Node.js 18+
+- License: MIT
 
-**Note**: Alpha release available. Star the [GitHub repository](https://github.com/xarf/xarf-javascript) for updates.
+The official JSON schemas from [xarf-spec](https://github.com/xarf/xarf-spec) are bundled into the package at build time, so installation requires no network access and the library works in any environment (Node, bundlers, serverless, edge) with zero filesystem dependency.
 
 ---
 
 ## Quick Start
 
-### Creating a Report
+### Parsing a Report
+
+`parse()` validates a report and returns a result object. It does not throw on validation failures — inspect the returned `errors` array instead.
 
 ```typescript
-import { XARFReport, XARFValidator } from 'xarf';
+import { parse } from '@xarf/xarf';
 
-// Create a new XARF report
-const report = new XARFReport({
-  xarf_version: '4.0.0',
-  report_id: '550e8400-e29b-41d4-a716-446655440000',
-  timestamp: new Date().toISOString(),
+// Missing first_seen and source_port produce validation errors.
+const { report, errors, warnings } = parse({
+  xarf_version: '4.2.0',
+  report_id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
+  timestamp: '2024-01-15T10:30:00Z',
+  // first_seen: '2024-01-15T10:00:00Z',
   reporter: {
-    org: 'Security Operations',
+    org: 'Security Team',
     contact: 'abuse@example.com',
-    domain: 'example.com'
+    domain: 'example.com',
   },
   sender: {
-    org: 'Security Operations',
+    org: 'Security Team',
     contact: 'abuse@example.com',
-    domain: 'example.com'
+    domain: 'example.com',
   },
   source_identifier: '192.0.2.100',
+  // source_port: 1234,
   category: 'connection',
   type: 'ddos',
-  description: 'DDoS attack detected from source IP'
+  evidence_source: 'honeypot',
+  destination_ip: '203.0.113.10',
+  protocol: 'tcp',
 });
 
-// Validate
-const validator = new XARFValidator();
-if (await validator.validate(report)) {
-  console.log('✓ Report is valid!');
+if (errors.length === 0) {
+  console.log(report.category); // 'connection'
+} else {
+  console.log('Validation errors:', errors);
 }
-
-// Export to JSON
-const json = report.toJSON();
-console.log(JSON.stringify(json, null, 2));
 ```
 
-### Loading from JSON
+### Creating a Report
+
+`createReport()` auto-generates `xarf_version`, `report_id` (UUID), and `timestamp` (ISO 8601) if they are not provided.
 
 ```typescript
-import { XARFReport } from 'xarf';
+import { createReport, createEvidence } from '@xarf/xarf';
 
-// Load from JSON string
-const jsonData = '{"xarf_version": "4.0.0", ...}';
-const report = XARFReport.fromJSON(jsonData);
+// Returns { content_type, payload (base64), hash, size, description }
+const evidence = createEvidence('message/rfc822', rawEmailContent, {
+  description: 'Original spam email',
+  hashAlgorithm: 'sha256',
+});
 
-// Load from file (Node.js)
-import { readFile } from 'fs/promises';
-const fileContent = await readFile('report.json', 'utf-8');
-const report = XARFReport.fromJSON(fileContent);
+// xarf_version, report_id, and timestamp are auto-generated
+const { report, errors, warnings } = createReport({
+  category: 'messaging',
+  type: 'spam',
+  source_identifier: '192.0.2.100',
+  reporter: {
+    org: 'Example Security',
+    contact: 'abuse@example.com',
+    domain: 'example.com',
+  },
+  sender: {
+    org: 'Example Security',
+    contact: 'abuse@example.com',
+    domain: 'example.com',
+  },
+  evidence_source: 'spamtrap',
+  description: 'Spam email detected from source',
+  protocol: 'smtp',
+  smtp_from: 'spammer@evil.example.com',
+  evidence: [evidence],
+});
 
-// Validate
-if (await report.validate()) {
-  console.log(`Loaded report: ${report.report_id}`);
-}
+console.log(JSON.stringify(report, null, 2));
 ```
 
 ---
 
 ## Core Features
 
-- **Report Creation and Validation** - Type-safe report creation with automatic validation
-- **Schema Validation** - Full JSON schema validation against XARF 4.0 specification
-- **Evidence Handling** - Base64 encoding, hashing (SHA-256/SHA-512), and integrity verification
-- **Format Conversion** - JSON serialization with pretty-printing support
-- **Type Safety** - Complete TypeScript definitions included
-- **Promise-based API** - Modern async/await support throughout
-- **Browser & Node.js** - Works in both environments
-- **Stream Processing** - Handle large datasets with Node.js streams
+- **Parse** XARF reports from JSON with validation and typed results
+- **Generate** XARF-compliant reports with auto-generated metadata (UUIDs, timestamps)
+- **Validate** reports against the official JSON schemas with detailed errors and warnings
+- **Full TypeScript support** with discriminated union types for all 7 categories
+- **v3 backward compatibility** with automatic detection and conversion
+- **Schema-driven** — validation rules derived from the official [xarf-spec](https://github.com/xarf/xarf-spec) schemas, not hardcoded
 
 ---
 
 ## API Reference
 
-### XARFReport Class
+The library exposes a **functional API**. There are no classes to instantiate.
 
-Main class for creating and manipulating XARF reports.
+### `parse(jsonData, options?)`
 
-#### Constructor
+Parse and validate a XARF report from JSON. Supports both v4 and v3 (legacy) formats — v3 reports are automatically converted to v4 with deprecation warnings.
 
 ```typescript
-constructor(data: XARFReportData)
+import { parse } from '@xarf/xarf';
+
+const { report, errors, warnings, info } = parse(jsonData, options?);
 ```
 
 **Parameters**:
-- `data` (XARFReportData): Report data object
+- `jsonData: string | Record<string, unknown>` — JSON string or object containing a XARF report
+- `options.strict?: boolean` — Treat warnings (e.g. unknown fields) and `x-recommended` fields as errors (default: `false`)
+- `options.showMissingOptional?: boolean` — Include info about missing optional fields (default: `false`)
 
-**Example**:
-```typescript
-const report = new XARFReport({
-  xarf_version: '4.0.0',
-  report_id: '550e8400-e29b-41d4-a716-446655440000',
-  timestamp: new Date().toISOString(),
-  reporter: {
-    org: 'Security Ops',
-    contact: 'abuse@example.com',
-    domain: 'example.com'
-  },
-  sender: {
-    org: 'Security Ops',
-    contact: 'abuse@example.com',
-    domain: 'example.com'
-  },
-  source_identifier: '192.0.2.100',
-  category: 'connection',
-  type: 'ddos'
-});
-```
+> `parse()` does not throw on validation failures — inspect the returned `errors` array. It only throws `XARFParseError` when `jsonData` is a malformed JSON string.
 
-#### Methods
+**Returns `ParseResult`**:
+- `report: XARFReport` — The parsed report, typed by category
+- `errors: string[]` — Validation errors (empty if valid)
+- `warnings: string[]` — Validation warnings
+- `info?: ValidationInfo[]` — Missing optional field info (only when `showMissingOptional` is `true`)
 
-##### `validate(options?: ValidationOptions): Promise<boolean>`
+### `createReport(input, options?)`
 
-Validate the report against the JSON schema.
+Create a validated XARF report with auto-generated metadata. Automatically fills `xarf_version`, `report_id` (UUID), and `timestamp` (ISO 8601) if not provided.
 
 ```typescript
-const isValid = await report.validate();
-if (!isValid) {
-  console.error('Validation errors:', report.validationErrors);
-}
+import { createReport } from '@xarf/xarf';
+
+const { report, errors, warnings } = createReport(input, options?);
 ```
 
 **Parameters**:
-- `options` (ValidationOptions, optional): Validation configuration
+- `input: ReportInput` — Report data. A discriminated union on `category` that narrows type-safe fields per category (e.g., `MessagingReportInput`, `ConnectionReportInput`, etc.)
+- `options.strict?: boolean` — Treat warnings and `x-recommended` fields as errors (default: `false`)
+- `options.showMissingOptional?: boolean` — Include info about missing optional fields (default: `false`)
 
-**Returns**: `Promise<boolean>` - True if valid, false otherwise
+> Like `parse()`, `createReport()` does not throw on validation failures — the report is always returned alongside any `errors`.
 
-##### `toJSON(pretty?: boolean): string`
+**Returns `CreateReportResult`**:
+- `report: XARFReport` — The generated report
+- `errors: ValidationError[]` — Structured validation errors (`{ field, message, value? }`)
+- `warnings: ValidationWarning[]` — Structured validation warnings (`{ field, message, value? }`)
+- `info?: ValidationInfo[]` — Missing optional field info (only when `showMissingOptional` is `true`)
 
-Export report to JSON string.
+### `createEvidence(contentType, payload, options?)`
+
+Create an evidence object with automatic base64 encoding, hashing, and size calculation.
 
 ```typescript
-const jsonString = report.toJSON(true); // Pretty-printed
+import { createEvidence } from '@xarf/xarf';
+
+const evidence = createEvidence(contentType, payload, options?);
 ```
 
 **Parameters**:
-- `pretty` (boolean, optional): Pretty-print with 2-space indentation
+- `contentType: string` — MIME type of the evidence (e.g., `'message/rfc822'`)
+- `payload: string | Buffer` — The evidence data
+- `options.description?: string` — Human-readable description
+- `options.hashAlgorithm?: 'sha256' | 'sha512' | 'sha1' | 'md5'` — Hash algorithm (default: `'sha256'`)
 
-**Returns**: `string` - JSON representation
+**Returns `XARFEvidence`** with computed `hash`, `size`, and base64-encoded `payload`.
 
-##### `toObject(): XARFReportData`
+### `schemaRegistry`
 
-Convert report to plain JavaScript object.
-
-```typescript
-const data = report.toObject();
-```
-
-**Returns**: `XARFReportData` - Report as plain object
-
-##### `static fromJSON(json: string): XARFReport`
-
-Create report from JSON string (static method).
+Access schema-derived validation rules and metadata programmatically.
 
 ```typescript
-const report = XARFReport.fromJSON('{"xarf_version": "4.0.0", ...}');
-```
+import { schemaRegistry } from '@xarf/xarf';
 
-**Parameters**:
-- `json` (string): JSON string
+// Get all valid categories
+schemaRegistry.getCategories();
+// Set { 'messaging', 'connection', 'content', 'infrastructure', 'copyright', 'vulnerability', 'reputation' }
 
-**Returns**: `XARFReport` instance
+// Get valid types for a category
+schemaRegistry.getTypesForCategory('connection');
+// Set { 'ddos', 'port_scan', 'login_attack', ... }
 
-##### `static fromObject(data: XARFReportData): XARFReport`
+// Check if a category/type combination is valid
+schemaRegistry.isValidType('connection', 'ddos'); // true
 
-Create report from plain object (static method).
-
-```typescript
-const report = XARFReport.fromObject({
-  xarf_version: '4.0.0',
-  // ...
-});
-```
-
-**Parameters**:
-- `data` (XARFReportData): Plain object
-
-**Returns**: `XARFReport` instance
-
-##### `addEvidence(evidence: Evidence): void`
-
-Add evidence to the report.
-
-```typescript
-report.addEvidence({
-  content_type: 'text/plain',
-  description: 'Server logs',
-  payload: 'YmFzZTY0IGVuY29kZWQgZGF0YQ==',
-  hash: {
-    algorithm: 'sha256',
-    value: 'abc123...'
-  }
-});
-```
-
-**Parameters**:
-- `evidence` (Evidence): Evidence object
-
-### XARFValidator Class
-
-Validator for XARF reports.
-
-```typescript
-const validator = new XARFValidator();
-const isValid = await validator.validate(report);
-```
-
-### Evidence Class
-
-Handles evidence attachment and verification.
-
-```typescript
-import { EvidenceHelper } from 'xarf';
-
-const evidence = await EvidenceHelper.createFromFile(
-  'application/pdf',
-  'Phishing email screenshot',
-  './evidence.pdf'
-);
-```
-
-### Error Classes
-
-```typescript
-import {
-  ValidationError,
-  ParseError,
-  SchemaError
-} from 'xarf';
+// Get field metadata including descriptions
+schemaRegistry.getFieldMetadata('confidence');
+// { description: '...', required: false, recommended: true, ... }
 ```
 
 ---
 
-## Type Definitions
+## Validation Details
 
-The library includes full TypeScript definitions:
+Both `parse()` and `createReport()` run validation internally. Additional behaviors:
 
-```typescript
-interface XARFReportData {
-  xarf_version: string;
-  report_id: string;
-  timestamp: string;
-  reporter: Reporter;
-  source_identifier: string;
-  category: string;
-  type: string;
-  description?: string;
-  severity?: 'low' | 'medium' | 'high' | 'critical';
-  evidence?: Evidence[];
-  technical_details?: Record<string, any>;
-  [key: string]: any;
-}
-
-interface Reporter {
-  org: string;
-  contact: string;
-  type: 'automated' | 'manual' | 'ai';
-  url?: string;
-}
-
-interface Evidence {
-  content_type: string;
-  description: string;
-  payload: string;
-  hash?: Hash;
-  timestamp?: string;
-}
-
-interface Hash {
-  algorithm: 'sha256' | 'sha512' | 'md5';
-  value: string;
-}
-
-interface ValidationOptions {
-  strict?: boolean;
-  checkRecommended?: boolean;
-  allowAdditional?: boolean;
-}
-```
-
----
-
-## Examples
-
-### Creating a DDoS Report
+- **Unknown fields** trigger warnings (or errors in strict mode)
+- **Missing optional fields** can be discovered with `showMissingOptional: true`:
 
 ```typescript
-import { XARFReport } from 'xarf';
+const { info } = parse(report, { showMissingOptional: true });
 
-const ddosReport = new XARFReport({
-  xarf_version: '4.0.0',
-  report_id: crypto.randomUUID(),
-  timestamp: new Date().toISOString(),
-  reporter: {
-    org: 'Network Security Team',
-    contact: 'noc@example.com',
-    domain: 'example.com'
-  },
-  sender: {
-    org: 'Network Security Team',
-    contact: 'noc@example.com',
-    domain: 'example.com'
-  },
-  source_identifier: '203.0.113.50',
-  category: 'connection',
-  type: 'ddos',
-  description: 'Volumetric DDoS attack detected',
-  protocol: 'udp',
-  destination_port: 53,
-  peak_pps: 150000,
-  peak_bps: 1200000000,
-  duration_seconds: 300
-});
-
-if (await ddosReport.validate()) {
-  await submitReport(ddosReport);
-}
-```
-
-### Adding Evidence
-
-```typescript
-import { EvidenceHelper } from 'xarf';
-
-// Create evidence with automatic hashing
-const evidence = await EvidenceHelper.createFromFile(
-  'application/pdf',
-  'Phishing email screenshot',
-  './evidence.pdf'
-);
-
-console.log(`SHA-256: ${evidence.hash.value}`);
-
-// Add to report
-report.addEvidence(evidence);
-
-// Verify evidence integrity
-const isValid = await EvidenceHelper.verify(evidence);
-console.log(`Evidence integrity: ${isValid ? '✓' : '✗'}`);
-```
-
-### Batch Validation
-
-```typescript
-import { XARFBatch } from 'xarf';
-
-const batch = new XARFBatch();
-
-// Add reports
-const jsonFiles = await glob('reports/*.json');
-for (const file of jsonFiles) {
-  const content = await readFile(file, 'utf-8');
-  batch.addReport(content);
-}
-
-// Validate all
-const results = await batch.validateAll();
-
-console.log(`Valid: ${results.valid.length}`);
-console.log(`Invalid: ${results.invalid.length}`);
-
-// Process valid reports
-for (const report of results.valid) {
-  await processReport(report);
-}
-
-// Log invalid reports
-for (const error of results.invalid) {
-  console.error(`${error.reportId}: ${error.errors.join(', ')}`);
-}
-```
-
-### Custom Fields
-
-```typescript
-const report = new XARFReport({
-  xarf_version: '4.0.0',
-  report_id: crypto.randomUUID(),
-  timestamp: new Date().toISOString(),
-  reporter: {
-    org: 'Security Team',
-    contact: 'abuse@example.com',
-    domain: 'example.com'
-  },
-  sender: {
-    org: 'Security Team',
-    contact: 'abuse@example.com',
-    domain: 'example.com'
-  },
-  source_identifier: '192.0.2.100',
-  category: 'messaging',
-  type: 'spam',
-  // Custom fields
-  custom_tracking_id: 'TICKET-12345',
-  internal_severity_score: 8.5,
-  automated_response: true
-});
-```
-
----
-
-## Advanced Usage
-
-### Async/Await Pattern
-
-Process reports asynchronously:
-
-```typescript
-import { XARFReport } from 'xarf';
-
-async function processReport(jsonData: string): Promise<void> {
-  try {
-    const report = XARFReport.fromJSON(jsonData);
-
-    if (await report.validate()) {
-      await submitToAPI(report);
-      console.log(`Processed report: ${report.report_id}`);
-    } else {
-      console.error('Invalid report:', report.validationErrors);
-    }
-  } catch (error) {
-    console.error('Failed to process report:', error);
-  }
-}
-```
-
-### Stream Processing
-
-Handle large datasets with streams:
-
-```typescript
-import { XARFStream } from 'xarf';
-import { createReadStream } from 'fs';
-
-const stream = new XARFStream();
-
-createReadStream('large-reports.jsonl')
-  .pipe(stream)
-  .on('report', async (report) => {
-    if (await report.validate()) {
-      await processReport(report);
-    }
-  })
-  .on('error', (error) => {
-    console.error('Stream error:', error);
-  })
-  .on('end', () => {
-    console.log('Processing complete');
+if (info) {
+  info.forEach(({ field, message }) => {
+    console.log(`${field}: ${message}`);
+    // e.g., "description: OPTIONAL - Human-readable description of the abuse"
+    // e.g., "confidence: RECOMMENDED - Confidence score between 0.0 and 1.0"
   });
+}
 ```
 
 ---
 
-## Integration Examples
+## v3 Backward Compatibility
 
-### Express.js REST API
+The library automatically detects XARF v3 reports (by the `Version` field) and converts them to v4 during parsing. Converted reports include `legacy_version: '3'` and deprecation warnings.
 
 ```typescript
-import express from 'express';
-import { XARFReport, ValidationError } from 'xarf';
+import { parse } from '@xarf/xarf';
 
-const app = express();
-app.use(express.json());
+const { report, warnings } = parse(v3Report);
 
-app.post('/xarf/submit', async (req, res) => {
-  try {
-    // Parse request
-    const report = XARFReport.fromObject(req.body);
-
-    // Validate
-    if (!await report.validate()) {
-      return res.status(400).json({
-        status: 'invalid',
-        errors: report.validationErrors
-      });
-    }
-
-    // Process
-    await processAbuseReport(report);
-
-    res.status(202).json({
-      status: 'accepted',
-      report_id: report.report_id
-    });
-
-  } catch (error) {
-    res.status(400).json({
-      status: 'error',
-      message: error.message
-    });
-  }
-});
-
-app.listen(3000);
+console.log(report.xarf_version); // '4.2.0'
+console.log(report.category); // mapped category (e.g., 'messaging')
+console.log(report.legacy_version); // '3'
+// warnings includes deprecation notice + conversion details
 ```
 
-### Next.js API Route
+You can also use the low-level utilities directly:
 
 ```typescript
-// pages/api/xarf/submit.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { XARFReport } from 'xarf';
+import { isXARFv3, convertV3toV4, getV3DeprecationWarning } from '@xarf/xarf';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  try {
-    const report = XARFReport.fromObject(req.body);
-
-    if (!await report.validate()) {
-      return res.status(400).json({
-        error: 'Invalid report',
-        details: report.validationErrors
-      });
-    }
-
-    await processReport(report);
-
-    res.status(202).json({
-      status: 'accepted',
-      reportId: report.report_id
-    });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+if (isXARFv3(jsonData)) {
+  const warnings: string[] = [];
+  const v4Report = convertV3toV4(v3Report, warnings);
+  console.log(getV3DeprecationWarning());
 }
 ```
 
-### React Hook
-
-```typescript
-import { useState, useCallback } from 'react';
-import { XARFReport } from 'xarf';
-
-export function useXARFReport() {
-  const [report, setReport] = useState<XARFReport | null>(null);
-  const [isValid, setIsValid] = useState(false);
-  const [errors, setErrors] = useState<string[]>([]);
-
-  const validateReport = useCallback(async (data: any) => {
-    try {
-      const newReport = XARFReport.fromObject(data);
-      const valid = await newReport.validate();
-
-      setReport(newReport);
-      setIsValid(valid);
-      setErrors(valid ? [] : newReport.validationErrors);
-
-      return valid;
-    } catch (error) {
-      setErrors([error.message]);
-      return false;
-    }
-  }, []);
-
-  return { report, isValid, errors, validateReport };
-}
-```
-
-### Browser Usage
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <script type="module">
-    import { XARFReport } from 'https://cdn.jsdelivr.net/npm/xarf/dist/xarf.esm.js';
-
-    async function submitReport() {
-      const report = new XARFReport({
-        xarf_version: '4.0.0',
-        report_id: crypto.randomUUID(),
-        timestamp: new Date().toISOString(),
-        reporter: {
-          org: 'Security Team',
-          contact: 'abuse@example.com',
-          domain: 'example.com'
-        },
-        sender: {
-          org: 'Security Team',
-          contact: 'abuse@example.com',
-          domain: 'example.com'
-        },
-        source_identifier: '192.0.2.100',
-        category: 'messaging',
-        type: 'spam'
-      });
-
-      if (await report.validate()) {
-        const response = await fetch('/api/xarf/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: report.toJSON()
-        });
-
-        console.log('Submitted:', await response.json());
-      }
-    }
-  </script>
-</head>
-<body>
-  <button onclick="submitReport()">Submit Report</button>
-</body>
-</html>
-```
-
----
-
-## Best Practices
-
-### 1. Always Validate
-
-```typescript
-// ✓ GOOD
-const report = XARFReport.fromJSON(data);
-if (await report.validate()) {
-  await processReport(report);
-}
-
-// ✗ BAD
-const report = XARFReport.fromJSON(data);
-await processReport(report); // No validation!
-```
-
-### 2. Use TypeScript
-
-```typescript
-// ✓ GOOD
-async function processReport(report: XARFReport): Promise<void> {
-  // Type-safe operations
-}
-
-// ✗ BAD
-async function processReport(report: any) {
-  // No type safety
-}
-```
-
-### 3. Handle Errors Gracefully
-
-```typescript
-// ✓ GOOD
-try {
-  const report = XARFReport.fromJSON(data);
-  if (!await report.validate()) {
-    logger.error('Validation failed', report.validationErrors);
-    return errorResponse(report.validationErrors);
-  }
-} catch (error) {
-  logger.error('Parse error', error);
-  return errorResponse([error.message]);
-}
-
-// ✗ BAD
-const report = XARFReport.fromJSON(data);
-await report.validate(); // Unhandled errors
-```
-
-### 4. Use Async/Await
-
-```typescript
-// ✓ GOOD
-const isValid = await report.validate();
-if (isValid) {
-  await submitReport(report);
-}
-
-// ✗ BAD
-report.validate().then(isValid => {
-  if (isValid) {
-    submitReport(report); // Callback hell
-  }
-});
-```
+Unknown v3 report types cause a parse error listing the supported types. See the [migration guide](https://github.com/xarf/xarf-javascript/blob/main/docs/MIGRATION_V3_TO_V4.md) for the full type mapping and migration strategies.
 
 ---
 
 ## Resources
 
-- **[GitHub Repository](https://github.com/xarf/xarf-javascript)** - Alpha Release
-- **[npm Package](https://www.npmjs.com/package/xarf)** - Alpha Release
-- **[Examples](https://github.com/xarf/xarf-javascript/tree/main/examples)** - Available
-- **[Issue Tracker](https://github.com/xarf/xarf-spec/issues)** - Report bugs
-
----
-
-## Support
-
-- **[GitHub Discussions](https://github.com/xarf/xarf-spec/discussions)** - Ask questions
-- **[Stack Overflow](https://stackoverflow.com/questions/tagged/xarf)** - Tag: `xarf`
+- **[GitHub Repository](https://github.com/xarf/xarf-javascript)**
+- **[npm Package](https://www.npmjs.com/package/@xarf/xarf)**
+- **[Issue Tracker](https://github.com/xarf/xarf-javascript/issues)**
+- **[XARF Specification](https://xarf.org)**
+- **[License (MIT)](https://github.com/xarf/xarf-javascript/blob/main/LICENSE)**
 
 <style>
 .library-status {

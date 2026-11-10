@@ -1,6 +1,6 @@
 # Site settings
 title: "XARF - eXtended Abuse Reporting Format"
-description: "XARF v4.0.0 - Modern JSON-based abuse reporting format with parser libraries for Python, JavaScript, and Go. Open source, developer-friendly, and production-ready."
+description: "XARF v4.2.0 - Modern JSON-based abuse reporting format with parser libraries for Python, JavaScript, Go, and C#/.NET. Open source, developer-friendly, and production-ready."
 url: "https://xarf.org"
 baseurl: ""
 lang: "en"
@@ -77,6 +77,8 @@ nav_links:
         url: "/libraries/javascript/"
       - title: "Go"
         url: "/libraries/go/"
+      - title: "C#/.NET"
+        url: "/libraries/csharp/"
   - title: "Downloads"
     url: "/downloads/"
   - title: "Community"
@@ -117,7 +119,7 @@ defaults:
   - scope:
       path: "_libraries"
     values:
-      layout: "library"
+      layout: "docs"
   - scope:
       path: "_community"
     values:
@@ -144,7 +146,7 @@ keywords: "XARF, abuse reporting, incident reporting, JSON format, parser librar
 
 # GitHub Pages
 github_username: xarf
-repository: xarf/xarf-website
+repository: xarf/website
 
 # Exclude files
 exclude:

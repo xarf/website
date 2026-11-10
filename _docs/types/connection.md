@@ -32,7 +32,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T11:30:00Z",
   🟠 "reporter": {
@@ -99,7 +99,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T16:55:42Z",
   🟠 "reporter": {
@@ -165,7 +165,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T08:30:00Z",
   🟠 "reporter": {
@@ -225,7 +225,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T12:00:00Z",
   🟠 "reporter": {
@@ -285,7 +285,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T15:00:00Z",
   🟠 "reporter": {
@@ -345,7 +345,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T13:00:00Z",
   🟠 "reporter": {
@@ -405,7 +405,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2025-01-15T12:00:00Z",
   🟠 "reporter": {
@@ -471,7 +471,7 @@ Network-level attacks and reconnaissance activities including DDoS, port scannin
 
 ```json
 {
-  🟠 "xarf_version": "4.0.0",
+  🟠 "xarf_version": "4.2.0",
   🟠 "report_id": "550e8400-e29b-41d4-a716-446655440000",
   🟠 "timestamp": "2024-01-15T17:00:00Z",
   🟠 "reporter": {

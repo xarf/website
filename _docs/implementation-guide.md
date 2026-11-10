@@ -15,11 +15,12 @@ This guide walks you through implementing XARF (eXtended Abuse Reporting Format)
 
 ### 1. Choose Your Language
 
-XARF provides libraries for multiple programming languages:
+XARF provides stable libraries for multiple programming languages, all implementing XARF spec v4.2.0:
 
-- **[Python](/libraries/python/)** (Beta) - Full-featured library with validation and schema support
-- **[JavaScript/Node.js](/libraries/javascript/)** (Alpha) - Browser and Node.js compatible
-- **[Go](/libraries/go/)** (Alpha) - High-performance implementation
+- **[Python](/libraries/python/)** (Stable) - Full-featured library with validation and schema support
+- **[JavaScript/TypeScript](/libraries/javascript/)** (Stable) - Browser and Node.js compatible
+- **[Go](/libraries/go/)** (Stable) - High-performance implementation
+- **[C#/.NET](/libraries/csharp/)** (Stable) - Schema-driven parsing, validation, and generation
 
 ### 2. Install the Library
 
@@ -27,8 +28,7 @@ XARF provides libraries for multiple programming languages:
 <summary>Python</summary>
 
 ```bash
-# alpha — not yet on PyPI
-pip install git+https://github.com/xarf/xarf-python.git
+pip install xarf
 ```
 </details>
 
@@ -43,7 +43,17 @@ npm install @xarf/xarf
 <details class="code-example" markdown="1">
 <summary>Go</summary>
 
-The Go library is not yet publicly available (coming soon).
+```bash
+go get github.com/xarf/xarf-go
+```
+</details>
+
+<details class="code-example" markdown="1">
+<summary>C#/.NET</summary>
+
+```bash
+dotnet add package Xarf
+```
 </details>
 
 ### 3. Create Your First Report
@@ -52,14 +62,14 @@ The Go library is not yet publicly available (coming soon).
 <summary>Python Example</summary>
 
 ```python
-from xarf import XARFReport
-from datetime import datetime
+from xarf import create_report
+import json
 
-# Create a new XARF report
-report = XARFReport(
-    xarf_version="4.0.0",
-    report_id="550e8400-e29b-41d4-a716-446655440000",
-    timestamp=datetime.utcnow().isoformat() + "Z",
+# create_report auto-generates xarf_version, report_id, and timestamp
+result = create_report(
+    category="connection",
+    type="ddos",
+    source_identifier="192.0.2.100",
     reporter={
         "org": "Security Operations",
         "contact": "abuse@example.com",
@@ -70,22 +80,19 @@ report = XARFReport(
         "contact": "abuse@example.com",
         "domain": "example.com"
     },
-    source_identifier="192.0.2.100",
-    category="connection",
-    type="ddos"
+    evidence_source="honeypot",
 )
 
-# Validate the report
-if report.validate():
+# Inspect validation results
+if not result.errors:
     print("✓ Report is valid!")
 
     # Export to JSON
-    json_output = report.to_json(indent=2)
-    print(json_output)
+    print(json.dumps(result.report.model_dump(by_alias=True, exclude_none=True), indent=2))
 else:
     print("✗ Validation errors:")
-    for error in report.validation_errors:
-        print(f"  - {error}")
+    for error in result.errors:
+        print(f"  - {error.field}: {error.message}")
 ```
 </details>
 
@@ -93,13 +100,13 @@ else:
 <summary>JavaScript Example</summary>
 
 ```javascript
-const { XARFReport } = require('xarf');
+import { createReport } from '@xarf/xarf';
 
-// Create a new XARF report
-const report = new XARFReport({
-  xarf_version: '4.0.0',
-  report_id: '550e8400-e29b-41d4-a716-446655440000',
-  timestamp: new Date().toISOString(),
+// createReport auto-generates xarf_version, report_id, and timestamp
+const { report, errors } = createReport({
+  category: 'connection',
+  type: 'ddos',
+  source_identifier: '192.0.2.100',
   reporter: {
     org: 'Security Operations',
     contact: 'abuse@example.com',
@@ -110,18 +117,16 @@ const report = new XARFReport({
     contact: 'abuse@example.com',
     domain: 'example.com'
   },
-  source_identifier: '192.0.2.100',
-  category: 'connection',
-  type: 'ddos'
+  evidence_source: 'honeypot',
 });
 
-// Validate and export
-if (report.validate()) {
+// Inspect validation results
+if (errors.length === 0) {
   console.log('✓ Report is valid!');
-  console.log(report.toJSON(null, 2));
+  console.log(JSON.stringify(report, null, 2));
 } else {
   console.log('✗ Validation errors:');
-  report.validationErrors.forEach(error => console.log(`  - ${error}`));
+  errors.forEach(error => console.log(`  - ${error.field}: ${error.message}`));
 }
 ```
 </details>
@@ -132,18 +137,25 @@ if (report.validate()) {
 
 ### Schema Validation
 
-All XARF reports must conform to the JSON Schema for their specific type. The library handles validation automatically:
+All XARF reports must conform to the JSON Schema for their specific type. The library handles validation automatically when you `parse()` a report — validation results are returned on the result object rather than raised as exceptions:
 
 ```python
-from xarf import XARFReport, ValidationError
+from xarf import parse
 
-try:
-    report = XARFReport.from_json(json_string)
-    report.validate(strict=True)  # Raises ValidationError if invalid
-except ValidationError as e:
-    print(f"Validation failed: {e.message}")
-    for error in e.errors:
-        print(f"  {error.path}: {error.message}")
+# parse() validates against the official v4.2.0 schemas and returns
+# structured errors/warnings instead of raising on validation failure.
+result = parse(json_string)
+
+if result.errors:
+    print("Validation failed:")
+    for error in result.errors:
+        print(f"  {error.field}: {error.message}")
+else:
+    print("✓ Report is valid!")
+    report = result.report
+
+# Pass strict=True to also treat warnings and x-recommended fields as errors.
+strict_result = parse(json_string, strict=True)
 ```
 
 ### Field Requirements
@@ -169,27 +181,34 @@ Use our [Schema Validator](/tools/validator/) to validate reports in your browse
 **Use Case**: Your system detects malicious activity and automatically generates XARF reports.
 
 ```python
+from xarf import create_report
+
 class AbuseDetector:
-    def __init__(self, xarf_reporter):
-        self.xarf_reporter = xarf_reporter
+    def __init__(self, reporter, sender):
+        self.reporter = reporter
+        self.sender = sender
 
     def on_ddos_detected(self, attack_data):
         """Called when DDoS attack is detected"""
-        report = self.xarf_reporter.create_report(
+        result = create_report(
             category="connection",
-            abuse_type="ddos",
+            type="ddos",
             source_identifier=attack_data['source_ip'],
+            reporter=self.reporter,
+            sender=self.sender,
+            evidence_source="honeypot",
+            # category-specific fields are passed as keyword arguments
             source_port=attack_data['source_port'],
             protocol=attack_data['protocol'],
             evidence=self._collect_evidence(attack_data),
-            tags=[
-                f"protocol:{attack_data['protocol']}",
-                f"volume:{attack_data['gbps']}gbps"
-            ]
         )
 
+        if result.errors:
+            log_invalid_report(result.errors)
+            return
+
         # Send to abuse contact
-        self.send_report(report, attack_data['source_asn'])
+        self.send_report(result.report, attack_data['source_asn'])
 ```
 
 ### 2. Receiving and Processing Reports
@@ -197,69 +216,77 @@ class AbuseDetector:
 **Use Case**: Your abuse handling system receives XARF reports from external sources.
 
 ```python
-from xarf import XARFReport
+from xarf import parse
 
 def process_abuse_report(json_data):
     """Process incoming XARF report"""
-    try:
-        # Parse and validate
-        report = XARFReport.from_json(json_data)
-        report.validate()
+    # Parse and validate (does not raise on validation failure)
+    result = parse(json_data)
 
-        # Route based on category and type
-        if report.category == "connection" and report.abuse_type == "ddos":
-            handle_ddos_report(report)
-        elif report.category == "vulnerability":
-            handle_vulnerability_report(report)
+    if result.errors:
+        log_invalid_report(json_data, result.errors)
+        return
 
-        # Log receipt
-        log_report_received(report.report_id, report.reporter.org)
+    report = result.report
 
-    except ValidationError as e:
-        log_invalid_report(json_data, str(e))
+    # Route based on category and type
+    if report.category == "connection" and report.type == "ddos":
+        handle_ddos_report(report)
+    elif report.category == "vulnerability":
+        handle_vulnerability_report(report)
+
+    # Log receipt
+    log_report_received(report.report_id, report.reporter.org)
 ```
 
 ### 3. Batch Processing
 
-**Use Case**: Process multiple reports efficiently.
+**Use Case**: Process multiple reports efficiently by parsing each one and routing on the result.
 
 ```python
-from xarf import XARFBatch
+from xarf import parse
 
 def process_daily_reports(report_files):
     """Process all reports from the past 24 hours"""
-    batch = XARFBatch()
-
-    # Load all reports
     for file_path in report_files:
         with open(file_path, 'r') as f:
-            batch.add_report(f.read())
+            result = parse(f.read())
 
-    # Validate all at once
-    results = batch.validate_all()
+        if result.errors:
+            # Log invalid reports
+            log_validation_failure(file_path, result.errors)
+            continue
 
-    # Process valid reports
-    for report in results.valid:
-        take_action(report)
-
-    # Log invalid reports
-    for error in results.invalid:
-        log_validation_failure(error.report_id, error.errors)
+        # Process valid reports
+        take_action(result.report)
 ```
 
-### 4. Format Conversion
+### 4. Legacy v3 Conversion
 
-**Use Case**: Convert between XARF and other abuse reporting formats.
+**Use Case**: Accept legacy XARF v3 reports and convert them to v4 transparently.
+
+`parse()` automatically detects XARF v3 reports (by the `Version` field) and converts
+them to v4, attaching `legacy_version: '3'` and a deprecation warning:
 
 ```python
-from xarf.converters import ARFConverter, IODefConverter
+from xarf import parse
 
-# Convert from ARF to XARF
-arf_data = load_arf_report('report.xml')
-xarf_report = ARFConverter.to_xarf(arf_data)
+result = parse(v3_report)
 
-# Convert XARF to IODEF
-iodef_xml = IODefConverter.from_xarf(xarf_report)
+print(result.report.xarf_version)    # '4.2.0'
+print(result.report.category)        # mapped category (e.g., 'messaging')
+print(result.report.legacy_version)  # '3'
+# result.warnings includes the deprecation notice + conversion details
+```
+
+You can also use the low-level conversion utilities directly:
+
+```python
+from xarf import is_v3_report, convert_v3_to_v4, get_v3_deprecation_warning
+
+if is_v3_report(json_data):
+    v4_data = convert_v3_to_v4(json_data)
+    print(get_v3_deprecation_warning())
 ```
 
 ---
@@ -309,7 +336,7 @@ iodef_xml = IODefConverter.from_xarf(xarf_report)
 
 ### Best Practices
 
-1. **Always validate before sending** - Use `report.validate()` to catch errors early
+1. **Always validate before sending** - Check the `errors` returned by `parse()` / `create_report()` to catch problems early
 2. **Log validation failures** - Keep track of invalid reports for debugging
 3. **Graceful degradation** - Handle missing recommended (🟢) fields gracefully
 4. **Version compatibility** - Check `xarf_version` field when parsing reports
@@ -324,52 +351,57 @@ XARF reports may contain sensitive information. Follow these guidelines:
 
 #### 1. Evidence Protection
 
-```python
-from xarf.security import SecureEvidence
+`create_evidence()` handles base64 encoding, hashing, and size calculation for you. Encrypt
+sensitive payloads with your own crypto before attaching them, and pass the ciphertext in:
 
-# Encrypt evidence before storage
-evidence = SecureEvidence.encrypt(
-    content=raw_evidence,
-    encryption_key=get_encryption_key(),
-    algorithm="AES-256-GCM"
+```python
+from xarf import create_report, create_evidence
+
+# Encrypt the raw capture with your own key management before attaching it.
+encrypted_capture = encrypt(raw_evidence, key=get_encryption_key())  # e.g. AES-256-GCM
+
+evidence = create_evidence(
+    "application/octet-stream",
+    encrypted_capture,
+    description="Encrypted packet capture",
 )
 
-report.add_evidence(
-    content_type="application/octet-stream",
-    description="Encrypted packet capture",
-    payload=evidence.to_base64()
+result = create_report(
+    category="connection",
+    type="ddos",
+    source_identifier="192.0.2.100",
+    reporter=reporter,
+    sender=sender,
+    evidence_source="honeypot",
+    evidence=[evidence],
 )
 ```
 
 #### 2. PII Redaction
 
+Redact personally identifiable information from evidence payloads before attaching them
+to a report. Run your redaction step first, then pass the cleaned text to `create_evidence()`:
+
 ```python
-from xarf.privacy import PIIRedactor
+from xarf import create_evidence
 
-# Automatically redact PII from evidence
-redactor = PIIRedactor()
-clean_evidence = redactor.redact(evidence_text)
+# Redact PII (email addresses, phone numbers, credit card numbers, personal
+# identifiers) from evidence text using your own redaction step before attaching it.
+clean_evidence_text = redact_pii(evidence_text)
 
-# Redaction preserves structure but removes:
-# - Email addresses
-# - Phone numbers
-# - Credit card numbers
-# - Personal identifiers
+evidence = create_evidence(
+    "text/plain",
+    clean_evidence_text,
+    description="Redacted log excerpt",
+)
 ```
 
 #### 3. Access Control
 
-```python
-from xarf.security import AccessControl
-
-# Define who can access reports
-acl = AccessControl()
-acl.set_reader("security-team@example.com")
-acl.set_reader("abuse@isp.example.com")
-
-# Embed access control in report
-report.metadata['access_control'] = acl.to_dict()
-```
+XARF does not define an access-control field. Enforce who can read reports at your
+storage and transport layers (e.g., authenticated endpoints, object-store ACLs, or
+encryption keyed to authorized recipients) rather than embedding access policy in the
+report itself.
 
 ### Transport Security
 
@@ -380,7 +412,7 @@ import requests
 
 response = requests.post(
     'https://abuse.example.com/xarf',
-    json=report.to_dict(),
+    json=result.report.model_dump(by_alias=True, exclude_none=True),
     headers={'Content-Type': 'application/json'},
     verify=True  # Always verify SSL certificates
 )
@@ -394,16 +426,16 @@ response = requests.post(
 
 ```python
 import unittest
-from xarf import XARFReport
+from xarf import create_report, parse
 
 class TestXARFReports(unittest.TestCase):
 
     def test_valid_ddos_report(self):
         """Test creating a valid DDoS report"""
-        report = XARFReport(
-            xarf_version="4.0.0",
-            report_id="test-001",
-            timestamp="2024-01-15T10:00:00Z",
+        result = create_report(
+            category="connection",
+            type="ddos",
+            source_identifier="192.0.2.100",
             reporter={
                 "org": "Test Security",
                 "contact": "test@example.com",
@@ -414,35 +446,24 @@ class TestXARFReports(unittest.TestCase):
                 "contact": "test@example.com",
                 "domain": "example.com"
             },
-            source_identifier="192.0.2.100",
-            category="connection",
-            type="ddos"
+            evidence_source="honeypot",
         )
 
-        self.assertTrue(report.validate())
+        self.assertEqual(result.errors, [])
+        self.assertEqual(result.report.category, "connection")
 
     def test_missing_mandatory_field(self):
-        """Test that missing mandatory field raises error"""
-        with self.assertRaises(ValidationError):
-            report = XARFReport(
-                xarf_version="4.0.0",
-                # Missing report_id
-                timestamp="2024-01-15T10:00:00Z",
-                reporter={
-                    "org": "Test",
-                    "contact": "test@example.com",
-                    "domain": "example.com"
-                },
-                sender={
-                    "org": "Test",
-                    "contact": "test@example.com",
-                    "domain": "example.com"
-                },
-                source_identifier="192.0.2.100",
-                category="connection",
-                type="ddos"
-            )
-            report.validate(strict=True)
+        """Test that an invalid report surfaces validation errors"""
+        # A report missing required fields (e.g. reporter/source_identifier)
+        # is returned with a populated errors list rather than raising.
+        result = parse({
+            "xarf_version": "4.2.0",
+            "timestamp": "2024-01-15T10:00:00Z",
+            "category": "connection",
+            "type": "ddos",
+        })
+
+        self.assertTrue(result.errors)
 ```
 
 ### Integration Tests
@@ -453,19 +474,19 @@ def test_end_to_end_workflow():
     # 1. Detect abuse
     attack_data = detect_attack()
 
-    # 2. Generate report
-    report = generate_xarf_report(attack_data)
+    # 2. Generate report (returns a result with report + errors)
+    result = generate_xarf_report(attack_data)
 
     # 3. Validate
-    assert report.validate()
+    assert result.errors == []
 
     # 4. Submit
-    response = submit_report(report)
+    response = submit_report(result.report)
     assert response.status_code == 200
 
     # 5. Verify acknowledgment
     ack = parse_acknowledgment(response.json())
-    assert ack.report_id == report.report_id
+    assert ack.report_id == result.report.report_id
 ```
 
 ### Test Data

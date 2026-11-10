@@ -27,7 +27,7 @@ Help evolve the XARF standard:
 
 Build or improve XARF libraries:
 
-- **Implement missing language libraries** (Rust, Ruby, PHP, etc.)
+- **Implement libraries for additional languages** (Rust, Ruby, PHP, etc.) — JavaScript/TypeScript, Go, C#/.NET, and Python are already published
 - **Add features** to existing libraries
 - **Improve performance** and reduce dependencies
 - **Write tests** and increase code coverage
@@ -164,29 +164,23 @@ Follow PEP 8 style guide:
 ```python
 """Module docstring explaining purpose."""
 
-from typing import Optional
+from xarf import parse
 
 
-class XARFReport:
-    """XARF report class.
+def is_valid_report(json_data: str) -> bool:
+    """Parse and validate a XARF report.
+
+    The ``xarf`` library exposes a functional API: ``parse`` returns a
+    ``ParseResult`` with ``.report``, ``.errors``, and ``.warnings``.
 
     Args:
-        report_id: Unique identifier
-        timestamp: ISO 8601 timestamp
+        json_data: A JSON string or dict containing a XARF report.
+
+    Returns:
+        True if the report has no validation errors, False otherwise.
     """
-
-    def __init__(self, report_id: str, timestamp: str) -> None:
-        self.report_id = report_id
-        self.timestamp = timestamp
-
-    def validate(self) -> bool:
-        """Validate report against schema.
-
-        Returns:
-            True if valid, False otherwise
-        """
-        # Implementation
-        pass
+    result = parse(json_data)
+    return not result.errors
 ```
 
 **Guidelines**:
@@ -422,7 +416,7 @@ Provide a complete, valid example:
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T10:00:00Z",
   "reporter": {
@@ -456,7 +450,7 @@ Add documentation to the website:
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   ...
 }
 ```

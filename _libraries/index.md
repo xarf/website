@@ -7,7 +7,7 @@ permalink: /libraries/
 
 # XARF Libraries
 
-Official and community-maintained libraries for implementing XARF in your applications.
+Official, published libraries for implementing XARF in your applications. All four official libraries implement **XARF spec v4.2.0** and support the seven categories: messaging, connection, content, infrastructure, copyright, vulnerability, and reputation.
 
 ---
 
@@ -16,47 +16,53 @@ Official and community-maintained libraries for implementing XARF in your applic
 ### Python
 <div class="library-card">
   <div class="library-header">
-    <h3>xarf-python</h3>
-    <span class="status-badge beta">Beta</span>
+    <h3>xarf (Python)</h3>
+    <span class="status-badge badge-success">Stable</span>
   </div>
-  <p>Full-featured Python library with validation, conversion, and schema support.</p>
+  <p>Parse, validate, and generate XARF v4 reports with Pydantic v2 models and schema-driven validation.</p>
   <div class="library-meta">
-    <span>📦 <code>pip install git+https://github.com/xarf/xarf-python.git</code> <em>(alpha — not yet on PyPI)</em></span>
+    <span>📦 PyPI: <code>pip install xarf</code></span>
+    <span>🏷️ v1.0.0 · MIT · Python 3 (Pydantic v2)</span>
     <span>📚 <a href="/libraries/python/">Documentation</a></span>
     <span>⭐ <a href="https://github.com/xarf/xarf-python">GitHub</a></span>
+    <span>🔗 <a href="https://pypi.org/project/xarf/">PyPI</a></span>
   </div>
   <div class="library-features">
     <strong>Features:</strong>
     <ul>
-      <li>Complete XARF 4.0 support</li>
-      <li>JSON Schema validation</li>
-      <li>Format conversion (ARF, IODEF, CSV)</li>
-      <li>Evidence hashing and verification</li>
-      <li>Type hints and dataclasses</li>
-      <li>Async/await support</li>
+      <li>Functional API: <code>parse</code>, <code>create_report</code>, <code>create_evidence</code></li>
+      <li>Schema-driven validation against the official XARF v4.2.0 JSON schemas</li>
+      <li>Pydantic v2 discriminated-union models for all 7 categories</li>
+      <li>Structured errors, warnings, and missing-optional info (<code>ParseResult</code>)</li>
+      <li>Automatic v3 detection and conversion to v4</li>
+      <li>Evidence helper with base64 encoding, hashing, and size</li>
     </ul>
   </div>
 </div>
 
-### JavaScript/Node.js
+### JavaScript / TypeScript
 <div class="library-card">
   <div class="library-header">
-    <h3>xarf-javascript</h3>
-    <span class="status-badge alpha">Alpha</span>
+    <h3>@xarf/xarf (JavaScript/TypeScript)</h3>
+    <span class="status-badge badge-success">Stable</span>
   </div>
-  <p>JavaScript/TypeScript library for browser and Node.js environments.</p>
+  <p>Parse, validate, and generate XARF v4 reports in Node.js with full TypeScript types.</p>
   <div class="library-meta">
     <span>📦 npm: <code>npm install @xarf/xarf</code></span>
+    <span>🏷️ v1.1.0 · MIT · Node.js 18+</span>
     <span>📚 <a href="/libraries/javascript/">Documentation</a></span>
     <span>⭐ <a href="https://github.com/xarf/xarf-javascript">GitHub</a></span>
+    <span>🔗 <a href="https://www.npmjs.com/package/@xarf/xarf">npm</a></span>
   </div>
   <div class="library-features">
     <strong>Features:</strong>
     <ul>
-      <li>TypeScript definitions</li>
-      <li>Browser and Node.js compatible</li>
-      <li>Streaming validation</li>
-      <li>Zero dependencies</li>
+      <li>Functional API: <code>parse</code>, <code>createReport</code>, <code>createEvidence</code></li>
+      <li>Schema-driven validation against the bundled XARF v4.2.0 JSON schemas</li>
+      <li>Full TypeScript support with discriminated-union types for all 7 categories</li>
+      <li>Structured results with <code>errors</code>, <code>warnings</code>, and <code>info</code></li>
+      <li>Automatic v3 detection and conversion (plus <code>isXARFv3</code>/<code>convertV3toV4</code> helpers)</li>
+      <li>Schemas bundled at build time — zero filesystem/network dependency</li>
     </ul>
   </div>
 </div>
@@ -64,22 +70,53 @@ Official and community-maintained libraries for implementing XARF in your applic
 ### Go
 <div class="library-card">
   <div class="library-header">
-    <h3>xarf-go</h3>
-    <span class="status-badge coming-soon">Coming Soon</span>
+    <h3>xarf-go (Go)</h3>
+    <span class="status-badge badge-success">Stable</span>
   </div>
-  <p>High-performance Go library for enterprise applications.</p>
+  <p>Parse, validate, and generate XARF v4 reports with type-safe Go structs.</p>
   <div class="library-meta">
-    <span>📦 Not yet publicly available</span>
+    <span>📦 <code>go get github.com/xarf/xarf-go</code></span>
+    <span>🏷️ v1.1.0 · Apache-2.0 · Go 1.21+</span>
     <span>📚 <a href="/libraries/go/">Documentation</a></span>
-    <span>💬 <a href="https://github.com/xarf/xarf-spec/discussions">Express interest</a></span>
+    <span>⭐ <a href="https://github.com/xarf/xarf-go">GitHub</a></span>
+    <span>🔗 <a href="https://pkg.go.dev/github.com/xarf/xarf-go">pkg.go.dev</a></span>
   </div>
   <div class="library-features">
-    <strong>Planned features:</strong>
+    <strong>Features:</strong>
     <ul>
-      <li>Native struct mapping</li>
-      <li>Concurrent processing</li>
-      <li>Minimal allocations</li>
-      <li>Protocol buffer support</li>
+      <li>Package-level <code>Parse</code>, <code>CreateReport</code>, <code>CreateEvidence</code> mirroring the JS API</li>
+      <li>Typed API: <code>NewParser(strict)</code>, <code>NewValidator()</code>, <code>NewGenerator()</code></li>
+      <li>Schema-driven validation against the embedded XARF v4.2.0 schemas</li>
+      <li>Type-safe structs for all 7 category reports</li>
+      <li>Third-party reporting via separate <code>reporter</code>/<code>sender</code> fields</li>
+      <li>Automatic v3 detection and conversion; zero runtime dependencies</li>
+    </ul>
+  </div>
+</div>
+
+### C# / .NET
+<div class="library-card">
+  <div class="library-header">
+    <h3>Xarf (C#/.NET)</h3>
+    <span class="status-badge badge-success">Stable</span>
+  </div>
+  <p>Parse, validate, and generate XARF v4 reports on .NET with schema-driven validation.</p>
+  <div class="library-meta">
+    <span>📦 NuGet: <code>dotnet add package Xarf</code></span>
+    <span>🏷️ v1.1.0 · MIT · netstandard2.1 + net8.0 (.NET 8/9/10)</span>
+    <span>📚 <a href="/libraries/csharp/">Documentation</a></span>
+    <span>⭐ <a href="https://github.com/xarf/xarf-csharp">GitHub</a></span>
+    <span>🔗 <a href="https://www.nuget.org/packages/Xarf">NuGet</a></span>
+  </div>
+  <div class="library-features">
+    <strong>Features:</strong>
+    <ul>
+      <li>Static <code>XarfApi.Parse</code>, <code>XarfApi.CreateReport</code>, <code>XarfApi.CreateEvidence</code> mirroring the JS API</li>
+      <li>Schema-driven validation against the embedded XARF v4.2.0 schemas</li>
+      <li>Result objects with <code>Errors</code>, <code>Warnings</code>, and <code>Info</code> (no throw on validation failure)</li>
+      <li>Legacy typed <code>Parser</code>/<code>Generator</code>/<code>Validator</code> retained for compatibility</li>
+      <li>All 7 categories; automatic v3 detection and conversion</li>
+      <li>Runs on .NET 8/9/10, and .NET 6/7, Core 3.x, Mono/Xamarin/Unity via <code>netstandard2.1</code> (not .NET Framework 4.x)</li>
     </ul>
   </div>
 </div>
@@ -88,47 +125,51 @@ Official and community-maintained libraries for implementing XARF in your applic
 
 ## Quick Start
 
-Choose your language and get started in minutes:
+Choose your language and get started in minutes. Each example uses the real, published API.
 
 <div class="language-tabs">
   <button class="tab-button active" data-lang="python">Python</button>
   <button class="tab-button" data-lang="javascript">JavaScript</button>
   <button class="tab-button" data-lang="go">Go</button>
+  <button class="tab-button" data-lang="csharp">C#</button>
 </div>
 
 <div class="tab-content active" data-lang="python" markdown="1">
 
 {% highlight python %}
-# Install (alpha — not yet on PyPI)
-pip install git+https://github.com/xarf/xarf-python.git
+# Install
+pip install xarf
 
-# Create a report
-from xarf import XARFReport
-from datetime import datetime
+# Parse and validate a report
+from xarf import parse
 
-report = XARFReport(
-    xarf_version="4.0.0",
-    report_id="550e8400-e29b-41d4-a716-446655440000",
-    timestamp=datetime.utcnow().isoformat() + "Z",
-    reporter={
-        "org": "Security Operations",
+result = parse({
+    "xarf_version": "4.2.0",
+    "report_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "timestamp": "2024-01-15T10:30:00Z",
+    "reporter": {
+        "org": "Security Team",
         "contact": "abuse@example.com",
-        "domain": "example.com"
+        "domain": "example.com",
     },
-    sender={
-        "org": "Security Operations",
+    "sender": {
+        "org": "Security Team",
         "contact": "abuse@example.com",
-        "domain": "example.com"
+        "domain": "example.com",
     },
-    source_identifier="192.0.2.100",
-    category="connection",
-    type="ddos"
-)
+    "source_identifier": "192.0.2.100",
+    "category": "connection",
+    "type": "ddos",
+    "evidence_source": "honeypot",
+    "destination_ip": "203.0.113.10",
+    "protocol": "tcp",
+})
 
-# Validate
-if report.validate():
-    print("✓ Report is valid!")
-    print(report.to_json(indent=2))
+if not result.errors:
+    print(result.report.category)  # 'connection'
+else:
+    for e in result.errors:
+        print(f"{e.field}: {e.message}")
 {% endhighlight %}
 
 **[→ Full Python Documentation](/libraries/python/)**
@@ -141,145 +182,186 @@ if report.validate():
 // Install
 npm install @xarf/xarf
 
-// Create a report
-const { XARFReport } = require('@xarf/xarf');
+// Parse and validate a report
+import { parse } from '@xarf/xarf';
 
-const report = new XARFReport({
-  xarf_version: '4.0.0',
-  report_id: '550e8400-e29b-41d4-a716-446655440000',
-  timestamp: new Date().toISOString(),
+const { report, errors, warnings } = parse({
+  xarf_version: '4.2.0',
+  report_id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890',
+  timestamp: '2024-01-15T10:30:00Z',
   reporter: {
-    org: 'Security Operations',
+    org: 'Security Team',
     contact: 'abuse@example.com',
-    domain: 'example.com'
+    domain: 'example.com',
   },
   sender: {
-    org: 'Security Operations',
+    org: 'Security Team',
     contact: 'abuse@example.com',
-    domain: 'example.com'
+    domain: 'example.com',
   },
   source_identifier: '192.0.2.100',
   category: 'connection',
-  type: 'ddos'
+  type: 'ddos',
+  evidence_source: 'honeypot',
+  destination_ip: '203.0.113.10',
+  protocol: 'tcp',
 });
 
-// Validate
-if (report.validate()) {
-  console.log('✓ Report is valid!');
-  console.log(report.toJSON(null, 2));
+if (errors.length === 0) {
+  console.log(report.category); // 'connection'
+} else {
+  console.log('Validation errors:', errors);
 }
 {% endhighlight %}
 
-**Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
+**[→ Full JavaScript Documentation](/libraries/javascript/)**
 
 </div>
 
 <div class="tab-content" data-lang="go" markdown="1">
 
 {% highlight go %}
-// The Go library is not yet publicly available (coming soon).
-// The example below shows the planned API.
+// Install
+//   go get github.com/xarf/xarf-go
 
-// Create a report
 package main
 
 import (
     "fmt"
-    "time"
+    "log"
+
     "github.com/xarf/xarf-go"
 )
 
 func main() {
-    report := xarf.Report{
-        XARFVersion: "4.0.0",
-        ReportID: "550e8400-e29b-41d4-a716-446655440000",
-        Timestamp: time.Now().Format(time.RFC3339),
-        Reporter: xarf.Reporter{
-            Org: "Security Operations",
-            Contact: "abuse@example.com",
-            Domain: "example.com",
+    data := []byte(`{
+        "xarf_version": "4.2.0",
+        "report_id": "550e8400-e29b-41d4-a716-446655440000",
+        "timestamp": "2024-01-15T10:30:00Z",
+        "reporter": {
+            "org": "Security Team",
+            "contact": "abuse@example.com",
+            "domain": "example.com"
         },
-        Sender: xarf.Sender{
-            Org: "Security Operations",
-            Contact: "abuse@example.com",
-            Domain: "example.com",
+        "sender": {
+            "org": "Security Team",
+            "contact": "abuse@example.com",
+            "domain": "example.com"
         },
-        SourceIdentifier: "192.0.2.100",
-        Category: "connection",
-        Type: "ddos",
+        "source_identifier": "192.0.2.100",
+        "category": "connection",
+        "type": "ddos",
+        "evidence_source": "honeypot",
+        "destination_ip": "203.0.113.10",
+        "protocol": "tcp"
+    }`)
+
+    // Parse returns a result with errors/warnings; an error is only
+    // returned for malformed JSON or oversized input.
+    result, err := xarf.Parse(data, nil)
+    if err != nil {
+        log.Fatal(err)
     }
 
-    // Validate
-    if err := report.Validate(); err == nil {
-        fmt.Println("✓ Report is valid!")
-        json, _ := report.MarshalJSON()
-        fmt.Println(string(json))
+    if len(result.Errors) == 0 {
+        fmt.Println("Report is valid!")
+    } else {
+        fmt.Println("Validation errors:", result.Errors)
     }
 }
 {% endhighlight %}
 
-**Coming Soon** - [Express interest on GitHub](https://github.com/xarf/xarf-spec/discussions)
+**[→ Full Go Documentation](/libraries/go/)**
 
 </div>
 
----
+<div class="tab-content" data-lang="csharp" markdown="1">
 
-## Community Libraries
+{% highlight csharp %}
+// Install
+//   dotnet add package Xarf
 
-Community-maintained libraries and integrations:
+using Xarf;
 
-<div class="community-library">
-  <h3>Looking to contribute?</h3>
-  <p>We welcome community libraries for additional languages and frameworks!</p>
-  <ul>
-    <li>Ruby</li>
-    <li>PHP</li>
-    <li>Rust</li>
-    <li>Perl</li>
-    <li>Swift</li>
-    <li>Kotlin</li>
-  </ul>
-  <p><a href="/community/contributing/" class="btn btn-primary">Contribution Guide</a></p>
+var json = @"{
+  ""xarf_version"": ""4.2.0"",
+  ""report_id"": ""550e8400-e29b-41d4-a716-446655440000"",
+  ""timestamp"": ""2024-01-15T10:30:00Z"",
+  ""reporter"": {
+    ""org"": ""Security Team"",
+    ""contact"": ""abuse@example.com"",
+    ""domain"": ""example.com""
+  },
+  ""sender"": {
+    ""org"": ""Security Team"",
+    ""contact"": ""abuse@example.com"",
+    ""domain"": ""example.com""
+  },
+  ""source_identifier"": ""192.0.2.100"",
+  ""category"": ""connection"",
+  ""type"": ""ddos"",
+  ""evidence_source"": ""honeypot"",
+  ""destination_ip"": ""203.0.113.10"",
+  ""protocol"": ""tcp""
+}";
+
+// Parse returns a result; only malformed JSON / oversized input throws.
+ParseResult result = XarfApi.Parse(json);
+
+if (result.Errors.Count == 0)
+{
+    Console.WriteLine("Report is valid!");
+}
+else
+{
+    foreach (var error in result.Errors)
+        Console.WriteLine($"  - {error}");
+}
+{% endhighlight %}
+
+**[→ Full C# Documentation](/libraries/csharp/)**
+
 </div>
-
----
-
-## Integration Examples
-
-### Web Frameworks
-
-- **Flask/Django** (Python) - REST API integration
-- **Express.js** (Node.js) - Middleware for abuse reporting
-- **Gin/Echo** (Go) - High-performance handlers
-
-### Message Queues
-
-- **RabbitMQ** - AMQP integration
-- **Apache Kafka** - Streaming reports
-- **AWS SQS** - Cloud-native processing
-- **Redis** - Pub/sub patterns
-
-### Databases
-
-- **PostgreSQL** - JSONB storage
-- **MongoDB** - Document storage
-- **Elasticsearch** - Search and analytics
-- **TimescaleDB** - Time-series analysis
 
 ---
 
 ## Library Features Comparison
 
-| Feature | Python | JavaScript | Go |
-|---------|--------|------------|-----|
-| **Schema Validation** | ✓ | 🚧 | 🚧 |
-| **Type Safety** | ✓ | 🚧 | 🚧 |
-| **Async/Await** | ✓ | 🚧 | N/A |
-| **Format Conversion** | ✓ | 🚧 | 🚧 |
-| **Evidence Hashing** | ✓ | 🚧 | 🚧 |
-| **Streaming** | ✓ | 🚧 | 🚧 |
+All four official libraries implement XARF v4.2.0 with schema-driven validation and v3 backward compatibility.
 
-**Legend**: ✓ Available | 🚧 Coming Soon | N/A Not Applicable
+| Feature | Python | JavaScript | Go | C# |
+|---------|--------|------------|-----|-----|
+| **Status** | Stable (1.0.0) | Stable (1.1.0) | Stable (1.1.0) | Stable (1.1.0) |
+| **License** | MIT | MIT | Apache-2.0 | MIT |
+| **Functional API** (`parse`/`createReport`/`createEvidence`) | ✓ | ✓ | ✓ | ✓ |
+| **Typed API** | ✓ (Pydantic v2) | ✓ (TS types) | ✓ (`NewParser`/`NewValidator`/`NewGenerator`) | ✓ (`Parser`/`Generator`/`Validator`) |
+| **Schema-driven validation (v4.2.0)** | ✓ | ✓ | ✓ | ✓ |
+| **All 7 categories** | ✓ | ✓ | ✓ | ✓ |
+| **v3 → v4 conversion** | ✓ | ✓ | ✓ | ✓ |
+| **Evidence helper** (base64 + hash + size) | ✓ | ✓ | ✓ | ✓ |
+| **Published registry** | PyPI | npm | pkg.go.dev | NuGet |
+
+**Legend**: ✓ Available
+
+---
+
+## Community & Contributing
+
+We welcome community libraries and contributions for additional languages and frameworks.
+
+<div class="community-library">
+  <h3>Looking to contribute?</h3>
+  <p>A Perl implementation (<a href="https://github.com/xarf/xarf-perl">xarf-perl</a>) is in development and not yet published to CPAN — contributions are welcome. We'd also love help with other languages:</p>
+  <ul>
+    <li>Perl <em>(in development)</em></li>
+    <li>Ruby</li>
+    <li>PHP</li>
+    <li>Rust</li>
+    <li>Swift</li>
+    <li>Kotlin</li>
+  </ul>
+  <p><a href="/community/contributing/" class="btn btn-primary">Contribution Guide</a></p>
+</div>
 
 ---
 

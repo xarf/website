@@ -37,7 +37,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
         <span class="code-badge">Machine-Readable</span>
       </div>
       <pre><code class="language-json">{
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "1a5ec293-0849-40a4-9eba-d5926262ff05",
   "timestamp": "2025-01-11T15:15:24Z",
   "reporter": {
@@ -327,7 +327,7 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
   <div class="container">
     <h2 class="section-title">Join the Movement</h2>
     <p class="adoption-lead">
-      XARF v4 is in active development with early adopters already seeing results.
+      XARF v4 is published and stable, with adopters already seeing results.
       Be part of building a safer, more responsive internet.
     </p>
 
@@ -335,8 +335,8 @@ description: "The modern standard for abuse reporting that saves hours, speeds r
       <div class="adoption-stat">
         <div class="adoption-icon">📦</div>
         <div class="adoption-text">
-          <strong>Alpha parsers available</strong><br>
-          Python library ready for testing
+          <strong>Stable parsers available</strong><br>
+          Python, JavaScript, Go, and C#/.NET libraries published
         </div>
       </div>
       <div class="adoption-stat">

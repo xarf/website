@@ -213,7 +213,7 @@ The base64-encoded payload decodes to this XARF v4 report:
 
 ```json
 {
-  "xarf_version": "4.0.0",
+  "xarf_version": "4.2.0",
   "report_id": "550e8400-e29b-41d4-a716-446655440000",
   "timestamp": "2024-01-15T14:30:00Z",
   "category": "connection",
@@ -315,7 +315,7 @@ Version: 1
 
 # Example usage
 xarf_report = {
-    "xarf_version": "4.0.0",
+    "xarf_version": "4.2.0",
     "report_id": "550e8400-e29b-41d4-a716-446655440000",
     "timestamp": "2024-01-15T14:30:00Z",
     "category": "connection",
